@@ -16,6 +16,6 @@ public class HelloAndroid extends Activity {
         setContentView(R.layout.helloandroid);
 
         q=findViewById(R.id.label);
-        q.setText(username );
+        q.setText(username);
     }
 }
