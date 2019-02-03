@@ -2,7 +2,6 @@ package proyecto.codigo.acceso;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class HelloAndroid extends Activity {
@@ -17,6 +16,6 @@ public class HelloAndroid extends Activity {
         setContentView(R.layout.helloandroid);
 
         q=findViewById(R.id.label);
-        q.setText(username);
+        q.setText(username );
     }
 }
