@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="proyecto.codigo.acceso"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="28" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="false"
+        android:debuggable="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:testOnly="true" >
+        <activity
+            android:name="proyecto.codigo.acceso.LogIn"
+            android:label="@string/login_string" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="proyecto.codigo.acceso.HelloAndroid"
+            android:label="@string/hello" >
+        </activity>
+        <activity
+            android:name="proyecto.codigo.acceso.SignUp"
+            android:label="@string/signup_string" >
+        </activity>
+    </application>
+
+</manifest>

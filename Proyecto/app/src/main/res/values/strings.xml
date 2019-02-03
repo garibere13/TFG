@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TFG</string>
+    <string name="username_string">Username</string>
+    <string name="password_string">Password</string>
+    <string name="enter_username_hint">Enter username</string>
+    <string name="enter_password_hint">Enter password</string>
+    <string name="login_string">LogIn</string>
+    <string name="signup_string">SignUp</string>
+    <string name="hello">Hello Android!</string>
+    <string name="hello1">ke pasaaaa</string>
+
+
+    <string name="login_username">Username</string>
+    <string name="login_pass">Password</string>
+    <string name="login_entrar">Entrar</string>
+    <string name="login_signup">¡Regístrate!</string>
+
+    <string name="signup_username">Username</string>
+    <string name="signup_name">Nombre</string>
+    <string name="signup_ape1">Apellido 1</string>
+    <string name="signup_ape2">Apellido 2</string>
+    <string name="signup_con1">Contraseña</string>
+    <string name="signup_con2">Repite contraseña</string>
+    <string name="signup_registrar">Registrar</string>
+    <string name="signup_cancelar">Cancelar</string>
+
+
+    <string name="rellenar_datos">Introduzca datos en todos los campos</string>
+    <string name="con_dif">Las contraseñas no coinciden</string>
+    <string name="con_tam">La contraseña debe tener entre 6 y 25 caracteres</string>
+    <string name="name_tam">El nombre debe tener entre 2 y 25 caracteres</string>
+    <string name="ape1_tam">El primer apellido debe tener entre 2 y 25 caracteres</string>
+    <string name="ape2_tam">El segundo apellido debe tener entre 2 y 25 caracteres</string>
+    <string name="user_tam">El username debe tener entre 2 y 25 caracteres</string>
+
+</resources>

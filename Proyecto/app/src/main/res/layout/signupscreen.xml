@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/signup_name_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_name"/>
+
+    <EditText
+        android:id="@+id/signup_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_name"
+        android:inputType="text"
+        tools:ignore="Autofill"/>
+
+    <TextView
+        android:id="@+id/signup_ape1_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_ape1"/>
+
+    <EditText
+        android:id="@+id/signup_ape1_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_ape1"
+        android:inputType="text"
+        tools:ignore="Autofill"/>
+
+    <TextView
+        android:id="@+id/signup_ape2_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_ape2"/>
+
+    <EditText
+        android:id="@+id/signup_ape2_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_ape2"
+        android:inputType="text"
+        tools:ignore="Autofill"/>
+
+    <TextView
+        android:id="@+id/signup_username_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_username"/>
+
+    <EditText
+        android:id="@+id/signup_username_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_username"
+        android:inputType="text"
+        tools:ignore="Autofill"/>
+
+    <TextView
+        android:id="@+id/signup_con1_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_con1" />
+
+    <EditText
+        android:id="@+id/signup_con1_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_con1"
+        android:inputType="textPassword"
+        tools:ignore="Autofill"/>
+
+    <TextView
+        android:id="@+id/signup_con2_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_con2"/>
+
+    <EditText
+        android:id="@+id/signup_con2_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_con2"
+        android:inputType="textPassword"
+        tools:ignore="Autofill"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/registrar_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/signup_registrar"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/cancelar_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/signup_cancelar"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+
+</LinearLayout>

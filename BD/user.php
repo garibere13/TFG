@@ -1,0 +1,64 @@
+<?php
+    
+    include_once 'db-connect.php';
+    
+    class User
+    {        
+        private $db;  
+        private $db_table = "usuarios";
+        
+        public function __construct()
+        {
+            $this->db = new DbConnect();
+        }
+        
+        public function doesLoginExist($username, $password)
+        {
+            $query = "select * from ".$this->db_table." where username = '$username' AND password = '$password' Limit 1";
+            $result = mysqli_query($this->db->getDb(), $query);            
+            if(mysqli_num_rows($result) > 0)
+            {                
+                mysqli_close($this->db->getDb());
+                return true;
+            }            
+            mysqli_close($this->db->getDb());
+            return false;
+        }
+        
+        public function createNewRegisterUser($nombre, $apellido1, $apellido2, $username, $password)
+        {                
+            $query = "insert into ".$this->db_table." (nombre, apellido1, apellido2, username, password) values ('$nombre', '$apellido1', '$apellido2', '$username', '$password')";
+            $inserted = mysqli_query($this->db->getDb(), $query);
+                
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['message'] = "¡Usuario registrado!";                    
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['message'] = "Ya existe otro usuario con ese 'username'";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
+        
+        public function loginUser($username, $password)
+        {            
+            $json = array();            
+            $canUserLogin = $this->doesLoginExist($username, $password);            
+            if($canUserLogin)
+            {
+                $json['success'] = 1;
+                $json['message'] = "Logged in!!!!";
+            }
+            else
+            {
+                $json['success'] = 0;
+                $json['message'] = "Credenciales incorrectas";
+            }
+            return $json;
+        }
+    }
+    ?>

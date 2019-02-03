@@ -1,0 +1,4 @@
+#Sun Feb 03 19:13:04 CET 2019
+base.0=C\:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
