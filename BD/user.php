@@ -51,7 +51,7 @@
             if($canUserLogin)
             {
                 $json['success'] = 1;
-                $json['message'] = "Logged in!!!!";
+                $json['message'] = "¡Bienvenido!";
             }
             else
             {

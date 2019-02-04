@@ -65,22 +65,22 @@ public class SignUp extends Activity {
                     Toast.makeText(getApplicationContext(), R.string.rellenar_datos, Toast.LENGTH_LONG).show();
                 }
 
-                else if(name.getText().toString().length()<2 || name.getText().toString().length()>25)
+                else if(name.getText().toString().trim().length()<2 || name.getText().toString().trim().length()>25)
                 {
                     Toast.makeText(getApplicationContext(), R.string.name_tam, Toast.LENGTH_LONG).show();
                 }
 
-                else if(ape1.getText().toString().length()<2 || ape1.getText().toString().length()>25)
+                else if(ape1.getText().toString().trim().length()<2 || ape1.getText().toString().trim().length()>25)
                 {
                     Toast.makeText(getApplicationContext(), R.string.ape1_tam, Toast.LENGTH_LONG).show();
                 }
 
-                else if(ape2.getText().toString().length()<2 || ape2.getText().toString().length()>25)
+                else if(ape2.getText().toString().trim().length()<2 || ape2.getText().toString().trim().length()>25)
                 {
                     Toast.makeText(getApplicationContext(), R.string.ape2_tam, Toast.LENGTH_LONG).show();
                 }
 
-                else if(username.getText().toString().length()<2 || username.getText().toString().length()>25)
+                else if(username.getText().toString().trim().length()<2 || username.getText().toString().trim().length()>25)
                 {
                     Toast.makeText(getApplicationContext(), R.string.user_tam, Toast.LENGTH_LONG).show();
                 }
@@ -91,15 +91,16 @@ public class SignUp extends Activity {
                 {
                     Toast.makeText(getApplicationContext(), R.string.con_dif, Toast.LENGTH_LONG).show();
                 }
-                else if(con1.getText().toString().length()<6 || con1.getText().toString().length()>25)
+                else if(con1.getText().toString().trim().length()<6 || con1.getText().toString().trim().length()>25)
                 {
                     Toast.makeText(getApplicationContext(), R.string.con_tam, Toast.LENGTH_LONG).show();
                 }
                 else
                 {
                     AttemptSignUp attemptSignUp = new AttemptSignUp();
-                    attemptSignUp.execute(name.getText().toString(), ape1.getText().toString(),
-                            ape2.getText().toString(), username.getText().toString(), con1.getText().toString());
+                    attemptSignUp.execute(name.getText().toString().trim(), ape1.getText().toString().trim(),
+                            ape2.getText().toString().trim(), username.getText().toString().trim(),
+                            con1.getText().toString().trim());
                 }
             }
 
@@ -136,9 +137,6 @@ public class SignUp extends Activity {
 
         protected void onPostExecute(JSONObject result)
         {
-            // dismiss the dialog once product deleted
-            //Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
-
             try
             {
                 if(result != null)
@@ -146,10 +144,6 @@ public class SignUp extends Activity {
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                     Intent li=new Intent(SignUp.this, LogIn.class);
                     startActivity(li);
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(), "Unable to retrieve any data from server", Toast.LENGTH_LONG).show();
                 }
             }
             catch (JSONException e)

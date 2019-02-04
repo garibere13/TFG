@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="proyecto.codigo.acceso"
     android:versionCode="1"
-    android:versionName="1.0" >
-    <uses-permission android:name="android.permission.INTERNET"/>
+    android:versionName="1.0">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="false"
@@ -13,20 +14,23 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".LogIn"
-            android:label="@string/login_string" >
+            android:label="@string/login_string">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".HelloAndroid"
-            android:label="@string/hello" >
-        </activity>
+            android:label="@string/hello"></activity>
         <activity
             android:name=".SignUp"
-            android:label="@string/signup_string" >
-        </activity>
+            android:label="@string/signup_string"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
