@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     private static final int LOGOUT_TAG = 0;
     private static final int PROGRESS_TAG = 1;
     private DialogFragment mDialog;
+
     protected void onCreate(Bundle savedInstanceState) {
 
         username=getIntent().getExtras().getString("username");
@@ -117,6 +118,10 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_manage)
         {
             fm.beginTransaction().replace(R.id.contenedor, new Fragment4()).commit();
+        }
+        else if (id == R.id.nav_find_friend)
+        {
+            fm.beginTransaction().replace(R.id.contenedor, new Fragment_Find_Friend()).commit();
         }
         else if (id == R.id.nav_logout)
         {

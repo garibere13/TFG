@@ -21,6 +21,10 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="rgt" />
         <item
+            android:id="@+id/nav_find_friend"
+            android:icon="@drawable/search"
+            android:title="Buscar" />
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/log_out"
             android:title="Log Out" />
