@@ -60,5 +60,25 @@
             }
             return $json;
         }
+
+        public function find_usernames()
+        {
+            $usernames = array();
+            $query = "SELECT username FROM usuarios";
+            if($stmt = mysqli_query($this->db->getDb(), $query))
+            {        
+                while($row = mysqli_fetch_assoc($stmt))
+                {  
+                    $temp = 
+                    [
+                        'username'=>$row['username']
+                    ];
+                        //pushing the array inside the hero array 
+                        array_push($usernames, $temp);
+                }
+                echo json_encode($usernames); 
+            }
+            mysqli_close($this->db->getDb());
+        }
     }
-    ?>
+?>

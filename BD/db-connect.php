@@ -1,7 +1,7 @@
 <?php
 
     include_once 'config.php';
-    
+   
     class DbConnect
     {
         private $connect;        
@@ -11,11 +11,11 @@
             if (mysqli_connect_errno($this->connect))
             {
                 echo "Unable to connect to MySQL Database: " . mysqli_connect_error();
-            }
+            }            
         }        
         public function getDb()
         {
-            return $this->connect;
+            return $this->connect;            
         }
     }
 ?>

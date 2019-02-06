@@ -12,6 +12,8 @@ import android.os.AsyncTask;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
+import java.util.Random;
+
 import android.widget.Toast;
 
 public class SignUp extends Activity {
@@ -97,6 +99,7 @@ public class SignUp extends Activity {
                 }
                 else
                 {
+
                     AttemptSignUp attemptSignUp = new AttemptSignUp();
                     attemptSignUp.execute(name.getText().toString().trim(), ape1.getText().toString().trim(),
                             ape2.getText().toString().trim(), username.getText().toString().trim(),
@@ -105,7 +108,10 @@ public class SignUp extends Activity {
             }
 
         });
+
+
     }
+
 
     private class AttemptSignUp extends AsyncTask<String, String, JSONObject> {
 

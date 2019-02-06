@@ -1,5 +1,6 @@
 package proyecto.codigo.acceso;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,95 +11,108 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
+import java.util.ArrayList;
+import java.net.URL;
+import java.io.BufferedReader;
+import java.net.HttpURLConnection;
+import java.io.InputStreamReader;
+import org.json.JSONException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 public class Fragment_Find_Friend extends Fragment {
 
-
-    static final String[] COUNTRIES = new String[] { "Afghanistan", "Albania",
-            "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla",
-            "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia",
-            "Aruba", "Australia", "Austria", "Azerbaijan", "Bahrain",
-            "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin",
-            "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina",
-            "Botswana", "Bouvet Island", "Brazil",
-            "British Indian Ocean Territory", "British Virgin Islands",
-            "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cote d'Ivoire",
-            "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands",
-            "Central African Republic", "Chad", "Chile", "China",
-            "Christmas Island", "Cocos (Keeling) Islands", "Colombia",
-            "Comoros", "Congo", "Cook Islands", "Costa Rica", "Croatia",
-            "Cuba", "Cyprus", "Czech Republic",
-            "Democratic Republic of the Congo", "Denmark", "Djibouti",
-            "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt",
-            "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia",
-            "Ethiopia", "Faeroe Islands", "Falkland Islands", "Fiji",
-            "Finland", "Former Yugoslav Republic of Macedonia", "France",
-            "French Guiana", "French Polynesia", "French Southern Territories",
-            "Gabon", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece",
-            "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala",
-            "Guinea", "Guinea-Bissau", "Guyana", "Haiti",
-            "Heard Island and McDonald Islands", "Honduras", "Hong Kong",
-            "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq",
-            "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan",
-            "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos",
-            "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya",
-            "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Madagascar",
-            "Malawi", "Malaysia", "Maldives", "Mali", "Malta",
-            "Marshall Islands", "Martinique", "Mauritania", "Mauritius",
-            "Mayotte", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia",
-            "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia",
-            "Nauru", "Nepal", "Netherlands", "Netherlands Antilles",
-            "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria",
-            "Niue", "Norfolk Island", "North Korea", "Northern Marianas",
-            "Norway", "Oman", "Pakistan", "Palau", "Panama",
-            "Papua New Guinea", "Paraguay", "Peru", "Philippines",
-            "Pitcairn Islands", "Poland", "Portugal", "Puerto Rico", "Qatar",
-            "Reunion", "Romania", "Russia", "Rwanda", "Sqo Tome and Principe",
-            "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia",
-            "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines",
-            "Samoa", "San Marino", "Saudi Arabia", "Senegal", "Seychelles",
-            "Sierra Leone", "Singapore", "Slovakia", "Slovenia",
-            "Solomon Islands", "Somalia", "South Africa",
-            "South Georgia and the South Sandwich Islands", "South Korea",
-            "Spain", "Sri Lanka", "Sudan", "Suriname",
-            "Svalbard and Jan Mayen", "Swaziland", "Sweden", "Switzerland",
-            "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand",
-            "The Bahamas", "The Gambia", "Togo", "Tokelau", "Tonga",
-            "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan",
-            "Turks and Caicos Islands", "Tuvalu", "Virgin Islands", "Uganda",
-            "Ukraine", "United Arab Emirates", "United Kingdom",
-            "United States", "United States Minor Outlying Islands", "Uruguay",
-            "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
-            "Wallis and Futuna", "Western Sahara", "Yemen", "Yugoslavia",
-            "Zambia", "Zimbabwe" };
-
+    String URL="http://192.168.1.40/TFG/BD/find-usernames.php";
+    AutoCompleteTextView textView;
+    View v;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_fragment_find_friend, container, false);
+        v=inflater.inflate(R.layout.fragment_fragment_find_friend, container, false);
+        textView=(AutoCompleteTextView) v.findViewById(R.id.autocomplete_username);
 
-        // Get a reference to the AutoCompleteTextView
-        AutoCompleteTextView textView = (AutoCompleteTextView) v.findViewById(R.id.autocomplete_username);
-
-        // Create an ArrayAdapter containing country names
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.friend_username_item, COUNTRIES);
-
-        // Set the adapter for the AutoCompleteTextView
-        textView.setAdapter(adapter);
+        Fragment_Find_Friend.AttemptFindUsernames attemptLogIn=new AttemptFindUsernames();
+        attemptLogIn.execute();
 
         textView.setOnItemClickListener(new OnItemClickListener() {
 
             // Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                    long arg3) {
-                Toast.makeText(getActivity().getApplicationContext(), "You have chosen: " + arg0.getAdapter().getItem(arg2), Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+            {
+                Toast.makeText(getActivity().getApplicationContext(), "Ha seleccionado: " +
+                        arg0.getAdapter().getItem(arg2), Toast.LENGTH_SHORT).show();
             }
         });
         return v;
+    }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    private class AttemptFindUsernames extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        //@Override
+        protected String doInBackground(Void... voids) {
+
+            try {
+                //creating a URL
+                URL url = new URL(URL);
+
+                //Opening the URL using HttpURLConnection
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+                //StringBuilder object to read the string from the service
+                StringBuilder sb = new StringBuilder();
+
+                //We will use a buffered reader to read the string from service
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                //A simple string to read values from each line
+                String json;
+
+                //reading until we don't find null
+                while ((json = bufferedReader.readLine()) != null) {
+
+                    //appending it to string builder
+                    sb.append(json + "\n");
+                }
+
+                //finally returning the read string
+                return sb.toString().trim();
+            } catch (Exception e) {
+                return null;
+            }
+        }
+
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try {
+                loadUsernamesAutoCompleteTextView(s);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void loadUsernamesAutoCompleteTextView(String json) throws JSONException {
+        JSONArray jsonArray = new JSONArray(json);
+        String[] heroes = new String[jsonArray.length()];
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject obj = jsonArray.getJSONObject(i);
+            heroes[i] = obj.getString("username"); //Según lo que se haya puesto en el while del php
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.friend_username_item, heroes);
+        textView.setAdapter(adapter);
     }
 }
