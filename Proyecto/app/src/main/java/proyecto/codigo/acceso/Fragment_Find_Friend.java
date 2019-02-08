@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
-import java.util.ArrayList;
+
 import java.net.URL;
 import java.io.BufferedReader;
 import java.net.HttpURLConnection;
@@ -32,7 +32,7 @@ public class Fragment_Find_Friend extends Fragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        v=inflater.inflate(R.layout.fragment_fragment_find_friend, container, false);
+        v=inflater.inflate(R.layout.fragment_find_friend, container, false);
         textView=(AutoCompleteTextView) v.findViewById(R.id.autocomplete_username);
 
         Fragment_Find_Friend.AttemptFindUsernames attemptLogIn=new AttemptFindUsernames();

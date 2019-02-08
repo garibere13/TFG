@@ -23,15 +23,15 @@ import android.app.ProgressDialog;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    static String username;
+    public static String username;
     private static final int LOGOUT_TAG = 0;
     private static final int PROGRESS_TAG = 1;
     private DialogFragment mDialog;
+    //TextView user;
 
     protected void onCreate(Bundle savedInstanceState) {
 
         username=getIntent().getExtras().getString("username");
-        //TextView user;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView=findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //user=findViewById(R.id.textView_username);
+       // user=findViewById(R.id.textView_username);
         //user.setText("hubgvyfct");
         //((TextView) findViewById(R.id.textView_username)).setText("New Text");
 
@@ -109,19 +109,20 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_gallery)
         {
-            fm.beginTransaction().replace(R.id.contenedor, new Fragment2()).commit();
         }
         else if (id == R.id.nav_slideshow)
         {
-            fm.beginTransaction().replace(R.id.contenedor, new Fragment3()).commit();
         }
         else if (id == R.id.nav_manage)
         {
-            fm.beginTransaction().replace(R.id.contenedor, new Fragment4()).commit();
         }
         else if (id == R.id.nav_find_friend)
         {
             fm.beginTransaction().replace(R.id.contenedor, new Fragment_Find_Friend()).commit();
+        }
+        else if (id == R.id.nav_view_profile)
+        {
+            fm.beginTransaction().replace(R.id.contenedor, new Fragment_View_Profile()).commit();
         }
         else if (id == R.id.nav_logout)
         {
@@ -277,6 +278,12 @@ public class MainActivity extends AppCompatActivity
             dialog.setIndeterminate(true);
             return dialog;
         }
+    }
+
+
+    public static String return_username()
+    {
+        return username;
     }
 
 }

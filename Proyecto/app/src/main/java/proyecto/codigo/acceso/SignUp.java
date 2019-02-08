@@ -28,7 +28,7 @@ public class SignUp extends Activity {
     Button registrar_button;
     Button cancelar_button;
 
-    String URL= "http://192.168.1.40/TFG/BD/index.php";
+    String URL= "http://192.168.1.40/TFG/BD/login-signup.php";
     JSONParser jsonParser=new JSONParser();
 
     public void onCreate(Bundle savedInstanceState) {
@@ -99,7 +99,6 @@ public class SignUp extends Activity {
                 }
                 else
                 {
-
                     AttemptSignUp attemptSignUp = new AttemptSignUp();
                     attemptSignUp.execute(name.getText().toString().trim(), ape1.getText().toString().trim(),
                             ape2.getText().toString().trim(), username.getText().toString().trim(),

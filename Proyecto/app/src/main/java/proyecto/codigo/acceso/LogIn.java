@@ -24,7 +24,7 @@ public class LogIn extends Activity {
     Button loginButton;
     Button signupButton;
 
-    String URL= "http://192.168.1.40/TFG/BD/index.php";
+    String URL= "http://192.168.1.40/TFG/BD/login-signup.php";
     JSONParser jsonParser=new JSONParser();
 
     String username_string;

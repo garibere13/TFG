@@ -22,9 +22,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HelloAndroid"
-            android:label="@string/hello"></activity>
-        <activity
             android:name=".SignUp"
             android:label="@string/signup_string"></activity>
         <activity

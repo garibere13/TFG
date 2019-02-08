@@ -73,12 +73,35 @@
                     [
                         'username'=>$row['username']
                     ];
-                        //pushing the array inside the hero array 
                         array_push($usernames, $temp);
                 }
                 echo json_encode($usernames); 
             }
             mysqli_close($this->db->getDb());
+        }
+
+        public function find_username_data($username)
+        {
+            $data = array();
+            $json1 = array(); 
+            $query = "SELECT nombre, apellido1, apellido2, username, password from ".$this->db_table." where username='$username' Limit 1";
+            if($stmt = mysqli_query($this->db->getDb(), $query))
+            {        
+                while($row = mysqli_fetch_assoc($stmt))
+                {  
+                    $temp = 
+                    [
+                        'nombre'=>$row['nombre'],
+                        'apellido1'=>$row['apellido1'],
+                        'apellido2'=>$row['apellido2'],
+                        'username'=>$row['username'],
+                        'password'=>$row['password']
+                    ];
+                        array_push($data, $temp);
+                }     
+                echo json_encode($data);   
+            }
+            mysqli_close($this->db->getDb());           
         }
     }
 ?>

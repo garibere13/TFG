@@ -25,6 +25,10 @@
             android:icon="@drawable/search"
             android:title="Buscar Amigos" />
         <item
+            android:id="@+id/nav_view_profile"
+            android:icon="@drawable/person"
+            android:title="Mi Perfil" />
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/log_out"
             android:title="Log Out" />
