@@ -55,13 +55,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView=findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-       // user=findViewById(R.id.textView_username);
-        //user.setText("hubgvyfct");
-        //((TextView) findViewById(R.id.textView_username)).setText("New Text");
-
-        //View v = inflater.inflate(R.layout.nav_header_main);
-        //View innerView = v.findViewById(R.id.textView_username);
     }
 
     @Override
@@ -207,6 +200,10 @@ public class MainActivity extends AppCompatActivity
         }).start();
     }
 
+   /* public void sendDataToViewProfile(String data boolean){
+        Fragment_View_Profile.setData(data);
+    }*/
+
 
     /////////////////////////////////////////////////////////////////////////////////////7
 
@@ -281,9 +278,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public static String return_username()
+    /*public static String return_username()
     {
         return username;
-    }
+    }*/
 
 }

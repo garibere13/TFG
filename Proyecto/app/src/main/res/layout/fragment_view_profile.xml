@@ -25,11 +25,12 @@
                 android:src="@drawable/ic_launcher">
             </ImageView>
             <TextView
+                android:id = "@+id/profile_name"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="IZENA TA ABIZENAK"
+                android:text=""
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:textSize="21sp">
@@ -152,16 +153,17 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/search">
+                android:src="@drawable/person">
             </ImageView>
 
             <TextView
+                android:id="@+id/profile_username"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:textStyle="bold"
-                android:text="Datu batzuk">
+                android:text="">
             </TextView>
 
         </LinearLayout>
@@ -176,7 +178,7 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/person">
+                android:src="@drawable/search">
             </ImageView>
 
             <TextView
@@ -185,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:textStyle="bold"
-                android:text="Beste datu batzuk">
+                android:text="Datu batzuk">
             </TextView>
 
         </LinearLayout>

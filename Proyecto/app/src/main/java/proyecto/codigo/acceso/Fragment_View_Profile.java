@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -18,25 +18,38 @@ import java.util.ArrayList;
 public class Fragment_View_Profile extends Fragment {
 
 
-    String username=((MainActivity)getActivity()).username;
+    String username;
     View v;
     String URL="http://192.168.1.40/TFG/BD/find-username-data.php";
     JSONParser jsonParser=new JSONParser();
+    TextView tv_name;
+    TextView tv_username;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle!=null)
+        {
+            username=bundle.getString("username");
+        }
+        else
+        {
+            username=((MainActivity)getActivity()).username;
+        }
+        //username=((MainActivity)getActivity()).username;
 
         v=inflater.inflate(R.layout.fragment_view_profile, container, false);
+        tv_name=(TextView) v.findViewById(R.id.profile_name);
+        tv_username=(TextView) v.findViewById(R.id.profile_username);
 
         AttemptFindUsernameData attemptFindData=new AttemptFindUsernameData();
-        attemptFindData.execute("garibere13");
+        attemptFindData.execute(username);
 
         return v;
     }
-
-
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,7 +84,6 @@ public class Fragment_View_Profile extends Fragment {
                 String apellido2;
                 String username;
                 String password;
-                String todo1;
 
                 for (int i = 0; i < jsonArray.length(); i++)
                 {
@@ -81,9 +93,9 @@ public class Fragment_View_Profile extends Fragment {
                     apellido2=obj.getString("apellido2");
                     username=obj.getString("username");
                     password=obj.getString("password");
-                    todo1=nombre+" "+apellido1+" "+apellido2+": "+username+" / "+password;
 
-                    Toast.makeText(getActivity().getApplicationContext(), todo1, Toast.LENGTH_LONG).show();
+                    tv_name.setText(nombre+" "+apellido1+" "+apellido2);
+                    tv_username.setText("@"+username);
                 }
             }
             catch (JSONException e)
