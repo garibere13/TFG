@@ -12,7 +12,6 @@ import android.os.AsyncTask;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
-import java.util.Random;
 
 import android.widget.Toast;
 
@@ -29,6 +28,7 @@ public class SignUp extends Activity {
     Button cancelar_button;
 
     String URL= "http://192.168.1.40/TFG/BD/login-signup.php";
+    //String URL= "http://10.207.58.150/TFG/BD/login-signup.php";
     JSONParser jsonParser=new JSONParser();
 
     public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,6 @@ public class SignUp extends Activity {
             public void onClick(View v) {
 
                     Intent li = new Intent(SignUp.this, LogIn.class);
-                    // Use the Intent to start the HelloAndroid Activity
                     startActivity(li);
             }
         });

@@ -43,6 +43,26 @@
                 mysqli_close($this->db->getDb());            
             return $json;
         }
+
+
+        public function editUser($nombre, $apellido1, $apellido2, $username, $password)
+        {                
+            $query = "UPDATE ".$this->db_table." SET nombre='$nombre', apellido1='$apellido1', apellido2='$apellido2', password='$password' WHERE username='$username'";
+            $inserted = mysqli_query($this->db->getDb(), $query);
+               
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['message'] = "¡Usuario modificado!";                    
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['message'] = "No se han podido realizar los cambios";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
         
         public function loginUser($username, $password)
         {            

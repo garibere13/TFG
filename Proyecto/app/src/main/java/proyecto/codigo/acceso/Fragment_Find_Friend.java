@@ -23,6 +23,7 @@ import org.json.JSONObject;
 public class Fragment_Find_Friend extends Fragment {
 
     String URL="http://192.168.1.40/TFG/BD/find-usernames.php";
+    //String URL= "http://10.207.58.150/TFG/BD/find-usernames.php";
     AutoCompleteTextView textView;
     View v;
 

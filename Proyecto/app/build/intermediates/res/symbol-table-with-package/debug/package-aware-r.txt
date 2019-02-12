@@ -1119,6 +1119,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable edit
 drawable gradientbackground
 drawable ic_launcher
 drawable ic_menu_camera
@@ -1324,6 +1325,7 @@ id pathRelative
 id percent
 id pin
 id position
+id profile_edit_button
 id profile_name
 id profile_username
 id progress_circular
@@ -1505,6 +1507,7 @@ layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_find_friend
 layout fragment_fragment1
+layout fragment_view_my_profile
 layout fragment_view_profile
 layout friend_username_item
 layout helloandroid
