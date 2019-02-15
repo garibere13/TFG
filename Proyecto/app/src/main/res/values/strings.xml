@@ -50,4 +50,7 @@
     <string name="message_log_out">¡Hasta pronto!</string>
 
 
+    <string name="title_activity_maps">Maps</string>
+
+
 </resources>

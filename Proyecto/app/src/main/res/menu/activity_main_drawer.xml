@@ -17,9 +17,9 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="btgrv" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="rgt" />
+            android:id="@+id/nav_create_field"
+            android:icon="@drawable/golf_campo"
+            android:title="Crear Campo" />
         <item
             android:id="@+id/nav_find_friend"
             android:icon="@drawable/search"
