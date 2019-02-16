@@ -1,0 +1,18 @@
+CREATE TABLE campos(
+   id INT AUTO_INCREMENT PRIMARY KEY,
+   nombre VARCHAR(70),
+   descripcion VARCHAR(250),
+   num_hoyos INT, 
+   cod_pueblo SMALLINT(6) unsigned NOT NULL,
+   latitud VARCHAR(50),
+   longitud VARCHAR(50),
+   creador VARCHAR(50),    
+   FOREIGN KEY(creador) REFERENCES usuarios(username),
+   FOREIGN KEY(cod_pueblo) REFERENCES municipios(id_municipio)
+);
+
+
+
+https://github.com/alombarte/utilities/tree/master/sql
+
+

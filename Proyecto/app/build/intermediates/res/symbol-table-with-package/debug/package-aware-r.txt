@@ -1194,6 +1194,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable log_out
+drawable mapa
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1267,6 +1268,7 @@ id button_aceptar
 id button_signup
 id cancel_action
 id cancelar_button
+id cancelar_field_button
 id center
 id center_horizontal
 id center_vertical
@@ -1282,6 +1284,7 @@ id content
 id contentPanel
 id coordinator
 id cos
+id crear_field_button
 id custom
 id customPanel
 id dark
@@ -1333,6 +1336,7 @@ id hybrid
 id icon
 id icon_group
 id icon_only
+id id123
 id ifRoom
 id image
 id imageView
@@ -1371,7 +1375,7 @@ id nav_gallery
 id nav_logout
 id nav_send
 id nav_share
-id nav_slideshow
+id nav_ver_mapa
 id nav_view
 id nav_view_profile
 id navigation_header_container
@@ -1428,6 +1432,7 @@ id search_plate
 id search_src_text
 id search_voice_btn
 id select_dialog_listview
+id select_location_button
 id selected
 id shortcut
 id showCustom
@@ -1441,6 +1446,16 @@ id signup_con1_label
 id signup_con1_text
 id signup_con2_label
 id signup_con2_text
+id signup_field_des_label
+id signup_field_des_text
+id signup_field_location_button
+id signup_field_location_label
+id signup_field_name_label
+id signup_field_name_text
+id signup_field_num_label
+id signup_field_num_text
+id signup_field_pueblo_autocomplete
+id signup_field_pueblo_label
 id signup_name_label
 id signup_name_text
 id signup_username_label
@@ -1506,6 +1521,7 @@ id unlabeled
 id up
 id useLogo
 id vertical
+id view_map_fragment
 id view_offset_helper
 id visible
 id wide
@@ -1580,6 +1596,7 @@ layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_find_friend
 layout fragment_fragment1
+layout fragment_view_map
 layout fragment_view_my_profile
 layout fragment_view_profile
 layout friend_username_item
@@ -1606,6 +1623,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout signupscreen
+layout signupscreen_field
 layout support_simple_spinner_dropdown_item
 menu activity_main_drawer
 menu main
@@ -1679,13 +1697,13 @@ string con_tam
 string confirm_log_out
 string confirm_no
 string confirm_yes
+string crear
 string enter_password_hint
 string enter_username_hint
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string google_maps_key
 string hello
-string hello1
 string hide_bottom_view_on_scroll_behavior
 string login_entrar
 string login_pass
@@ -1713,6 +1731,13 @@ string signup_ape2
 string signup_cancelar
 string signup_con1
 string signup_con2
+string signup_field_des
+string signup_field_location
+string signup_field_location_button
+string signup_field_name
+string signup_field_num
+string signup_field_prov
+string signup_field_pueblo
 string signup_name
 string signup_registrar
 string signup_string

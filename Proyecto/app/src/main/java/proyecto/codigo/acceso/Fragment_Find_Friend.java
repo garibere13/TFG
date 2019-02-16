@@ -40,7 +40,6 @@ public class Fragment_Find_Friend extends Fragment {
 
         textView.setOnItemClickListener(new OnItemClickListener() {
 
-            // Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
             {
                 FragmentManager fm=getActivity().getSupportFragmentManager();
@@ -96,13 +95,13 @@ public class Fragment_Find_Friend extends Fragment {
 
     private void loadUsernamesAutoCompleteTextView(String json) throws JSONException {
         JSONArray jsonArray = new JSONArray(json);
-        String[] heroes = new String[jsonArray.length()];
+        String[] usernames = new String[jsonArray.length()];
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            heroes[i] = obj.getString("username"); //Según lo que se haya puesto en el while del php
+            usernames[i] = obj.getString("username"); //Según lo que se haya puesto en el while del php
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.friend_username_item, heroes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.friend_username_item, usernames);
         textView.setAdapter(adapter);
     }
 }

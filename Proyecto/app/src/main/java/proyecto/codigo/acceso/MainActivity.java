@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static String username;
+    public static Double latitud;
+    public static Double longitud;
+
     private static final int LOGOUT_TAG = 0;
     private static final int PROGRESS_TAG = 1;
     private DialogFragment mDialog;
@@ -32,7 +35,8 @@ public class MainActivity extends AppCompatActivity
 
     protected void onCreate(Bundle savedInstanceState) {
 
-        username=getIntent().getExtras().getString("username");
+            username=getIntent().getExtras().getString("username");
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -104,13 +108,13 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_gallery)
         {
         }
-        else if (id == R.id.nav_slideshow)
+        else if (id == R.id.nav_ver_mapa)
         {
+            fm.beginTransaction().replace(R.id.contenedor, new Fragment_View_Map()).commit();
         }
         else if (id == R.id.nav_create_field)
         {
-            Intent i=new Intent(MainActivity.this, Maps.class);
-            startActivity(i);
+            fm.beginTransaction().replace(R.id.contenedor, new Fragment_Create_Field()).commit();
         }
         else if (id == R.id.nav_find_friend)
         {
@@ -203,9 +207,6 @@ public class MainActivity extends AppCompatActivity
         }).start();
     }
 
-   /* public void sendDataToViewProfile(String data boolean){
-        Fragment_View_Profile.setData(data);
-    }*/
 
 
     /////////////////////////////////////////////////////////////////////////////////////7
@@ -279,11 +280,4 @@ public class MainActivity extends AppCompatActivity
             return dialog;
         }
     }
-
-
-    /*public static String return_username()
-    {
-        return username;
-    }*/
-
 }

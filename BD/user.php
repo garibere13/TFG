@@ -103,7 +103,6 @@
         public function find_username_data($username)
         {
             $data = array();
-            $json1 = array(); 
             $query = "SELECT nombre, apellido1, apellido2, username, password from ".$this->db_table." where username='$username' Limit 1";
             if($stmt = mysqli_query($this->db->getDb(), $query))
             {        

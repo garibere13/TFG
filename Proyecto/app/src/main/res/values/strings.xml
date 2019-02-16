@@ -8,7 +8,8 @@
     <string name="login_string">LogIn</string>
     <string name="signup_string">SignUp</string>
     <string name="hello">Hello Android!</string>
-    <string name="hello1">ke pasaaaa</string>
+    <string name="crear">Crear</string>
+
 
 
     <string name="login_username">Username</string>
@@ -51,6 +52,19 @@
 
 
     <string name="title_activity_maps">Maps</string>
+
+
+    <string name="signup_field_name">Nombre del campo</string>
+    <string name="signup_field_des">Descripción del campo</string>
+    <string name="signup_field_num">Número de hoyos</string>
+    <string name="signup_field_prov">Provincia</string>
+    <string name="signup_field_location">Seleccione la ubicación del campo</string>
+    <string name="signup_field_location_button">Seleccionar</string>
+    <string name="signup_field_pueblo">Pueblo</string>
+
+
+
+
 
 
 </resources>
