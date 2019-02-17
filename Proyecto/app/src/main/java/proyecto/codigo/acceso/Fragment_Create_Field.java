@@ -3,6 +3,8 @@ package proyecto.codigo.acceso;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +63,9 @@ public class Fragment_Create_Field extends Fragment {
 
     JSONParser jsonParser=new JSONParser();
 
+    public boolean is_pueblo_selected=false;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -82,10 +87,12 @@ public class Fragment_Create_Field extends Fragment {
         AttemptFindTowns attemptFindTown=new AttemptFindTowns();
         attemptFindTown.execute();
 
-        pueblo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+        pueblo.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+           public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
             {
+                is_pueblo_selected=true;
                    for(int i=0;i<towns_name.length;i++)
                    {
                        if(towns_name[i]==(String) arg0.getAdapter().getItem(arg2))
@@ -95,6 +102,18 @@ public class Fragment_Create_Field extends Fragment {
                        }
                    }
             }
+        });
+
+        pueblo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                is_pueblo_selected=false;
+            }
+            @Override
+            public void afterTextChanged(Editable s){}
         });
 
 
@@ -126,11 +145,38 @@ public class Fragment_Create_Field extends Fragment {
                 longitud=((MainActivity)getActivity()).longitud;
 
 
-            AttemptCreateField attemptCreateField = new AttemptCreateField();
-                attemptCreateField.execute(nombre.getText().toString().trim(), descripcion.getText().toString().trim(),
-                        num_hoyos.getText().toString().trim());
+                if (nombre.getText().toString().length()==0 || descripcion.getText().toString().length()==0 ||
+                        num_hoyos.getText().toString().length()==0)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(), R.string.rellenar_datos, Toast.LENGTH_LONG).show();
+                }
+                else if(nombre.getText().toString().trim().length()<2 || nombre.getText().toString().trim().length()>60)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(), "El nombre debe tener entre 2 y 60 caracteres", Toast.LENGTH_LONG).show();
+                }
+                else if(descripcion.getText().toString().trim().length()<2 || descripcion.getText().toString().trim().length()>250)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(), "La descripción debe tener entre 2 y 250 caracteres", Toast.LENGTH_LONG).show();
+                }
+                else if(latitud==0.0 || longitud==0.0)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(), "Seleccione una ubicación en el mapa", Toast.LENGTH_LONG).show();
+                }
+                else if(Integer.parseInt(num_hoyos.getText().toString().trim())<1 || Integer.parseInt(num_hoyos.getText().toString().trim())>25)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(), "El número de hoyos debe estar entre 1 y 25", Toast.LENGTH_LONG).show();
+                }
+                else if(!is_pueblo_selected)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(), "Seleccione el nombre del pueblo de la lista", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    AttemptCreateField attemptCreateField = new AttemptCreateField();
+                    attemptCreateField.execute(nombre.getText().toString().trim(), descripcion.getText().toString().trim(),
+                            num_hoyos.getText().toString().trim());
+                }
             }
-
         });
 
         return v;
