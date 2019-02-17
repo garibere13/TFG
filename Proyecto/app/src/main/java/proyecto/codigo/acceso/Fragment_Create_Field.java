@@ -3,7 +3,6 @@ package proyecto.codigo.acceso;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -36,7 +34,7 @@ public class Fragment_Create_Field extends Fragment {
     AutoCompleteTextView pueblo;
     Button location;
 
-    public int ID_pueblo;
+    public String ID_pueblo;
 
 
     Double latitud;
@@ -55,15 +53,11 @@ public class Fragment_Create_Field extends Fragment {
     String URL="http://192.168.1.40/TFG/BD/find-towns.php";
     //String URL= "http://10.207.58.150/TFG/BD/find-towns.php";
 
-
-    String URL1="http://192.168.1.40/TFG/BD/find-town-ID.php";
-    //String URL1= "http://10.207.58.150/TFG/BD/find-town-ID.php";
-
-    String URL2="http://192.168.1.40/TFG/BD/create-field.php";
+    String URL1="http://192.168.1.40/TFG/BD/create-field.php";
     //String URL1= "http://10.207.58.150/TFG/BD/create-field.php";
 
-
-
+    String[] towns_id;
+    String[] towns_name;
 
     JSONParser jsonParser=new JSONParser();
 
@@ -85,19 +79,23 @@ public class Fragment_Create_Field extends Fragment {
         cancelar_button=v.findViewById(R.id.cancelar_field_button);
 
 
-        Fragment_Create_Field.AttemptFindTowns attemptFindTown=new Fragment_Create_Field.AttemptFindTowns();
+        AttemptFindTowns attemptFindTown=new AttemptFindTowns();
         attemptFindTown.execute();
 
-        /*pueblo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        pueblo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            // Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3)
             {
-                Toast.makeText(getActivity().getApplicationContext(),
-                        (String) arg0.getAdapter().getItem(arg2), Toast.LENGTH_LONG).show();
+                   for(int i=0;i<towns_name.length;i++)
+                   {
+                       if(towns_name[i]==(String) arg0.getAdapter().getItem(arg2))
+                       {
+                           ID_pueblo=towns_id[i];
+                           break;
+                       }
+                   }
             }
-        });*/
-
+        });
 
 
         cancelar_button.setOnClickListener(new View.OnClickListener() {
@@ -124,19 +122,11 @@ public class Fragment_Create_Field extends Fragment {
 
             public void onClick(View v) {
 
-                Fragment_Create_Field.AttemptFindTownID attemptFindTownID=new Fragment_Create_Field.AttemptFindTownID();
-                attemptFindTownID.execute(pueblo.getText().toString().trim());
-
                 latitud=((MainActivity)getActivity()).latitud;
                 longitud=((MainActivity)getActivity()).longitud;
 
-                /*Toast.makeText(getActivity().getApplicationContext(),nombre.getText().toString().trim()+
-                        " // "+descripcion.getText().toString().trim()+" // "+
-                        num_hoyos.getText().toString().trim()+" // "+
-                        Integer.toString(ID_pueblo)+" // "+Double.toString(latitud)+
-                        " // "+Double.toString(longitud)+" // "+username ,Toast.LENGTH_LONG).show();*/
 
-              AttemptCreateField attemptCreateField = new AttemptCreateField();
+            AttemptCreateField attemptCreateField = new AttemptCreateField();
                 attemptCreateField.execute(nombre.getText().toString().trim(), descripcion.getText().toString().trim(),
                         num_hoyos.getText().toString().trim());
             }
@@ -145,6 +135,7 @@ public class Fragment_Create_Field extends Fragment {
 
         return v;
     }
+
 
 
     //////////////////////////////////////////////////////////////////////////////
@@ -168,72 +159,25 @@ public class Fragment_Create_Field extends Fragment {
             params.add(new BasicNameValuePair("nombre", nombre));
             params.add(new BasicNameValuePair("descripcion", descripcion));
             params.add(new BasicNameValuePair("num_hoyos", num_hoyos));
-            params.add(new BasicNameValuePair("cod_pueblo", Integer.toString(ID_pueblo)));
+            params.add(new BasicNameValuePair("cod_pueblo", ID_pueblo));
             params.add(new BasicNameValuePair("latitud", Double.toString(latitud)));
             params.add(new BasicNameValuePair("longitud", Double.toString(longitud)));
             params.add(new BasicNameValuePair("username", username));
 
-            JSONObject json = jsonParser.makeHttpRequest(URL2, "POST", params);
+            JSONObject json = jsonParser.makeHttpRequest(URL1, "POST", params);
 
             return json;
         }
 
-        protected void onPostExecute(JSONObject result)
+        protected void onPostExecute(JSONObject result1)
         {
-            try
-            {
-                if(result != null)
-                {
-                    Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                }
-            }
-            catch (JSONException e)
-            {
-                e.printStackTrace();
-            }
+            Toast.makeText(getActivity().getApplicationContext(),"Campo registrado correctamente",Toast.LENGTH_LONG).show();
+
+            Intent ma = new Intent(getActivity(), MainActivity.class);
+            ma.putExtra("username", username);
+            startActivity(ma);
         }
     }
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    private class AttemptFindTownID extends AsyncTask<String, String, String> {
-    @Override
-    protected void onPreExecute()
-    {
-        super.onPreExecute();
-    }
-
-    //@Override
-    protected String doInBackground(String... args) {
-
-        String nombre_pueblo=args[0];
-        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("nombre", nombre_pueblo));
-        String json = jsonParser.makeHttpRequestString(URL1, "POST", params);
-
-        return json;
-    }
-
-    protected void onPostExecute(String result) {
-        super.onPostExecute(result);
-        try
-        {
-            JSONArray jsonArray = new JSONArray(result);
-
-            for (int i = 0; i < jsonArray.length(); i++)
-            {
-                JSONObject obj = jsonArray.getJSONObject(i);
-                ID_pueblo=obj.getInt("ID");
-            }
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-        }
-    }
-}
-
 
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -278,18 +222,17 @@ public class Fragment_Create_Field extends Fragment {
 
     private void loadTownsAutoCompleteTextView(String json) throws JSONException {
         JSONArray jsonArray = new JSONArray(json);
-        String[] towns = new String[jsonArray.length()];
+        towns_name = new String[jsonArray.length()];
+        towns_id=new String[jsonArray.length()];
 
-        for (int i = 0; i < jsonArray.length(); i++) {
+        for (int i = 0; i < jsonArray.length(); i++)
+        {
             JSONObject obj = jsonArray.getJSONObject(i);
-            towns[i] = obj.getString("nombre"); //Según lo que se haya puesto en el while del php
+            towns_id[i]=obj.getString("id_municipio");
+            towns_name[i] = obj.getString("nombre"); //Según lo que se haya puesto en el while del php
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.friend_username_item, towns);
-        pueblo.setAdapter(adapter);
-    }
 
-    public void setLatitud(Double lat)
-    {
-        latitud=lat;
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.friend_username_item, towns_name);
+        pueblo.setAdapter(adapter);
     }
 }

@@ -44,6 +44,5 @@
     if(!empty($nombre) && !empty($descripcion) && !empty($num_hoyos) && !empty($cod_pueblo) && !empty($latitud) && !empty($longitud) && !empty($username))
     {  
         $json_registration = $fieldObject->createNewField($nombre, $descripcion, $num_hoyos, $cod_pueblo, $latitud, $longitud, $username);
-        echo json_encode($json_registration);        
     }
 ?>
