@@ -27,14 +27,17 @@ public class SignUp extends Activity {
     Button registrar_button;
     Button cancelar_button;
 
-    String URL= "http://192.168.1.40/TFG/BD/login-signup.php";
-    //String URL= "http://10.207.58.150/TFG/BD/login-signup.php";
+    String ip_config;
+    String URL;
     JSONParser jsonParser=new JSONParser();
 
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signupscreen);
+
+        ip_config=getResources().getString(R.string.ip_config);
+        URL="http://"+ip_config+"/TFG/BD/login-signup.php";
 
         name=findViewById(R.id.signup_name_text);
         ape1=findViewById(R.id.signup_ape1_text);
@@ -80,12 +83,10 @@ public class SignUp extends Activity {
                 {
                     Toast.makeText(getApplicationContext(), R.string.ape2_tam, Toast.LENGTH_LONG).show();
                 }
-
                 else if(username.getText().toString().trim().length()<2 || username.getText().toString().trim().length()>25)
                 {
                     Toast.makeText(getApplicationContext(), R.string.user_tam, Toast.LENGTH_LONG).show();
                 }
-
 
 
                 else if(!(con1.getText().toString().matches(con2.getText().toString())))

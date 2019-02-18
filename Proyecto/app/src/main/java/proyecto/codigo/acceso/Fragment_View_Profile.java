@@ -22,8 +22,8 @@ public class Fragment_View_Profile extends Fragment {
 
     String username;
     View v;
-    String URL="http://192.168.1.40/TFG/BD/find-username-data.php";
-    //String URL= "http://10.207.58.150/TFG/BD/find-username-data.php";
+    String ip_config;
+    String URL;
     JSONParser jsonParser=new JSONParser();
     TextView tv_name;
     TextView tv_username;
@@ -42,6 +42,8 @@ public class Fragment_View_Profile extends Fragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
         Bundle bundle = getArguments();
+        ip_config=getResources().getString(R.string.ip_config);
+        URL="http://"+ip_config+"/TFG/BD/find-username-data.php";
         if (bundle!=null)
         {
             username=bundle.getString("username");

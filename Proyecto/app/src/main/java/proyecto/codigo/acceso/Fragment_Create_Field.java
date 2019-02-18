@@ -51,12 +51,9 @@ public class Fragment_Create_Field extends Fragment {
     String username=((MainActivity)getActivity()).username;
 
 
-
-    String URL="http://192.168.1.40/TFG/BD/find-towns.php";
-    //String URL= "http://10.207.58.150/TFG/BD/find-towns.php";
-
-    String URL1="http://192.168.1.40/TFG/BD/create-field.php";
-    //String URL1= "http://10.207.58.150/TFG/BD/create-field.php";
+    String ip_config;
+    String URL;
+    String URL1;
 
     String[] towns_id;
     String[] towns_name;
@@ -73,6 +70,11 @@ public class Fragment_Create_Field extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         v=inflater.inflate(R.layout.signupscreen_field, container, false);
+
+        ip_config=getResources().getString(R.string.ip_config);
+
+        URL="http://"+ip_config+"/TFG/BD/find-towns.php";
+        URL1="http://"+ip_config+"/TFG/BD/create-field.php";
 
         nombre=v.findViewById(R.id.signup_field_name_text);
         descripcion=v.findViewById(R.id.signup_field_des_text);

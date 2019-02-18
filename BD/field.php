@@ -37,6 +37,33 @@
             mysqli_close($this->db->getDb());    
         }
 
+
+        public function find_fields_map_location()
+        {
+            $fields = array();
+            $query = "SELECT id, nombre, latitud, longitud FROM ".$this->db_table."";
+            $result=mysqli_query($this->db->getDb(), $query);
+
+            if($stmt = $result)
+            {        
+                while($row = mysqli_fetch_assoc($stmt))
+                { 
+                    $mal=$row['nombre'];
+                    $bien=$this->normaliza($mal);
+                    $temp = 
+                    [
+                        'id'=>$row['id'],
+                        'nombre'=>$bien,
+                        'latitud'=>$row['latitud'],
+                        'longitud'=>$row['longitud']
+                    ];
+                    array_push($fields, $temp);
+                }
+                echo json_encode($fields); 
+            }
+            mysqli_close($this->db->getDb());    
+        }
+
         public function createNewField($nombre, $descripcion, $num_hoyos, $cod_pueblo, $latitud, $longitud, $username)
         {                
             $query = "insert into ".$this->db_table." (nombre, descripcion, num_hoyos, cod_pueblo, latitud, longitud, creador) values ('$nombre', '$descripcion', $num_hoyos, $cod_pueblo, $latitud, $longitud, '$username')";

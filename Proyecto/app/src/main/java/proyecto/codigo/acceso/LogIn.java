@@ -24,8 +24,8 @@ public class LogIn extends Activity {
     Button loginButton;
     Button signupButton;
 
-    String URL= "http://192.168.1.40/TFG/BD/login-signup.php";
-    //String URL= "http://10.207.58.150/TFG/BD/login-signup.php";
+    String ip_config;
+    String URL;
     JSONParser jsonParser=new JSONParser();
 
     String username_string;
@@ -34,6 +34,9 @@ public class LogIn extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginscreen);
+
+        ip_config=getResources().getString(R.string.ip_config);
+        URL="http://"+ip_config+"/TFG/BD/login-signup.php";
 
         username=findViewById(R.id.login_username_text);
         password=findViewById(R.id.login_pass_text);

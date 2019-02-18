@@ -1,8 +1,5 @@
 IPv4 de forma automática
 
-Filtrar datos para creación campo de golf
-
-Visualizar en el mapa los distintos campos con markers
 
 Al hacer click en el mapa en un campo, que se vea la info de ese campo
 

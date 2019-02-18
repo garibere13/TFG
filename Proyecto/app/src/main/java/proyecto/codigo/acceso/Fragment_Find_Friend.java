@@ -22,8 +22,9 @@ import org.json.JSONObject;
 
 public class Fragment_Find_Friend extends Fragment {
 
-    String URL="http://192.168.1.40/TFG/BD/find-usernames.php";
-    //String URL= "http://10.207.58.150/TFG/BD/find-usernames.php";
+    String ip_config;
+
+    String URL;
     AutoCompleteTextView textView;
     View v;
 
@@ -34,6 +35,9 @@ public class Fragment_Find_Friend extends Fragment {
 
         v=inflater.inflate(R.layout.fragment_find_friend, container, false);
         textView=v.findViewById(R.id.autocomplete_username);
+
+        ip_config=getResources().getString(R.string.ip_config);
+        URL="http://"+ip_config+"/TFG/BD/find-usernames.php";
 
         Fragment_Find_Friend.AttemptFindUsernames attemptLogIn=new AttemptFindUsernames();
         attemptLogIn.execute();

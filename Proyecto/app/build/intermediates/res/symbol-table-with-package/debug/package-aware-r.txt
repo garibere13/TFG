@@ -1705,6 +1705,7 @@ string fab_transformation_sheet_behavior
 string google_maps_key
 string hello
 string hide_bottom_view_on_scroll_behavior
+string ip_config
 string login_entrar
 string login_pass
 string login_signup

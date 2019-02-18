@@ -43,8 +43,9 @@ public class Fragment_Edit_Profile extends Fragment {
     Button registrar_button;
     Button cancelar_button;
 
-    String URL= "http://192.168.1.40/TFG/BD/edit-user.php";
-    //String URL= "http://10.207.58.150/TFG/BD/edit-user.php";
+    String ip_config;
+
+    String URL;
 
 
     JSONParser jsonParser=new JSONParser();
@@ -58,6 +59,9 @@ public class Fragment_Edit_Profile extends Fragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
         Bundle bundle = getArguments();
+
+        ip_config=getResources().getString(R.string.ip_config);
+        URL="http://"+ip_config+"/TFG/BD/edit-user.php";
 
         _nombre=bundle.getString("nombre");
         _apellido1=bundle.getString("apellido1");
