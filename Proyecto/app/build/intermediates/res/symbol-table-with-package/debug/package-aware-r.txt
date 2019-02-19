@@ -773,6 +773,8 @@ color dim_foreground_material_light
 color endblue
 color error_color_material_dark
 color error_color_material_light
+color field_gradiente_end_color
+color field_gradiente_start_color
 color foreground_material_dark
 color foreground_material_light
 color graylight
@@ -827,6 +829,8 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color profile_gradiente_end_color
+color profile_gradiente_start_color
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -1182,7 +1186,8 @@ drawable edit
 drawable golf_campo
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
-drawable gradientbackground
+drawable gradientbackground_field
+drawable gradientbackground_profile
 drawable ic_launcher
 drawable ic_menu_camera
 drawable ic_menu_gallery
@@ -1317,6 +1322,11 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fab
+id field_creator
+id field_n_hoyos
+id field_name
+id field_nombre_provincia
+id field_puntuacion
 id fill
 id fill_horizontal
 id fill_parent
@@ -1360,6 +1370,7 @@ id login_pass_text
 id login_titulo
 id login_username_text
 id map
+id map_show_activity
 id masked
 id media_actions
 id message
@@ -1578,6 +1589,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
 layout activity_maps
+layout activity_show_maps
 layout app_bar_main
 layout content_main
 layout design_bottom_navigation_item
@@ -1596,6 +1608,7 @@ layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_find_friend
 layout fragment_fragment1
+layout fragment_view_field
 layout fragment_view_map
 layout fragment_view_my_profile
 layout fragment_view_profile

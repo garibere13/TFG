@@ -47,6 +47,7 @@ public class Fragment_View_Profile extends Fragment {
         if (bundle!=null)
         {
             username=bundle.getString("username");
+
             v=inflater.inflate(R.layout.fragment_view_profile, container, false);
             tv_name=v.findViewById(R.id.profile_name);
             tv_username=v.findViewById(R.id.profile_username);

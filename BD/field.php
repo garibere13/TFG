@@ -84,6 +84,33 @@
             return $json;
         }
 
+        public function find_field_data($id)
+        {
+            $data = array();
+            $query = "SELECT descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador FROM campos c , municipios m, provincias p WHERE id=$id and c.cod_pueblo = m.id_municipio and m.id_provincia=p.id_provincia";
+
+           if($stmt = mysqli_query($this->db->getDb(), $query))
+            {        
+                while($row = mysqli_fetch_assoc($stmt))
+                {  
+                    $temp = 
+                    [
+                        'nombre'=>$row['nombre_campo'],
+                        'provincia'=>$row['provincia'],
+                        'pueblo'=>$row['pueblo'],
+                        'descripcion'=>$row['descripcion'],
+                        'num_hoyos'=>$row['num_hoyos'],
+                        'latitud'=>$row['latitud'],
+                        'longitud'=>$row['longitud'],
+                        'creador'=>$row['creador']
+                    ];
+                        array_push($data, $temp);
+                }     
+                echo json_encode($data);   
+            }
+            mysqli_close($this->db->getDb());           
+        }
+
         
         public function normaliza ($cadena)
         {

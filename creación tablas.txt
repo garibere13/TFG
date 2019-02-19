@@ -13,6 +13,4 @@ CREATE TABLE campos(
 
 
 
-https://github.com/alombarte/utilities/tree/master/sql
-
-
+SELECT c.id , c.nombre, p.provincia, m.nombre FROM campos c , municipios m, provincias p WHERE c.cod_pueblo = m.id_municipio and m.id_provincia=p.id_provincia

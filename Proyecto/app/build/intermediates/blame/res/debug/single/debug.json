@@ -24,6 +24,10 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\6003a5394e6441b382e58c39e56ab5e7\\res\\color-v23\\abc_tint_btn_checkable.xml"
     },
     {
+        "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable_gradientbackground_field.xml.flat",
+        "source": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\src\\main\\res\\drawable\\gradientbackground_field.xml"
+    },
+    {
         "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_tooltip.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\6003a5394e6441b382e58c39e56ab5e7\\res\\layout\\abc_tooltip.xml"
     },
@@ -684,10 +688,6 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\4f1a4b882a90dd66003856c030c0ba2d\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
     },
     {
-        "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable_gradientbackground.xml.flat",
-        "source": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\src\\main\\res\\drawable\\gradientbackground.xml"
-    },
-    {
         "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_design_ic_visibility.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\0ab82a4c210d41d6798ec422cdaf9679\\res\\drawable-anydpi-v21\\design_ic_visibility.xml"
     },
@@ -1232,6 +1232,10 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\6003a5394e6441b382e58c39e56ab5e7\\res\\drawable-xxhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
     },
     {
+        "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable_gradientbackground_profile.xml.flat",
+        "source": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\src\\main\\res\\drawable\\gradientbackground_profile.xml"
+    },
+    {
         "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\4f1a4b882a90dd66003856c030c0ba2d\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
     },
@@ -1354,6 +1358,10 @@
     {
         "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\6003a5394e6441b382e58c39e56ab5e7\\res\\drawable-xhdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_view_field.xml.flat",
+        "source": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\src\\main\\res\\layout\\fragment_view_field.xml"
     },
     {
         "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_avd_show_password.xml.flat",
@@ -2098,6 +2106,10 @@
     {
         "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\4f1a4b882a90dd66003856c030c0ba2d\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_show_maps.xml.flat",
+        "source": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\src\\main\\res\\layout\\activity_show_maps.xml"
     },
     {
         "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_design_ic_visibility.png.flat",

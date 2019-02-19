@@ -12,7 +12,7 @@
         android:layout_height="300dp">
 
         <LinearLayout
-            android:background="@drawable/gradientbackground"
+            android:background="@drawable/gradientbackground_profile"
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:orientation="vertical">

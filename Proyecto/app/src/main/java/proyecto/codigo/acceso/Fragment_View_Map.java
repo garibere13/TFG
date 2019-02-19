@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,6 +48,8 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
     String[] fields_name;
     String[] fields_lat;
     String[] fields_long;
+
+    Marker myMarker;
 
 
     @Override
@@ -106,11 +110,34 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
         for(int i=0;i<fields_id.length;i++)
         {
-            mMap.addMarker(new MarkerOptions()
+            /*mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(Double.parseDouble(fields_lat[i]), Double.parseDouble(fields_long[i])))
+                    .title(fields_name[i]));*/
+
+            myMarker=googleMap.addMarker(new MarkerOptions()
                     .position(new LatLng(Double.parseDouble(fields_lat[i]), Double.parseDouble(fields_long[i])))
                     .title(fields_name[i]));
+            myMarker.setTag(fields_id[i]);
         }
+
+
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+            //@Override
+            public void onInfoWindowClick(Marker arg0) {
+
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Field fvf=new Fragment_View_Field();
+                final Bundle bundle = new Bundle();
+                bundle.putString("id", (String)arg0.getTag());
+                fvf.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
+            }
+        });
+
+
 }
+
 
 
     /////////////////////////////////////////////////////////////////////////////////////////

@@ -51,6 +51,10 @@
         <activity
             android:name=".Maps_Select_Location"
             android:label="@string/title_activity_maps"></activity>
+
+        <activity
+            android:name=".Maps_Show_Location"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
