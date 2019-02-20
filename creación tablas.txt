@@ -12,5 +12,11 @@ CREATE TABLE campos(
 );
 
 
-
-SELECT c.id , c.nombre, p.provincia, m.nombre FROM campos c , municipios m, provincias p WHERE c.cod_pueblo = m.id_municipio and m.id_provincia=p.id_provincia
+CREATE TABLE valoraciones(
+   id_campo int,
+   username varchar(50),
+   valoracion float,
+   FOREIGN KEY(id_campo) REFERENCES campos(id),
+   FOREIGN KEY(username) REFERENCES usuarios(username),
+   PRIMARY KEY (id_campo, username)
+);

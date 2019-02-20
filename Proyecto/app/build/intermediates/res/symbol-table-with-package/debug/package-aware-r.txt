@@ -1326,7 +1326,7 @@ id field_creator
 id field_n_hoyos
 id field_name
 id field_nombre_provincia
-id field_puntuacion
+id field_valoration
 id fill
 id fill_horizontal
 id fill_parent
@@ -1414,6 +1414,7 @@ id profile_username
 id progress_circular
 id progress_horizontal
 id radio
+id ratingbar
 id ratio
 id rectangles
 id registrar_button

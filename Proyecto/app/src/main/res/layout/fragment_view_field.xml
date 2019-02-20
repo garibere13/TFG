@@ -113,14 +113,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Puntuación"
+                        android:text="Valoración"
                         android:textSize="18sp">
                     </TextView>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/field_puntuacion"
+                        android:id="@+id/field_valoration"
                         android:text=""
                         android:textStyle="bold"
                         android:textSize="20sp"
@@ -198,24 +198,34 @@
         <LinearLayout
             android:paddingLeft="25dp"
             android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/log_out">
-            </ImageView>
+             <ImageView
+                  android:layout_width="36dp"
+                  android:layout_height="36dp"
+                  android:src="@drawable/log_out">
+              </ImageView>
 
-            <TextView
-                android:layout_gravity="center_vertical"
+            <!--     <TextView
+                   android:layout_gravity="center_vertical"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:paddingLeft="20dp"
+                      android:textStyle="bold"
+                      android:text="Valoración: ">
+                  </TextView>-->
+
+            <RatingBar
+                android:id="@+id/ratingbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:textStyle="bold"
-                android:text="aqui quizá meter estrellas ppara puntuar">
-            </TextView>
+                android:layout_gravity="center_horizontal"
+                android:numStars="5"
+                android:stepSize="1.0">
+            </RatingBar>
 
         </LinearLayout>
 

@@ -1,5 +1,9 @@
 IPv4 de forma automática
 
+valoración con estrellas del campo
 
-Al hacer click en el mapa en un campo, que se vea la info de ese campo
+una tabla con username, id del campo y el float con la valoración
+
+
+
 

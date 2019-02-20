@@ -21,8 +21,9 @@ import org.json.JSONObject;
 import android.text.TextPaint;
 import java.util.ArrayList;
 import android.graphics.Color;
+import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.Toast;
-
 
 public class Fragment_View_Field extends Fragment {
 
@@ -31,12 +32,18 @@ public class Fragment_View_Field extends Fragment {
     View v;
     String ip_config;
     String URL;
+    String URL1;
     JSONParser jsonParser=new JSONParser();
     TextView tv_nombre_campo;
     TextView tv_n_hoyos;
+    TextView tv_field_valoration;
     TextView tv_creator;
     TextView tv_nombre_provincia;
 
+
+    RatingBar bar;
+
+    public String db_id_campo;
     public String db_nombre;
     public String db_descripcion;
     public String db_num_hoyos;
@@ -45,6 +52,7 @@ public class Fragment_View_Field extends Fragment {
     public String db_latitud;
     public String db_longitud;
     public String db_creador;
+    public String db_valoracion;
 
     public  SpannableString ss_creador;
     public ClickableSpan clickableSpan_creador;
@@ -60,6 +68,7 @@ public class Fragment_View_Field extends Fragment {
         Bundle bundle = getArguments();
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/find-field-data.php";
+        URL1="http://"+ip_config+"/TFG/BD/insert-valoration.php";
 
 
         if (bundle!=null)
@@ -69,8 +78,10 @@ public class Fragment_View_Field extends Fragment {
             v=inflater.inflate(R.layout.fragment_view_field, container, false);
             tv_nombre_campo=v.findViewById(R.id.field_name);
             tv_n_hoyos=v.findViewById(R.id.field_n_hoyos);
+            tv_field_valoration=v.findViewById(R.id.field_valoration);
             tv_creator=v.findViewById(R.id.field_creator);
             tv_nombre_provincia=v.findViewById(R.id.field_nombre_provincia);
+            bar=v.findViewById(R.id.ratingbar);
 
             AttemptFindFieldData attemptFindFieldData=new AttemptFindFieldData();
             attemptFindFieldData.execute(id_field);
@@ -111,14 +122,23 @@ public class Fragment_View_Field extends Fragment {
             }
         };
 
+        bar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+                AttemptValorateField attemptSignUp = new AttemptValorateField();
+                attemptSignUp.execute(db_id_campo, ((MainActivity)getActivity()).username,
+                        Float.toString(rating));
+            }
+        });
+        
         return v;
     }
 
 
 
     /////////////////////////////////////////////////////////////////////////////////////////
-
-
 
     private class AttemptFindFieldData extends AsyncTask<String, String, String> {
 
@@ -148,6 +168,7 @@ public class Fragment_View_Field extends Fragment {
                 {
                     JSONObject obj = jsonArray.getJSONObject(i);
 
+                    db_id_campo=obj.getString("id");
                     db_nombre=obj.getString("nombre");
                     db_descripcion=obj.getString("descripcion");
                     db_num_hoyos=obj.getString("num_hoyos");
@@ -156,12 +177,11 @@ public class Fragment_View_Field extends Fragment {
                     db_latitud=obj.getString("latitud");
                     db_longitud=obj.getString("longitud");
                     db_creador=obj.getString("creador");
-
-
+                    db_valoracion=obj.getString("valoracion");
 
                     tv_nombre_campo.setText(db_nombre);
                     tv_n_hoyos.setText(db_num_hoyos);
-
+                    tv_field_valoration.setText(db_valoracion);
 
                     ss_creador = new SpannableString("@"+db_creador);
                     ss_creador.setSpan(clickableSpan_creador, 0, ss_creador.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -174,6 +194,49 @@ public class Fragment_View_Field extends Fragment {
                     tv_nombre_provincia.append(ss_ubicacion);
                     tv_nombre_provincia.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_nombre_provincia.setHighlightColor(Color.TRANSPARENT);
+                }
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////////7
+
+    private class AttemptValorateField extends AsyncTask<String, String, JSONObject> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args)
+        {
+            String id_campo= args[0];
+            String username = args[1];
+            String valoracion = args[2];
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("id_campo", id_campo));
+            params.add(new BasicNameValuePair("username", username));
+            params.add(new BasicNameValuePair("valoracion", valoracion));
+            JSONObject json = jsonParser.makeHttpRequest(URL1, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(JSONObject result)
+        {
+            try
+            {
+                if(result != null)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                 }
             }
             catch (JSONException e)
