@@ -156,6 +156,27 @@
            // return $json;
         }
 
+        public function find_field_names()
+        {
+            $names = array();
+            $query = "SELECT id, nombre FROM ".$this->db_table."";
+            if($stmt = mysqli_query($this->db->getDb(), $query))
+            {        
+                while($row = mysqli_fetch_assoc($stmt))
+                {  
+                    $temp = 
+                    [
+                        'id'=>$row['id'],
+                        'nombre'=>$row['nombre']
+                    ];
+                        array_push($names, $temp);
+                }
+                echo json_encode($names); 
+            }
+            mysqli_close($this->db->getDb());
+        }
+
+
         
         public function normaliza ($cadena)
         {

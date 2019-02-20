@@ -1,8 +1,21 @@
 IPv4 de forma automática
 
-valoración con estrellas del campo
+arreglar lo de que pulsas la tecla atrás
 
-una tabla con username, id del campo y el float con la valoración
+crear hoyo
+
+descripción de un campo?¿? --> qué hacer?
+
+favoritos con hoyos
+
+hacer retos
+
+subir fotos
+
+mejorar layouts de log in y de creación usuario/campo
+
+
+
 
 
 

@@ -18,6 +18,7 @@ import android.app.Dialog;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.app.ProgressDialog;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity
     private static final int LOGOUT_TAG = 0;
     private static final int PROGRESS_TAG = 1;
     private DialogFragment mDialog;
-    //TextView user;
+    TextView user;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,8 +58,12 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView=findViewById(R.id.nav_view);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        user=headerView.findViewById(R.id.nombre_usuario_home);
+        user.setText("¡Bienvenido @"+username+"!");
     }
 
     @Override
@@ -100,14 +105,7 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fm=getSupportFragmentManager();
 
-        if (id == R.id.nav_camera)
-        {
-            fm.beginTransaction().replace(R.id.contenedor, new Fragment1()).commit();
-        }
-        else if (id == R.id.nav_gallery)
-        {
-        }
-        else if (id == R.id.nav_ver_mapa)
+        if (id == R.id.nav_ver_mapa)
         {
             fm.beginTransaction().replace(R.id.contenedor, new Fragment_View_Map()).commit();
         }
@@ -117,7 +115,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_find_friend)
         {
-            fm.beginTransaction().replace(R.id.contenedor, new Fragment_Find_Friend()).commit();
+            fm.beginTransaction().replace(R.id.contenedor, new Fragment_Find()).commit();
         }
         else if (id == R.id.nav_view_profile)
         {
@@ -126,14 +124,6 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_logout)
         {
             showDialogFragment(LOGOUT_TAG);
-        }
-        else if (id == R.id.nav_share)
-        {
-
-        }
-        else if (id == R.id.nav_send)
-        {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

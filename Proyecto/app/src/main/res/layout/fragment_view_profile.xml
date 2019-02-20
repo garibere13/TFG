@@ -178,16 +178,17 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/search">
+                android:src="@drawable/puntuacion">
             </ImageView>
 
             <TextView
                 android:layout_gravity="center_vertical"
+                android:id="@+id/view_user_puntuacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:textStyle="bold"
-                android:text="Datu batzuk">
+                android:text="Puntuación: ">
             </TextView>
 
         </LinearLayout>

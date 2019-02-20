@@ -280,7 +280,7 @@ public class Fragment_Create_Field extends Fragment {
             towns_name[i] = obj.getString("nombre"); //Según lo que se haya puesto en el while del php
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.friend_username_item, towns_name);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.find_item, towns_name);
         pueblo.setAdapter(adapter);
     }
 }
