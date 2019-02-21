@@ -25,6 +25,7 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array colors
 attr actionBarDivider
 attr actionBarItemBackground
 attr actionBarPopupTheme
@@ -1253,6 +1254,7 @@ id action_settings
 id action_text
 id actions
 id activity_chooser_view_content
+id activity_main
 id add
 id adjust_height
 id adjust_width
@@ -1365,6 +1367,7 @@ id light
 id line1
 id line3
 id linear
+id list
 id listMode
 id list_item
 id login_imagen
@@ -1609,6 +1612,7 @@ layout design_text_input_password_icon
 layout find_item
 layout fragment_find
 layout fragment_view_field
+layout fragment_view_field_holes
 layout fragment_view_map
 layout fragment_view_my_profile
 layout fragment_view_profile

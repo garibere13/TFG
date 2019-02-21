@@ -58,6 +58,8 @@ public class Fragment_View_Field extends Fragment {
     public ClickableSpan clickableSpan_creador;
     public  SpannableString ss_ubicacion;
     public ClickableSpan clickableSpan_ubicacion;
+    public  SpannableString ss_num_hoyos;
+    public ClickableSpan clickableSpan_num_hoyos;
 
 
 
@@ -114,6 +116,25 @@ public class Fragment_View_Field extends Fragment {
                 msl.putExtra("latitud", db_latitud);
                 msl.putExtra("longitud", db_longitud);
                 startActivity(msl);
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+
+        clickableSpan_num_hoyos = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Field_Holes fvp=new Fragment_View_Field_Holes();
+                final Bundle bundle = new Bundle();
+                bundle.putString("id_campo", db_id_campo);
+                bundle.putString("num_hoyos", db_num_hoyos);
+                fvp.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
             }
             @Override
             public void updateDrawState(TextPaint ds) {
@@ -180,8 +201,7 @@ public class Fragment_View_Field extends Fragment {
                     db_valoracion=obj.getString("valoracion");
 
                     tv_nombre_campo.setText(db_nombre);
-                    tv_n_hoyos.setText(db_num_hoyos);
-                    tv_field_valoration.setText(db_valoracion);
+                    tv_field_valoration.setText(db_valoracion+" / 5");
 
                     ss_creador = new SpannableString("@"+db_creador);
                     ss_creador.setSpan(clickableSpan_creador, 0, ss_creador.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -194,6 +214,12 @@ public class Fragment_View_Field extends Fragment {
                     tv_nombre_provincia.append(ss_ubicacion);
                     tv_nombre_provincia.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_nombre_provincia.setHighlightColor(Color.TRANSPARENT);
+
+                    ss_num_hoyos = new SpannableString(db_num_hoyos);
+                    ss_num_hoyos.setSpan(clickableSpan_num_hoyos, 0, ss_num_hoyos.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    tv_n_hoyos.append(ss_num_hoyos);
+                    tv_n_hoyos.setMovementMethod(LinkMovementMethod.getInstance());
+                    tv_n_hoyos.setHighlightColor(Color.TRANSPARENT);
                 }
             }
             catch (JSONException e)
