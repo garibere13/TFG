@@ -64,6 +64,8 @@ public class LogIn extends Activity {
         });
     }
 
+    //////////////////////////////////////////////////////////////////////////////////
+
     private class AttemptLogIn extends AsyncTask<String, String, JSONObject> {
 
         @Override

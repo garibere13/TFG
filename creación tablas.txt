@@ -20,3 +20,17 @@ CREATE TABLE valoraciones(
    FOREIGN KEY(username) REFERENCES usuarios(username),
    PRIMARY KEY (id_campo, username)
 );
+
+
+
+CREATE TABLE hoyos(
+   nombre VARCHAR(10),
+   id_campo INT,
+   descripcion VARCHAR(250),
+   metros INT, 
+   par INT, 
+   creador VARCHAR(50),    
+   FOREIGN KEY(creador) REFERENCES usuarios(username),
+   FOREIGN KEY(id_campo) REFERENCES campos(id),
+   PRIMARY KEY (nombre, id_campo)
+);

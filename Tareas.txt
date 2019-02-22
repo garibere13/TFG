@@ -2,8 +2,6 @@ IPv4 de forma automática
 
 arreglar lo de que pulsas la tecla atrás
 
-crear hoyo
-
 descripción de un campo?¿? --> qué hacer?
 
 favoritos con hoyos
@@ -13,6 +11,8 @@ hacer retos
 subir fotos
 
 mejorar layouts de log in y de creación usuario/campo
+
+añadir atributo fecha a las tablas de bbdd
 
 
 
