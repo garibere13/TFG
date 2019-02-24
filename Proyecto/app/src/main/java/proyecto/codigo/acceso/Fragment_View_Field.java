@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
@@ -29,17 +30,19 @@ public class Fragment_View_Field extends Fragment {
 
 
     String id_field;
+    String username;
     View v;
     String ip_config;
     String URL;
     String URL1;
+    String URL2;
+    String URL3;
     JSONParser jsonParser=new JSONParser();
     TextView tv_nombre_campo;
     TextView tv_n_hoyos;
     TextView tv_field_valoration;
     TextView tv_creator;
     TextView tv_nombre_provincia;
-
 
     RatingBar bar;
 
@@ -53,6 +56,7 @@ public class Fragment_View_Field extends Fragment {
     public String db_longitud;
     public String db_creador;
     public String db_valoracion;
+    public String db_valoracion_usuario;
 
     public  SpannableString ss_creador;
     public ClickableSpan clickableSpan_creador;
@@ -60,6 +64,8 @@ public class Fragment_View_Field extends Fragment {
     public ClickableSpan clickableSpan_ubicacion;
     public  SpannableString ss_num_hoyos;
     public ClickableSpan clickableSpan_num_hoyos;
+
+    public String valoracion_estrellas;
 
 
 
@@ -71,11 +77,14 @@ public class Fragment_View_Field extends Fragment {
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/find-field-data.php";
         URL1="http://"+ip_config+"/TFG/BD/insert-valoration.php";
+        URL2="http://"+ip_config+"/TFG/BD/renew-valoration.php";
+        URL3="http://"+ip_config+"/TFG/BD/find-user-valoration.php";
 
 
         if (bundle!=null)
         {
             id_field=bundle.getString("id");
+            username=((MainActivity)getActivity()).username;
 
             v=inflater.inflate(R.layout.fragment_view_field, container, false);
             tv_nombre_campo=v.findViewById(R.id.field_name);
@@ -86,7 +95,10 @@ public class Fragment_View_Field extends Fragment {
             bar=v.findViewById(R.id.ratingbar);
 
             AttemptFindFieldData attemptFindFieldData=new AttemptFindFieldData();
-            attemptFindFieldData.execute(id_field);
+            attemptFindFieldData.execute();
+
+            AttemptFindUserValoration attemptFindUserValoration=new AttemptFindUserValoration();
+            attemptFindUserValoration.execute();
         }
 
 
@@ -148,14 +160,20 @@ public class Fragment_View_Field extends Fragment {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 
-                AttemptValorateField attemptSignUp = new AttemptValorateField();
-                attemptSignUp.execute(db_id_campo, ((MainActivity)getActivity()).username,
-                        Float.toString(rating));
+                   AttemptValorateField attemptSignUp = new AttemptValorateField();
+                   attemptSignUp.execute(db_id_campo, ((MainActivity)getActivity()).username,
+                           Float.toString(rating));
             }
         });
         
         return v;
     }
+
+   /* public void refresh()
+    {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+    }*/
 
 
 
@@ -174,6 +192,7 @@ public class Fragment_View_Field extends Fragment {
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id", id_field));
+            params.add(new BasicNameValuePair("username", username));
             String json = jsonParser.makeHttpRequestString(URL, "POST", params);
 
             return json;
@@ -189,19 +208,21 @@ public class Fragment_View_Field extends Fragment {
                 {
                     JSONObject obj = jsonArray.getJSONObject(i);
 
-                    db_id_campo=obj.getString("id");
-                    db_nombre=obj.getString("nombre");
-                    db_descripcion=obj.getString("descripcion");
-                    db_num_hoyos=obj.getString("num_hoyos");
-                    db_provincia=obj.getString("provincia");
-                    db_pueblo=obj.getString("pueblo");
-                    db_latitud=obj.getString("latitud");
-                    db_longitud=obj.getString("longitud");
-                    db_creador=obj.getString("creador");
-                    db_valoracion=obj.getString("valoracion");
-
+                    db_id_campo = obj.getString("id");
+                    db_nombre = obj.getString("nombre");
+                    db_descripcion = obj.getString("descripcion");
+                    db_num_hoyos = obj.getString("num_hoyos");
+                    db_provincia = obj.getString("provincia");
+                    db_pueblo = obj.getString("pueblo");
+                    db_latitud = obj.getString("latitud");
+                    db_longitud = obj.getString("longitud");
+                    db_creador = obj.getString("creador");
+                    db_valoracion = obj.getString("valoracion");
+                }
                     tv_nombre_campo.setText(db_nombre);
-                    tv_field_valoration.setText(db_valoracion+" / 5");
+                    float v=Float.parseFloat(db_valoracion);
+                    String valoration_two_decimals = String.format("%.02f", v);
+                    tv_field_valoration.setText(valoration_two_decimals+" / 5");
 
                     ss_creador = new SpannableString("@"+db_creador);
                     ss_creador.setSpan(clickableSpan_creador, 0, ss_creador.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -220,7 +241,51 @@ public class Fragment_View_Field extends Fragment {
                     tv_n_hoyos.append(ss_num_hoyos);
                     tv_n_hoyos.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_n_hoyos.setHighlightColor(Color.TRANSPARENT);
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    private class AttemptFindUserValoration extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... args)
+        {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("id_campo", id_field));
+            params.add(new BasicNameValuePair("username", username));
+            String json = jsonParser.makeHttpRequestString(URL3, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(String result)
+        {
+            super.onPostExecute(result);
+            try
+            {
+                JSONArray jsonArray = new JSONArray(result);
+
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+
+                    db_valoracion_usuario = obj.getString("valoracion");
                 }
+                    bar.setRating(Float.parseFloat(db_valoracion_usuario));
             }
             catch (JSONException e)
             {
@@ -245,12 +310,12 @@ public class Fragment_View_Field extends Fragment {
         {
             String id_campo= args[0];
             String username = args[1];
-            String valoracion = args[2];
+            valoracion_estrellas = args[2];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id_campo", id_campo));
             params.add(new BasicNameValuePair("username", username));
-            params.add(new BasicNameValuePair("valoracion", valoracion));
+            params.add(new BasicNameValuePair("valoracion", valoracion_estrellas));
             JSONObject json = jsonParser.makeHttpRequest(URL1, "POST", params);
 
             return json;
@@ -262,7 +327,58 @@ public class Fragment_View_Field extends Fragment {
             {
                 if(result != null)
                 {
+                    if(result.getString("success")=="1")
+                    {
+                        Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                        //refresh();
+                    }
+                    else
+                    {
+                        AttemptRenewValoration attemptRenewValoration=new AttemptRenewValoration();
+                        attemptRenewValoration.execute(valoracion_estrellas);
+                        //refresh();
+                    }
+                }
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    private class AttemptRenewValoration extends AsyncTask<String, String, JSONObject> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args)
+        {
+
+            String new_valoration=args[0];
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("id_campo", id_field));
+            params.add(new BasicNameValuePair("username", username));
+            params.add(new BasicNameValuePair("valoracion", new_valoration));
+            JSONObject json = jsonParser.makeHttpRequest(URL2, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(JSONObject result)
+        {
+            try
+            {
+                if(result != null)
+                {
                     Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                    //refresh();
                 }
             }
             catch (JSONException e)

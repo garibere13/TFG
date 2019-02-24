@@ -73,7 +73,6 @@
             
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {
-                //echo "11111";        
                 while($row = mysqli_fetch_assoc($stmt))
                 {  
                     $temp = 

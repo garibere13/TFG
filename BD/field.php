@@ -84,10 +84,10 @@
             return $json;
         }
 
-        public function find_field_data($id)
+        public function find_field_data($id, $username)
         {
             $data = array();
-            $query = "SELECT valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador FROM campos c , municipios m, provincias p WHERE id=$id and c.cod_pueblo = m.id_municipio and m.id_provincia=p.id_provincia";
+            $query = "SELECT c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador FROM campos c , municipios m, provincias p WHERE id=$id and c.cod_pueblo = m.id_municipio and m.id_provincia=p.id_provincia";
 
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {        
@@ -113,6 +113,44 @@
             mysqli_close($this->db->getDb());           
         }
 
+        public function find_user_valoration($id_campo, $username)
+        {
+                   
+            $exists = $this->doesValorationExist($id_campo, $username);            
+            if($exists)
+            {
+                $data = array();
+                $query = "SELECT valoracion FROM valoraciones WHERE id_campo=$id_campo and username='$username' Limit 1";
+
+                if($stmt = mysqli_query($this->db->getDb(), $query))
+                {        
+                    while($row = mysqli_fetch_assoc($stmt))
+                    {  
+                        $temp = 
+                        [
+                            'valoracion'=>$row['valoracion']
+                        ];
+                            array_push($data, $temp);
+                    }     
+                    echo json_encode($data);   
+                }
+                mysqli_close($this->db->getDb());  
+            }        
+        }
+
+        public function doesValorationExist($id_campo, $username)
+        {
+           $query = "SELECT * FROM valoraciones WHERE id_campo=$id_campo and username='$username' Limit 1";
+           $result = mysqli_query($this->db->getDb(), $query);            
+            if(mysqli_num_rows($result) > 0)
+            {                
+               // mysqli_close($this->db->getDb());
+                return true;
+            }            
+           // mysqli_close($this->db->getDb());
+            return false;
+        }
+
 
         public function createValoration($id_campo, $username, $valoracion)
         {                
@@ -136,24 +174,10 @@
         }
 
         public function update_field_valoration($id_campo)
-        {
-            
-
+        {          
             $query = "UPDATE ".$this->db_table." SET valoracion=(SELECT avg(valoracion) FROM valoraciones WHERE id_campo=$id_campo) WHERE id=$id_campo";
-            $inserted = mysqli_query($this->db->getDb(), $query);
-               
-              /*  if($inserted == 1)
-                {
-                    $json['success'] = 1;
-                    $json['message'] = "¡Usuario modificado!";                    
-                }
-                else
-                {                    
-                    $json['success'] = 0;
-                    $json['message'] = "No se han podido realizar los cambios";
-                }    */            
-                mysqli_close($this->db->getDb());            
-           // return $json;
+            $inserted = mysqli_query($this->db->getDb(), $query);            
+            //mysqli_close($this->db->getDb());            
         }
 
         public function find_field_names()
@@ -176,7 +200,26 @@
             mysqli_close($this->db->getDb());
         }
 
+        public function renewValoration($id_campo, $username, $valoracion)
+        {                
+            $query = "UPDATE valoraciones SET valoracion=$valoracion WHERE id_campo=$id_campo and username='$username'";
+            $inserted = mysqli_query($this->db->getDb(), $query);
+                
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['message'] = "¡Cambio de valoracion registrada!";  
 
+                    $this->update_field_valoration($id_campo);  
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['message'] = "No se ha podido renovar la valoración de este campo";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
         
         public function normaliza ($cadena)
         {
