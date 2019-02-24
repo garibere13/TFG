@@ -34,3 +34,16 @@ CREATE TABLE hoyos(
    FOREIGN KEY(id_campo) REFERENCES campos(id),
    PRIMARY KEY (nombre, id_campo)
 );
+
+
+
+
+CREATE TABLE favoritos(
+   nombre_hoyo VARCHAR(10), 
+   id_campo INT,  
+   username varchar(50),
+   FOREIGN KEY(nombre_hoyo) REFERENCES hoyos(nombre),
+   FOREIGN KEY(id_campo) REFERENCES campos(id),
+   FOREIGN KEY(username) REFERENCES usuarios(username),
+   PRIMARY KEY (nombre_hoyo, id_campo, username)
+);

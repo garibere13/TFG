@@ -36,20 +36,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Fragment_View_Field.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Fragment_View_Hole.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Hole.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="126" column="28" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1792#1836#0" expanded="true" />
+                <element signature="e#3744#4544#0" expanded="true" />
+                <element signature="e#4543#4544#0" expanded="true" />
+                <element signature="e#5015#5030#0" expanded="true" />
+                <element signature="e#6449#6464#0" expanded="true" />
+                <element signature="e#8583#8598#0" expanded="true" />
+                <element signature="e#9800#9815#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Fragment_View_Field.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="221" column="55" selection-start-line="221" selection-start-column="55" selection-end-line="221" selection-end-column="55" />
+            <state relative-caret-position="146">
+              <caret line="279" column="35" selection-start-line="279" selection-start-column="35" selection-end-line="279" selection-end-column="35" />
               <folding>
                 <element signature="e#6385#6386#0" expanded="true" />
                 <element signature="e#6429#6430#0" expanded="true" />
-                <element signature="e#9544#9545#0" expanded="true" />
-                <element signature="e#9588#9589#0" expanded="true" />
-                <element signature="e#10894#10895#0" expanded="true" />
-                <element signature="e#10938#10939#0" expanded="true" />
-                <element signature="e#12659#12660#0" expanded="true" />
-                <element signature="e#12703#12704#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,9 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>argazkik</find>
-      <find>datu</find>
-      <find>jarrai</find>
       <find>hoyos</find>
       <find>userna</find>
       <find>link a mapa</find>
@@ -96,6 +106,9 @@
       <find>bar.</find>
       <find>tv_field_valoration</find>
       <find>db_valoracion_usuario</find>
+      <find>botoi</find>
+      <find>maina</find>
+      <find>attemp</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -2370,7 +2383,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_Create_Field.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Maps_Select_Location.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/gradientbackground.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/gradientbackground_field.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Map.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_show_maps.xml" />
@@ -2392,14 +2404,16 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/signupscreen_hole.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/LogIn.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field_Holes.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_view_hole.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Hole.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_Create_Hole.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/gradientbackground_hole.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_view_hole.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Hole.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="48" />
     <option name="width" value="1944" />
     <option name="height" value="1044" />
@@ -2413,6 +2427,21 @@
       <pane id="AndroidView">
         <subPane>
           <expand>
+            <path>
+              <item name="Proyecto" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="Proyecto" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="Proyecto" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="acceso" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
             <path>
               <item name="Proyecto" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
@@ -2429,7 +2458,7 @@
     <property name="SearchEverywhereHistoryKey" value="log&#9;ACTION&#9;ActivateLogcatToolWindow&#10;logcat&#9;ACTION&#9;ActivateLogcatToolWindow" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="device.picker.selection" value="111" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Android/UIListView" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Android/UIToggleButton" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
@@ -2443,8 +2472,8 @@
       <recent name="proyecto.codigo.acceso" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\TFG\Proyecto\app\src\main\res\layout" />
       <recent name="C:\xampp\htdocs\TFG\Proyecto\app\src\main\res\drawable" />
+      <recent name="C:\xampp\htdocs\TFG\Proyecto\app\src\main\res\layout" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -2583,6 +2612,7 @@
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32993197" />
+      <window_info anchor="right" id="Preview" order="4" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="11" />
@@ -2599,7 +2629,6 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Preview" order="4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -2612,20 +2641,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_Find.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Profile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/LogIn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -2689,20 +2704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/gradientbackground_field.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -2816,6 +2817,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="61" column="46" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2921,41 +2925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field_Holes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="130" column="62" lean-forward="true" selection-start-line="130" selection-start-column="62" selection-end-line="130" selection-end-column="62" />
-          <folding>
-            <element signature="e#1221#1265#0" expanded="true" />
-            <element signature="e#2002#2010#0" expanded="true" />
-            <element signature="e#2172#2998#0" expanded="true" />
-            <element signature="e#2997#2998#0" expanded="true" />
-            <element signature="e#3518#3533#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_view_hole.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="121" column="36" lean-forward="true" selection-start-line="121" selection-start-column="36" selection-end-line="121" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Hole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-446">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="e#1683#1727#0" expanded="true" />
-            <element signature="e#3548#3563#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
@@ -2967,13 +2936,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="105" selection-start-line="105" selection-end-line="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/LogIn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="103" column="17" lean-forward="true" selection-start-line="103" selection-start-column="17" selection-end-line="103" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -3008,19 +2970,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/gradientbackground_field.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/gradientbackground_hole.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/buttonstyle.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/LogIn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="91" column="9" lean-forward="true" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_view_hole.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="183" column="43" selection-start-line="183" selection-start-column="43" selection-end-line="183" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field_Holes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="130" column="62" lean-forward="true" selection-start-line="130" selection-start-column="62" selection-end-line="130" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="221" column="55" selection-start-line="221" selection-start-column="55" selection-end-line="221" selection-end-column="55" />
+        <state relative-caret-position="146">
+          <caret line="279" column="35" selection-start-line="279" selection-start-column="35" selection-end-line="279" selection-end-column="35" />
           <folding>
             <element signature="e#6385#6386#0" expanded="true" />
             <element signature="e#6429#6430#0" expanded="true" />
-            <element signature="e#9544#9545#0" expanded="true" />
-            <element signature="e#9588#9589#0" expanded="true" />
-            <element signature="e#10894#10895#0" expanded="true" />
-            <element signature="e#10938#10939#0" expanded="true" />
-            <element signature="e#12659#12660#0" expanded="true" />
-            <element signature="e#12703#12704#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Hole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="126" column="28" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1792#1836#0" expanded="true" />
+            <element signature="e#3744#4544#0" expanded="true" />
+            <element signature="e#4543#4544#0" expanded="true" />
+            <element signature="e#5015#5030#0" expanded="true" />
+            <element signature="e#6449#6464#0" expanded="true" />
+            <element signature="e#8583#8598#0" expanded="true" />
+            <element signature="e#9800#9815#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,6 +1,5 @@
 package proyecto.codigo.acceso;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,32 +13,36 @@ import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RatingBar;
-import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import android.widget.Toast;
+import android.widget.ToggleButton;
+import android.view.View.OnClickListener;
 import java.util.ArrayList;
 
 public class Fragment_View_Hole extends Fragment {
 
 
     String id_campo;
-    String nombre;
+    String nombre_hoyo;
+    String username;
     View v;
     String ip_config;
     String URL;
+    String URL1;
+    String URL2;
+    String URL3;
     JSONParser jsonParser=new JSONParser();
     TextView tv_nombre;
     TextView tv_metros;
     TextView tv_par;
     TextView tv_creator;
+    ToggleButton button_favourite;
+
 
 
     public String db_nombre_hoyo;
@@ -48,6 +51,8 @@ public class Fragment_View_Hole extends Fragment {
     public String db_metros;
     public String db_par;
     public String db_creador;
+
+    public String isHoleInUsersFavourite;
 
     public  SpannableString ss_creador;
     public ClickableSpan clickableSpan_creador;
@@ -61,22 +66,31 @@ public class Fragment_View_Hole extends Fragment {
         Bundle bundle = getArguments();
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/find-hole-data.php";
+        URL1="http://"+ip_config+"/TFG/BD/create-favourite-hole.php";
+        URL2="http://"+ip_config+"/TFG/BD/delete-favourite-hole.php";
+        URL3="http://"+ip_config+"/TFG/BD/find-is-hole-user-favourite.php";
 
 
         if (bundle!=null)
         {
             id_campo=bundle.getString("id_campo");
-            nombre=bundle.getString("nombre");
+            nombre_hoyo=bundle.getString("nombre");
+            username=((MainActivity)getActivity()).username;
 
             v=inflater.inflate(R.layout.fragment_view_hole, container, false);
             tv_nombre=v.findViewById(R.id.hole_name);
             tv_par=v.findViewById(R.id.hole_par);
             tv_metros=v.findViewById(R.id.hole_meters);
             tv_creator=v.findViewById(R.id.hole_creator);
+            button_favourite=v.findViewById(R.id.togglebutton_hole_favourite);
 
             AttemptFindHoleData attemptFindHoleData=new AttemptFindHoleData();
-            attemptFindHoleData.execute(id_campo, nombre);
+            attemptFindHoleData.execute();
         }
+
+
+        AttemptFindIsHoleUserFavourite attemptFindIsHoleUserFavourite=new AttemptFindIsHoleUserFavourite();
+        attemptFindIsHoleUserFavourite.execute();
 
 
         clickableSpan_creador = new ClickableSpan() {
@@ -96,8 +110,73 @@ public class Fragment_View_Hole extends Fragment {
                 ds.setUnderlineText(false);
             }
         };
+
+        button_favourite.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (button_favourite.isChecked())
+                {
+                    Toast.makeText(getActivity().getApplicationContext(),"Añadido a favoritos",Toast.LENGTH_LONG).show();
+                    AttemptCreateFavourite attemptCreateFavourite=new AttemptCreateFavourite();
+                    attemptCreateFavourite.execute();
+                }
+                else
+                {
+                    Toast.makeText(getActivity().getApplicationContext(),"Quitado de favoritos",Toast.LENGTH_LONG).show();
+                    AttemptDeleteFavourite attemptDeleteFavourite=new AttemptDeleteFavourite();
+                    attemptDeleteFavourite.execute();
+                }
+            }
+        });
         
         return v;
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    private class AttemptFindIsHoleUserFavourite extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... args)
+        {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("nombre_hoyo", nombre_hoyo));
+            params.add(new BasicNameValuePair("id_campo", id_campo));
+            params.add(new BasicNameValuePair("username", username));
+            String json = jsonParser.makeHttpRequestString(URL3, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(String result)
+        {
+            super.onPostExecute(result);
+            try
+            {
+                JSONArray jsonArray = new JSONArray(result);
+
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+
+                    isHoleInUsersFavourite = obj.getString("existe");
+                }
+                button_favourite.setChecked(Boolean.parseBoolean(isHoleInUsersFavourite));
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -116,8 +195,8 @@ public class Fragment_View_Hole extends Fragment {
         protected String doInBackground(String... args) {
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("nombre_hoyo", nombre_hoyo));
             params.add(new BasicNameValuePair("id_campo", id_campo));
-            params.add(new BasicNameValuePair("nombre", nombre));
             String json = jsonParser.makeHttpRequestString(URL, "POST", params);
 
             return json;
@@ -150,6 +229,85 @@ public class Fragment_View_Hole extends Fragment {
                     tv_creator.append(ss_creador);
                     tv_creator.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_creator.setHighlightColor(Color.TRANSPARENT);
+                }
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////////7
+
+    private class AttemptCreateFavourite extends AsyncTask<String, String, JSONObject> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args)
+        {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("nombre_hoyo", nombre_hoyo));
+            params.add(new BasicNameValuePair("id_campo", id_campo));
+            params.add(new BasicNameValuePair("username", username));
+            JSONObject json = jsonParser.makeHttpRequest(URL1, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(JSONObject result)
+        {
+            try
+            {
+                if(result != null)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(),result.getString("mensaje"),Toast.LENGTH_LONG).show();
+                }
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////7
+
+    private class AttemptDeleteFavourite extends AsyncTask<String, String, JSONObject> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args)
+        {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("nombre_hoyo", nombre_hoyo));
+            params.add(new BasicNameValuePair("id_campo", id_campo));
+            params.add(new BasicNameValuePair("username", username));
+            JSONObject json = jsonParser.makeHttpRequest(URL2, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(JSONObject result)
+        {
+            try
+            {
+                if(result != null)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(),result.getString("mensaje"),Toast.LENGTH_LONG).show();
                 }
             }
             catch (JSONException e)

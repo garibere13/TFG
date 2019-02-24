@@ -6,7 +6,7 @@
     $descripcion="";
     $metros="";    
     $par=""; 
-    $creador="patxi";
+    $creador="";
 
     if(isset($_POST['nombre']))
     {

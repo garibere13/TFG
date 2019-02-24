@@ -781,6 +781,8 @@ color foreground_material_light
 color graylight
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color hole_gradiente_end_color
+color hole_gradiente_start_color
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1188,6 +1190,7 @@ drawable golf_campo
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable gradientbackground_field
+drawable gradientbackground_hole
 drawable gradientbackground_profile
 drawable ic_launcher
 drawable ic_menu_camera
@@ -1527,6 +1530,7 @@ id title
 id titleDividerNoCustom
 id title_template
 id toggle
+id togglebutton_hole_favourite
 id toolbar
 id top
 id topPanel

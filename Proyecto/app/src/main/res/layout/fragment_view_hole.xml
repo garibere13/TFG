@@ -12,7 +12,7 @@
         android:layout_height="300dp">
 
         <LinearLayout
-            android:background="@drawable/gradientbackground_field"
+            android:background="@drawable/gradientbackground_hole"
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:orientation="vertical">
@@ -172,16 +172,18 @@
 
     </LinearLayout>
 
-
-    <Button
+    <ToggleButton
+        android:id="@+id/togglebutton_hole_favourite"
         android:textColor="#ffffff"
         android:background="@drawable/buttonstyle"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Botoi bat">
-    </Button>
+        android:textOff="Añadir a favoritos"
+        android:textOn="Quitar de favoritos"
+        android:textSize="24sp">
+    </ToggleButton>
 
 
 </LinearLayout>

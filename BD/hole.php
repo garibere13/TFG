@@ -90,5 +90,84 @@
             }
             mysqli_close($this->db->getDb());         
         }
+
+        public function createFavouriteHole($nombre_hoyo, $id_campo, $username)
+        {                
+            $query = "insert into favoritos (nombre_hoyo, id_campo, username) values ('$nombre_hoyo', $id_campo, '$username')";
+           
+            $inserted = mysqli_query($this->db->getDb(), $query);
+                
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['mensaje'] = "Añadido a favoritos";                    
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['mensaje'] = "No se ha podido añadir a favoritos";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
+
+        public function deleteFavouriteHole($nombre_hoyo, $id_campo, $username)
+        {                
+            $query = "delete from favoritos where nombre_hoyo='$nombre_hoyo' and id_campo=$id_campo and username='$username'";
+           
+            $inserted = mysqli_query($this->db->getDb(), $query);
+                
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['mensaje'] = "Quitado de favoritos";                    
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['mensaje'] = "No se ha podido quitar de favoritos";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
+
+
+        public function find_is_hole_user_favourite($nombre_hoyo, $id_campo, $username)
+        {
+                   
+            $exists = $this->isHoleUserFavourite($nombre_hoyo, $id_campo, $username);            
+            if($exists)
+            {
+                $data = array();
+                $query = "SELECT * FROM favoritos WHERE nombre_hoyo='$nombre_hoyo' and id_campo=$id_campo and username='$username' Limit 1";
+
+                if($stmt = mysqli_query($this->db->getDb(), $query))
+                {        
+                    while($row = mysqli_fetch_assoc($stmt))
+                    {  
+                        $temp = 
+                        [
+                            'existe'=>true
+                        ];
+                            array_push($data, $temp);
+                    }     
+                    echo json_encode($data);   
+                }
+                mysqli_close($this->db->getDb());  
+            }        
+        }
+
+        public function isHoleUserFavourite($nombre_hoyo, $id_campo, $username)
+        {
+           $query = "SELECT * FROM favoritos WHERE nombre_hoyo='$nombre_hoyo' and id_campo=$id_campo and username='$username' Limit 1";
+           $result = mysqli_query($this->db->getDb(), $query);            
+            if(mysqli_num_rows($result) > 0)
+            {                
+               // mysqli_close($this->db->getDb());
+                return true;
+            }            
+           // mysqli_close($this->db->getDb());
+            return false;
+        }
     }
 ?>

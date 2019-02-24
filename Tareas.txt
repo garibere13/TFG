@@ -4,6 +4,11 @@ arreglar lo de que pulsas la tecla atrás
 
 descripción de un campo/hoyo?¿? --> qué hacer?
 
+
+
+
+si tienes hoyo en favoritos, que aparezca "quitar de favoritos" --> setchecked(true)
+
 favoritos con hoyos
 
 hacer retos
