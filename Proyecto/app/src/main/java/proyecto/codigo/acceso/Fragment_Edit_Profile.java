@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
@@ -265,11 +267,11 @@ public class Fragment_Edit_Profile extends Fragment {
             String password = args[4];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("nombre", nombre));
-            params.add(new BasicNameValuePair("apellido1", apellido1));
-            params.add(new BasicNameValuePair("apellido2", apellido2));
-            params.add(new BasicNameValuePair("username", username));
-            params.add(new BasicNameValuePair("password", password));
+            params.add(new BasicNameValuePair("nombre",  StringUtils.stripAccents(nombre)));
+            params.add(new BasicNameValuePair("apellido1",  StringUtils.stripAccents(apellido1)));
+            params.add(new BasicNameValuePair("apellido2",  StringUtils.stripAccents(apellido2)));
+            params.add(new BasicNameValuePair("username",  StringUtils.stripAccents(username)));
+            params.add(new BasicNameValuePair("password",  StringUtils.stripAccents(password)));
             JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
 
             return json;

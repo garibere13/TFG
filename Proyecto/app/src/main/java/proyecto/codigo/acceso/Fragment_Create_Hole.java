@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
@@ -138,7 +140,7 @@ public class Fragment_Create_Hole extends Fragment {
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("nombre", nombre));
             params.add(new BasicNameValuePair("id_campo", Integer.toString(id_campo)));
-            params.add(new BasicNameValuePair("descripcion", descripcion));
+            params.add(new BasicNameValuePair("descripcion",  StringUtils.stripAccents(descripcion)));
             params.add(new BasicNameValuePair("metros", metros));
             params.add(new BasicNameValuePair("par", par));
             params.add(new BasicNameValuePair("creador", username));

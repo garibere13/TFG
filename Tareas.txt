@@ -14,12 +14,3 @@ subir fotos
 mejorar layouts de log in y de creación usuario/campo
 
 añadir atributo fecha a las tablas de bbdd
-
-borrados en cascada de bbdd
-
-
-
-
-
-
-

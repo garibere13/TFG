@@ -26,7 +26,12 @@
         }
         
         public function createNewRegisterUser($nombre, $apellido1, $apellido2, $username, $password)
-        {                
+        {
+           /* $nombre=$this->normaliza($nombre);
+            $apellido1=$this->normaliza($apellido1); 
+            $apellido2=$this->normaliza($apellido2);    
+            $usrname=$this->normaliza($username);    
+            $password=$this->normaliza($password); */                
             $query = "insert into ".$this->db_table." (nombre, apellido1, apellido2, username, password) values ('$nombre', '$apellido1', '$apellido2', '$username', '$password')";
             $inserted = mysqli_query($this->db->getDb(), $query);
                 
@@ -123,5 +128,14 @@
             }
             mysqli_close($this->db->getDb());           
         }
+
+        /*public function normaliza ($cadena)
+        {
+            $originales = 'ÑñÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜàáâãäåèéêëìíîïòóôõöùúûü';
+            $modificadas = 'NnAAAAAACEEEEIIIIOOOOOUUUUaaaaaaeeeeiiiiooooouuuu';
+            $cadena = utf8_decode($cadena);
+            $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
+            return utf8_encode($cadena);
+        }*/
     }
 ?>

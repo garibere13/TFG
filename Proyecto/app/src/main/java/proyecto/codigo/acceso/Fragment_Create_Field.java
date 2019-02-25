@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.content.Intent;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -204,8 +206,8 @@ public class Fragment_Create_Field extends Fragment {
             String num_hoyos = args[2];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("nombre", nombre));
-            params.add(new BasicNameValuePair("descripcion", descripcion));
+            params.add(new BasicNameValuePair("nombre",  StringUtils.stripAccents(nombre)));
+            params.add(new BasicNameValuePair("descripcion",  StringUtils.stripAccents(descripcion)));
             params.add(new BasicNameValuePair("num_hoyos", num_hoyos));
             params.add(new BasicNameValuePair("cod_pueblo", ID_pueblo));
             params.add(new BasicNameValuePair("latitud", Double.toString(latitud)));
