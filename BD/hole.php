@@ -68,7 +68,7 @@
         {
             
             $data = array();
-            $query = "SELECT h.nombre as nombre_hoyo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo FROM hoyos h, campos c WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id";
+            $query = "SELECT h.nombre as nombre_hoyo, id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo FROM hoyos h, campos c WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id";
             
             
            if($stmt = mysqli_query($this->db->getDb(), $query))
@@ -78,6 +78,7 @@
                     $temp = 
                     [
                         'nombre_hoyo'=>$row['nombre_hoyo'],
+                        'id_campo'=>$row['id_campo'],
                         'nombre_campo'=>$row['nombre_campo'],
                         'descripcion'=>$row['descripcion'],
                         'metros'=>$row['metros'],

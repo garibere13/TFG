@@ -36,26 +36,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Fragment_View_Profile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Profile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="40" column="30" selection-start-line="38" selection-start-column="3" selection-end-line="40" selection-end-column="30" />
-              <folding>
-                <element signature="e#3886#3901#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Fragment_View_Hole.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Hole.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="213" column="60" lean-forward="true" selection-start-line="213" selection-start-column="60" selection-end-line="213" selection-end-column="60" />
+            <state relative-caret-position="247">
+              <caret line="265" column="47" lean-forward="true" selection-start-line="265" selection-start-column="47" selection-end-line="265" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1792#1836#0" expanded="true" />
+                <element signature="e#9990#9991#0" expanded="true" />
+                <element signature="e#10034#10035#0" expanded="true" />
+                <element signature="e#11207#11208#0" expanded="true" />
+                <element signature="e#11251#11252#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,7 +63,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>intent</find>
       <find>quiz</find>
       <find>ratin</find>
       <find>puntu</find>
@@ -102,6 +92,7 @@
       <find>DATU</find>
       <find>fecha</find>
       <find>crea</find>
+      <find>clickableSpan_creador</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -2408,7 +2399,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="48" />
     <option name="width" value="1944" />
     <option name="height" value="1044" />
@@ -2461,7 +2452,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="log&#9;ACTION&#9;ActivateLogcatToolWindow&#10;logcat&#9;ACTION&#9;ActivateLogcatToolWindow" />
+    <property name="SearchEverywhereHistoryKey" value="logc&#9;ACTION&#9;ActivateLogcatToolWindow&#10;log&#9;ACTION&#9;ActivateLogcatToolWindow&#10;logcat&#9;ACTION&#9;ActivateLogcatToolWindow" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="device.picker.selection" value="111" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Android/UIToggleButton" />
@@ -2622,11 +2613,11 @@
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Logcat" order="10" weight="0.100340135" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="10" visible="true" weight="0.11734694" />
       <window_info id="Captures" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980484" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24980484" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.33333334" />
       <window_info anchor="right" id="Gradle" order="6" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -3049,13 +3040,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="223" column="49" selection-start-line="223" selection-start-column="49" selection-end-line="223" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Profile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -3066,13 +3050,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2328">
+          <caret line="223" column="49" selection-start-line="223" selection-start-column="49" selection-end-line="223" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Hole.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="213" column="60" lean-forward="true" selection-start-line="213" selection-start-column="60" selection-end-line="213" selection-end-column="60" />
+        <state relative-caret-position="247">
+          <caret line="265" column="47" lean-forward="true" selection-start-line="265" selection-start-column="47" selection-end-line="265" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1792#1836#0" expanded="true" />
+            <element signature="e#9990#9991#0" expanded="true" />
+            <element signature="e#10034#10035#0" expanded="true" />
+            <element signature="e#11207#11208#0" expanded="true" />
+            <element signature="e#11251#11252#0" expanded="true" />
           </folding>
         </state>
       </provider>

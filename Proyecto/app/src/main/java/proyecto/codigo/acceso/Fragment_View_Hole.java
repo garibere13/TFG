@@ -52,6 +52,7 @@ public class Fragment_View_Hole extends Fragment {
     public String db_metros;
     public String db_par;
     public String db_creador;
+    public String db_id_campo;
     public String db_date_dia;
     public String db_date_mes;
     public String db_date_año;
@@ -60,6 +61,8 @@ public class Fragment_View_Hole extends Fragment {
 
     public  SpannableString ss_creador;
     public ClickableSpan clickableSpan_creador;
+    public  SpannableString ss_campo;
+    public ClickableSpan clickableSpan_campo;
 
 
 
@@ -101,13 +104,31 @@ public class Fragment_View_Hole extends Fragment {
         clickableSpan_creador = new ClickableSpan() {
             @Override
             public void onClick(View textView) {
+
                 FragmentManager fm=getActivity().getSupportFragmentManager();
                 Fragment_View_Profile fvp=new Fragment_View_Profile();
                 final Bundle bundle = new Bundle();
                 bundle.putString("username", db_creador);
                 fvp.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
 
+        clickableSpan_campo = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Field fvf=new Fragment_View_Field();
+                final Bundle bundle = new Bundle();
+                bundle.putString("id", db_id_campo);
+                fvf.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
             }
             @Override
             public void updateDrawState(TextPaint ds) {
@@ -217,6 +238,7 @@ public class Fragment_View_Hole extends Fragment {
                     JSONObject obj = jsonArray.getJSONObject(i);
 
                     db_nombre_hoyo = obj.getString("nombre_hoyo");
+                    db_id_campo=obj.getString("id_campo");
                     db_nombre_campo = obj.getString("nombre_campo");
                     db_descripcion = obj.getString("descripcion");
                     db_metros = obj.getString("metros");
@@ -226,7 +248,7 @@ public class Fragment_View_Hole extends Fragment {
                     db_date_dia = obj.getString("dia");
                     db_creador = obj.getString("creador");
                 }
-                    tv_nombre.setText(db_nombre_hoyo+" ("+db_nombre_campo+")");
+
                     tv_metros.setText(db_metros);
                     tv_par.setText(db_par);
                     tv_fecha.append(db_date_dia+"/"+db_date_mes+"/"+db_date_año);
@@ -238,6 +260,13 @@ public class Fragment_View_Hole extends Fragment {
                     tv_creator.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_creator.setHighlightColor(Color.TRANSPARENT);
 
+                    ss_campo = new SpannableString(db_nombre_campo);
+                    ss_campo.setSpan(clickableSpan_campo, 0, ss_campo.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    tv_nombre.setText(db_nombre_hoyo+" (");
+                    tv_nombre.append(ss_campo);
+                    tv_nombre.append(")");
+                    tv_nombre.setMovementMethod(LinkMovementMethod.getInstance());
+                    tv_nombre.setHighlightColor(Color.TRANSPARENT);
             }
             catch (JSONException e)
             {
