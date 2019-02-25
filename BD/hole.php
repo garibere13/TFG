@@ -15,7 +15,7 @@
 
         public function createNewHole($nombre, $id_campo, $descripcion, $metros, $par, $creador)
         {                
-            $query = "insert into ".$this->db_table." (nombre, id_campo, descripcion, metros, par, creador) values ('$nombre', $id_campo, '$descripcion', $metros, $par, '$creador')";
+            $query = "insert into ".$this->db_table." (nombre, id_campo, descripcion, metros, par, creador, fecha) values ('$nombre', $id_campo, '$descripcion', $metros, $par, '$creador', CURDATE())";
            
             $inserted = mysqli_query($this->db->getDb(), $query);
                 
@@ -68,7 +68,7 @@
         {
             
             $data = array();
-            $query = "SELECT h.nombre as nombre_hoyo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador FROM hoyos h, campos c WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id";
+            $query = "SELECT h.nombre as nombre_hoyo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo FROM hoyos h, campos c WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id";
             
             
            if($stmt = mysqli_query($this->db->getDb(), $query))
@@ -82,7 +82,10 @@
                         'descripcion'=>$row['descripcion'],
                         'metros'=>$row['metros'],
                         'par'=>$row['par'],
-                        'creador'=>$row['creador']
+                        'creador'=>$row['creador'],
+                        'anyo'=>$row['anyo'],
+                        'mes'=>$row['mes'],
+                        'dia'=>$row['dia']
                     ];
                         array_push($data, $temp);
                 }     

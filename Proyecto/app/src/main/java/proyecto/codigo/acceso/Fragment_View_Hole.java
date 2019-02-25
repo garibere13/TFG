@@ -41,6 +41,7 @@ public class Fragment_View_Hole extends Fragment {
     TextView tv_metros;
     TextView tv_par;
     TextView tv_creator;
+    TextView tv_fecha;
     ToggleButton button_favourite;
 
 
@@ -51,6 +52,9 @@ public class Fragment_View_Hole extends Fragment {
     public String db_metros;
     public String db_par;
     public String db_creador;
+    public String db_date_dia;
+    public String db_date_mes;
+    public String db_date_año;
 
     public String isHoleInUsersFavourite;
 
@@ -82,6 +86,7 @@ public class Fragment_View_Hole extends Fragment {
             tv_par=v.findViewById(R.id.hole_par);
             tv_metros=v.findViewById(R.id.hole_meters);
             tv_creator=v.findViewById(R.id.hole_creator);
+            tv_fecha=v.findViewById(R.id.view_hole_date);
             button_favourite=v.findViewById(R.id.togglebutton_hole_favourite);
 
             AttemptFindHoleData attemptFindHoleData=new AttemptFindHoleData();
@@ -208,20 +213,23 @@ public class Fragment_View_Hole extends Fragment {
             {
                 JSONArray jsonArray = new JSONArray(result);
 
-                for (int i = 0; i < jsonArray.length(); i++)
-                {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject obj = jsonArray.getJSONObject(i);
 
-                    db_nombre_hoyo=obj.getString("nombre_hoyo");
-                    db_nombre_campo=obj.getString("nombre_campo");
-                    db_descripcion=obj.getString("descripcion");
-                    db_metros=obj.getString("metros");
-                    db_par=obj.getString("par");
-                    db_creador=obj.getString("creador");
-
+                    db_nombre_hoyo = obj.getString("nombre_hoyo");
+                    db_nombre_campo = obj.getString("nombre_campo");
+                    db_descripcion = obj.getString("descripcion");
+                    db_metros = obj.getString("metros");
+                    db_par = obj.getString("par");
+                    db_date_año = obj.getString("anyo");
+                    db_date_mes = obj.getString("mes");
+                    db_date_dia = obj.getString("dia");
+                    db_creador = obj.getString("creador");
+                }
                     tv_nombre.setText(db_nombre_hoyo+" ("+db_nombre_campo+")");
                     tv_metros.setText(db_metros);
                     tv_par.setText(db_par);
+                    tv_fecha.append(db_date_dia+"/"+db_date_mes+"/"+db_date_año);
 
 
                     ss_creador = new SpannableString("@"+db_creador);
@@ -229,7 +237,7 @@ public class Fragment_View_Hole extends Fragment {
                     tv_creator.append(ss_creador);
                     tv_creator.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_creator.setHighlightColor(Color.TRANSPARENT);
-                }
+
             }
             catch (JSONException e)
             {

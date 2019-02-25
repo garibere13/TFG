@@ -26,13 +26,8 @@
         }
         
         public function createNewRegisterUser($nombre, $apellido1, $apellido2, $username, $password)
-        {
-           /* $nombre=$this->normaliza($nombre);
-            $apellido1=$this->normaliza($apellido1); 
-            $apellido2=$this->normaliza($apellido2);    
-            $usrname=$this->normaliza($username);    
-            $password=$this->normaliza($password); */                
-            $query = "insert into ".$this->db_table." (nombre, apellido1, apellido2, username, password) values ('$nombre', '$apellido1', '$apellido2', '$username', '$password')";
+        {               
+            $query = "insert into ".$this->db_table." (nombre, apellido1, apellido2, username, password, fecha) values ('$nombre', '$apellido1', '$apellido2', '$username', '$password', CURDATE())";
             $inserted = mysqli_query($this->db->getDb(), $query);
                 
                 if($inserted == 1)
@@ -108,7 +103,7 @@
         public function find_username_data($username)
         {
             $data = array();
-            $query = "SELECT nombre, apellido1, apellido2, username, password, puntuacion from ".$this->db_table." where username='$username' Limit 1";
+            $query = "SELECT nombre, apellido1, apellido2, username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion from ".$this->db_table." where username='$username' Limit 1";
             if($stmt = mysqli_query($this->db->getDb(), $query))
             {        
                 while($row = mysqli_fetch_assoc($stmt))
@@ -120,6 +115,9 @@
                         'apellido2'=>$row['apellido2'],
                         'username'=>$row['username'],
                         'password'=>$row['password'],
+                        'anyo'=>$row['anyo'],
+                        'mes'=>$row['mes'],
+                        'dia'=>$row['dia'],
                         'puntuacion'=>$row['puntuacion']
                     ];
                         array_push($data, $temp);
@@ -128,14 +126,5 @@
             }
             mysqli_close($this->db->getDb());           
         }
-
-        /*public function normaliza ($cadena)
-        {
-            $originales = 'ÑñÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜàáâãäåèéêëìíîïòóôõöùúûü';
-            $modificadas = 'NnAAAAAACEEEEIIIIOOOOOUUUUaaaaaaeeeeiiiiooooouuuu';
-            $cadena = utf8_decode($cadena);
-            $cadena = strtr($cadena, utf8_decode($originales), $modificadas);
-            return utf8_encode($cadena);
-        }*/
     }
 ?>

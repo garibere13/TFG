@@ -137,86 +137,89 @@
     </RelativeLayout>
 
 
-
     <LinearLayout
 
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="45dp">
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:paddingLeft="25dp"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
 
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/person">
-            </ImageView>
+                android:src="@drawable/person"></ImageView>
 
             <TextView
                 android:id="@+id/field_creator"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:textStyle="bold"
-                android:text="Creador: ">
-            </TextView>
+                android:text="Creador: "
+                android:textStyle="bold"></TextView>
 
         </LinearLayout>
 
         <LinearLayout
-            android:paddingLeft="25dp"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
 
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/search">
-            </ImageView>
+                android:src="@drawable/search"></ImageView>
 
             <TextView
-                android:layout_gravity="center_vertical"
+                android:id="@+id/field_nombre_provincia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/field_nombre_provincia"
+                android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:textStyle="bold"
-                android:text="Ubicación: ">
-            </TextView>
+                android:text="Ubicación: "
+                android:textStyle="bold"></TextView>
 
         </LinearLayout>
 
         <LinearLayout
-            android:paddingLeft="25dp"
-            android:layout_marginTop="25dp"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
 
-             <ImageView
-                  android:layout_width="36dp"
-                  android:layout_height="36dp"
-                  android:src="@drawable/log_out">
-              </ImageView>
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/fecha_creacion"></ImageView>
 
-            <!--     <TextView
-                   android:layout_gravity="center_vertical"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:paddingLeft="20dp"
-                      android:textStyle="bold"
-                      android:text="Valoración: ">
-                  </TextView>-->
+            <TextView
+                android:id="@+id/field_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="Fecha de creación del campo: "
+                android:textStyle="bold"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:paddingLeft="61dp">
 
             <RatingBar
                 android:id="@+id/ratingbar"
@@ -224,8 +227,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:numStars="5"
-                android:stepSize="1.0">
-            </RatingBar>
+                android:stepSize="1.0"></RatingBar>
 
         </LinearLayout>
 

@@ -144,7 +144,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="45dp">
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:paddingLeft="25dp"
@@ -166,6 +166,31 @@
                 android:paddingLeft="20dp"
                 android:textStyle="bold"
                 android:text="Creador: ">
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/fecha_creacion">
+            </ImageView>
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/view_hole_date"
+                android:paddingLeft="20dp"
+                android:textStyle="bold"
+                android:text="Creación del hoyo: ">
             </TextView>
 
         </LinearLayout>

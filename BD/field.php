@@ -66,7 +66,7 @@
 
         public function createNewField($nombre, $descripcion, $num_hoyos, $cod_pueblo, $latitud, $longitud, $username)
         {                
-            $query = "insert into ".$this->db_table." (nombre, descripcion, num_hoyos, cod_pueblo, latitud, longitud, creador) values ('$nombre', '$descripcion', $num_hoyos, $cod_pueblo, $latitud, $longitud, '$username')";
+            $query = "insert into ".$this->db_table." (nombre, descripcion, num_hoyos, cod_pueblo, latitud, longitud, creador, fecha) values ('$nombre', '$descripcion', $num_hoyos, $cod_pueblo, $latitud, $longitud, '$username', CURDATE())";
            
             $inserted = mysqli_query($this->db->getDb(), $query);
                 
@@ -87,7 +87,7 @@
         public function find_field_data($id, $username)
         {
             $data = array();
-            $query = "SELECT c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador FROM campos c , municipios m, provincias p WHERE id=$id and c.cod_pueblo = m.id_municipio and m.id_provincia=p.id_provincia";
+            $query = "SELECT c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo FROM campos c , municipios m, provincias p WHERE id=$id and c.cod_pueblo = m.id_municipio and m.id_provincia=p.id_provincia";
 
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {        
@@ -104,6 +104,9 @@
                         'latitud'=>$row['latitud'],
                         'longitud'=>$row['longitud'],
                         'creador'=>$row['creador'],
+                        'anyo'=>$row['anyo'],
+                        'mes'=>$row['mes'],
+                        'dia'=>$row['dia'],
                         'valoracion'=>$row['valoracion']
                     ];
                         array_push($data, $temp);

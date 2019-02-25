@@ -28,6 +28,7 @@ public class Fragment_View_Profile extends Fragment {
     TextView tv_name;
     TextView tv_username;
     TextView tv_puntuacion;
+    TextView tv_fecha;
     ImageButton ib_edit;
 
     public String db_nombre;
@@ -35,6 +36,9 @@ public class Fragment_View_Profile extends Fragment {
     public String db_apellido2;
     public String db_username;
     public String db_password;
+    public String db_date_dia;
+    public String db_date_mes;
+    public String db_date_año;
     public String db_puntuacion;
 
 
@@ -54,9 +58,7 @@ public class Fragment_View_Profile extends Fragment {
             tv_name=v.findViewById(R.id.profile_name);
             tv_username=v.findViewById(R.id.profile_username);
             tv_puntuacion=v.findViewById(R.id.view_user_puntuacion);
-
-            //AttemptFindUsernameData attemptFindData=new AttemptFindUsernameData();
-            //attemptFindData.execute(username);
+            tv_fecha=v.findViewById(R.id.view_user_date);
         }
         else
         {
@@ -66,9 +68,7 @@ public class Fragment_View_Profile extends Fragment {
             tv_name=v.findViewById(R.id.profile_name);
             tv_username=v.findViewById(R.id.profile_username);
             tv_puntuacion=v.findViewById(R.id.view_my_puntuacion);
-
-           // AttemptFindUsernameData attemptFindData=new AttemptFindUsernameData();
-           // attemptFindData.execute(username);
+            tv_fecha=v.findViewById(R.id.view_my_date);
 
             ib_edit.setOnClickListener(new View.OnClickListener() {
 
@@ -126,20 +126,23 @@ public class Fragment_View_Profile extends Fragment {
             {
                 JSONArray jsonArray = new JSONArray(result);
 
-                for (int i = 0; i < jsonArray.length(); i++)
-                {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject obj = jsonArray.getJSONObject(i);
-                    db_nombre=obj.getString("nombre");
-                    db_apellido1=obj.getString("apellido1");
-                    db_apellido2=obj.getString("apellido2");
-                    db_username=obj.getString("username");
-                    db_password=obj.getString("password");
-                    db_puntuacion=obj.getString("puntuacion");
+                    db_nombre = obj.getString("nombre");
+                    db_apellido1 = obj.getString("apellido1");
+                    db_apellido2 = obj.getString("apellido2");
+                    db_username = obj.getString("username");
+                    db_password = obj.getString("password");
+                    db_date_año = obj.getString("anyo");
+                    db_date_mes = obj.getString("mes");
+                    db_date_dia = obj.getString("dia");
+                    db_puntuacion = obj.getString("puntuacion");
 
+                }
                     tv_name.setText(db_nombre+" "+db_apellido1+" "+db_apellido2);
                     tv_username.setText("@"+db_username);
+                    tv_fecha.append(db_date_dia+"/"+db_date_mes+"/"+db_date_año);
                     tv_puntuacion.append(db_puntuacion);
-                }
 
             }
             catch (JSONException e)

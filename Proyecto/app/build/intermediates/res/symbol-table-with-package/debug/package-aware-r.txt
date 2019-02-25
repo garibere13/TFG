@@ -1187,6 +1187,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable edit
 drawable favourite
+drawable fecha_creacion
 drawable golf_campo
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
@@ -1332,6 +1333,7 @@ id expand_activities_button
 id expanded_menu
 id fab
 id field_creator
+id field_fecha
 id field_n_hoyos
 id field_name
 id field_nombre_provincia
@@ -1551,9 +1553,12 @@ id unlabeled
 id up
 id useLogo
 id vertical
+id view_hole_date
 id view_map_fragment
+id view_my_date
 id view_my_puntuacion
 id view_offset_helper
+id view_user_date
 id view_user_puntuacion
 id visible
 id wide

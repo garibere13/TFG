@@ -203,16 +203,17 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/log_out">
+                android:src="@drawable/fecha_creacion">
             </ImageView>
 
             <TextView
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/view_user_date"
                 android:paddingLeft="20dp"
                 android:textStyle="bold"
-                android:text="Datu gehio">
+                android:text="Creación de la cuenta: ">
             </TextView>
 
         </LinearLayout>

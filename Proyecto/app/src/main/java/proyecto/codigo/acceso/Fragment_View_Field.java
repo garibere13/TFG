@@ -43,6 +43,7 @@ public class Fragment_View_Field extends Fragment {
     TextView tv_field_valoration;
     TextView tv_creator;
     TextView tv_nombre_provincia;
+    TextView tv_fecha;
 
     RatingBar bar;
 
@@ -55,6 +56,9 @@ public class Fragment_View_Field extends Fragment {
     public String db_latitud;
     public String db_longitud;
     public String db_creador;
+    public String db_date_dia;
+    public String db_date_mes;
+    public String db_date_año;
     public String db_valoracion;
     public String db_valoracion_usuario;
 
@@ -91,6 +95,7 @@ public class Fragment_View_Field extends Fragment {
             tv_n_hoyos=v.findViewById(R.id.field_n_hoyos);
             tv_field_valoration=v.findViewById(R.id.field_valoration);
             tv_creator=v.findViewById(R.id.field_creator);
+            tv_fecha=v.findViewById(R.id.field_fecha);
             tv_nombre_provincia=v.findViewById(R.id.field_nombre_provincia);
             bar=v.findViewById(R.id.ratingbar);
 
@@ -169,13 +174,6 @@ public class Fragment_View_Field extends Fragment {
         return v;
     }
 
-   /* public void refresh()
-    {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(this).attach(this).commit();
-    }*/
-
-
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -217,6 +215,9 @@ public class Fragment_View_Field extends Fragment {
                     db_latitud = obj.getString("latitud");
                     db_longitud = obj.getString("longitud");
                     db_creador = obj.getString("creador");
+                    db_date_año=obj.getString("anyo");
+                    db_date_mes=obj.getString("mes");
+                    db_date_dia=obj.getString("dia");
                     db_valoracion = obj.getString("valoracion");
                 }
                     tv_nombre_campo.setText(db_nombre);
@@ -229,6 +230,8 @@ public class Fragment_View_Field extends Fragment {
                     tv_creator.append(ss_creador);
                     tv_creator.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_creator.setHighlightColor(Color.TRANSPARENT);
+
+                    tv_fecha.append(db_date_dia+"/"+db_date_mes+"/"+db_date_año);
 
                     ss_ubicacion = new SpannableString(db_pueblo+" ("+db_provincia+")");
                     ss_ubicacion.setSpan(clickableSpan_ubicacion, 0, ss_ubicacion.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

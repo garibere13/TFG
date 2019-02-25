@@ -6,11 +6,10 @@ descripción de un campo/hoyo?¿? --> qué hacer?
 
 
 
+de un hoyo, link al campo al que pertenece
 
 hacer retos
 
 subir fotos
 
 mejorar layouts de log in y de creación usuario/campo
-
-añadir atributo fecha a las tablas de bbdd
