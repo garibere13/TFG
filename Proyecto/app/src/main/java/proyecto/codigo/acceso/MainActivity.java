@@ -109,6 +109,10 @@ public class MainActivity extends AppCompatActivity
         {
             fm.beginTransaction().replace(R.id.contenedor, new Fragment_View_Map()).commit();
         }
+        if (id == R.id.nav_view_favourites)
+        {
+            fm.beginTransaction().replace(R.id.contenedor, new Fragment_View_Favourites()).commit();
+        }
         else if (id == R.id.nav_create_field)
         {
             fm.beginTransaction().replace(R.id.contenedor, new Fragment_Create_Field()).commit();

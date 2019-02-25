@@ -1186,6 +1186,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable edit
+drawable favourite
 drawable golf_campo
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
@@ -1377,6 +1378,7 @@ id line3
 id linear
 id list
 id listMode
+id list_favourites
 id list_item
 id login_imagen
 id login_pass_text
@@ -1397,6 +1399,7 @@ id nav_find_friend
 id nav_logout
 id nav_ver_mapa
 id nav_view
+id nav_view_favourites
 id nav_view_profile
 id navigation_header_container
 id never
@@ -1632,6 +1635,7 @@ layout fragment_view_hole
 layout fragment_view_map
 layout fragment_view_my_profile
 layout fragment_view_profile
+layout fragment_view_user_favourites
 layout loginscreen
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include

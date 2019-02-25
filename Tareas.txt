@@ -7,10 +7,6 @@ descripción de un campo/hoyo?¿? --> qué hacer?
 
 
 
-si tienes hoyo en favoritos, que aparezca "quitar de favoritos" --> setchecked(true)
-
-favoritos con hoyos
-
 hacer retos
 
 subir fotos
@@ -18,6 +14,8 @@ subir fotos
 mejorar layouts de log in y de creación usuario/campo
 
 añadir atributo fecha a las tablas de bbdd
+
+borrados en cascada de bbdd
 
 
 

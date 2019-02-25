@@ -1,31 +1,23 @@
 package proyecto.codigo.acceso;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-import android.app.ListFragment;
 import android.support.v4.app.Fragment;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
-import android.widget.TextView;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 
 public class Fragment_View_Field_Holes extends Fragment {
-    //public class Fragment_View_Field_Holes extends ListFragment {
 
     int id_campo;
     int num_hoyos;
@@ -110,8 +102,6 @@ public class Fragment_View_Field_Holes extends Fragment {
             {
                 if(result != null)
                 {
-                    //Toast.makeText(getActivity()
-                      //      .getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                     if(result.getString("success")=="0")
                     {
                         FragmentManager fm=getActivity().getSupportFragmentManager();

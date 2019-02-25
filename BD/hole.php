@@ -163,11 +163,34 @@
            $result = mysqli_query($this->db->getDb(), $query);            
             if(mysqli_num_rows($result) > 0)
             {                
-               // mysqli_close($this->db->getDb());
                 return true;
             }            
-           // mysqli_close($this->db->getDb());
             return false;
+        }
+
+
+        public function find_user_favourites($username)
+        {
+            
+            $data = array();
+            $query = "SELECT f.nombre_hoyo, f.id_campo, c.nombre as nombre_campo, f.username FROM favoritos f, campos c WHERE f.username='$username' and f.id_campo=c.id";
+            
+            
+           if($stmt = mysqli_query($this->db->getDb(), $query))
+            {
+                while($row = mysqli_fetch_assoc($stmt))
+                {  
+                    $temp = 
+                    [
+                        'nombre_hoyo'=>$row['nombre_hoyo'],
+                        'id_campo'=>$row['id_campo'],
+                        'nombre_campo'=>$row['nombre_campo']
+                    ];
+                        array_push($data, $temp);
+                }     
+                echo json_encode($data);   
+            }
+            mysqli_close($this->db->getDb());         
         }
     }
 ?>

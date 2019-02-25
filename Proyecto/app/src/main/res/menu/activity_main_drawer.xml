@@ -9,6 +9,10 @@
             android:icon="@drawable/mapa"
             android:title="Mapa" />
         <item
+            android:id="@+id/nav_view_favourites"
+            android:icon="@drawable/favourite"
+            android:title="Favoritos" />
+        <item
             android:id="@+id/nav_create_field"
             android:icon="@drawable/golf_campo"
             android:title="Crear Campo" />
