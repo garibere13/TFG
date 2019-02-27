@@ -47,3 +47,19 @@ CREATE TABLE favoritos(
    FOREIGN KEY(username) REFERENCES usuarios(username),
    PRIMARY KEY (nombre_hoyo, id_campo, username)
 );
+
+
+
+create TABLE fotos (
+id int(11) primary key AUTO_INCREMENT,
+url text,
+name varchar(50)
+);
+
+
+create TABLE photos (
+id int primary key AUTO_INCREMENT,
+photo_name varchar(50),
+phot_url varchar(50),
+caption varchar(100)
+);

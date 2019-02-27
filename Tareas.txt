@@ -6,8 +6,9 @@ descripción de un campo/hoyo?¿? --> qué hacer?
 
 
 
+
 hacer retos
 
-subir fotos
+subir fotos --> hacer logs en el activity
 
 mejorar layouts de log in y de creación usuario/campo

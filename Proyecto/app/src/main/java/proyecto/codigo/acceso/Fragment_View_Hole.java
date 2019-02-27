@@ -253,7 +253,6 @@ public class Fragment_View_Hole extends Fragment {
                     tv_par.setText(db_par);
                     tv_fecha.append(db_date_dia+"/"+db_date_mes+"/"+db_date_año);
 
-
                     ss_creador = new SpannableString("@"+db_creador);
                     ss_creador.setSpan(clickableSpan_creador, 0, ss_creador.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     tv_creator.append(ss_creador);
