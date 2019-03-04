@@ -1483,6 +1483,8 @@ id signup_field_num_label
 id signup_field_num_text
 id signup_field_pueblo_autocomplete
 id signup_field_pueblo_label
+id signup_handicap_label
+id signup_handicap_text
 id signup_hole_des_label
 id signup_hole_des_text
 id signup_hole_metros_label
@@ -1781,6 +1783,7 @@ string signup_field_name
 string signup_field_num
 string signup_field_prov
 string signup_field_pueblo
+string signup_handicap
 string signup_name
 string signup_registrar
 string signup_string

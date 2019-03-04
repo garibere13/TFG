@@ -33,6 +33,7 @@ public class Fragment_Edit_Profile extends Fragment {
     EditText ape1;
     EditText ape2;
     EditText username;
+    EditText handicap;
     EditText con1;
     EditText con2;
 
@@ -41,6 +42,7 @@ public class Fragment_Edit_Profile extends Fragment {
     String _apellido2;
     String _username;
     String _password;
+    String _handicap;
 
     Button registrar_button;
     Button cancelar_button;
@@ -69,6 +71,7 @@ public class Fragment_Edit_Profile extends Fragment {
         _apellido1=bundle.getString("apellido1");
         _apellido2=bundle.getString("apellido2");
         _username=bundle.getString("username");
+        _handicap=bundle.getString("handicap");
         _password=bundle.getString("password");
 
         v=inflater.inflate(R.layout.signupscreen, container, false);
@@ -77,6 +80,7 @@ public class Fragment_Edit_Profile extends Fragment {
         ape1=v.findViewById(R.id.signup_ape1_text);
         ape2=v.findViewById(R.id.signup_ape2_text);
         username=v.findViewById(R.id.signup_username_text);
+        handicap=v.findViewById(R.id.signup_handicap_text);
         con1=v.findViewById(R.id.signup_con1_text);
         con2=v.findViewById(R.id.signup_con2_text);
 
@@ -174,6 +178,7 @@ public class Fragment_Edit_Profile extends Fragment {
         ape1.setText(_apellido1);
         ape2.setText(_apellido2);
         username.setText(_username);
+        handicap.setText(_handicap);
         con1.setText(_password);
         con2.setText(_password);
 
@@ -197,7 +202,8 @@ public class Fragment_Edit_Profile extends Fragment {
 
                 if (name.getText().toString().length()==0 || ape1.getText().toString().length()==0 ||
                         ape2.getText().toString().length()==0 || username.getText().toString().length()==0 ||
-                        con1.getText().toString().length()==0 || con2.getText().toString().length()==0)
+                        con1.getText().toString().length()==0 || con2.getText().toString().length()==0 ||
+                        handicap.getText().toString().length()==0)
                 {
                     Toast.makeText(getActivity().getApplicationContext(), R.string.rellenar_datos, Toast.LENGTH_LONG).show();
                 }
@@ -222,7 +228,10 @@ public class Fragment_Edit_Profile extends Fragment {
                     Toast.makeText(getActivity().getApplicationContext(), R.string.user_tam, Toast.LENGTH_LONG).show();
                 }
 
-
+                else if(Float.parseFloat(handicap.getText().toString().trim())<-10 || Float.parseFloat(handicap.getText().toString().trim())>36)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(), "El handicap debe estar entre -10 y 36", Toast.LENGTH_LONG).show();
+                }
 
                 else if(!(con1.getText().toString().matches(con2.getText().toString())))
                 {
@@ -237,7 +246,7 @@ public class Fragment_Edit_Profile extends Fragment {
                     AttemptEditProfile attemptEditProfile = new AttemptEditProfile();
                     attemptEditProfile.execute(name.getText().toString().trim(), ape1.getText().toString().trim(),
                             ape2.getText().toString().trim(), username.getText().toString().trim(),
-                            con1.getText().toString().trim());
+                            con1.getText().toString().trim(), handicap.getText().toString().trim());
                 }
             }
 
@@ -265,6 +274,7 @@ public class Fragment_Edit_Profile extends Fragment {
             String apellido2 = args[2];
             String username = args[3];
             String password = args[4];
+            String handicap = args[5];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("nombre",  StringUtils.stripAccents(nombre)));
@@ -272,6 +282,7 @@ public class Fragment_Edit_Profile extends Fragment {
             params.add(new BasicNameValuePair("apellido2",  StringUtils.stripAccents(apellido2)));
             params.add(new BasicNameValuePair("username",  StringUtils.stripAccents(username)));
             params.add(new BasicNameValuePair("password",  StringUtils.stripAccents(password)));
+            params.add(new BasicNameValuePair("handicap", handicap));
             JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
 
             return json;

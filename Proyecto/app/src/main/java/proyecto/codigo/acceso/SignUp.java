@@ -21,6 +21,7 @@ public class SignUp extends Activity {
     EditText ape1;
     EditText ape2;
     EditText username;
+    EditText handicap;
     EditText con1;
     EditText con2;
 
@@ -43,6 +44,7 @@ public class SignUp extends Activity {
         ape1=findViewById(R.id.signup_ape1_text);
         ape2=findViewById(R.id.signup_ape2_text);
         username=findViewById(R.id.signup_username_text);
+        handicap=findViewById(R.id.signup_handicap_text);
         con1=findViewById(R.id.signup_con1_text);
         con2= findViewById(R.id.signup_con2_text);
 
@@ -64,7 +66,8 @@ public class SignUp extends Activity {
 
                 if (name.getText().toString().length()==0 || ape1.getText().toString().length()==0 ||
                         ape2.getText().toString().length()==0 || username.getText().toString().length()==0 ||
-                        con1.getText().toString().length()==0 || con2.getText().toString().length()==0)
+                        con1.getText().toString().length()==0 || con2.getText().toString().length()==0 ||
+                        handicap.getText().toString().length()==0)
                 {
                     Toast.makeText(getApplicationContext(), R.string.rellenar_datos, Toast.LENGTH_LONG).show();
                 }
@@ -88,6 +91,11 @@ public class SignUp extends Activity {
                     Toast.makeText(getApplicationContext(), R.string.user_tam, Toast.LENGTH_LONG).show();
                 }
 
+                else if(Float.parseFloat(handicap.getText().toString().trim())<-10 || Float.parseFloat(handicap.getText().toString().trim())>36)
+                {
+                    Toast.makeText(getApplicationContext(), "El handicap debe estar entre -10 y 36", Toast.LENGTH_LONG).show();
+                }
+
 
                 else if(!(con1.getText().toString().matches(con2.getText().toString())))
                 {
@@ -102,7 +110,7 @@ public class SignUp extends Activity {
                     AttemptSignUp attemptSignUp = new AttemptSignUp();
                     attemptSignUp.execute(name.getText().toString().trim(), ape1.getText().toString().trim(),
                             ape2.getText().toString().trim(), username.getText().toString().trim(),
-                            con1.getText().toString().trim());
+                            con1.getText().toString().trim(), handicap.getText().toString().trim());
                 }
             }
 
@@ -128,6 +136,7 @@ public class SignUp extends Activity {
             String apellido2 = args[2];
             String username = args[3];
             String password = args[4];
+            String handicap = args[5];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("nombre",  StringUtils.stripAccents(nombre)));
@@ -135,6 +144,7 @@ public class SignUp extends Activity {
             params.add(new BasicNameValuePair("apellido2", StringUtils.stripAccents(apellido2)));
             params.add(new BasicNameValuePair("username", StringUtils.stripAccents(username)));
             params.add(new BasicNameValuePair("password", StringUtils.stripAccents(password)));
+            params.add(new BasicNameValuePair("handicap", handicap));
             JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
 
             return json;

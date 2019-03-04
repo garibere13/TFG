@@ -25,9 +25,9 @@
             return false;
         }
         
-        public function createNewRegisterUser($nombre, $apellido1, $apellido2, $username, $password)
+        public function createNewRegisterUser($nombre, $apellido1, $apellido2, $username, $password, $handicap)
         {               
-            $query = "insert into ".$this->db_table." (nombre, apellido1, apellido2, username, password, fecha) values ('$nombre', '$apellido1', '$apellido2', '$username', '$password', CURDATE())";
+            $query = "insert into ".$this->db_table." (nombre, apellido1, apellido2, username, password, fecha, handicap) values ('$nombre', '$apellido1', '$apellido2', '$username', '$password', CURDATE(), $handicap)";
             $inserted = mysqli_query($this->db->getDb(), $query);
                 
                 if($inserted == 1)
@@ -45,9 +45,9 @@
         }
 
 
-        public function editUser($nombre, $apellido1, $apellido2, $username, $password)
+        public function editUser($nombre, $apellido1, $apellido2, $username, $password, $handicap)
         {                
-            $query = "UPDATE ".$this->db_table." SET nombre='$nombre', apellido1='$apellido1', apellido2='$apellido2', password='$password' WHERE username='$username'";
+            $query = "UPDATE ".$this->db_table." SET nombre='$nombre', apellido1='$apellido1', apellido2='$apellido2', password='$password', handicap=$handicap WHERE username='$username'";
             $inserted = mysqli_query($this->db->getDb(), $query);
                
                 if($inserted == 1)
@@ -103,7 +103,7 @@
         public function find_username_data($username)
         {
             $data = array();
-            $query = "SELECT nombre, apellido1, apellido2, username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion from ".$this->db_table." where username='$username' Limit 1";
+            $query = "SELECT nombre, apellido1, apellido2, username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap from ".$this->db_table." where username='$username' Limit 1";
             if($stmt = mysqli_query($this->db->getDb(), $query))
             {        
                 while($row = mysqli_fetch_assoc($stmt))
@@ -118,7 +118,8 @@
                         'anyo'=>$row['anyo'],
                         'mes'=>$row['mes'],
                         'dia'=>$row['dia'],
-                        'puntuacion'=>$row['puntuacion']
+                        'puntuacion'=>$row['puntuacion'],
+                        'handicap'=>$row['handicap']
                     ];
                         array_push($data, $temp);
                 }     

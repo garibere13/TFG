@@ -40,6 +40,7 @@ public class Fragment_View_Profile extends Fragment {
     public String db_date_mes;
     public String db_date_año;
     public String db_puntuacion;
+    public String db_handicap;
 
 
 
@@ -82,6 +83,7 @@ public class Fragment_View_Profile extends Fragment {
                     bundle.putString("apellido2", db_apellido2);
                     bundle.putString("username", db_username);
                     bundle.putString("password", db_password);
+                    bundle.putString("handicap", db_handicap);
                     fep.setArguments(bundle);
                     fm.beginTransaction().replace(R.id.contenedor, fep).commit();
 
@@ -137,9 +139,11 @@ public class Fragment_View_Profile extends Fragment {
                     db_date_mes = obj.getString("mes");
                     db_date_dia = obj.getString("dia");
                     db_puntuacion = obj.getString("puntuacion");
-
+                    db_handicap = obj.getString("handicap");
                 }
-                    tv_name.setText(db_nombre+" "+db_apellido1+" "+db_apellido2);
+                    float f=Float.parseFloat(db_handicap);
+                    String h=String.format(String.format("%.1f", f));
+                    tv_name.setText(db_nombre+" "+db_apellido1+" "+db_apellido2+" ("+h+")");
                     tv_username.setText("@"+db_username);
                     tv_fecha.append(db_date_dia+"/"+db_date_mes+"/"+db_date_año);
                     tv_puntuacion.append(db_puntuacion);

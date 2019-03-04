@@ -6,9 +6,12 @@ descripción de un campo/hoyo?¿? --> qué hacer?
 
 
 
-
 hacer retos
 
-subir fotos --> hacer logs en el activity
+fusionar lo de subir y ver fotos al proyecto
+
+Indicar tu localización en el mapa
+
+cambiar botón de "me gusta" por un corazón
 
 mejorar layouts de log in y de creación usuario/campo

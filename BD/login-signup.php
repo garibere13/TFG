@@ -6,6 +6,7 @@
     $apellido2="";
     $username = "";    
     $password = ""; 
+    $handicap = ""; 
 
     if(isset($_POST['nombre']))
     {
@@ -27,13 +28,17 @@
     {   
         $password = $_POST['password'];   
     }
+    if(isset($_POST['handicap']))
+    {   
+        $handicap = $_POST['handicap'];   
+    }
     
     $userObject = new User();
     
     // Registration    
-    if(!empty($nombre) && !empty($apellido1) && !empty($apellido2) && !empty($username) && !empty($password))
+    if(!empty($nombre) && !empty($apellido1) && !empty($apellido2) && !empty($username) && !empty($password) && !empty($handicap))
     {  
-        $json_registration = $userObject->createNewRegisterUser($nombre, $apellido1, $apellido2, $username, $password);
+        $json_registration = $userObject->createNewRegisterUser($nombre, $apellido1, $apellido2, $username, $password, $handicap);
         echo json_encode($json_registration);        
     }
 
