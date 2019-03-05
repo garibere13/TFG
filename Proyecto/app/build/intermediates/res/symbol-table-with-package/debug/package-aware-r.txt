@@ -1341,6 +1341,7 @@ id field_fecha
 id field_n_hoyos
 id field_name
 id field_nombre_provincia
+id field_number_fotos
 id field_valoration
 id fill
 id fill_horizontal
@@ -1352,6 +1353,7 @@ id flip
 id forever
 id ghost_view
 id gone
+id gridView
 id group_divider
 id groups
 id hole_creator
@@ -1642,6 +1644,7 @@ layout find_item
 layout fragment_find
 layout fragment_view_field
 layout fragment_view_field_holes
+layout fragment_view_grid_images
 layout fragment_view_hole
 layout fragment_view_map
 layout fragment_view_my_profile

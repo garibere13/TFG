@@ -40,6 +40,7 @@ public class Fragment_View_Field extends Fragment {
     JSONParser jsonParser=new JSONParser();
     TextView tv_nombre_campo;
     TextView tv_n_hoyos;
+    TextView tv_fotos;
     TextView tv_field_valoration;
     TextView tv_creator;
     TextView tv_nombre_provincia;
@@ -68,6 +69,8 @@ public class Fragment_View_Field extends Fragment {
     public ClickableSpan clickableSpan_ubicacion;
     public  SpannableString ss_num_hoyos;
     public ClickableSpan clickableSpan_num_hoyos;
+    public  SpannableString ss_num_fotos;
+    public ClickableSpan clickableSpan_num_fotos;
 
     public String valoracion_estrellas;
 
@@ -93,6 +96,7 @@ public class Fragment_View_Field extends Fragment {
             v=inflater.inflate(R.layout.fragment_view_field, container, false);
             tv_nombre_campo=v.findViewById(R.id.field_name);
             tv_n_hoyos=v.findViewById(R.id.field_n_hoyos);
+            tv_fotos=v.findViewById(R.id.field_number_fotos);
             tv_field_valoration=v.findViewById(R.id.field_valoration);
             tv_creator=v.findViewById(R.id.field_creator);
             tv_fecha=v.findViewById(R.id.field_fecha);
@@ -152,6 +156,27 @@ public class Fragment_View_Field extends Fragment {
                 bundle.putString("num_hoyos", db_num_hoyos);
                 fvp.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+
+        clickableSpan_num_fotos = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+
+                //Toast.makeText(getActivity().getApplicationContext(),"bengaaaaaaaa",Toast.LENGTH_LONG).show();
+
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Images fvi=new Fragment_View_Images();
+                //final Bundle bundle = new Bundle();
+                //bundle.putString("id_campo", db_id_campo);
+                //bundle.putString("num_hoyos", db_num_hoyos);
+                //fvi.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvi).commit();
             }
             @Override
             public void updateDrawState(TextPaint ds) {
@@ -244,6 +269,13 @@ public class Fragment_View_Field extends Fragment {
                     tv_n_hoyos.append(ss_num_hoyos);
                     tv_n_hoyos.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_n_hoyos.setHighlightColor(Color.TRANSPARENT);
+
+                    String frc="0";
+                    ss_num_fotos = new SpannableString(frc);
+                    ss_num_fotos.setSpan(clickableSpan_num_fotos, 0, frc.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    tv_fotos.setText(ss_num_fotos);
+                    tv_fotos.setMovementMethod(LinkMovementMethod.getInstance());
+                    tv_fotos.setHighlightColor(Color.TRANSPARENT);
             }
             catch (JSONException e)
             {
