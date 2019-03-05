@@ -64,12 +64,12 @@
     <string name="signup_field_pueblo">Pueblo</string>
 
 
+    <!--
+
+        <string name="ip_config">10.207.58.150</string>
+      -->
 
     <string name="ip_config">192.168.1.40</string>
-
-    <!--
-    <string name="ip_config">10.207.58.150</string>
-    -->
 
 
 

@@ -13,6 +13,7 @@ import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -92,6 +93,7 @@ public class Fragment_View_Hole extends Fragment {
             tv_fecha=v.findViewById(R.id.view_hole_date);
             button_favourite=v.findViewById(R.id.togglebutton_hole_favourite);
 
+
             AttemptFindHoleData attemptFindHoleData=new AttemptFindHoleData();
             attemptFindHoleData.execute();
         }
@@ -155,7 +157,7 @@ public class Fragment_View_Hole extends Fragment {
                 }
             }
         });
-        
+
         return v;
     }
 
@@ -197,6 +199,7 @@ public class Fragment_View_Hole extends Fragment {
                     isHoleInUsersFavourite = obj.getString("existe");
                 }
                 button_favourite.setChecked(Boolean.parseBoolean(isHoleInUsersFavourite));
+
             }
             catch (JSONException e)
             {
@@ -305,6 +308,7 @@ public class Fragment_View_Hole extends Fragment {
                 if(result != null)
                 {
                     Toast.makeText(getActivity().getApplicationContext(),result.getString("mensaje"),Toast.LENGTH_LONG).show();
+
                 }
             }
             catch (JSONException e)
@@ -344,6 +348,7 @@ public class Fragment_View_Hole extends Fragment {
                 if(result != null)
                 {
                     Toast.makeText(getActivity().getApplicationContext(),result.getString("mensaje"),Toast.LENGTH_LONG).show();
+
                 }
             }
             catch (JSONException e)

@@ -1204,6 +1204,7 @@ drawable ic_menu_slideshow
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable likestyle
 drawable log_out
 drawable mapa
 drawable mtrl_snackbar_background
@@ -1222,9 +1223,12 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable person
+drawable post_like
+drawable pre_like
 drawable puntuacion
 drawable search
 drawable side_nav_bar
+drawable toggle_selector
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
