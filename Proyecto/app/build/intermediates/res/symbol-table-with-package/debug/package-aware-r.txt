@@ -1280,9 +1280,12 @@ id beginning
 id blocking
 id bottom
 id bounce
+id buttonChooseUpload
 id buttonPanel
+id buttonUpload
 id button_aceptar
 id button_signup
+id button_subir_foto
 id cancel_action
 id cancelar_button
 id cancelar_field_button
@@ -1327,6 +1330,7 @@ id drawer_layout
 id easeIn
 id easeInOut
 id easeOut
+id editTextNameUpload
 id edit_query
 id end
 id end_padder
@@ -1371,6 +1375,7 @@ id id123
 id ifRoom
 id image
 id imageView
+id imageViewUpload
 id info
 id invisible
 id italic
@@ -1642,6 +1647,7 @@ layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout find_item
 layout fragment_find
+layout fragment_upload_image
 layout fragment_view_field
 layout fragment_view_field_holes
 layout fragment_view_grid_images

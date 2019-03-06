@@ -168,14 +168,11 @@ public class Fragment_View_Field extends Fragment {
             @Override
             public void onClick(View textView) {
 
-                //Toast.makeText(getActivity().getApplicationContext(),"bengaaaaaaaa",Toast.LENGTH_LONG).show();
-
                 FragmentManager fm=getActivity().getSupportFragmentManager();
                 Fragment_View_Images fvi=new Fragment_View_Images();
-                //final Bundle bundle = new Bundle();
-                //bundle.putString("id_campo", db_id_campo);
-                //bundle.putString("num_hoyos", db_num_hoyos);
-                //fvi.setArguments(bundle);
+                final Bundle bundle = new Bundle();
+                bundle.putString("id_campo", db_id_campo);
+                fvi.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvi).commit();
             }
             @Override

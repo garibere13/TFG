@@ -2,9 +2,11 @@ package proyecto.codigo.acceso;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 import org.json.JSONException;
@@ -36,27 +38,46 @@ public class Fragment_View_Images extends Fragment {
     private ArrayList<String> images;
     private ArrayList<String> names;
 
+    Button button;
+    String id_campo;
+
     View v;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         super.onCreateView(inflater, container, savedInstanceState);
+        Bundle bundle = getArguments();
 
-        //Bundle bundle = getArguments();
 
+        id_campo=bundle.getString("id_campo");
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/getImages.php";
 
         v=inflater.inflate(R.layout.fragment_view_grid_images, container, false);
 
         gridView=v.findViewById(R.id.gridView);
+        button=v.findViewById(R.id.button_subir_foto);
 
         images = new ArrayList<>();
         names = new ArrayList<>();
 
         //Calling the getData method
         getData();
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_Upload_Image fui=new Fragment_Upload_Image();
+                final Bundle bundle = new Bundle();
+                bundle.putString("id_campo", id_campo);
+                fui.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fui).commit();
+            }
+        });
 
         return v;
     }
