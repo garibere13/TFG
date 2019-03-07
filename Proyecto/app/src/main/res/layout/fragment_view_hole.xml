@@ -94,7 +94,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="234"
+                        android:id="@+id/hole_number_fotos"
+                        android:text=""
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:paddingTop="10dp"

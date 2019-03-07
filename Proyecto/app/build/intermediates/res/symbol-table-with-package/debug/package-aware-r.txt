@@ -1363,6 +1363,7 @@ id groups
 id hole_creator
 id hole_meters
 id hole_name
+id hole_number_fotos
 id hole_par
 id home
 id homeAsUp

@@ -68,9 +68,8 @@
         {
             
             $data = array();
-            $query = "SELECT h.nombre as nombre_hoyo, id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo FROM hoyos h, campos c WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id";
-            
-            
+            $query = "SELECT count(f.id_campo) as num_fotos, h.nombre as nombre_hoyo, h.id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo FROM fotos f, hoyos h, campos c WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id and f.id_campo=$id_campo and f.nombre_hoyo='$nombre'";
+                        
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {
                 while($row = mysqli_fetch_assoc($stmt))
@@ -86,7 +85,8 @@
                         'creador'=>$row['creador'],
                         'anyo'=>$row['anyo'],
                         'mes'=>$row['mes'],
-                        'dia'=>$row['dia']
+                        'dia'=>$row['dia'],
+                        'num_fotos'=>$row['num_fotos']
                     ];
                         array_push($data, $temp);
                 }     

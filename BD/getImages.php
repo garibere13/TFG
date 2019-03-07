@@ -8,21 +8,30 @@
 
     $username="";
     $id_campo="";
+    $nombre_hoyo="";
 
-    if(isset($_POST['username']))
+
+    if(isset($_POST['nombre_hoyo']) && isset($_POST['id_campo']))
     {
-        $username = $_POST['username'];
-    }
+        $nombre_hoyo = $_POST['nombre_hoyo'];
+        $id_campo = $_POST['id_campo'];
 
-    if(isset($_POST['id_campo']))
+        $sql = "SELECT * FROM fotos where id_campo=$id_campo and nombre_hoyo='$nombre_hoyo'";
+    }
+    else if(isset($_POST['id_campo']))
     {
         $id_campo = $_POST['id_campo'];
+
+        $sql = "SELECT * FROM fotos where id_campo=$id_campo";
     }
-    
-    //sql query to fetch all images 
-    $sql = "SELECT * FROM fotos where username='$username' and id_campo=$id_campo";
-    //$sql = "SELECT * FROM fotos";
-    
+    else
+    {
+        $username = $_POST['username'];
+
+        $sql = "SELECT * FROM fotos where username='$username' and id_campo is null and nombre_hoyo is null";
+    }
+
+   
     //getting images 
     $result = mysqli_query($con, $sql);
     

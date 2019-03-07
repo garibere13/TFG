@@ -8,26 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.ProgressDialog;
-
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
@@ -74,20 +64,6 @@ public class Fragment_View_Images extends Fragment {
 
         tipo=bundle.getString("tipo");
 
-        username=((MainActivity)getActivity()).username;
-
-        if(tipo=="campo")
-        {
-            id_campo=bundle.getString("id_campo");
-        }
-
-        else if(tipo=="hoyo")
-        {
-            id_campo=bundle.getString("id_campo");
-            nombre_hoyo=bundle.getString("id_campo");
-        }
-
-
 
 
 
@@ -103,8 +79,23 @@ public class Fragment_View_Images extends Fragment {
         //nombre_hoyos = new ArrayList<>();
 
         //Calling the getData method
-        getData();
 
+        username=((MainActivity)getActivity()).username;
+        if(tipo=="campo")
+        {
+            id_campo=bundle.getString("id_campo");
+            getDataCampo();
+        }
+        else if(tipo=="hoyo")
+        {
+            id_campo=bundle.getString("id_campo");
+            nombre_hoyo=bundle.getString("nombre_hoyo");
+            getDataHoyo();
+        }
+        else
+        {
+            getDataUsuario();
+        }
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -152,7 +143,7 @@ public class Fragment_View_Images extends Fragment {
         return v;
     }
 
-    private void getData()
+    private void getDataCampo()
     {
         final ProgressDialog loading = ProgressDialog.show(getActivity(), "Please wait...","Fetching data...",false,false);
 
@@ -181,8 +172,86 @@ public class Fragment_View_Images extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("username", "garibere13");
-                params.put("id_campo", "6");
+                params.put("id_campo", id_campo);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(stringRequest);
+
+    }
+
+
+    private void getDataHoyo()
+    {
+        final ProgressDialog loading = ProgressDialog.show(getActivity(), "Please wait...","Fetching data...",false,false);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        loading.dismiss();
+                        try {
+                            JSONArray jsonArr = new JSONArray(response);
+                            showGrid(jsonArr);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+
+                    }
+
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_campo", id_campo);
+                params.put("nombre_hoyo", nombre_hoyo);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(stringRequest);
+
+    }
+
+
+    private void getDataUsuario()
+    {
+        final ProgressDialog loading = ProgressDialog.show(getActivity(), "Please wait...","Fetching data...",false,false);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        loading.dismiss();
+                        try {
+                            JSONArray jsonArr = new JSONArray(response);
+                            showGrid(jsonArr);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+
+                    }
+
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("username", username);
                 return params;
             }
         };

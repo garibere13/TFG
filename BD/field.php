@@ -84,10 +84,10 @@
             return $json;
         }
 
-        public function find_field_data($id, $username)
+        public function find_field_data($id)
         {
-            $data = array();
-            $query = "SELECT c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo FROM campos c , municipios m, provincias p WHERE id=$id and c.cod_pueblo = m.id_municipio and m.id_provincia=p.id_provincia";
+            $data = array();            
+            $query = "SELECT count(f.id_campo) as num_fotos, c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo FROM fotos f, campos c , municipios m, provincias p WHERE c.id=$id and c.cod_pueblo = m.id_municipio and m.id_provincia=p.id_provincia and f.id_campo=$id";
 
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {        
@@ -107,7 +107,8 @@
                         'anyo'=>$row['anyo'],
                         'mes'=>$row['mes'],
                         'dia'=>$row['dia'],
-                        'valoracion'=>$row['valoracion']
+                        'valoracion'=>$row['valoracion'],
+                        'num_fotos'=>$row['num_fotos']
                     ];
                         array_push($data, $temp);
                 }     

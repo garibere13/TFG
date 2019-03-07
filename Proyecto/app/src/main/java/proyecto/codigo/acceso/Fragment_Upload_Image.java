@@ -76,10 +76,8 @@ public class Fragment_Upload_Image extends Fragment {
         else if(tipo=="hoyo")
         {
             id_campo=bundle.getString("id_campo");
-            nombre_hoyo=bundle.getString("id_campo");
+            nombre_hoyo=bundle.getString("nombre_hoyo");
         }
-
-        Toast.makeText(getActivity().getApplicationContext(),id_campo,Toast.LENGTH_LONG).show();
 
 
         v=inflater.inflate(R.layout.fragment_upload_image, container, false);
@@ -155,7 +153,7 @@ public class Fragment_Upload_Image extends Fragment {
         //getting the actual path of the image
         String path = getPath(filePath);
 
-        //Uploading code
+       //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();
 
@@ -175,6 +173,7 @@ public class Fragment_Upload_Image extends Fragment {
 
             else if(tipo=="hoyo")
             {
+
                 new MultipartUploadRequest(getActivity(), uploadId, URL)
                         .addFileToUpload(path, "image") //Adding file
                         .addParameter("comentario", comentario) //Adding text parameter to the request

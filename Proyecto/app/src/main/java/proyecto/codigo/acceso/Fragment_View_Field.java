@@ -61,6 +61,7 @@ public class Fragment_View_Field extends Fragment {
     public String db_date_mes;
     public String db_date_año;
     public String db_valoracion;
+    public String db_num_fotos;
     public String db_valoracion_usuario;
 
     public  SpannableString ss_creador;
@@ -213,7 +214,6 @@ public class Fragment_View_Field extends Fragment {
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id", id_field));
-            params.add(new BasicNameValuePair("username", username));
             String json = jsonParser.makeHttpRequestString(URL, "POST", params);
 
             return json;
@@ -242,6 +242,7 @@ public class Fragment_View_Field extends Fragment {
                     db_date_mes=obj.getString("mes");
                     db_date_dia=obj.getString("dia");
                     db_valoracion = obj.getString("valoracion");
+                    db_num_fotos = obj.getString("num_fotos");
                 }
                     tv_nombre_campo.setText(db_nombre);
                     float v=Float.parseFloat(db_valoracion);
@@ -268,9 +269,8 @@ public class Fragment_View_Field extends Fragment {
                     tv_n_hoyos.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_n_hoyos.setHighlightColor(Color.TRANSPARENT);
 
-                    String frc="0";
-                    ss_num_fotos = new SpannableString(frc);
-                    ss_num_fotos.setSpan(clickableSpan_num_fotos, 0, frc.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    ss_num_fotos = new SpannableString(db_num_fotos);
+                    ss_num_fotos.setSpan(clickableSpan_num_fotos, 0, db_num_fotos.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     tv_fotos.setText(ss_num_fotos);
                     tv_fotos.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_fotos.setHighlightColor(Color.TRANSPARENT);
