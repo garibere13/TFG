@@ -171,6 +171,7 @@ public class Fragment_View_Field extends Fragment {
                 FragmentManager fm=getActivity().getSupportFragmentManager();
                 Fragment_View_Images fvi=new Fragment_View_Images();
                 final Bundle bundle = new Bundle();
+                bundle.putString("tipo", "campo");
                 bundle.putString("id_campo", db_id_campo);
                 fvi.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvi).commit();

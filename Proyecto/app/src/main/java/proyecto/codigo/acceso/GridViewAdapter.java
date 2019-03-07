@@ -25,13 +25,13 @@ public class GridViewAdapter extends BaseAdapter {
 
     //Array List that would contain the urls and the titles for the images
     private ArrayList<String> images;
-    private ArrayList<String> names;
+    private ArrayList<String> comentarios;
 
-    public GridViewAdapter (Context context, ArrayList<String> images, ArrayList<String> names){
+    public GridViewAdapter (Context context, ArrayList<String> images, ArrayList<String> comentarios){
         //Getting all the values
         this.context = context;
         this.images = images;
-        this.names = names;
+        this.comentarios = comentarios;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class GridViewAdapter extends BaseAdapter {
 
         //Creating a textview to show the title
         TextView textView = new TextView(context);
-        textView.setText(names.get(position));
+        textView.setText(comentarios.get(position));
 
         //Scaling the imageview
         networkImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

@@ -20,14 +20,25 @@
     {
  
         //checking the required parameters from the request 
-        if(isset($_POST['name']) and isset($_FILES['image']['name']))
+        if(isset($_POST['comentario']) and isset($_POST['username']) and isset($_FILES['image']['name']))
         {
         
                 //connecting to the database                 
                 $con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('Unable to Connect...');
                 
-                //getting name from the request 
-                $name = $_POST['name'];
+                //getting comment from the request 
+                $comentario = $_POST['comentario'];
+                $username = $_POST['username'];
+
+                if(isset($_POST['id_campo']))
+                {
+                    $id_campo = $_POST['id_campo'];
+                }
+
+                if(isset($_POST['nombre_hoyo']))
+                {
+                    $nombre_hoyo = $_POST['nombre_hoyo'];
+                }
                 
                 //getting file info from the request 
                 $fileinfo = pathinfo($_FILES['image']['name']);
@@ -46,16 +57,50 @@
                 {
                     //saving the file 
                     move_uploaded_file($_FILES['image']['tmp_name'], $file_path);
-                    $sql = "INSERT INTO fotos (id, url, name) VALUES (NULL, '$file_url', '$name');";
                     
-                    //adding the path and name to database 
-                    if(mysqli_query($con, $sql))
+                    
+                    if(isset($_POST['nombre_hoyo']))
                     {
-                        //filling response array with values 
-                        $response['error'] = false; 
-                        $response['url'] = $file_url; 
-                        $response['name'] = $name;
+                        $sql = "INSERT INTO fotos (id, url, comentario, username, id_campo, nombre_hoyo) VALUES (NULL, '$file_url', '$comentario', '$username', $id_campo, '$nombre_hoyo');";
+                        if(mysqli_query($con, $sql))
+                            {
+                                //filling response array with values 
+                                $response['error'] = false; 
+                                $response['url'] = $file_url; 
+                                $response['comentario'] = $comentario;
+                                $response['username'] = $username;
+                                $response['id_campo'] = $id_campo;
+                                $response['nombre_hoyo'] = $nombre_hoyo;
+                            }
                     }
+
+                    else if(isset($_POST['id_campo']))
+                    {
+                        $sql = "INSERT INTO fotos (id, url, comentario, username, id_campo) VALUES (NULL, '$file_url', '$comentario', '$username', $id_campo);";
+                        if(mysqli_query($con, $sql))
+                        {
+                            //filling response array with values 
+                            $response['error'] = false; 
+                            $response['url'] = $file_url; 
+                            $response['comentario'] = $comentario;
+                            $response['username'] = $username;
+                            $response['id_campo'] = $id_campo;
+                        }
+                    
+                    }
+
+                    else
+                    {
+                        $sql = "INSERT INTO fotos (id, url, comentario, username) VALUES (NULL, '$file_url', '$comentario', '$username');";
+                        if(mysqli_query($con, $sql))
+                            {
+                                //filling response array with values 
+                                $response['error'] = false; 
+                                $response['url'] = $file_url; 
+                                $response['comentario'] = $comentario;
+                                $response['username'] = $username;
+                            }
+                    }                            
          
                 }
                 catch(Exception $e)
@@ -80,7 +125,7 @@
  {
     $con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('Unable to Connect...');
     $sql = "SELECT max(id) as id FROM fotos";
-    $result = mysqli_fetch_array(mysqli_query($con,$sql));
+    $result = mysqli_fetch_array(mysqli_query($con, $sql));
     
     mysqli_close($con);
     if($result['id']==null)

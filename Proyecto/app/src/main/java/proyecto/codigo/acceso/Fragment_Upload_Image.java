@@ -52,6 +52,9 @@ public class Fragment_Upload_Image extends Fragment {
     String ip_config;
     String URL;
     String id_campo;
+    String tipo;
+    String nombre_hoyo;
+    String username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,7 +64,22 @@ public class Fragment_Upload_Image extends Fragment {
 
         Bundle bundle = getArguments();
 
-        id_campo=bundle.getString("id_campo");
+        tipo=bundle.getString("tipo");
+
+        username=bundle.getString("username");
+
+        if(tipo=="campo")
+        {
+            id_campo=bundle.getString("id_campo");
+        }
+
+        else if(tipo=="hoyo")
+        {
+            id_campo=bundle.getString("id_campo");
+            nombre_hoyo=bundle.getString("id_campo");
+        }
+
+        Toast.makeText(getActivity().getApplicationContext(),id_campo,Toast.LENGTH_LONG).show();
 
 
         v=inflater.inflate(R.layout.fragment_upload_image, container, false);
@@ -91,12 +109,33 @@ public class Fragment_Upload_Image extends Fragment {
 
                 uploadMultipart();
 
-                FragmentManager fm=getActivity().getSupportFragmentManager();
-                Fragment_View_Field fvf=new Fragment_View_Field();
-                final Bundle bundle = new Bundle();
-                bundle.putString("id", id_campo);
-                fvf.setArguments(bundle);
-                fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
+                if(tipo=="campo")
+                {
+                    FragmentManager fm=getActivity().getSupportFragmentManager();
+                    Fragment_View_Field fvf=new Fragment_View_Field();
+                    final Bundle bundle = new Bundle();
+                    bundle.putString("id", id_campo);
+                    fvf.setArguments(bundle);
+                    fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
+                }
+
+                else if(tipo=="hoyo")
+                {
+                    FragmentManager fm=getActivity().getSupportFragmentManager();
+                    Fragment_View_Hole fvh=new Fragment_View_Hole();
+                    final Bundle bundle = new Bundle();
+                    bundle.putString("id_campo", id_campo);
+                    bundle.putString("nombre", nombre_hoyo);
+                    fvh.setArguments(bundle);
+                    fm.beginTransaction().replace(R.id.contenedor, fvh).commit();
+                }
+
+                else
+                {
+                    FragmentManager fm=getActivity().getSupportFragmentManager();
+                    Fragment_View_Profile fvp=new Fragment_View_Profile();
+                    fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
+                }
             }
         });
 
@@ -110,8 +149,8 @@ public class Fragment_Upload_Image extends Fragment {
      * We need the full image path and the name for the image in this method
      * */
     public void uploadMultipart() {
-        //getting name for the image
-        String name = editText.getText().toString().trim();
+        //getting comment for the image
+        String comentario = editText.getText().toString().trim();
 
         //getting the actual path of the image
         String path = getPath(filePath);
@@ -121,12 +160,43 @@ public class Fragment_Upload_Image extends Fragment {
             String uploadId = UUID.randomUUID().toString();
 
             //Creating a multi part request
-            new MultipartUploadRequest(getActivity(), uploadId, URL)
-                    .addFileToUpload(path, "image") //Adding file
-                    .addParameter("name", name) //Adding text parameter to the request
-                    .setNotificationConfig(new UploadNotificationConfig())
-                    .setMaxRetries(2)
-                    .startUpload(); //Starting the upload
+
+            if(tipo=="campo")
+            {
+                new MultipartUploadRequest(getActivity(), uploadId, URL)
+                        .addFileToUpload(path, "image") //Adding file
+                        .addParameter("comentario", comentario) //Adding text parameter to the request
+                        .addParameter("username", username)
+                        .addParameter("id_campo", id_campo)
+                        .setNotificationConfig(new UploadNotificationConfig())
+                        .setMaxRetries(2)
+                        .startUpload(); //Starting the upload
+            }
+
+            else if(tipo=="hoyo")
+            {
+                new MultipartUploadRequest(getActivity(), uploadId, URL)
+                        .addFileToUpload(path, "image") //Adding file
+                        .addParameter("comentario", comentario) //Adding text parameter to the request
+                        .addParameter("username", username)
+                        .addParameter("id_campo", id_campo)
+                        .addParameter("nombre_hoyo", nombre_hoyo)
+                        .setNotificationConfig(new UploadNotificationConfig())
+                        .setMaxRetries(2)
+                        .startUpload(); //Starting the upload
+            }
+
+            else
+            {
+                new MultipartUploadRequest(getActivity(), uploadId, URL)
+                        .addFileToUpload(path, "image") //Adding file
+                        .addParameter("comentario", comentario) //Adding text parameter to the request
+                        .addParameter("username", username)
+                        .setNotificationConfig(new UploadNotificationConfig())
+                        .setMaxRetries(2)
+                        .startUpload(); //Starting the upload
+            }
+
 
         } catch (Exception exc) {
             Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();

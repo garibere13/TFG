@@ -21,11 +21,11 @@
             android:id="@+id/buttonChooseUpload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select" />
+            android:text="Selleccionar" />
 
         <EditText
             android:id="@+id/editTextNameUpload"
-            android:hint="Name For Image"
+            android:hint="Añade tu comentario"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -34,7 +34,7 @@
             android:id="@+id/buttonUpload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload" />
+            android:text="Subir" />
 
     </LinearLayout>
 

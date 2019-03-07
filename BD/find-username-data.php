@@ -13,5 +13,6 @@
     if(!empty($username))
     {  
         $json_array=$userObject->find_username_data($username);
+        echo $json_array;
     }
 ?>

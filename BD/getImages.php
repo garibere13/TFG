@@ -5,9 +5,23 @@
     
     //connection to database 
     $con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die('Unable to Connect...');
+
+    $username="";
+    $id_campo="";
+
+    if(isset($_POST['username']))
+    {
+        $username = $_POST['username'];
+    }
+
+    if(isset($_POST['id_campo']))
+    {
+        $id_campo = $_POST['id_campo'];
+    }
     
     //sql query to fetch all images 
-    $sql = "SELECT * FROM fotos";
+    $sql = "SELECT * FROM fotos where username='$username' and id_campo=$id_campo";
+    //$sql = "SELECT * FROM fotos";
     
     //getting images 
     $result = mysqli_query($con, $sql);
@@ -22,7 +36,7 @@
         $temp = 
             [
                 'id'=>$row['id'],
-                'name'=>$row['name'],
+                'comentario'=>$row['comentario'],
                 'url'=>$row['url']
             ];
         array_push($response, $temp);
