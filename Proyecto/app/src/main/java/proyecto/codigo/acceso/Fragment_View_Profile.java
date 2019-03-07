@@ -1,9 +1,15 @@
 package proyecto.codigo.acceso;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +36,7 @@ public class Fragment_View_Profile extends Fragment {
     TextView tv_puntuacion;
     TextView tv_fecha;
     ImageButton ib_edit;
+    TextView tv_fotos;
 
     public String db_nombre;
     public String db_apellido1;
@@ -41,6 +48,10 @@ public class Fragment_View_Profile extends Fragment {
     public String db_date_año;
     public String db_puntuacion;
     public String db_handicap;
+    public String db_num_fotos;
+
+    public  SpannableString ss_num_fotos;
+    public ClickableSpan clickableSpan_num_fotos;
 
 
 
@@ -60,6 +71,7 @@ public class Fragment_View_Profile extends Fragment {
             tv_username=v.findViewById(R.id.profile_username);
             tv_puntuacion=v.findViewById(R.id.view_user_puntuacion);
             tv_fecha=v.findViewById(R.id.view_user_date);
+            tv_fotos=v.findViewById(R.id.user_profile_fotos);
         }
         else
         {
@@ -70,6 +82,7 @@ public class Fragment_View_Profile extends Fragment {
             tv_username=v.findViewById(R.id.profile_username);
             tv_puntuacion=v.findViewById(R.id.view_my_puntuacion);
             tv_fecha=v.findViewById(R.id.view_my_date);
+            tv_fotos=v.findViewById(R.id.my_profile_fotos);
 
             ib_edit.setOnClickListener(new View.OnClickListener() {
 
@@ -96,6 +109,28 @@ public class Fragment_View_Profile extends Fragment {
 
         AttemptFindUsernameData attemptFindData=new AttemptFindUsernameData();
         attemptFindData.execute(username);
+
+
+        clickableSpan_num_fotos = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Images fvi=new Fragment_View_Images();
+                final Bundle bundle = new Bundle();
+                bundle.putString("tipo", "usuario");
+                bundle.putString("username", username);
+                fvi.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvi).commit();
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+
+
 
         return v;
     }
@@ -140,6 +175,7 @@ public class Fragment_View_Profile extends Fragment {
                     db_date_dia = obj.getString("dia");
                     db_puntuacion = obj.getString("puntuacion");
                     db_handicap = obj.getString("handicap");
+                    db_num_fotos = obj.getString("num_fotos");
                 }
                     float f=Float.parseFloat(db_handicap);
                     String h=String.format(String.format("%.1f", f));
@@ -147,6 +183,12 @@ public class Fragment_View_Profile extends Fragment {
                     tv_username.setText("@"+db_username);
                     tv_fecha.append(db_date_dia+"/"+db_date_mes+"/"+db_date_año);
                     tv_puntuacion.append(db_puntuacion);
+
+                    ss_num_fotos = new SpannableString(db_num_fotos);
+                    ss_num_fotos.setSpan(clickableSpan_num_fotos, 0, db_num_fotos.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    tv_fotos.setText(ss_num_fotos);
+                    tv_fotos.setMovementMethod(LinkMovementMethod.getInstance());
+                    tv_fotos.setHighlightColor(Color.TRANSPARENT);
 
             }
             catch (JSONException e)

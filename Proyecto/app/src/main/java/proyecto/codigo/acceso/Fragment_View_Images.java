@@ -32,9 +32,6 @@ public class Fragment_View_Images extends Fragment {
     //Tag values to read from json
     public static final String TAG_IMAGE_URL = "url";
     public static final String TAG_COMENTARIO = "comentario";
-    //public static final String TAG_USERNAME = "username";
-    //public static final String TAG_CAMPOS = "id_campo";
-    //public static final String TAG_NOMBRE_HOYOS = "nombre_hoyo";
 
     //GridView Object
     private GridView gridView;
@@ -42,9 +39,7 @@ public class Fragment_View_Images extends Fragment {
     //ArrayList for Storing image urls and titles
     private ArrayList<String> images;
     private ArrayList<String> comentarios;
-    //private ArrayList<String> usernames;
-    //private ArrayList<String> id_campos;
-    //private ArrayList<String> nombre_hoyos;
+
 
     Button button;
     String id_campo;
@@ -74,13 +69,10 @@ public class Fragment_View_Images extends Fragment {
 
         images = new ArrayList<>();
         comentarios = new ArrayList<>();
-        //usernames = new ArrayList<>();
-        //id_campos = new ArrayList<>();
-        //nombre_hoyos = new ArrayList<>();
 
         //Calling the getData method
 
-        username=((MainActivity)getActivity()).username;
+        username=bundle.getString("username");
         if(tipo=="campo")
         {
             id_campo=bundle.getString("id_campo");
@@ -94,6 +86,10 @@ public class Fragment_View_Images extends Fragment {
         }
         else
         {
+            if(username!=((MainActivity)getActivity()).username)
+            {
+                button.setEnabled(false);
+            }
             getDataUsuario();
         }
 

@@ -80,6 +80,7 @@ public class Fragment_Upload_Image extends Fragment {
         }
 
 
+
         v=inflater.inflate(R.layout.fragment_upload_image, container, false);
 
         //Requesting storage permission
@@ -132,6 +133,9 @@ public class Fragment_Upload_Image extends Fragment {
                 {
                     FragmentManager fm=getActivity().getSupportFragmentManager();
                     Fragment_View_Profile fvp=new Fragment_View_Profile();
+                    final Bundle bundle = new Bundle();
+                    bundle.putString("username", username);
+                    fvp.setArguments(bundle);
                     fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
                 }
             }

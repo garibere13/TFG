@@ -103,7 +103,7 @@
         public function find_username_data($username)
         {
             $data = array();
-            $query = "SELECT nombre, apellido1, apellido2, username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap from ".$this->db_table." where username='$username' Limit 1";
+            $query = "SELECT count(f.url)as num_fotos, nombre, apellido1, apellido2, u.username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap from usuarios u, fotos f where u.username='$username' and f.username='$username' and f.id_campo is null and f.nombre_hoyo is null Limit 1";
             if($stmt = mysqli_query($this->db->getDb(), $query))
             {        
                 while($row = mysqli_fetch_assoc($stmt))
@@ -119,7 +119,8 @@
                         'mes'=>$row['mes'],
                         'dia'=>$row['dia'],
                         'puntuacion'=>$row['puntuacion'],
-                        'handicap'=>$row['handicap']
+                        'handicap'=>$row['handicap'],
+                        'num_fotos'=>$row['num_fotos']
                     ];
                         array_push($data, $temp);
                 }     

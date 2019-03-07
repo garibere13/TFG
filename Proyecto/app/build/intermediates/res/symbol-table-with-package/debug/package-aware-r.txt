@@ -1408,6 +1408,7 @@ id mini
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
+id my_profile_fotos
 id nav_create_field
 id nav_find_friend
 id nav_logout
@@ -1566,6 +1567,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id user_profile_fotos
 id vertical
 id view_hole_date
 id view_map_fragment
