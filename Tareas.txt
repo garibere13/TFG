@@ -8,8 +8,6 @@ descripción de un campo/hoyo?¿? --> qué hacer?
 
 hacer retos
 
-poner bonito lo de las fotos
-
 Indicar tu localización en el mapa
 
 mejorar layouts de log in y de creación usuario/campo

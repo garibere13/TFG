@@ -86,7 +86,8 @@ public class Fragment_View_Images extends Fragment {
         }
         else
         {
-            if(username!=((MainActivity)getActivity()).username)
+
+            if(!(username.equals(((MainActivity)getActivity()).username)))
             {
                 button.setEnabled(false);
             }
@@ -268,7 +269,8 @@ public class Fragment_View_Images extends Fragment {
                 e.printStackTrace();
             }
         }
-        GridViewAdapter gridViewAdapter = new GridViewAdapter(getActivity(), images, comentarios);
+        //GridViewAdapter gridViewAdapter = new GridViewAdapter(getActivity(), images, comentarios);
+        GridViewAdapter gridViewAdapter = new GridViewAdapter(getActivity(), images);
         gridView.setAdapter(gridViewAdapter);
     }
 

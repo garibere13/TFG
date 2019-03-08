@@ -108,36 +108,7 @@ public class Fragment_Upload_Image extends Fragment {
 
                 uploadMultipart();
 
-                if(tipo=="campo")
-                {
-                    FragmentManager fm=getActivity().getSupportFragmentManager();
-                    Fragment_View_Field fvf=new Fragment_View_Field();
-                    final Bundle bundle = new Bundle();
-                    bundle.putString("id", id_campo);
-                    fvf.setArguments(bundle);
-                    fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
-                }
 
-                else if(tipo=="hoyo")
-                {
-                    FragmentManager fm=getActivity().getSupportFragmentManager();
-                    Fragment_View_Hole fvh=new Fragment_View_Hole();
-                    final Bundle bundle = new Bundle();
-                    bundle.putString("id_campo", id_campo);
-                    bundle.putString("nombre", nombre_hoyo);
-                    fvh.setArguments(bundle);
-                    fm.beginTransaction().replace(R.id.contenedor, fvh).commit();
-                }
-
-                else
-                {
-                    FragmentManager fm=getActivity().getSupportFragmentManager();
-                    Fragment_View_Profile fvp=new Fragment_View_Profile();
-                    final Bundle bundle = new Bundle();
-                    bundle.putString("username", username);
-                    fvp.setArguments(bundle);
-                    fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
-                }
             }
         });
 
@@ -152,57 +123,94 @@ public class Fragment_Upload_Image extends Fragment {
      * */
     public void uploadMultipart() {
         //getting comment for the image
-        String comentario = editText.getText().toString().trim();
+        String comentario="";
+        comentario=editText.getText().toString().trim();
 
         //getting the actual path of the image
-        String path = getPath(filePath);
 
-       //Uploading code
-        try {
-            String uploadId = UUID.randomUUID().toString();
 
-            //Creating a multi part request
+        if(filePath!=null)
+        {
+            String path="";
+            path=getPath(filePath);
+            //Uploading code
+            try {
+                String uploadId = UUID.randomUUID().toString();
+
+                //Creating a multi part request
+
+                if (tipo == "campo") {
+                    new MultipartUploadRequest(getActivity(), uploadId, URL)
+                            .addFileToUpload(path, "image") //Adding file
+                            .addParameter("comentario", comentario) //Adding text parameter to the request
+                            .addParameter("username", username)
+                            .addParameter("id_campo", id_campo)
+                            .setNotificationConfig(new UploadNotificationConfig())
+                            .setMaxRetries(2)
+                            .startUpload(); //Starting the upload
+                } else if (tipo == "hoyo") {
+
+                    new MultipartUploadRequest(getActivity(), uploadId, URL)
+                            .addFileToUpload(path, "image") //Adding file
+                            .addParameter("comentario", comentario) //Adding text parameter to the request
+                            .addParameter("username", username)
+                            .addParameter("id_campo", id_campo)
+                            .addParameter("nombre_hoyo", nombre_hoyo)
+                            .setNotificationConfig(new UploadNotificationConfig())
+                            .setMaxRetries(2)
+                            .startUpload(); //Starting the upload
+                } else {
+                    new MultipartUploadRequest(getActivity(), uploadId, URL)
+                            .addFileToUpload(path, "image") //Adding file
+                            .addParameter("comentario", comentario) //Adding text parameter to the request
+                            .addParameter("username", username)
+                            .setNotificationConfig(new UploadNotificationConfig())
+                            .setMaxRetries(2)
+                            .startUpload(); //Starting the upload
+                }
+
+
+            } catch (Exception exc) {
+                Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
 
             if(tipo=="campo")
             {
-                new MultipartUploadRequest(getActivity(), uploadId, URL)
-                        .addFileToUpload(path, "image") //Adding file
-                        .addParameter("comentario", comentario) //Adding text parameter to the request
-                        .addParameter("username", username)
-                        .addParameter("id_campo", id_campo)
-                        .setNotificationConfig(new UploadNotificationConfig())
-                        .setMaxRetries(2)
-                        .startUpload(); //Starting the upload
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Field fvf=new Fragment_View_Field();
+                final Bundle bundle = new Bundle();
+                bundle.putString("id", id_campo);
+                fvf.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
             }
 
             else if(tipo=="hoyo")
             {
-
-                new MultipartUploadRequest(getActivity(), uploadId, URL)
-                        .addFileToUpload(path, "image") //Adding file
-                        .addParameter("comentario", comentario) //Adding text parameter to the request
-                        .addParameter("username", username)
-                        .addParameter("id_campo", id_campo)
-                        .addParameter("nombre_hoyo", nombre_hoyo)
-                        .setNotificationConfig(new UploadNotificationConfig())
-                        .setMaxRetries(2)
-                        .startUpload(); //Starting the upload
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Hole fvh=new Fragment_View_Hole();
+                final Bundle bundle = new Bundle();
+                bundle.putString("id_campo", id_campo);
+                bundle.putString("nombre", nombre_hoyo);
+                fvh.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvh).commit();
             }
 
             else
             {
-                new MultipartUploadRequest(getActivity(), uploadId, URL)
-                        .addFileToUpload(path, "image") //Adding file
-                        .addParameter("comentario", comentario) //Adding text parameter to the request
-                        .addParameter("username", username)
-                        .setNotificationConfig(new UploadNotificationConfig())
-                        .setMaxRetries(2)
-                        .startUpload(); //Starting the upload
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Profile fvp=new Fragment_View_Profile();
+                final Bundle bundle = new Bundle();
+                bundle.putString("username", username);
+                fvp.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
             }
 
-
-        } catch (Exception exc) {
-            Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(getActivity().getApplicationContext(),"Seleccione una foto", Toast.LENGTH_LONG).show();
+            buttonChoose.setSelected(true);
         }
     }
 
