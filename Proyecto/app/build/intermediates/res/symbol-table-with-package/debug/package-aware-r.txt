@@ -1382,6 +1382,8 @@ id imageViewUpload
 id info
 id input_address
 id input_email
+id input_login_password
+id input_login_username
 id input_mobile
 id input_name
 id input_password
