@@ -19,6 +19,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.app.ProgressDialog;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MainActivity extends AppCompatActivity
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     private static final int PROGRESS_TAG = 1;
     private DialogFragment mDialog;
     TextView user;
+    CircleImageView image;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -62,8 +66,21 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
+        image=headerView.findViewById(R.id.home_user_profile_image);
         user=headerView.findViewById(R.id.nombre_usuario_home);
         user.setText("¡Bienvenido @"+username+"!");
+
+        image.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fm=getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.contenedor, new Fragment_View_Profile()).commit();
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
     }
 
     @Override
