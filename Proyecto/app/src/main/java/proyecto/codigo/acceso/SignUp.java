@@ -3,6 +3,8 @@ package proyecto.codigo.acceso;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import org.json.JSONException;
@@ -12,6 +14,8 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import org.apache.commons.lang3.StringUtils;
+
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +41,9 @@ public class SignUp extends AppCompatActivity {
     String ip_config;
     String URL;
     JSONParser jsonParser=new JSONParser();
+
+    ImageView imagen;
+    Animation mAnim;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -114,6 +121,17 @@ public class SignUp extends AppCompatActivity {
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
+
+        imagen = (ImageView) findViewById(R.id.imagen_signup);
+        mAnim = AnimationUtils.loadAnimation(this, R.anim.view_animation);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            imagen.startAnimation(mAnim);
+        }
     }
 
 

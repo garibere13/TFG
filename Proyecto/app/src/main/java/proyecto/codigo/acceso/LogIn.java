@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -27,6 +30,7 @@ public class LogIn extends AppCompatActivity {
     @BindView(R.id.input_login_password) EditText password;
     @BindView(R.id.btn_login) Button loginButton;
     @BindView(R.id.login_link_signup) TextView signupLink;
+    ImageView imagen;
 
 
     String ip_config;
@@ -35,12 +39,15 @@ public class LogIn extends AppCompatActivity {
 
     String username_string;
 
+    Animation mAnim;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginscreen_user);
         ButterKnife.bind(this);
+
 
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/login-signup.php";
@@ -83,6 +90,17 @@ public class LogIn extends AppCompatActivity {
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
+
+        imagen = (ImageView) findViewById(R.id.imagen_login);
+        mAnim = AnimationUtils.loadAnimation(this, R.anim.view_animation);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            imagen.startAnimation(mAnim);
+        }
     }
 
 

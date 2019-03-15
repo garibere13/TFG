@@ -74,18 +74,18 @@ public class Fragment_Edit_Profile extends Fragment {
         _handicap=bundle.getString("handicap");
         _password=bundle.getString("password");
 
-        v=inflater.inflate(R.layout.signupscreen, container, false);
+        v=inflater.inflate(R.layout.signupscreen_user, container, false);
 
-        name=v.findViewById(R.id.signup_name_text);
-        ape1=v.findViewById(R.id.signup_ape1_text);
-        ape2=v.findViewById(R.id.signup_ape2_text);
-        username=v.findViewById(R.id.signup_username_text);
-        handicap=v.findViewById(R.id.signup_handicap_text);
-        con1=v.findViewById(R.id.signup_con1_text);
-        con2=v.findViewById(R.id.signup_con2_text);
+        name=v.findViewById(R.id.signup_input_name);
+        ape1=v.findViewById(R.id.signup_input_ape1);
+        ape2=v.findViewById(R.id.signup_input_ape2);
+        username=v.findViewById(R.id.signup_input_username);
+        handicap=v.findViewById(R.id.signup_input_handicap);
+        con1=v.findViewById(R.id.signup_input_pass1);
+        con2=v.findViewById(R.id.signup_input_pass2);
 
-        registrar_button=v.findViewById(R.id.registrar_button);
-        cancelar_button=v.findViewById(R.id.cancelar_button);
+        registrar_button=v.findViewById(R.id.btn_signup);
+        cancelar_button=v.findViewById(R.id.link_login);
 
 
         registrar_button.setText("Modificar");

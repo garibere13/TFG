@@ -18,9 +18,10 @@
 
 
 
-    <color name="primary">#E43F3F</color>
-    <color name="primary_dark">#E12929</color>
-    <color name="primary_darker">#CC1D1D</color>
+
+    <color name="primary">#2c7a1d</color>
+    <color name="primary_dark">#174c0d</color>
+    <color name="primary_darker">#123d0b</color>
     <color name="accent">#FFFFFF</color>
 
     <color name="black">#000000</color>
