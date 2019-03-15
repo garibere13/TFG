@@ -1,3 +1,11 @@
-https://www.simplifiedcoding.net/android-upload-image-to-server/
+link imágenes:
 
+https://www.simplifiedcoding.net/android-upload-image-to-server/
 https://www.simplifiedcoding.net/android-custom-gridview-images/
+
+
+
+
+login signup:
+
+https://sourcey.com/articles/beautiful-android-login-and-signup-screens-with-material-design

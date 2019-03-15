@@ -1,6 +1,5 @@
 package proyecto.codigo.acceso;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,65 +13,54 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import org.apache.commons.lang3.StringUtils;
 import android.widget.Toast;
+import android.app.ProgressDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class SignUp extends Activity {
+public class SignUp extends AppCompatActivity {
+    private static final String TAG = "SignupActivity";
 
-    EditText name;
-    EditText ape1;
-    EditText ape2;
-    EditText username;
-    EditText handicap;
-    EditText con1;
-    EditText con2;
+    @BindView(R.id.signup_input_name) EditText nombre;
+    @BindView(R.id.signup_input_ape1) EditText ape1;
+    @BindView(R.id.signup_input_ape2) EditText ape2;
+    @BindView(R.id.signup_input_username) EditText username;
+    @BindView(R.id.signup_input_handicap) EditText handicap;
+    @BindView(R.id.signup_input_pass1) EditText pass1;
+    @BindView(R.id.signup_input_pass2) EditText pass2;
+    @BindView(R.id.btn_signup) Button signupButton;
+    @BindView(R.id.link_login) TextView loginLink;
 
-    Button registrar_button;
-    Button cancelar_button;
+
 
     String ip_config;
     String URL;
     JSONParser jsonParser=new JSONParser();
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signupscreen);
+        setContentView(R.layout.signupscreen_user);
+        ButterKnife.bind(this);
 
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/login-signup.php";
 
-        name=findViewById(R.id.signup_name_text);
-        ape1=findViewById(R.id.signup_ape1_text);
-        ape2=findViewById(R.id.signup_ape2_text);
-        username=findViewById(R.id.signup_username_text);
-        handicap=findViewById(R.id.signup_handicap_text);
-        con1=findViewById(R.id.signup_con1_text);
-        con2= findViewById(R.id.signup_con2_text);
-
-        registrar_button=findViewById(R.id.registrar_button);
-        cancelar_button=findViewById(R.id.cancelar_button);
-
-        cancelar_button.setOnClickListener(new View.OnClickListener() {
-
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
 
-                    Intent li = new Intent(SignUp.this, LogIn.class);
-                    startActivity(li);
-            }
-        });
 
-        registrar_button.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-
-                if (name.getText().toString().length()==0 || ape1.getText().toString().length()==0 ||
+                if (nombre.getText().toString().length()==0 || ape1.getText().toString().length()==0 ||
                         ape2.getText().toString().length()==0 || username.getText().toString().length()==0 ||
-                        con1.getText().toString().length()==0 || con2.getText().toString().length()==0 ||
+                        pass1.getText().toString().length()==0 || pass2.getText().toString().length()==0 ||
                         handicap.getText().toString().length()==0)
                 {
                     Toast.makeText(getApplicationContext(), R.string.rellenar_datos, Toast.LENGTH_LONG).show();
                 }
 
-                else if(name.getText().toString().trim().length()<2 || name.getText().toString().trim().length()>25)
+                else if(nombre.getText().toString().trim().length()<2 || nombre.getText().toString().trim().length()>25)
                 {
                     Toast.makeText(getApplicationContext(), R.string.name_tam, Toast.LENGTH_LONG).show();
                 }
@@ -97,26 +85,35 @@ public class SignUp extends Activity {
                 }
 
 
-                else if(!(con1.getText().toString().matches(con2.getText().toString())))
+                else if(!(pass1.getText().toString().matches(pass2.getText().toString())))
                 {
                     Toast.makeText(getApplicationContext(), R.string.con_dif, Toast.LENGTH_LONG).show();
                 }
-                else if(con1.getText().toString().trim().length()<6 || con1.getText().toString().trim().length()>25)
+                else if(pass1.getText().toString().trim().length()<6 || pass1.getText().toString().trim().length()>25)
                 {
                     Toast.makeText(getApplicationContext(), R.string.con_tam, Toast.LENGTH_LONG).show();
                 }
                 else
                 {
                     AttemptSignUp attemptSignUp = new AttemptSignUp();
-                    attemptSignUp.execute(name.getText().toString().trim(), ape1.getText().toString().trim(),
+                    attemptSignUp.execute(nombre.getText().toString().trim(), ape1.getText().toString().trim(),
                             ape2.getText().toString().trim(), username.getText().toString().trim(),
-                            con1.getText().toString().trim(), handicap.getText().toString().trim());
+                            pass1.getText().toString().trim(), handicap.getText().toString().trim());
                 }
-            }
 
+            }
         });
 
-
+        loginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Finish the registration screen and return to the Login activity
+                Intent intent = new Intent(getApplicationContext(), LogIn.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+            }
+        });
     }
 
 
@@ -156,7 +153,27 @@ public class SignUp extends Activity {
             {
                 if(result != null)
                 {
-                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+
+                    final ProgressDialog progressDialog = new ProgressDialog(SignUp.this,
+                            R.style.AppTheme_Dark_Dialog);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Creando cuenta...");
+                    progressDialog.show();
+
+                    new android.os.Handler().postDelayed(
+                            new Runnable() {
+                                public void run() {
+                                    // On complete call either onSignupSuccess or onSignupFailed
+                                    // depending on success
+                                    //onSignupSuccess();
+                                    // onSignupFailed();
+                                    progressDialog.dismiss();
+                                }
+                            }, 2000);
+
+
+
+                    Toast.makeText(getApplicationContext(), result.getString("message"), Toast.LENGTH_LONG).show();
                     Intent li=new Intent(SignUp.this, LogIn.class);
                     startActivity(li);
                 }

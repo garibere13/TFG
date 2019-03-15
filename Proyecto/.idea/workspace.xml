@@ -36,13 +36,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LogIn.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LogIn.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/LogIn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-77">
-              <caret line="75" column="40" lean-forward="true" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
+            <state relative-caret-position="272">
+              <caret line="95" column="30" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1394#1438#0" expanded="true" />
+                <element signature="e#1617#2685#0" expanded="true" />
+                <element signature="e#1994#2172#0" expanded="true" />
+                <element signature="e#2171#2172#0" expanded="true" />
+                <element signature="e#2684#2685#0" expanded="true" />
+                <element signature="e#2727#3148#0" expanded="true" />
+                <element signature="e#3147#3148#0" expanded="true" />
+                <element signature="e#5587#5602#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SignUp.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/SignUp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1870">
+              <caret line="110" column="68" selection-start-line="110" selection-start-column="68" selection-end-line="110" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1768#1812#0" expanded="true" />
+                <element signature="e#1915#5366#0" expanded="true" />
+                <element signature="e#2975#2998#0" expanded="true" />
+                <element signature="e#3245#3262#0" expanded="true" />
+                <element signature="e#3505#3522#0" expanded="true" />
+                <element signature="e#3765#3782#0" expanded="true" />
+                <element signature="e#4032#4049#0" expanded="true" />
+                <element signature="e#4577#4593#0" expanded="true" />
+                <element signature="e#4837#4853#0" expanded="true" />
+                <element signature="e#5365#5366#0" expanded="true" />
+                <element signature="e#5407#5838#0" expanded="true" />
+                <element signature="e#5837#5838#0" expanded="true" />
+                <element signature="e#5999#6000#0" expanded="true" />
+                <element signature="e#6043#6044#0" expanded="true" />
+                <element signature="e#6427#6442#0" expanded="true" />
+                <element signature="e#7669#8134#0" expanded="true" />
+                <element signature="e#8133#8134#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -59,13 +96,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>button_favourite</find>
       <find>like_button</find>
       <find>234</find>
       <find>ss_campo</find>
       <find>clickableSpan_campo</find>
       <find>launch</find>
-      <find>name</find>
       <find>url</find>
       <find>add</find>
       <find>getparams</find>
@@ -89,6 +124,8 @@
       <find>username</find>
       <find>validate</find>
       <find>log</find>
+      <find>handi</find>
+      <find>name</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -2368,7 +2405,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/res/layout/signupscreen.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/SignUp.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_Edit_Profile.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/likestyle.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/pre_like.xml" />
@@ -2388,7 +2424,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_view_grid_images.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Images.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/GridViewAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/signupscreen_user.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/loginscreen_user.xml" />
@@ -2401,6 +2436,8 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/LogIn.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/signupscreen_user.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/SignUp.java" />
       </list>
     </option>
   </component>
@@ -2433,12 +2470,6 @@
               <item name="Proyecto" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="Proyecto" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="acceso" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
             <path>
               <item name="Proyecto" type="1abcf292:AndroidViewProjectNode" />
@@ -2594,8 +2625,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="12" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -2603,16 +2633,16 @@
       <window_info id="Image Layers" order="7" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.11007026" side_tool="true" visible="true" weight="0.1037415" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.11007026" side_tool="true" visible="true" weight="0.0" />
       <window_info anchor="right" id="Preview" order="4" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="10" sideWeight="0.8899298" visible="true" weight="0.1037415" />
+      <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.8899298" visible="true" weight="0.0" />
       <window_info id="Captures" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24980484" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980484" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.2329932" />
       <window_info anchor="right" id="Gradle" order="6" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -2944,26 +2974,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/signupscreen.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/signupscreen_user.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="27" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -3047,13 +3057,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/SignUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="158" column="33" selection-start-line="158" selection-start-column="33" selection-end-line="158" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2587">
@@ -3069,12 +3072,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/signupscreen.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/signupscreen_user.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="114" column="30" selection-start-line="114" selection-start-column="30" selection-end-line="114" selection-end-column="30" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/LogIn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-77">
-          <caret line="75" column="40" lean-forward="true" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
+        <state relative-caret-position="272">
+          <caret line="95" column="30" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1394#1438#0" expanded="true" />
+            <element signature="e#1617#2685#0" expanded="true" />
+            <element signature="e#1994#2172#0" expanded="true" />
+            <element signature="e#2171#2172#0" expanded="true" />
+            <element signature="e#2684#2685#0" expanded="true" />
+            <element signature="e#2727#3148#0" expanded="true" />
+            <element signature="e#3147#3148#0" expanded="true" />
+            <element signature="e#5587#5602#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/SignUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1870">
+          <caret line="110" column="68" selection-start-line="110" selection-start-column="68" selection-end-line="110" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1768#1812#0" expanded="true" />
+            <element signature="e#1915#5366#0" expanded="true" />
+            <element signature="e#2975#2998#0" expanded="true" />
+            <element signature="e#3245#3262#0" expanded="true" />
+            <element signature="e#3505#3522#0" expanded="true" />
+            <element signature="e#3765#3782#0" expanded="true" />
+            <element signature="e#4032#4049#0" expanded="true" />
+            <element signature="e#4577#4593#0" expanded="true" />
+            <element signature="e#4837#4853#0" expanded="true" />
+            <element signature="e#5365#5366#0" expanded="true" />
+            <element signature="e#5407#5838#0" expanded="true" />
+            <element signature="e#5837#5838#0" expanded="true" />
+            <element signature="e#5999#6000#0" expanded="true" />
+            <element signature="e#6043#6044#0" expanded="true" />
+            <element signature="e#6427#6442#0" expanded="true" />
+            <element signature="e#7669#8134#0" expanded="true" />
+            <element signature="e#8133#8134#0" expanded="true" />
           </folding>
         </state>
       </provider>
