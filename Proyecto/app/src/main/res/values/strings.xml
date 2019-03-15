@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TFG</string>
+    <string name="app_name">Golfer</string>
     <string name="username_string">Username</string>
     <string name="password_string">Password</string>
     <string name="enter_username_hint">Enter username</string>

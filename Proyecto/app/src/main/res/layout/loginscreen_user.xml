@@ -20,6 +20,18 @@
             android:layout_gravity="center_horizontal"
             android:visibility="visible"/>
 
+        <TextView
+            android:id="@+id/login_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="GOLFER"
+            android:textSize="24dp"
+            android:typeface="serif"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"/>
+
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -42,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="Contraseña"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button

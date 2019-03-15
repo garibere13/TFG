@@ -31,6 +31,7 @@ public class LogIn extends AppCompatActivity {
     @BindView(R.id.btn_login) Button loginButton;
     @BindView(R.id.login_link_signup) TextView signupLink;
     ImageView imagen;
+    TextView texto;
 
 
     String ip_config;
@@ -91,8 +92,9 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
-        imagen = (ImageView) findViewById(R.id.imagen_login);
-        mAnim = AnimationUtils.loadAnimation(this, R.anim.view_animation);
+        imagen=findViewById(R.id.imagen_login);
+        texto=findViewById(R.id.login_text);
+        mAnim=AnimationUtils.loadAnimation(this, R.anim.view_animation);
     }
 
     @Override
@@ -100,6 +102,7 @@ public class LogIn extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             imagen.startAnimation(mAnim);
+            texto.startAnimation(mAnim);
         }
     }
 

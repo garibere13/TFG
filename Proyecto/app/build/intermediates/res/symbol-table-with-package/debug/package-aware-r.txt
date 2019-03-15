@@ -1173,6 +1173,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable app_icon
 drawable avd_hide_password
 drawable avd_show_password
 drawable buttonstyle
@@ -1416,6 +1417,7 @@ id listMode
 id list_favourites
 id list_item
 id login_link_signup
+id login_text
 id map
 id map_show_activity
 id masked
@@ -1518,6 +1520,7 @@ id signup_input_name
 id signup_input_pass1
 id signup_input_pass2
 id signup_input_username
+id signup_text
 id sin
 id smallLabel
 id snackbar_action

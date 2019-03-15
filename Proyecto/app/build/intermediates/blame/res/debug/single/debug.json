@@ -392,6 +392,10 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\c2f702445e42e3858a673fe86b375675\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
+        "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable_app_icon.png.flat",
+        "source": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\src\\main\\res\\drawable\\app_icon.png"
+    },
+    {
         "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_list_menu_item_icon.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\8b3bf815d3c5e891289f827742f02831\\res\\layout\\abc_list_menu_item_icon.xml"
     },

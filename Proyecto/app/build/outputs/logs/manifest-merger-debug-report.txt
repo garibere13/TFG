@@ -110,7 +110,7 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\PC\.gradle
 	tools:ignore
 		ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:23:9-48
 	android:icon
-		ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:20:9-45
+		ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:20:9-42
 	android:allowBackup
 		ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:19:9-36
 	android:theme
@@ -118,7 +118,7 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\PC\.gradle
 activity#proyecto.codigo.acceso.LogIn
 ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:24:9-32:20
 	android:label
-		ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:26:13-49
+		ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:26:13-45
 	android:name
 		ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:25:13-34
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER

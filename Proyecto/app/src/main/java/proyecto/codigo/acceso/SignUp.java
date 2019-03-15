@@ -43,6 +43,7 @@ public class SignUp extends AppCompatActivity {
     JSONParser jsonParser=new JSONParser();
 
     ImageView imagen;
+    TextView texto;
     Animation mAnim;
 
     @Override
@@ -122,7 +123,8 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        imagen = (ImageView) findViewById(R.id.imagen_signup);
+        imagen=findViewById(R.id.imagen_signup);
+        texto=findViewById(R.id.signup_text);
         mAnim = AnimationUtils.loadAnimation(this, R.anim.view_animation);
     }
 
@@ -131,6 +133,7 @@ public class SignUp extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             imagen.startAnimation(mAnim);
+            texto.startAnimation(mAnim);
         }
     }
 
