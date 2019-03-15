@@ -34,16 +34,11 @@ public class LogIn extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
 
-    @BindView(R.id.input_login_username) EditText _emailText;
-    @BindView(R.id.input_login_password) EditText _passwordText;
-    //@BindView(R.id.btn_login) Button _loginButton;
-    //@BindView(R.id.link_signup) TextView _signupLink;
+    @BindView(R.id.input_login_username) EditText username;
+    @BindView(R.id.input_login_password) EditText password;
+    @BindView(R.id.btn_login) Button loginButton;
+    @BindView(R.id.login_link_signup) TextView signupLink;
 
-    EditText username;
-    EditText password;
-
-    Button loginButton;
-    Button signupButton;
 
     String ip_config;
     String URL;
@@ -58,7 +53,7 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.loginscreen_user);
         ButterKnife.bind(this);
 
-     /*   _loginButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -66,17 +61,17 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
-        _signupLink.setOnClickListener(new View.OnClickListener() {
+        signupLink.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SignUp.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
                 finish();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
-        });*/
+        });
     }
 
     public void login() {
@@ -131,40 +126,38 @@ public class LogIn extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
-       // _loginButton.setEnabled(true);
+        loginButton.setEnabled(true);
         finish();
     }
 
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
-       // _loginButton.setEnabled(true);
+        loginButton.setEnabled(true);
     }
 
     public boolean validate() {
         boolean valid = true;
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        String user = username.getText().toString();
+        String pass = password.getText().toString();
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+        if (user.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(user).matches()) {
+            username.setError("enter a valid email address");
             valid = false;
         } else {
-            _emailText.setError(null);
+            password.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
+        if (pass.isEmpty() || pass.length() < 4 || pass.length() > 10) {
+            password.setError("between 4 and 10 alphanumeric characters");
             valid = false;
         } else {
-            _passwordText.setError(null);
+            password.setError(null);
         }
 
         return valid;
     }
-
-
 
 
 

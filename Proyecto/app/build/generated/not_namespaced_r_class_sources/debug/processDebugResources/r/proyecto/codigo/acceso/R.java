@@ -25,6 +25,8 @@ public final class R {
     public static final int design_bottom_sheet_slide_out=0x7f01000d;
     public static final int design_snackbar_in=0x7f01000e;
     public static final int design_snackbar_out=0x7f01000f;
+    public static final int push_left_in=0x7f010010;
+    public static final int push_left_out=0x7f010011;
   }
   public static final class animator {
     public static final int design_appbar_state_list_animator=0x7f020000;
@@ -6306,12 +6308,12 @@ public final class R {
     public static final int line3=0x7f0900a7;
     public static final int linear=0x7f0900a8;
     public static final int link_login=0x7f0900a9;
-    public static final int link_signup=0x7f0900aa;
-    public static final int list=0x7f0900ab;
-    public static final int listMode=0x7f0900ac;
-    public static final int list_favourites=0x7f0900ad;
-    public static final int list_item=0x7f0900ae;
-    public static final int login_imagen=0x7f0900af;
+    public static final int list=0x7f0900aa;
+    public static final int listMode=0x7f0900ab;
+    public static final int list_favourites=0x7f0900ac;
+    public static final int list_item=0x7f0900ad;
+    public static final int login_imagen=0x7f0900ae;
+    public static final int login_link_signup=0x7f0900af;
     public static final int login_pass_text=0x7f0900b0;
     public static final int login_titulo=0x7f0900b1;
     public static final int login_username_text=0x7f0900b2;

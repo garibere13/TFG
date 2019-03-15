@@ -4,7 +4,9 @@ package proyecto.codigo.acceso;
 import android.support.annotation.CallSuper;
 import android.support.annotation.UiThread;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import butterknife.Unbinder;
 import butterknife.internal.Utils;
 import java.lang.IllegalStateException;
@@ -22,8 +24,10 @@ public class LogIn_ViewBinding implements Unbinder {
   public LogIn_ViewBinding(LogIn target, View source) {
     this.target = target;
 
-    target._emailText = Utils.findRequiredViewAsType(source, R.id.input_login_username, "field '_emailText'", EditText.class);
-    target._passwordText = Utils.findRequiredViewAsType(source, R.id.input_login_password, "field '_passwordText'", EditText.class);
+    target.username = Utils.findRequiredViewAsType(source, R.id.input_login_username, "field 'username'", EditText.class);
+    target.password = Utils.findRequiredViewAsType(source, R.id.input_login_password, "field 'password'", EditText.class);
+    target.loginButton = Utils.findRequiredViewAsType(source, R.id.btn_login, "field 'loginButton'", Button.class);
+    target.signupLink = Utils.findRequiredViewAsType(source, R.id.login_link_signup, "field 'signupLink'", TextView.class);
   }
 
   @Override
@@ -33,7 +37,9 @@ public class LogIn_ViewBinding implements Unbinder {
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
     this.target = null;
 
-    target._emailText = null;
-    target._passwordText = null;
+    target.username = null;
+    target.password = null;
+    target.loginButton = null;
+    target.signupLink = null;
   }
 }

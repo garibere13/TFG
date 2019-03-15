@@ -506,8 +506,8 @@ public final class R {
         public static final int info = 0x7f090094;
         public static final int line1 = 0x7f0900a6;
         public static final int line3 = 0x7f0900a7;
-        public static final int listMode = 0x7f0900ac;
-        public static final int list_item = 0x7f0900ae;
+        public static final int listMode = 0x7f0900ab;
+        public static final int list_item = 0x7f0900ad;
         public static final int media_actions = 0x7f0900b6;
         public static final int middle = 0x7f0900b8;
         public static final int multiply = 0x7f0900bc;

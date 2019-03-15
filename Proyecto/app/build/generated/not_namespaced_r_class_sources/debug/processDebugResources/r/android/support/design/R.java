@@ -1065,8 +1065,8 @@ public final class R {
         public static final int left = 0x7f0900a4;
         public static final int line1 = 0x7f0900a6;
         public static final int line3 = 0x7f0900a7;
-        public static final int listMode = 0x7f0900ac;
-        public static final int list_item = 0x7f0900ae;
+        public static final int listMode = 0x7f0900ab;
+        public static final int list_item = 0x7f0900ad;
         public static final int masked = 0x7f0900b5;
         public static final int message = 0x7f0900b7;
         public static final int mini = 0x7f0900b9;

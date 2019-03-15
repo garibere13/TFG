@@ -15,6 +15,8 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim push_left_in
+anim push_left_out
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -1401,12 +1403,12 @@ id line1
 id line3
 id linear
 id link_login
-id link_signup
 id list
 id listMode
 id list_favourites
 id list_item
 id login_imagen
+id login_link_signup
 id login_pass_text
 id login_titulo
 id login_username_text
