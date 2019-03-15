@@ -53,11 +53,38 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.loginscreen_user);
         ButterKnife.bind(this);
 
+        ip_config=getResources().getString(R.string.ip_config);
+        URL="http://"+ip_config+"/TFG/BD/login-signup.php";
+
+        username.setText("garibere13");
+        password.setText("123456");
+
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                login();
+                //login();
+
+
+                final ProgressDialog progressDialog = new ProgressDialog(LogIn.this,
+                        R.style.AppTheme_Dark_Dialog);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Autenticando...");
+                progressDialog.show();
+
+                new android.os.Handler().postDelayed(
+                        new Runnable() {
+                            public void run() {
+                                // On complete call either onLoginSuccess or onLoginFailed
+                                //onLoginSuccess();
+                                // onLoginFailed();
+                                progressDialog.dismiss();
+                            }
+                        }, 2000);
+
+                AttemptLogIn attemptLogIn= new AttemptLogIn();
+                attemptLogIn.execute(username.getText().toString(), password.getText().toString());
+
             }
         });
 
@@ -72,38 +99,6 @@ public class LogIn extends AppCompatActivity {
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
-    }
-
-    public void login() {
-        Log.d(TAG, "Login");
-
-        if (!validate()) {
-            onLoginFailed();
-            return;
-        }
-
-        //_loginButton.setEnabled(false);
-
-      /*  final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
-        progressDialog.show();
-
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
-
-        // TODO: Implement your own authentication logic here.
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);*/
     }
 
 
@@ -124,46 +119,6 @@ public class LogIn extends AppCompatActivity {
         // Disable going back to the MainActivity
         moveTaskToBack(true);
     }
-
-    public void onLoginSuccess() {
-        loginButton.setEnabled(true);
-        finish();
-    }
-
-    public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
-        loginButton.setEnabled(true);
-    }
-
-    public boolean validate() {
-        boolean valid = true;
-
-        String user = username.getText().toString();
-        String pass = password.getText().toString();
-
-        if (user.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(user).matches()) {
-            username.setError("enter a valid email address");
-            valid = false;
-        } else {
-            password.setError(null);
-        }
-
-        if (pass.isEmpty() || pass.length() < 4 || pass.length() > 10) {
-            password.setError("between 4 and 10 alphanumeric characters");
-            valid = false;
-        } else {
-            password.setError(null);
-        }
-
-        return valid;
-    }
-
-
-
-
-
-
 
 
 

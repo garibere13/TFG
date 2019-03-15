@@ -221,16 +221,6 @@ public class MainActivity extends AppCompatActivity
                     // User cannot dismiss dialog by hitting back button
                     .setCancelable(false)
 
-                    // Set up No Button
-                    .setNegativeButton(R.string.confirm_no,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int id) {
-                                    ((MainActivity) getActivity())
-                                            .continueShutdown(false);
-                                }
-                            })
-
                     // Set up Yes Button
                     .setPositiveButton(R.string.confirm_yes,
                             new DialogInterface.OnClickListener() {
@@ -238,6 +228,16 @@ public class MainActivity extends AppCompatActivity
                                         final DialogInterface dialog, int id) {
                                     ((MainActivity) getActivity())
                                             .continueShutdown(true);
+                                }
+                            })
+
+                    // Set up No Button
+                    .setNegativeButton(R.string.confirm_no,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int id) {
+                                    ((MainActivity) getActivity())
+                                            .continueShutdown(false);
                                 }
                             }).create();
         }
