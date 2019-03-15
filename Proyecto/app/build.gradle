@@ -34,12 +34,16 @@ dependencies {
     implementation  'org.apache.commons:commons-lang3:3.0'
 
 
-
+    //PARA LAYOUTS DE LOGIN Y SIGNUP
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
 
-    //GRIDVIEW
+    //PARA IMÁGENES CIRCULARES
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+
+
+    //GRIDVIEW DE LAS IMÁGENES
     implementation 'com.mcxiaoke.volley:library-aar:1.0.0'
     implementation ('net.gotev:uploadservice:2.1') {
         exclude group: 'com.android.support'

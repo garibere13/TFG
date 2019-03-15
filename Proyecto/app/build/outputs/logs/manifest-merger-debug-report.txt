@@ -4,6 +4,7 @@ ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:2:1-61:
 INJECTED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:2:1-61:12
 INJECTED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:2:1-61:12
 INJECTED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:2:1-61:12
+MERGED from [de.hdodenhof:circleimageview:2.1.0] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\circleimageview-2.1.0.aar\b29499cbff258b939a7dc5686f49dace\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\bf2c4cb90cfa22529754b0b82de3d961\AndroidManifest.xml:17:1-32:12
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\6267139209a58294e5db971874921f14\AndroidManifest.xml:17:1-29:12
 MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\aa4687061c58b3e090f3a684a2951e58\AndroidManifest.xml:2:1-9:12
@@ -83,6 +84,8 @@ ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:16:5-79
 		ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:16:22-76
 application
 ADDED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml:18:5-59:19
+MERGED from [de.hdodenhof:circleimageview:2.1.0] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\circleimageview-2.1.0.aar\b29499cbff258b939a7dc5686f49dace\AndroidManifest.xml:9:5-20
+MERGED from [de.hdodenhof:circleimageview:2.1.0] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\circleimageview-2.1.0.aar\b29499cbff258b939a7dc5686f49dace\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\bf2c4cb90cfa22529754b0b82de3d961\AndroidManifest.xml:30:5-20
 MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\bf2c4cb90cfa22529754b0b82de3d961\AndroidManifest.xml:30:5-20
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\6267139209a58294e5db971874921f14\AndroidManifest.xml:22:5-27:19
@@ -167,6 +170,8 @@ uses-sdk
 INJECTED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml
 INJECTED from C:\xampp\htdocs\TFG\Proyecto\app\src\main\AndroidManifest.xml
+MERGED from [de.hdodenhof:circleimageview:2.1.0] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\circleimageview-2.1.0.aar\b29499cbff258b939a7dc5686f49dace\AndroidManifest.xml:5:5-7:41
+MERGED from [de.hdodenhof:circleimageview:2.1.0] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\circleimageview-2.1.0.aar\b29499cbff258b939a7dc5686f49dace\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\bf2c4cb90cfa22529754b0b82de3d961\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\bf2c4cb90cfa22529754b0b82de3d961\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\PC\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\6267139209a58294e5db971874921f14\AndroidManifest.xml:20:5-44

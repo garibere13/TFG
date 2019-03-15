@@ -168,6 +168,10 @@ attr chipStrokeWidth
 attr chipStyle
 attr circleCrop
 attr circleRadius
+attr civ_border_color
+attr civ_border_overlay
+attr civ_border_width
+attr civ_fill_color
 attr clickAction
 attr closeIcon
 attr closeIconEnabled
@@ -1203,6 +1207,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable edit
+drawable el_tapon
 drawable favourite
 drawable fecha_creacion
 drawable golf_campo
@@ -1227,6 +1232,7 @@ drawable mapa
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
+drawable nobody
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -1363,6 +1369,7 @@ id field_n_hoyos
 id field_name
 id field_nombre_provincia
 id field_number_fotos
+id field_profile_image
 id field_valoration
 id fill
 id fill_horizontal
@@ -1382,6 +1389,7 @@ id hole_meters
 id hole_name
 id hole_number_fotos
 id hole_par
+id hole_profile_image
 id home
 id homeAsUp
 id horizontal
@@ -1392,7 +1400,6 @@ id icon_only
 id id123
 id ifRoom
 id image
-id imageView
 id imageViewUpload
 id imagen_login
 id imagen_signup
@@ -1429,6 +1436,7 @@ id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
 id my_profile_fotos
+id my_profile_image
 id nav_create_field
 id nav_find_friend
 id nav_logout
@@ -1581,6 +1589,7 @@ id unlabeled
 id up
 id useLogo
 id user_profile_fotos
+id user_profile_image
 id vertical
 id view_hole_date
 id view_map_fragment
@@ -2353,6 +2362,7 @@ styleable ButtonBarLayout allowStacking
 styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
 styleable Chip android_textAppearance android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipStartPadding chipStrokeColor chipStrokeWidth closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible hideMotionSpec iconEndPadding iconStartPadding rippleColor showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical singleLine singleSelection
+styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_fill_color
 styleable CollapsingToolbarLayout collapsedTitleGravity collapsedTitleTextAppearance contentScrim expandedTitleGravity expandedTitleMargin expandedTitleMarginBottom expandedTitleMarginEnd expandedTitleMarginStart expandedTitleMarginTop expandedTitleTextAppearance scrimAnimationDuration scrimVisibleHeightTrigger statusBarScrim title titleEnabled toolbarId
 styleable CollapsingToolbarLayout_Layout layout_collapseMode layout_collapseParallaxMultiplier
 styleable ColorStateListItem android_color android_alpha alpha
