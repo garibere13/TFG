@@ -8,6 +8,7 @@ descripción de un campo/hoyo?¿? --> qué hacer?
 
 
 
+hace el crop image, pero luego como hay que pasarle el path en vez del imageview, guarda el la foto sin hacer el crop
 
 Indicar tu localización en el mapa
 

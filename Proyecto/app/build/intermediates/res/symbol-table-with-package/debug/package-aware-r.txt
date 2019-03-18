@@ -1410,6 +1410,7 @@ id input_login_username
 id invisible
 id italic
 id item_touch_helper_previous_elevation
+id iv_icon
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -1585,6 +1586,7 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tv_name
 id uniform
 id unlabeled
 id up
@@ -1657,6 +1659,7 @@ layout activity_maps
 layout activity_show_maps
 layout app_bar_main
 layout content_main
+layout crop_selector
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
