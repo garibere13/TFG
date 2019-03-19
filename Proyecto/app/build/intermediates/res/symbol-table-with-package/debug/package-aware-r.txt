@@ -1255,6 +1255,7 @@ drawable side_nav_bar
 drawable toggle_selector
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable white_border
 id ALT
 id CTRL
 id FUNCTION
@@ -1537,6 +1538,7 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id snippet
 id spacer
 id spline
 id split_action_bar
@@ -1660,6 +1662,7 @@ layout activity_show_maps
 layout app_bar_main
 layout content_main
 layout crop_selector
+layout custom_info_window
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar

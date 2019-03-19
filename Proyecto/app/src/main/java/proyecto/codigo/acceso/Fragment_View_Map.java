@@ -1,23 +1,19 @@
 package proyecto.codigo.acceso;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -34,10 +30,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.widget.Toast;
+
 public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    Marker m=null;
     MapView mv;
     View v;
 
@@ -51,44 +58,143 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
     Marker myMarker;
 
+   //private double longitud = -2.3184953;
+   //private double latitud = 43.1423435;
 
+
+    private static final int REQUEST_LOCATION = 1;
+    //Button button;
+    //TextView textView;
+    LocationManager locationManager;
+    String lattitude, longitude;
+
+
+    @SuppressLint("MissingPermission")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
         super.onCreateView(inflater, container, savedInstanceState);
+        v = inflater.inflate(R.layout.fragment_view_map, container, false);
 
-        v=inflater.inflate(R.layout.fragment_view_map, container, false);
 
-        ip_config=getResources().getString(R.string.ip_config);
+        ip_config = getResources().getString(R.string.ip_config);
+        URL = "http://" + ip_config + "/TFG/BD/find-fields-map-location.php";
 
-        URL="http://"+ip_config+"/TFG/BD/find-fields-map-location.php";
-
-        /*SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);*/
-
-        AttemptFindFieldMapLocations attemptFindFields=new AttemptFindFieldMapLocations();
+        AttemptFindFieldMapLocations attemptFindFields = new AttemptFindFieldMapLocations();
         attemptFindFields.execute();
 
         return v;
     }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
 
-        mv=v.findViewById(R.id.view_map_fragment);
+        mv = v.findViewById(R.id.view_map_fragment);
 
-        if(mv!=null)
-        {
+        if (mv != null) {
             mv.onCreate(null);
             mv.onResume();
             mv.getMapAsync(this);
         }
 
+    /*    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mMap.setMyLocationEnabled(true);*/
+
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+
+        } else if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            getLocation();
+        }
     }
+
+
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+                (getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+
+        } else {
+            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            Location location1 = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Location location2 = locationManager.getLastKnownLocation(LocationManager. PASSIVE_PROVIDER);
+
+            if (location != null) {
+                double latti = location.getLatitude();
+                double longi = location.getLongitude();
+                lattitude = String.valueOf(latti);
+                longitude = String.valueOf(longi);
+
+                //Toast.makeText(getActivity(),"Your current location is"+ "\n" + "Lattitude = " + lattitude
+                        //+ "\n" + "Longitude = " + longitude,Toast.LENGTH_SHORT).show();
+
+            } else  if (location1 != null) {
+                double latti = location1.getLatitude();
+                double longi = location1.getLongitude();
+                lattitude = String.valueOf(latti);
+                longitude = String.valueOf(longi);
+
+                //Toast.makeText(getActivity(),"Your current location is"+ "\n" + "Lattitude = " + lattitude
+                       // + "\n" + "Longitude = " + longitude,Toast.LENGTH_SHORT).show();
+
+
+            } else  if (location2 != null) {
+                double latti = location2.getLatitude();
+                double longi = location2.getLongitude();
+                lattitude = String.valueOf(latti);
+                longitude = String.valueOf(longi);
+
+
+                //Toast.makeText(getActivity(),"Your current location is"+ "\n" + "Lattitude = " + lattitude
+                        //+ "\n" + "Longitude = " + longitude,Toast.LENGTH_SHORT).show();
+
+            }else{
+
+                Toast.makeText(getActivity(),"Unable to Trace your location",Toast.LENGTH_SHORT).show();
+
+            }
+        }
+    }
+
+
+
+    protected void buildAlertMessageNoGps() {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Please Turn ON your GPS Connection")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    
 
     public void onMapReady(GoogleMap googleMap) {
 
@@ -101,19 +207,13 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
         uis.setZoomControlsEnabled(true);
 
         //azken parametrua zooma da --> zenbaki haundigua, geo ta zoom gehio
-        CameraPosition cp=CameraPosition.builder().target(new LatLng(43.1423435, -2.3184953)).zoom(9).build();
 
-
+        CameraPosition cp=CameraPosition.builder().target(new LatLng(Double.parseDouble(lattitude), Double.parseDouble(longitude))).zoom(9).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
-
 
 
         for(int i=0;i<fields_id.length;i++)
         {
-            /*mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(Double.parseDouble(fields_lat[i]), Double.parseDouble(fields_long[i])))
-                    .title(fields_name[i]));*/
-
             myMarker=googleMap.addMarker(new MarkerOptions()
                     .position(new LatLng(Double.parseDouble(fields_lat[i]), Double.parseDouble(fields_long[i])))
                     .title(fields_name[i]));
@@ -123,7 +223,6 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
 
-            //@Override
             public void onInfoWindowClick(Marker arg0) {
 
                 FragmentManager fm=getActivity().getSupportFragmentManager();
@@ -137,8 +236,6 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
 
 }
-
-
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
