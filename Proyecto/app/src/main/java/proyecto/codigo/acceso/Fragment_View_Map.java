@@ -58,15 +58,16 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
     Marker myMarker;
 
-   //private double longitud = -2.3184953;
-   //private double latitud = 43.1423435;
+
+    private double latitud = 43;
+    private double longitud = -2;
 
 
     private static final int REQUEST_LOCATION = 1;
     //Button button;
     //TextView textView;
     LocationManager locationManager;
-    String lattitude, longitude;
+    //String lattitude, longitude;
 
 
     @SuppressLint("MissingPermission")
@@ -81,8 +82,7 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
         ip_config = getResources().getString(R.string.ip_config);
         URL = "http://" + ip_config + "/TFG/BD/find-fields-map-location.php";
 
-        AttemptFindFieldMapLocations attemptFindFields = new AttemptFindFieldMapLocations();
-        attemptFindFields.execute();
+
 
         return v;
     }
@@ -95,23 +95,14 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
         mv = v.findViewById(R.id.view_map_fragment);
 
+        AttemptFindFieldMapLocations attemptFindFields = new AttemptFindFieldMapLocations();
+        attemptFindFields.execute();
+
         if (mv != null) {
             mv.onCreate(null);
             mv.onResume();
             mv.getMapAsync(this);
         }
-
-    /*    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mMap.setMyLocationEnabled(true);*/
 
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -121,7 +112,6 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
             getLocation();
         }
     }
-
 
 
     private void getLocation() {
@@ -134,45 +124,44 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
         } else {
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             Location location1 = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            Location location2 = locationManager.getLastKnownLocation(LocationManager. PASSIVE_PROVIDER);
+            Location location2 = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
 
             if (location != null) {
                 double latti = location.getLatitude();
                 double longi = location.getLongitude();
-                lattitude = String.valueOf(latti);
-                longitude = String.valueOf(longi);
+                latitud = latti;
+                longitud = longi;
 
-                //Toast.makeText(getActivity(),"Your current location is"+ "\n" + "Lattitude = " + lattitude
-                        //+ "\n" + "Longitude = " + longitude,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Your current location is" + "\n" + "Lattitude = " + latitud
+                  //      + "\n" + "Longitude = " + longitud, Toast.LENGTH_SHORT).show();
 
-            } else  if (location1 != null) {
+            } else if (location1 != null) {
                 double latti = location1.getLatitude();
                 double longi = location1.getLongitude();
-                lattitude = String.valueOf(latti);
-                longitude = String.valueOf(longi);
+                latitud = latti;
+                longitud = longi;
 
-                //Toast.makeText(getActivity(),"Your current location is"+ "\n" + "Lattitude = " + lattitude
-                       // + "\n" + "Longitude = " + longitude,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), "Your current location is" + "\n" + "Lattitude = " + latitud
+                 //       + "\n" + "Longitude = " + longitud, Toast.LENGTH_SHORT).show();
 
 
-            } else  if (location2 != null) {
+            } else if (location2 != null) {
                 double latti = location2.getLatitude();
                 double longi = location2.getLongitude();
-                lattitude = String.valueOf(latti);
-                longitude = String.valueOf(longi);
+                latitud = latti;
+                longitud = longi;
 
 
-                //Toast.makeText(getActivity(),"Your current location is"+ "\n" + "Lattitude = " + lattitude
-                        //+ "\n" + "Longitude = " + longitude,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), "Your current location is" + "\n" + "Lattitude = " + latitud
+                 //       + "\n" + "Longitude = " + longitud, Toast.LENGTH_SHORT).show();
 
-            }else{
+            } else {
 
-                Toast.makeText(getActivity(),"Unable to Trace your location",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Unable to Trace your location", Toast.LENGTH_SHORT).show();
 
             }
         }
     }
-
 
 
     protected void buildAlertMessageNoGps() {
@@ -194,22 +183,32 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
         alert.show();
     }
 
-    
 
     public void onMapReady(GoogleMap googleMap) {
 
         MapsInitializer.initialize(getContext());
 
-        mMap=googleMap;
+        mMap = googleMap;
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        UiSettings uis=mMap.getUiSettings();
+        UiSettings uis = mMap.getUiSettings();
         uis.setZoomControlsEnabled(true);
 
         //azken parametrua zooma da --> zenbaki haundigua, geo ta zoom gehio
 
-        CameraPosition cp=CameraPosition.builder().target(new LatLng(Double.parseDouble(lattitude), Double.parseDouble(longitude))).zoom(9).build();
+        CameraPosition cp = CameraPosition.builder().target(new LatLng(latitud, longitud)).zoom(9).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
+
+
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+
 
 
         for(int i=0;i<fields_id.length;i++)
