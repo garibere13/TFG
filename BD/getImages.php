@@ -28,7 +28,7 @@
     {
         $username = $_POST['username'];
 
-        $sql = "SELECT * FROM fotos where username='$username' and id_campo is null and nombre_hoyo is null";
+        $sql = "SELECT * FROM fotos where username='$username' and id_campo is null and nombre_hoyo is null and isProfile=false";
     }
 
    

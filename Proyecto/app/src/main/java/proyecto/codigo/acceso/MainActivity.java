@@ -1,9 +1,14 @@
 package proyecto.codigo.acceso;
 
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +26,16 @@ import android.app.ProgressDialog;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -37,16 +52,26 @@ public class MainActivity extends AppCompatActivity
     TextView user;
     CircleImageView image;
 
+
+    JSONParser jsonParser=new JSONParser();
+    String URL;
+    String ip_config;
+    public String db_url;
+
     protected void onCreate(Bundle savedInstanceState) {
 
-            username=getIntent().getExtras().getString("username");
-
+        username=getIntent().getExtras().getString("username");
+        ip_config=getResources().getString(R.string.ip_config);
+        URL="http://"+ip_config+"/TFG/BD/find-username-data.php";
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        AttemptFindUsernameData attemptFindData=new AttemptFindUsernameData();
+        attemptFindData.execute(username);
 
         FloatingActionButton fab=findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -296,4 +321,55 @@ public class MainActivity extends AppCompatActivity
             return dialog;
         }
     }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    private class AttemptFindUsernameData extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        //@Override
+        protected String doInBackground(String... args) {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("username", username));
+            String json = jsonParser.makeHttpRequestString(URL, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            try
+            {
+                JSONArray jsonArray = new JSONArray(result);
+
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    db_url = obj.getString("url");
+                }
+
+                if(db_url!="null")
+                {
+                    Picasso.get().load(db_url).into(image);
+                }
+
+
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+
+
 }

@@ -137,7 +137,11 @@ public class Fragment_Edit_Profile extends Fragment {
         handicap.setText(_handicap);
         con1.setText(_password);
         con2.setText(_password);
-        Picasso.get().load(_url).into(image);
+
+        if(_url!="null")
+        {
+            Picasso.get().load(_url).into(image);
+        }
 
         username.setEnabled(false);
 
@@ -229,6 +233,18 @@ public class Fragment_Edit_Profile extends Fragment {
 
 
                     uploadMultipart();
+
+
+
+
+                    //Intent ma = new Intent(getActivity(), MainActivity.class);
+                    //ma.putExtra("username", username.getText().toString().trim());
+                    //startActivity(ma);
+
+                    //FragmentManager fm=getActivity().getSupportFragmentManager();
+                    //fm.beginTransaction().replace(R.id.contenedor, new Fragment_View_Profile()).commit();
+                    //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    //drawer.closeDrawer(GravityCompat.START);
                 }
             }
 
