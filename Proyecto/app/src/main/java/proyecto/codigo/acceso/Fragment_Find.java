@@ -31,8 +31,10 @@ public class Fragment_Find extends Fragment {
 
     String[] field_names;
     String[] field_ids;
+    String[] field_creador;
 
     String id_campo;
+    String creador;
     View v;
 
     @Override
@@ -76,12 +78,14 @@ public class Fragment_Find extends Fragment {
                     if(field_names[i]==(String) arg0.getAdapter().getItem(arg2))
                     {
                         id_campo=field_ids[i];
+                        creador=field_creador[i];
                     }
                 }
                 FragmentManager fm=getActivity().getSupportFragmentManager();
                 Fragment_View_Field fvf=new Fragment_View_Field();
                 final Bundle bundle = new Bundle();
                 bundle.putString("id", id_campo);
+                bundle.putString("creador", creador);
                 fvf.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
             }
@@ -188,10 +192,12 @@ public class Fragment_Find extends Fragment {
         JSONArray jsonArray = new JSONArray(json);
         field_names=new String[jsonArray.length()];
         field_ids=new String[jsonArray.length()];
+        field_creador=new String[jsonArray.length()];
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
             field_ids[i]=obj.getString("id");
+            field_creador[i]=obj.getString("creador");
             field_names[i]=obj.getString("nombre"); //Según lo que se haya puesto en el while del php
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.find_item, field_names);

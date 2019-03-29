@@ -3,6 +3,7 @@ package proyecto.codigo.acceso;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -77,9 +78,18 @@ public class Fragment_View_Field extends Fragment {
 
 
 
+
+    public String creador;
+    //public LayoutInflater inflater_;
+    //public ViewGroup container_;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        //inflater_=inflater;
+        //container_=container;
         super.onCreateView(inflater, container, savedInstanceState);
         Bundle bundle = getArguments();
         ip_config=getResources().getString(R.string.ip_config);
@@ -92,17 +102,36 @@ public class Fragment_View_Field extends Fragment {
         if (bundle!=null)
         {
             id_field=bundle.getString("id");
+            creador=bundle.getString("creador");
             username=((MainActivity)getActivity()).username;
 
-            v=inflater.inflate(R.layout.fragment_view_field, container, false);
-            tv_nombre_campo=v.findViewById(R.id.field_name);
-            tv_n_hoyos=v.findViewById(R.id.field_n_hoyos);
-            tv_fotos=v.findViewById(R.id.field_number_fotos);
-            tv_field_valoration=v.findViewById(R.id.field_valoration);
-            tv_creator=v.findViewById(R.id.field_creator);
-            tv_fecha=v.findViewById(R.id.field_fecha);
-            tv_nombre_provincia=v.findViewById(R.id.field_nombre_provincia);
-            bar=v.findViewById(R.id.ratingbar);
+
+            if(creador.equals(username))
+            {
+                v=inflater.inflate(R.layout.fragment_view_my_field, container, false);
+                tv_nombre_campo=v.findViewById(R.id.my_field_name);
+                tv_n_hoyos=v.findViewById(R.id.my_field_n_hoyos);
+                tv_fotos=v.findViewById(R.id.my_field_number_fotos);
+                tv_field_valoration=v.findViewById(R.id.my_field_valoration);
+                tv_creator=v.findViewById(R.id.my_field_creator);
+                tv_fecha=v.findViewById(R.id.my_field_fecha);
+                tv_nombre_provincia=v.findViewById(R.id.my_field_nombre_provincia);
+                bar=v.findViewById(R.id.my_ratingbar);
+            }
+            else
+            {
+                v=inflater.inflate(R.layout.fragment_view_field, container, false);
+                tv_nombre_campo=v.findViewById(R.id.field_name);
+                tv_n_hoyos=v.findViewById(R.id.field_n_hoyos);
+                tv_fotos=v.findViewById(R.id.field_number_fotos);
+                tv_field_valoration=v.findViewById(R.id.field_valoration);
+                tv_creator=v.findViewById(R.id.field_creator);
+                tv_fecha=v.findViewById(R.id.field_fecha);
+                tv_nombre_provincia=v.findViewById(R.id.field_nombre_provincia);
+                bar=v.findViewById(R.id.ratingbar);
+            }
+
+
 
             AttemptFindFieldData attemptFindFieldData=new AttemptFindFieldData();
             attemptFindFieldData.execute();
@@ -110,6 +139,47 @@ public class Fragment_View_Field extends Fragment {
             AttemptFindUserValoration attemptFindUserValoration=new AttemptFindUserValoration();
             attemptFindUserValoration.execute();
         }
+
+
+        /*Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                my_button.setBackgroundResource(R.drawable.defaultcard);
+            }
+        }, 2000);
+
+
+        Thread wait = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                    // Do some stuff
+                } catch (Exception e) {
+                    e.getLocalizedMessage();
+                }
+            }
+        });
+        Handler handler;
+
+        handler=new Handler();
+        Runnable r=new Runnable() {
+            public void run() {
+                //what ever you do here will be done after 3 seconds delay.
+                bar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+
+                    @Override
+                    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+                        AttemptValorateField attemptSignUp = new AttemptValorateField();
+                        attemptSignUp.execute(db_id_campo, ((MainActivity)getActivity()).username,
+                                Float.toString(rating));
+                    }
+                });
+            }
+        };
+        handler.postDelayed(r, 1000);*/
 
 
         clickableSpan_creador = new ClickableSpan() {
@@ -274,11 +344,15 @@ public class Fragment_View_Field extends Fragment {
                     tv_fotos.setText(ss_num_fotos);
                     tv_fotos.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_fotos.setHighlightColor(Color.TRANSPARENT);
+
+
+                    creador=db_creador;
             }
             catch (JSONException e)
             {
                 e.printStackTrace();
             }
+
         }
     }
 
@@ -318,7 +392,11 @@ public class Fragment_View_Field extends Fragment {
 
                     db_valoracion_usuario = obj.getString("valoracion");
                 }
+
+
                     bar.setRating(Float.parseFloat(db_valoracion_usuario));
+
+
             }
             catch (JSONException e)
             {

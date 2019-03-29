@@ -1377,6 +1377,7 @@ id expand_activities_button
 id expanded_menu
 id fab
 id field_creator
+id field_edit_button
 id field_fecha
 id field_n_hoyos
 id field_name
@@ -1450,8 +1451,17 @@ id mini
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
+id my_field_creator
+id my_field_fecha
+id my_field_n_hoyos
+id my_field_name
+id my_field_nombre_provincia
+id my_field_number_fotos
+id my_field_profile_image
+id my_field_valoration
 id my_profile_fotos
 id my_profile_image
+id my_ratingbar
 id nav_create_field
 id nav_find_friend
 id nav_logout
@@ -1712,6 +1722,7 @@ layout fragment_view_field_holes
 layout fragment_view_grid_images
 layout fragment_view_hole
 layout fragment_view_map
+layout fragment_view_my_field
 layout fragment_view_my_profile
 layout fragment_view_profile
 layout fragment_view_user_favourites

@@ -55,6 +55,7 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
     String[] fields_name;
     String[] fields_lat;
     String[] fields_long;
+    String[] fields_creador;
 
     Marker myMarker;
 
@@ -142,19 +143,11 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
                 latitud = latti;
                 longitud = longi;
 
-               // Toast.makeText(getActivity(), "Your current location is" + "\n" + "Lattitude = " + latitud
-                 //       + "\n" + "Longitude = " + longitud, Toast.LENGTH_SHORT).show();
-
-
             } else if (location2 != null) {
                 double latti = location2.getLatitude();
                 double longi = location2.getLongitude();
                 latitud = latti;
                 longitud = longi;
-
-
-               // Toast.makeText(getActivity(), "Your current location is" + "\n" + "Lattitude = " + latitud
-                 //       + "\n" + "Longitude = " + longitud, Toast.LENGTH_SHORT).show();
 
             } else {
 
@@ -218,7 +211,7 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
             myMarker=googleMap.addMarker(new MarkerOptions()
                     .position(new LatLng(Double.parseDouble(fields_lat[i]), Double.parseDouble(fields_long[i])))
                     .title(fields_name[i]));
-            myMarker.setTag(fields_id[i]);
+            myMarker.setTag(fields_id[i]+"."+fields_creador[i]);
         }
 
 
@@ -226,10 +219,18 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
             public void onInfoWindowClick(Marker arg0) {
 
+
+                String filename=(String)arg0.getTag();
+                String[] parts = filename.split("\\."); // String array, each element is text between dots
+                String id = parts[0];
+                String creador = parts[1];
+
+
                 FragmentManager fm=getActivity().getSupportFragmentManager();
                 Fragment_View_Field fvf=new Fragment_View_Field();
                 final Bundle bundle = new Bundle();
-                bundle.putString("id", (String)arg0.getTag());
+                bundle.putString("id", id);
+                bundle.putString("creador", creador);
                 fvf.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
             }
@@ -284,6 +285,7 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
         fields_name=new String[jsonArray.length()];
         fields_lat = new String[jsonArray.length()];
         fields_long=new String[jsonArray.length()];
+        fields_creador=new String[jsonArray.length()];
 
         for (int i = 0; i < jsonArray.length(); i++)
         {
@@ -292,6 +294,7 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
             fields_name[i] = obj.getString("nombre"); //Según lo que se haya puesto en el while del php
             fields_lat[i]=obj.getString("latitud");
             fields_long[i]=obj.getString("longitud");
+            fields_creador[i]=obj.getString("creador");
         }
     }
 }

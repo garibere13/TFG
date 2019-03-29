@@ -41,7 +41,7 @@
         public function find_fields_map_location()
         {
             $fields = array();
-            $query = "SELECT id, nombre, latitud, longitud FROM ".$this->db_table."";
+            $query = "SELECT id, nombre, latitud, longitud, creador FROM ".$this->db_table."";
             $result=mysqli_query($this->db->getDb(), $query);
 
             if($stmt = $result)
@@ -55,7 +55,8 @@
                         'id'=>$row['id'],
                         'nombre'=>$bien,
                         'latitud'=>$row['latitud'],
-                        'longitud'=>$row['longitud']
+                        'longitud'=>$row['longitud'],
+                        'creador'=>$row['creador']
                     ];
                     array_push($fields, $temp);
                 }
@@ -187,7 +188,7 @@
         public function find_field_names()
         {
             $names = array();
-            $query = "SELECT id, nombre FROM ".$this->db_table."";
+            $query = "SELECT id, nombre, creador FROM ".$this->db_table."";
             if($stmt = mysqli_query($this->db->getDb(), $query))
             {        
                 while($row = mysqli_fetch_assoc($stmt))
@@ -195,7 +196,8 @@
                     $temp = 
                     [
                         'id'=>$row['id'],
-                        'nombre'=>$row['nombre']
+                        'nombre'=>$row['nombre'],
+                        'creador'=>$row['creador']
                     ];
                         array_push($names, $temp);
                 }

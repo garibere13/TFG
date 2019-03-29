@@ -75,14 +75,47 @@ public class Fragment_View_Profile extends Fragment {
         if (bundle!=null)
         {
             username=bundle.getString("username");
+            if(username.equals(((MainActivity)getActivity()).username))
+            {
+                v=inflater.inflate(R.layout.fragment_view_my_profile, container, false);
+                ib_edit=v.findViewById(R.id.profile_edit_button);
+                tv_name=v.findViewById(R.id.profile_name);
+                tv_username=v.findViewById(R.id.profile_username);
+                tv_puntuacion=v.findViewById(R.id.view_my_puntuacion);
+                tv_fecha=v.findViewById(R.id.view_my_date);
+                tv_fotos=v.findViewById(R.id.my_profile_fotos);
+                image=v.findViewById(R.id.my_profile_image);
 
-            v=inflater.inflate(R.layout.fragment_view_profile, container, false);
-            tv_name=v.findViewById(R.id.profile_name);
-            tv_username=v.findViewById(R.id.profile_username);
-            tv_puntuacion=v.findViewById(R.id.view_user_puntuacion);
-            tv_fecha=v.findViewById(R.id.view_user_date);
-            tv_fotos=v.findViewById(R.id.user_profile_fotos);
-            image=v.findViewById(R.id.user_profile_image);
+                ib_edit.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+
+                        FragmentManager fm=getActivity().getSupportFragmentManager();
+                        Fragment_Edit_Profile fep=new Fragment_Edit_Profile();
+                        final Bundle bundle = new Bundle();
+                        bundle.putString("nombre", db_nombre);
+                        bundle.putString("apellido1", db_apellido1);
+                        bundle.putString("apellido2", db_apellido2);
+                        bundle.putString("username", db_username);
+                        bundle.putString("password", db_password);
+                        bundle.putString("handicap", db_handicap);
+                        bundle.putString("url", db_url);
+                        fep.setArguments(bundle);
+                        fm.beginTransaction().replace(R.id.contenedor, fep).commit();
+
+                    }
+                });
+            }
+            else
+            {
+                v=inflater.inflate(R.layout.fragment_view_profile, container, false);
+                tv_name=v.findViewById(R.id.profile_name);
+                tv_username=v.findViewById(R.id.profile_username);
+                tv_puntuacion=v.findViewById(R.id.view_user_puntuacion);
+                tv_fecha=v.findViewById(R.id.view_user_date);
+                tv_fotos=v.findViewById(R.id.user_profile_fotos);
+                image=v.findViewById(R.id.user_profile_image);
+            }
         }
         else
         {
