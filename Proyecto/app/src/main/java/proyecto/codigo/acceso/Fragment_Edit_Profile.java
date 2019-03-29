@@ -1,9 +1,19 @@
 package proyecto.codigo.acceso;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +26,12 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.NetworkInterface;
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -23,7 +39,17 @@ import java.util.Enumeration;
 import java.net.SocketException;
 import java.net.Inet4Address;
 import java.net.Inet6Address;
+import java.util.UUID;
+
 import android.os.StrictMode;
+
+import com.squareup.picasso.Picasso;
+
+import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.UploadNotificationConfig;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import eu.janmuller.android.simplecropimage.CropImage;
 
 
 public class Fragment_Edit_Profile extends Fragment {
@@ -43,6 +69,7 @@ public class Fragment_Edit_Profile extends Fragment {
     String _username;
     String _password;
     String _handicap;
+    String _url;
 
     Button registrar_button;
     Button cancelar_button;
@@ -50,11 +77,19 @@ public class Fragment_Edit_Profile extends Fragment {
     String ip_config;
 
     String URL;
+    String URL1;
 
 
     JSONParser jsonParser=new JSONParser();
 
     View v;
+
+    CircleImageView image;
+    private File mFileTemp;
+    public static final int REQUEST_CODE_CROP_IMAGE   = 0x3;
+    public static final String TEMP_PHOTO_FILE_NAME = "temp_photo.jpg";
+    public static final int REQUEST_CODE_GALLERY      = 0x1;
+
 
 
     @Override
@@ -66,6 +101,7 @@ public class Fragment_Edit_Profile extends Fragment {
 
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/edit-user.php";
+        URL1="http://"+ip_config+"/TFG/BD/upload_circle.php";
 
         _nombre=bundle.getString("nombre");
         _apellido1=bundle.getString("apellido1");
@@ -73,105 +109,25 @@ public class Fragment_Edit_Profile extends Fragment {
         _username=bundle.getString("username");
         _handicap=bundle.getString("handicap");
         _password=bundle.getString("password");
+        _url=bundle.getString("url");
 
-        v=inflater.inflate(R.layout.signupscreen_user, container, false);
+        v=inflater.inflate(R.layout.signupscreen_user_edit, container, false);
 
-        name=v.findViewById(R.id.signup_input_name);
-        ape1=v.findViewById(R.id.signup_input_ape1);
-        ape2=v.findViewById(R.id.signup_input_ape2);
-        username=v.findViewById(R.id.signup_input_username);
-        handicap=v.findViewById(R.id.signup_input_handicap);
-        con1=v.findViewById(R.id.signup_input_pass1);
-        con2=v.findViewById(R.id.signup_input_pass2);
+        name=v.findViewById(R.id.signup_input_name_edit);
+        ape1=v.findViewById(R.id.signup_input_ape1_edit);
+        ape2=v.findViewById(R.id.signup_input_ape2_edit);
+        username=v.findViewById(R.id.signup_input_username_edit);
+        handicap=v.findViewById(R.id.signup_input_handicap_edit);
+        con1=v.findViewById(R.id.signup_input_pass1_edit);
+        con2=v.findViewById(R.id.signup_input_pass2_edit);
 
-        registrar_button=v.findViewById(R.id.btn_signup);
-        cancelar_button=v.findViewById(R.id.link_login);
+        registrar_button=v.findViewById(R.id.btn_signup_edit);
+        cancelar_button=v.findViewById(R.id.btn_signup_cancelar_edit);
+
+        image=v.findViewById(R.id.user_profile_image_edit);
 
 
         registrar_button.setText("Modificar");
-
-        //WifiManager wm = (WifiManager) getActivity().getSystemService(WIFI_SERVICE);
-
-        //WifiManager wm = (WifiManager) getActivity().getApplicationContext().getSystemService(getContext().WIFI_SERVICE);
-
-        //String ip = Formatter.getHostAddress(wm.getConnectionInfo().getIpAddress());
-        //String ip=getHostAddress();
-        //String ip="IP";
-
-        /*InetAddress ia=new InetAddress();
-
-        WifiManager wm = (WifiManager) getActivity().getApplicationContext().getSystemService(getContext().WIFI_SERVICE);
-        ip = InetAddress.getHostAddress(wm.getConnectionInfo().getIpAddress());
-        */
-
-       /* try
-        {
-            InetAddress inetAddress = InetAddress.getLocalHost();
-            ip=inetAddress.getHostName();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }*/
-        //IP=Utils.getIPAddress(true);
-        //IP=getLocalIpAddress();
-      // URL="http://10.207.58.150/TFG/BD/edit-user.php";
-       //URL="http://"+IP+"/TFG/BD/edit-user.php";
-
-        /*try
-        {
-            InetAddress IP=InetAddress.getLocalHost();
-            //System.out.println("IP of my system is := "+IP.getHostAddress());
-            name.setText(IP.getHostAddress());
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }*/
-
-
-      /*  String ip;
-        try {
-            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-            while (interfaces.hasMoreElements()) {
-                NetworkInterface iface = interfaces.nextElement();
-                // filters out 127.0.0.1 and inactive interfaces
-                if (iface.isLoopback() || !iface.isUp())
-                    continue;
-
-                Enumeration<InetAddress> addresses = iface.getInetAddresses();
-                while(addresses.hasMoreElements()) {
-                    InetAddress addr = addresses.nextElement();
-
-                    // *EDIT*
-                    if (addr instanceof Inet6Address) continue;
-
-                    ip = addr.getHostAddress();
-                    name.setText(ip);
-                    //System.out.println(iface.getDisplayName() + " " + ip);
-                }
-            }
-        } catch (SocketException e) {
-            throw new RuntimeException(e);
-        }*/
-
-
-      /*  InetAddress ip;
-        try {
-
-            name.setText("bytfr");
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-            ip = InetAddress.getLocalHost();
-            name.setText(InetAddress.getLocalHost().toString());
-            //System.out.println("Current IP address : " + ip.getHostAddress());
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }*/
-
 
 
         name.setText(_nombre);
@@ -181,8 +137,31 @@ public class Fragment_Edit_Profile extends Fragment {
         handicap.setText(_handicap);
         con1.setText(_password);
         con2.setText(_password);
+        Picasso.get().load(_url).into(image);
 
         username.setEnabled(false);
+
+
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            mFileTemp = new File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE_NAME);
+        }
+        else {
+            mFileTemp = new File(getActivity().getFilesDir(), TEMP_PHOTO_FILE_NAME);
+        }
+
+
+        image.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, REQUEST_CODE_GALLERY);
+            }
+        });
+
 
         cancelar_button.setOnClickListener(new View.OnClickListener() {
 
@@ -247,6 +226,9 @@ public class Fragment_Edit_Profile extends Fragment {
                     attemptEditProfile.execute(name.getText().toString().trim(), ape1.getText().toString().trim(),
                             ape2.getText().toString().trim(), username.getText().toString().trim(),
                             con1.getText().toString().trim(), handicap.getText().toString().trim());
+
+
+                    uploadMultipart();
                 }
             }
 
@@ -256,6 +238,138 @@ public class Fragment_Edit_Profile extends Fragment {
     }
 
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode != getActivity().RESULT_OK) {
+
+            return;
+        }
+
+        Bitmap bitmap;
+
+        switch (requestCode) {
+
+            case REQUEST_CODE_GALLERY:
+
+                try {
+
+                    InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
+                    FileOutputStream fileOutputStream = new FileOutputStream(mFileTemp);
+                    copyStream(inputStream, fileOutputStream);
+                    fileOutputStream.close();
+                    inputStream.close();
+
+                    startCropImage();
+
+                } catch (Exception e) {
+
+                    //Log.e(TAG, "Error while creating temp file", e);
+                }
+
+                break;
+           /* case REQUEST_CODE_TAKE_PICTURE:
+
+                startCropImage();
+                break;*/
+            case REQUEST_CODE_CROP_IMAGE:
+
+                String path = data.getStringExtra(CropImage.IMAGE_PATH);
+                if (path == null) {
+
+                    return;
+                }
+
+                bitmap = BitmapFactory.decodeFile(mFileTemp.getPath());
+                image.setImageBitmap(bitmap);
+
+
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    private void startCropImage() {
+
+        Intent intent = new Intent(getActivity(), CropImage.class);
+        intent.putExtra(CropImage.IMAGE_PATH, mFileTemp.getPath());
+        intent.putExtra(CropImage.SCALE, true);
+
+        intent.putExtra(CropImage.ASPECT_X, 2);
+        intent.putExtra(CropImage.ASPECT_Y, 2);
+
+        startActivityForResult(intent, REQUEST_CODE_CROP_IMAGE);
+    }
+
+    public static void copyStream(InputStream input, OutputStream output) throws IOException {
+
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = input.read(buffer)) != -1) {
+            output.write(buffer, 0, bytesRead);
+        }
+    }
+
+
+    public void uploadMultipart() {
+
+        String user="";
+        user=username.getText().toString().trim();
+
+
+        //if(mImageCaptureUri!=null)mFileTemp.getPath()
+        if(mFileTemp.getPath()!=null)
+        {
+            String path="";
+
+
+            //en principio, esto es sin comentar
+            //path=getPath(mImageCaptureUri);
+
+
+
+            //Uploading code
+            try {
+                String uploadId = UUID.randomUUID().toString();
+
+                    new MultipartUploadRequest(getActivity(), uploadId, URL1)
+                            //.addFileToUpload(path, "image") //Adding file
+                            .addFileToUpload(mFileTemp.getPath(), "image")
+                            .addParameter("username", user) //Adding text parameter to the request
+                            .setNotificationConfig(new UploadNotificationConfig())
+                            .setMaxRetries(2)
+                            .startUpload(); //Starting the upload
+
+            } catch (Exception exc) {
+                Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+        }
+
+    }
+
+
+
+    //method to get the file path from uri
+    public String getPath(Uri uri) {
+        Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        String document_id = cursor.getString(0);
+        document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
+        cursor.close();
+
+        cursor = getActivity().getContentResolver().query(
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+        cursor.moveToFirst();
+        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+        cursor.close();
+
+        return path;
+    }
     //////////////////////////////////////////////////////////////////////////////
 
     private class AttemptEditProfile extends AsyncTask<String, String, JSONObject> {

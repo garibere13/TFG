@@ -52,3 +52,5 @@
     }
     //displaying the response 
     echo json_encode($response);
+
+    ?>

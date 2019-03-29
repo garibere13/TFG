@@ -27,6 +27,7 @@
     <string msgid="3421042268587513524" name="abc_shareactionprovider_share_with">"Sdílet pomocí"</string>
     <string msgid="3300176832234831527" name="abc_shareactionprovider_share_with_application">"Sdílet s aplikací <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1603543279005712093" name="abc_toolbar_collapse_description">"Sbalit"</string>
+    <string name="cancel">Zrušit</string>
     <string msgid="8585111718777012708" name="common_google_play_services_enable_button">"Povolit"</string>
     <string msgid="7045129128108380659" name="common_google_play_services_enable_text">"Ke spuštění aplikace <ns1:g id="APP_NAME">%1$s</ns1:g> je třeba aktivovat služby Google Play."</string>
     <string msgid="3147157405986503375" name="common_google_play_services_enable_title">"Aktivace služeb Google Play"</string>
@@ -45,6 +46,11 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Otevřít v telefonu"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Přihlásit se"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Přihlásit se k účtu Google"</string>
+    <string name="no_storage_card">Žádná SD karta</string>
+    <string name="not_enough_space">Na SD kartě není dostatek místa</string>
+    <string name="preparing_card">Připravuji kartu</string>
+    <string name="save">Uložit</string>
+    <string name="saving_image">Ukládám obrázek</string>
     <string msgid="146198913615257606" name="search_menu_title">"Hledat"</string>
     <string msgid="7988687684186075107" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

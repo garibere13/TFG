@@ -147,6 +147,12 @@ public class MainActivity extends AppCompatActivity
             showDialogFragment(LOGOUT_TAG);
         }
 
+
+        else if (id == R.id.prueba_notificacion)
+        {
+            fm.beginTransaction().replace(R.id.contenedor, new Z_Prueba_Notificacion()).commit();
+        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

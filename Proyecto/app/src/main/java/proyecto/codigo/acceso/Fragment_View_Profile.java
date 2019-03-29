@@ -15,12 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Fragment_View_Profile extends Fragment {
@@ -30,6 +35,7 @@ public class Fragment_View_Profile extends Fragment {
     View v;
     String ip_config;
     String URL;
+    String URL1;
     JSONParser jsonParser=new JSONParser();
     TextView tv_name;
     TextView tv_username;
@@ -49,10 +55,13 @@ public class Fragment_View_Profile extends Fragment {
     public String db_puntuacion;
     public String db_handicap;
     public String db_num_fotos;
+    public String db_url;
 
     public  SpannableString ss_num_fotos;
     public ClickableSpan clickableSpan_num_fotos;
 
+
+    CircleImageView image;
 
 
     @Override
@@ -62,6 +71,7 @@ public class Fragment_View_Profile extends Fragment {
         Bundle bundle = getArguments();
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/find-username-data.php";
+        URL1="http://"+ip_config+"/TFG/BD/getImagesCircle.php";
         if (bundle!=null)
         {
             username=bundle.getString("username");
@@ -72,6 +82,7 @@ public class Fragment_View_Profile extends Fragment {
             tv_puntuacion=v.findViewById(R.id.view_user_puntuacion);
             tv_fecha=v.findViewById(R.id.view_user_date);
             tv_fotos=v.findViewById(R.id.user_profile_fotos);
+            image=v.findViewById(R.id.user_profile_image);
         }
         else
         {
@@ -83,6 +94,7 @@ public class Fragment_View_Profile extends Fragment {
             tv_puntuacion=v.findViewById(R.id.view_my_puntuacion);
             tv_fecha=v.findViewById(R.id.view_my_date);
             tv_fotos=v.findViewById(R.id.my_profile_fotos);
+            image=v.findViewById(R.id.my_profile_image);
 
             ib_edit.setOnClickListener(new View.OnClickListener() {
 
@@ -97,6 +109,7 @@ public class Fragment_View_Profile extends Fragment {
                     bundle.putString("username", db_username);
                     bundle.putString("password", db_password);
                     bundle.putString("handicap", db_handicap);
+                    bundle.putString("url", db_url);
                     fep.setArguments(bundle);
                     fm.beginTransaction().replace(R.id.contenedor, fep).commit();
 
@@ -106,6 +119,7 @@ public class Fragment_View_Profile extends Fragment {
 
         tv_name=v.findViewById(R.id.profile_name);
         tv_username=v.findViewById(R.id.profile_username);
+
 
         AttemptFindUsernameData attemptFindData=new AttemptFindUsernameData();
         attemptFindData.execute(username);
@@ -135,9 +149,8 @@ public class Fragment_View_Profile extends Fragment {
         return v;
     }
 
+
     /////////////////////////////////////////////////////////////////////////////////////////
-
-
 
     private class AttemptFindUsernameData extends AsyncTask<String, String, String> {
 
@@ -163,7 +176,8 @@ public class Fragment_View_Profile extends Fragment {
             {
                 JSONArray jsonArray = new JSONArray(result);
 
-                for (int i = 0; i < jsonArray.length(); i++) {
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     db_nombre = obj.getString("nombre");
                     db_apellido1 = obj.getString("apellido1");
@@ -176,6 +190,7 @@ public class Fragment_View_Profile extends Fragment {
                     db_puntuacion = obj.getString("puntuacion");
                     db_handicap = obj.getString("handicap");
                     db_num_fotos = obj.getString("num_fotos");
+                    db_url = obj.getString("url");
                 }
                     float f=Float.parseFloat(db_handicap);
                     String h=String.format(String.format("%.1f", f));
@@ -189,6 +204,13 @@ public class Fragment_View_Profile extends Fragment {
                     tv_fotos.setText(ss_num_fotos);
                     tv_fotos.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_fotos.setHighlightColor(Color.TRANSPARENT);
+
+
+                if(db_url!="null")
+                {
+                    Picasso.get().load(db_url).into(image);
+                }
+
 
             }
             catch (JSONException e)

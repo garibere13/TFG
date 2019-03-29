@@ -61,3 +61,16 @@ FOREIGN KEY (username) REFERENCES usuarios(username),
 FOREIGN KEY(id_campo) REFERENCES campos(id),
 FOREIGN KEY(nombre_hoyo) REFERENCES hoyos(nombre)
 );
+
+
+
+create TABLE fotos_perfil (
+id int(11) primary key AUTO_INCREMENT,
+url text,
+username varchar(50),
+izquierda INT,  
+arriba INT,  
+derecha INT,  
+abajo INT,
+FOREIGN KEY(username) REFERENCES usuarios(username)
+);

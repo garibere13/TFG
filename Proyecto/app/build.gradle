@@ -52,4 +52,36 @@ dependencies {
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
     }
+
+
+
+
+
+
+    // FIREBASE NOTIFICACIONES
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+
+
+
+
+    //FÁCIL LECTURA DE IMÁGENES
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+
+
+
+
+    //IMÁGENES CIRCULARES DE PERFIL
+    implementation project(':simplecropimagelib')
+
 }
+
+
+
+// FIREBASE NOTIFICACIONES
+apply plugin: 'com.google.gms.google-services'
+
+
+
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
+

@@ -59,8 +59,8 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
     Marker myMarker;
 
 
-    private double latitud = 43;
-    private double longitud = -2;
+    static double latitud = 43.01;
+    static double longitud = -2.34;
 
 
     private static final int REQUEST_LOCATION = 1;
@@ -97,6 +97,7 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
         AttemptFindFieldMapLocations attemptFindFields = new AttemptFindFieldMapLocations();
         attemptFindFields.execute();
+
 
         if (mv != null) {
             mv.onCreate(null);
@@ -185,6 +186,7 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
 
     public void onMapReady(GoogleMap googleMap) {
+
 
         MapsInitializer.initialize(getContext());
 

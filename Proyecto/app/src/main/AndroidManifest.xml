@@ -59,6 +59,11 @@
         <activity
             android:name=".Maps_Show_Location"
             android:label="@string/title_activity_maps"></activity>
+
+        <activity android:name="eu.janmuller.android.simplecropimage.CropImage" />
+
+
+
     </application>
 
 </manifest>

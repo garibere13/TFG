@@ -24,6 +24,11 @@
             android:id="@+id/nav_view_profile"
             android:icon="@drawable/person"
             android:title="Mi Perfil" />
+
+        <item
+            android:id="@+id/prueba_notificacion"
+            android:icon="@drawable/person"
+            android:title="Prueba Notificación" />
     </group>
 
     <item android:title="">
