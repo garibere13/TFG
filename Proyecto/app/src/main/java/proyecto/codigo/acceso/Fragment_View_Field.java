@@ -13,6 +13,7 @@ import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.text.SpannableString;
 import org.apache.http.NameValuePair;
@@ -26,6 +27,10 @@ import android.graphics.Color;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Fragment_View_Field extends Fragment {
 
@@ -64,6 +69,7 @@ public class Fragment_View_Field extends Fragment {
     public String db_valoracion;
     public String db_num_fotos;
     public String db_valoracion_usuario;
+    public String db_url;
 
     public  SpannableString ss_creador;
     public ClickableSpan clickableSpan_creador;
@@ -80,16 +86,15 @@ public class Fragment_View_Field extends Fragment {
 
 
     public String creador;
-    //public LayoutInflater inflater_;
-    //public ViewGroup container_;
+    ImageButton ib_edit;
+
+    CircleImageView image;
 
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //inflater_=inflater;
-        //container_=container;
         super.onCreateView(inflater, container, savedInstanceState);
         Bundle bundle = getArguments();
         ip_config=getResources().getString(R.string.ip_config);
@@ -109,6 +114,7 @@ public class Fragment_View_Field extends Fragment {
             if(creador.equals(username))
             {
                 v=inflater.inflate(R.layout.fragment_view_my_field, container, false);
+                ib_edit=v.findViewById(R.id.field_edit_button);
                 tv_nombre_campo=v.findViewById(R.id.my_field_name);
                 tv_n_hoyos=v.findViewById(R.id.my_field_n_hoyos);
                 tv_fotos=v.findViewById(R.id.my_field_number_fotos);
@@ -117,6 +123,28 @@ public class Fragment_View_Field extends Fragment {
                 tv_fecha=v.findViewById(R.id.my_field_fecha);
                 tv_nombre_provincia=v.findViewById(R.id.my_field_nombre_provincia);
                 bar=v.findViewById(R.id.my_ratingbar);
+                image=v.findViewById(R.id.my_field_profile_image);
+
+
+                ib_edit.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+
+                        FragmentManager fm=getActivity().getSupportFragmentManager();
+                        Fragment_Edit_Field fef=new Fragment_Edit_Field();
+                        final Bundle bundle = new Bundle();
+                        bundle.putString("id", db_id_campo);
+                        bundle.putString("nombre", db_nombre);
+                        bundle.putString("descripcion", db_descripcion);
+                        bundle.putString("num_hoyos", db_num_hoyos);
+                        bundle.putString("creador", db_creador);
+                        bundle.putString("url", db_url);
+                        fef.setArguments(bundle);
+                        fm.beginTransaction().replace(R.id.contenedor, fef).commit();
+
+                    }
+                });
+
             }
             else
             {
@@ -129,9 +157,10 @@ public class Fragment_View_Field extends Fragment {
                 tv_fecha=v.findViewById(R.id.field_fecha);
                 tv_nombre_provincia=v.findViewById(R.id.field_nombre_provincia);
                 bar=v.findViewById(R.id.ratingbar);
+                image=v.findViewById(R.id.field_profile_image);
+
+
             }
-
-
 
             AttemptFindFieldData attemptFindFieldData=new AttemptFindFieldData();
             attemptFindFieldData.execute();
@@ -141,45 +170,7 @@ public class Fragment_View_Field extends Fragment {
         }
 
 
-        /*Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                my_button.setBackgroundResource(R.drawable.defaultcard);
-            }
-        }, 2000);
 
-
-        Thread wait = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                    // Do some stuff
-                } catch (Exception e) {
-                    e.getLocalizedMessage();
-                }
-            }
-        });
-        Handler handler;
-
-        handler=new Handler();
-        Runnable r=new Runnable() {
-            public void run() {
-                //what ever you do here will be done after 3 seconds delay.
-                bar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-
-                    @Override
-                    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-
-                        AttemptValorateField attemptSignUp = new AttemptValorateField();
-                        attemptSignUp.execute(db_id_campo, ((MainActivity)getActivity()).username,
-                                Float.toString(rating));
-                    }
-                });
-            }
-        };
-        handler.postDelayed(r, 1000);*/
 
 
         clickableSpan_creador = new ClickableSpan() {
@@ -313,6 +304,7 @@ public class Fragment_View_Field extends Fragment {
                     db_date_dia=obj.getString("dia");
                     db_valoracion = obj.getString("valoracion");
                     db_num_fotos = obj.getString("num_fotos");
+                    db_url = obj.getString("url");
                 }
                     tv_nombre_campo.setText(db_nombre);
                     float v=Float.parseFloat(db_valoracion);
@@ -347,6 +339,11 @@ public class Fragment_View_Field extends Fragment {
 
 
                     creador=db_creador;
+
+                if(db_url!="null")
+                {
+                    Picasso.get().load(db_url).into(image);
+                }
             }
             catch (JSONException e)
             {
@@ -441,13 +438,11 @@ public class Fragment_View_Field extends Fragment {
                     if(result.getString("success")=="1")
                     {
                         Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                        //refresh();
                     }
                     else
                     {
                         AttemptRenewValoration attemptRenewValoration=new AttemptRenewValoration();
                         attemptRenewValoration.execute(valoracion_estrellas);
-                        //refresh();
                     }
                 }
             }

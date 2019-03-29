@@ -88,7 +88,16 @@
         public function find_field_data($id)
         {
             $data = array();            
-            $query = "SELECT count(f.id_campo) as num_fotos, c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo FROM fotos f, campos c , municipios m, provincias p WHERE c.id=$id and c.cod_pueblo = m.id_municipio and m.id_provincia=p.id_provincia and f.id_campo=$id";
+            $query = "SELECT f1.url as url, count(f.id_campo) as num_fotos, c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo 
+            FROM fotos f, fotos f1, campos c , municipios m, provincias p 
+            WHERE c.id=$id
+            and c.cod_pueblo = m.id_municipio 
+            and m.id_provincia=p.id_provincia 
+            and f.id_campo=$id
+            and f.isProfile=false
+            and f1.id_campo=$id
+            and f1.isProfile=true
+                 Limit 1";
 
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {        
@@ -109,13 +118,34 @@
                         'mes'=>$row['mes'],
                         'dia'=>$row['dia'],
                         'valoracion'=>$row['valoracion'],
-                        'num_fotos'=>$row['num_fotos']
+                        'num_fotos'=>$row['num_fotos'],
+                        'url'=>$row['url']
                     ];
                         array_push($data, $temp);
                 }     
                 echo json_encode($data);   
             }
             mysqli_close($this->db->getDb());           
+        }
+
+
+        public function editField($id, $nombre, $descripcion, $num_hoyos)
+        {                
+            $query = "UPDATE ".$this->db_table." SET nombre='$nombre', descripcion='$descripcion', num_hoyos=$num_hoyos WHERE id=$id";
+            $inserted = mysqli_query($this->db->getDb(), $query);
+               
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['message'] = "¡Usuario modificado!";                    
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['message'] = "No se han podido realizar los cambios";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
         }
 
         public function find_user_valoration($id_campo, $username)

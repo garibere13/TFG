@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/id123"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/nobody"
+        tools:layout_editor_absoluteY="168dp"
+        tools:layout_editor_absoluteX="142dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#ff8040"
+        android:layout_marginTop="20dp"
+        android:id="@+id/field_profile_image_edit"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/signup_field_name_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_field_name"/>
+
+    <EditText
+        android:id="@+id/signup_field_name_text_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_field_name"
+        android:inputType="text"
+        tools:ignore="Autofill"/>
+
+    <TextView
+        android:id="@+id/signup_field_des_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_field_des"/>
+
+    <EditText
+        android:id="@+id/signup_field_des_text_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_field_des"
+        android:inputType="text"
+        tools:ignore="Autofill"/>
+
+
+    <TextView
+        android:id="@+id/signup_field_num_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_field_num"/>
+
+    <EditText
+        android:id="@+id/signup_field_num_text_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_field_num"
+        android:inputType="number"
+        tools:ignore="Autofill"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/crear_field_button_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/crear"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/cancelar_field_button_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/signup_cancelar"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+
+</LinearLayout>

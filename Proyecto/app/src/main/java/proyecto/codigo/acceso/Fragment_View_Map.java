@@ -51,7 +51,7 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
     String ip_config;
     String URL;
 
-    String[] fields_id;
+    String[] fields_id=new String[0];
     String[] fields_name;
     String[] fields_lat;
     String[] fields_long;
