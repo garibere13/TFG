@@ -31,6 +31,7 @@ public class Fragment_View_Hole extends Fragment {
 
     String id_campo;
     String nombre_hoyo;
+    String creador;
     String username;
     View v;
     String ip_config;
@@ -53,6 +54,7 @@ public class Fragment_View_Hole extends Fragment {
     public String db_descripcion;
     public String db_metros;
     public String db_par;
+    //public String db_url;
     public String db_creador;
     public String  db_num_fotos;
     public String db_id_campo;
@@ -68,6 +70,8 @@ public class Fragment_View_Hole extends Fragment {
     public ClickableSpan clickableSpan_campo;
     public  SpannableString ss_num_fotos;
     public ClickableSpan clickableSpan_num_fotos;
+
+    ImageButton ib_edit;
 
 
 
@@ -87,16 +91,52 @@ public class Fragment_View_Hole extends Fragment {
         {
             id_campo=bundle.getString("id_campo");
             nombre_hoyo=bundle.getString("nombre");
+            creador=bundle.getString("creador");
             username=((MainActivity)getActivity()).username;
 
-            v=inflater.inflate(R.layout.fragment_view_hole, container, false);
-            tv_nombre=v.findViewById(R.id.hole_name);
-            tv_par=v.findViewById(R.id.hole_par);
-            tv_metros=v.findViewById(R.id.hole_meters);
-            tv_creator=v.findViewById(R.id.hole_creator);
-            tv_fecha=v.findViewById(R.id.view_hole_date);
-            tv_fotos=v.findViewById(R.id.hole_number_fotos);
-            button_favourite=v.findViewById(R.id.togglebutton_hole_favourite);
+            if(creador.equals(username))
+            {
+                v=inflater.inflate(R.layout.fragment_view_my_hole, container, false);
+                ib_edit=v.findViewById(R.id.hole_edit_button);
+                tv_nombre=v.findViewById(R.id.my_hole_name);
+                tv_par=v.findViewById(R.id.my_hole_par);
+                tv_metros=v.findViewById(R.id.my_hole_meters);
+                tv_creator=v.findViewById(R.id.my_hole_creator);
+                tv_fecha=v.findViewById(R.id.my_view_hole_date);
+                tv_fotos=v.findViewById(R.id.my_hole_number_fotos);
+                button_favourite=v.findViewById(R.id.my_togglebutton_hole_favourite);
+
+                ib_edit.setOnClickListener(new View.OnClickListener() {
+
+                    public void onClick(View v) {
+
+                        FragmentManager fm=getActivity().getSupportFragmentManager();
+                        Fragment_Edit_Hole feh=new Fragment_Edit_Hole();
+                        final Bundle bundle = new Bundle();
+                        bundle.putString("id_campo", db_id_campo);
+                        bundle.putString("nombre_hoyo", db_nombre_hoyo);
+                        bundle.putString("descripcion", db_descripcion);
+                        bundle.putString("metros", db_metros);
+                        bundle.putString("par", db_par);
+                        bundle.putString("creador", creador);
+                        //bundle.putString("url", db_url);
+                        feh.setArguments(bundle);
+                        fm.beginTransaction().replace(R.id.contenedor, feh).commit();
+
+                    }
+                });
+            }
+            else
+            {
+                v=inflater.inflate(R.layout.fragment_view_hole, container, false);
+                tv_nombre=v.findViewById(R.id.hole_name);
+                tv_par=v.findViewById(R.id.hole_par);
+                tv_metros=v.findViewById(R.id.hole_meters);
+                tv_creator=v.findViewById(R.id.hole_creator);
+                tv_fecha=v.findViewById(R.id.view_hole_date);
+                tv_fotos=v.findViewById(R.id.hole_number_fotos);
+                button_favourite=v.findViewById(R.id.togglebutton_hole_favourite);
+            }
 
 
             AttemptFindHoleData attemptFindHoleData=new AttemptFindHoleData();
@@ -134,6 +174,7 @@ public class Fragment_View_Hole extends Fragment {
                 Fragment_View_Field fvf=new Fragment_View_Field();
                 final Bundle bundle = new Bundle();
                 bundle.putString("id", db_id_campo);
+                bundle.putString("creador", db_creador);
                 fvf.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
             }

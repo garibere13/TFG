@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -28,6 +30,7 @@ public class Fragment_View_Favourites extends Fragment {
     String[] id_campo;
     String[] nombre_campo;
     String[] nombre_completo;
+    String[] nombre_creador;
 
     ArrayAdapter<String> adapter;
 
@@ -62,11 +65,19 @@ public class Fragment_View_Favourites extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+
+
+                Toast.makeText(getActivity().getApplicationContext(), nombre_creador[position], Toast.LENGTH_LONG).show();
+
+
+
                 FragmentManager fm=getActivity().getSupportFragmentManager();
                 Fragment_View_Hole fvh=new Fragment_View_Hole();
                 final Bundle bundle = new Bundle();
                 bundle.putString("id_campo", id_campo[position]);
                 bundle.putString("nombre", nombre_hoyo[position]);
+                bundle.putString("creador", nombre_creador[position]);
                 fvh.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvh).commit();
 
@@ -105,6 +116,7 @@ public class Fragment_View_Favourites extends Fragment {
                 id_campo=new String[jsonArray.length()];
                 nombre_campo=new String[jsonArray.length()];
                 nombre_completo=new String[jsonArray.length()];
+                nombre_creador=new String[jsonArray.length()];
 
                 for (int i = 0; i < jsonArray.length(); i++)
                 {
@@ -113,6 +125,7 @@ public class Fragment_View_Favourites extends Fragment {
                     id_campo[i]=obj.getString("id_campo");
                     nombre_campo[i]=obj.getString("nombre_campo");
                     nombre_completo[i]=nombre_campo[i]+" ("+nombre_hoyo[i]+")";
+                    nombre_creador[i]=obj.getString("creador");
                 }
                 adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1, nombre_completo);
                 lv.setAdapter(adapter);

@@ -24,17 +24,17 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int discard = 0x7f09005f;
-        public static final int image = 0x7f090099;
-        public static final int rotateLeft = 0x7f0900f2;
-        public static final int rotateRight = 0x7f0900f3;
-        public static final int save = 0x7f0900f5;
+        public static final int discard = 0x7f090061;
+        public static final int image = 0x7f09009e;
+        public static final int rotateLeft = 0x7f090100;
+        public static final int rotateRight = 0x7f090101;
+        public static final int save = 0x7f090103;
     }
     public static final class layout {
         private layout() {}
 
         public static final int cropimage = 0x7f0c0022;
-        public static final int main = 0x7f0c003f;
+        public static final int main = 0x7f0c0040;
     }
     public static final class string {
         private string() {}

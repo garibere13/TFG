@@ -145,8 +145,12 @@ public class Fragment_Edit_Field extends Fragment {
             public void onClick(View v) {
 
                 FragmentManager fm=getActivity().getSupportFragmentManager();
-                Fragment_View_Profile fvp=new Fragment_View_Profile();
-                fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
+                Fragment_View_Field fvf=new Fragment_View_Field();
+                final Bundle bundle = new Bundle();
+                bundle.putString("id", _id);
+                bundle.putString("creador", _creador);
+                fvf.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
             }
         });
 
