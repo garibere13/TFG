@@ -137,7 +137,7 @@
                 if($inserted == 1)
                 {
                     $json['success'] = 1;
-                    $json['message'] = "¡Usuario modificado!";                    
+                    $json['message'] = "Campo modificado!";                    
                 }
                 else
                 {                    

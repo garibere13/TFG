@@ -172,13 +172,40 @@
             return false;
         }
 
+        public function editHole($id_campo, $nombre_hoyo, $descripcion, $metros, $par)
+        {                
+            $query = "UPDATE ".$this->db_table." SET descripcion='$descripcion', metros=$metros, par=$par WHERE id_campo=$id_campo and nombre='$nombre_hoyo'";
+            $inserted = mysqli_query($this->db->getDb(), $query);
+               
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['message'] = "Hoyo modificado!";                    
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['message'] = "No se han podido realizar los cambios";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
+
 
         public function find_user_favourites($username)
         {
             
             $data = array();
-            $query = "SELECT f.nombre_hoyo, f.id_campo, c.nombre as nombre_campo, f.username FROM favoritos f, campos c WHERE f.username='$username' and f.id_campo=c.id";
+            //$query = "SELECT f.nombre_hoyo, f.id_campo, c.nombre as nombre_campo, f.username FROM favoritos f, campos c WHERE f.username='$username' and f.id_campo=c.id";
+            $query = "SELECT f.nombre_hoyo, f.id_campo, c.nombre as nombre_campo, f.username, h.creador
+
+            FROM favoritos f, campos c, hoyos h
             
+            WHERE f.username='$username' 
+            and f.id_campo=c.id
+            and h.nombre=f.nombre_hoyo
+            and h.id_campo=f.id_campo";
+
             
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {
@@ -188,7 +215,8 @@
                     [
                         'nombre_hoyo'=>$row['nombre_hoyo'],
                         'id_campo'=>$row['id_campo'],
-                        'nombre_campo'=>$row['nombre_campo']
+                        'nombre_campo'=>$row['nombre_campo'],
+                        'creador'=>$row['creador']
                     ];
                         array_push($data, $temp);
                 }     
