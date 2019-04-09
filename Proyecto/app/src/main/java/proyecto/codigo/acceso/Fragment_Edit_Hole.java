@@ -54,7 +54,7 @@ public class Fragment_Edit_Hole extends Fragment {
     String _metros;
     String _par;
     String _creador;
-    //String _url;
+    String _url;
 
     Button registrar_button;
     Button cancelar_button;
@@ -94,7 +94,7 @@ public class Fragment_Edit_Hole extends Fragment {
         _metros=bundle.getString("metros");
         _par=bundle.getString("par");
         _creador=bundle.getString("creador");
-        //_url=bundle.getString("url");
+        _url=bundle.getString("url");
 
         v=inflater.inflate(R.layout.signupscreen_hole_edit, container, false);
 
@@ -115,10 +115,10 @@ public class Fragment_Edit_Hole extends Fragment {
         metros.setText(_metros);
         par.setText(_par);
 
-        /*if(_url!="null")
+        if(_url!="null")
         {
             Picasso.get().load(_url).into(image);
-        }*/
+        }
 
 
         String state = Environment.getExternalStorageState();

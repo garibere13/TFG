@@ -141,7 +141,6 @@ public class Fragment_View_Field extends Fragment {
                         bundle.putString("url", db_url);
                         fef.setArguments(bundle);
                         fm.beginTransaction().replace(R.id.contenedor, fef).commit();
-
                     }
                 });
 

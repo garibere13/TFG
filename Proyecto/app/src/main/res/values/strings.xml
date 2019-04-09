@@ -66,10 +66,10 @@
 
     <!--
 
+ <string name="ip_config">10.202.1.117</string>
 
-        <string name="ip_config">192.168.1.40</string>
       -->
-    <string name="ip_config">10.202.1.117</string>
+    <string name="ip_config">192.168.1.40</string>
 
 
 

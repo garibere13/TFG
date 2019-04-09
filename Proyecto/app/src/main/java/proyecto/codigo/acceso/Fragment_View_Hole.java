@@ -126,7 +126,7 @@ public class Fragment_View_Hole extends Fragment {
                         bundle.putString("metros", db_metros);
                         bundle.putString("par", db_par);
                         bundle.putString("creador", creador);
-                        //bundle.putString("url", db_url);
+                        bundle.putString("url", db_url);
                         feh.setArguments(bundle);
                         fm.beginTransaction().replace(R.id.contenedor, feh).commit();
 
