@@ -24,7 +24,12 @@ import org.json.JSONObject;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.view.View.OnClickListener;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Fragment_View_Hole extends Fragment {
 
@@ -54,7 +59,7 @@ public class Fragment_View_Hole extends Fragment {
     public String db_descripcion;
     public String db_metros;
     public String db_par;
-    //public String db_url;
+    public String db_url;
     public String db_creador;
     public String  db_num_fotos;
     public String db_id_campo;
@@ -72,6 +77,7 @@ public class Fragment_View_Hole extends Fragment {
     public ClickableSpan clickableSpan_num_fotos;
 
     ImageButton ib_edit;
+    CircleImageView image;
 
 
 
@@ -105,6 +111,7 @@ public class Fragment_View_Hole extends Fragment {
                 tv_fecha=v.findViewById(R.id.my_view_hole_date);
                 tv_fotos=v.findViewById(R.id.my_hole_number_fotos);
                 button_favourite=v.findViewById(R.id.my_togglebutton_hole_favourite);
+                image=v.findViewById(R.id.my_hole_profile_image);
 
                 ib_edit.setOnClickListener(new View.OnClickListener() {
 
@@ -136,6 +143,7 @@ public class Fragment_View_Hole extends Fragment {
                 tv_fecha=v.findViewById(R.id.view_hole_date);
                 tv_fotos=v.findViewById(R.id.hole_number_fotos);
                 button_favourite=v.findViewById(R.id.togglebutton_hole_favourite);
+                image=v.findViewById(R.id.hole_profile_image);
             }
 
 
@@ -317,6 +325,7 @@ public class Fragment_View_Hole extends Fragment {
                     db_date_dia = obj.getString("dia");
                     db_creador = obj.getString("creador");
                     db_num_fotos = obj.getString("num_fotos");
+                    db_url = obj.getString("url");
                 }
 
                     tv_metros.setText(db_metros);
@@ -342,6 +351,13 @@ public class Fragment_View_Hole extends Fragment {
                     tv_fotos.setText(ss_num_fotos);
                     tv_fotos.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_fotos.setHighlightColor(Color.TRANSPARENT);
+
+
+
+                if(db_url!="null")
+                {
+                    Picasso.get().load(db_url).into(image);
+                }
             }
             catch (JSONException e)
             {

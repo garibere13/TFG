@@ -16,13 +16,13 @@
         $nombre_hoyo = $_POST['nombre_hoyo'];
         $id_campo = $_POST['id_campo'];
 
-        $sql = "SELECT * FROM fotos where id_campo=$id_campo and nombre_hoyo='$nombre_hoyo'";
+        $sql = "SELECT * FROM fotos where id_campo=$id_campo and nombre_hoyo='$nombre_hoyo' and isProfile=false";
     }
     else if(isset($_POST['id_campo']))
     {
         $id_campo = $_POST['id_campo'];
 
-        $sql = "SELECT * FROM fotos where id_campo=$id_campo";
+        $sql = "SELECT * FROM fotos where id_campo=$id_campo and isProfile=false";
     }
     else
     {

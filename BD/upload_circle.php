@@ -69,36 +69,27 @@
                      move_uploaded_file($_FILES['image']['tmp_name'], $file_path);
                      
                      
-                    /* if(isset($_POST['nombre_hoyo']))
+                     if(isset($_POST['nombre_hoyo']) && isset($_POST['id_campo']))
                      {
-                         $sql = "INSERT INTO fotos (id, url, comentario, username, id_campo, nombre_hoyo) VALUES (NULL, '$file_url', '$comentario', '$username', $id_campo, '$nombre_hoyo');";
+                      
+                        $sql = "delete from fotos where isProfile=true and id_campo=$id_campo and nombre_hoyo='$nombre_hoyo'"; 
+                        mysqli_query($con, $sql);
+                      
+                        $sql = "INSERT INTO fotos (id, url, isProfile, id_campo, nombre_hoyo) VALUES (NULL, '$file_url', true, $id_campo, '$nombre_hoyo');";
                          if(mysqli_query($con, $sql))
                              {
                                  //filling response array with values 
+                                
                                  $response['error'] = false; 
                                  $response['url'] = $file_url; 
-                                 $response['comentario'] = $comentario;
-                                 $response['username'] = $username;
+                                 $response['isProfile'] = $isProfile;
                                  $response['id_campo'] = $id_campo;
                                  $response['nombre_hoyo'] = $nombre_hoyo;
                              }
-                     }*/
+                     }
  
-                     if(isset($_POST['id_campo']))
+                     else if(isset($_POST['id_campo']))
                      {
-                         /*$sql = "INSERT INTO fotos (id, url, comentario, username, id_campo) VALUES (NULL, '$file_url', '$comentario', '$username', $id_campo);";
-                         if(mysqli_query($con, $sql))
-                         {
-                             //filling response array with values 
-                             $response['error'] = false; 
-                             $response['url'] = $file_url; 
-                             $response['comentario'] = $comentario;
-                             $response['username'] = $username;
-                             $response['id_campo'] = $id_campo;
-                         }*/
-
-
-
                          $sql = "delete from fotos where isProfile=true and id_campo=$id_campo"; 
                          mysqli_query($con, $sql);
                         

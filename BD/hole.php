@@ -68,7 +68,15 @@
         {
             
             $data = array();
-            $query = "SELECT count(f.id_campo) as num_fotos, h.nombre as nombre_hoyo, h.id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo FROM fotos f, hoyos h, campos c WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id and f.id_campo=$id_campo and f.nombre_hoyo='$nombre'";
+
+            $query = "SELECT f.url as url, (SELECT count(f.id_campo) as num_fotos FROM fotos f WHERE f.id_campo=$id_campo and f.nombre_hoyo='$nombre' and f.isProfile=false Limit 1) as num_fotos, h.nombre as nombre_hoyo, h.id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo 
+
+            FROM fotos f, hoyos h, campos c
+            
+            WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id 
+            and url= (SELECT f1.url as url FROM fotos f1 WHERE f1.id_campo=$id_campo and f1.nombre_hoyo='$nombre' and f1.isProfile=true Limit 1)
+            
+            Limit 1";
                         
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {
@@ -86,7 +94,8 @@
                         'anyo'=>$row['anyo'],
                         'mes'=>$row['mes'],
                         'dia'=>$row['dia'],
-                        'num_fotos'=>$row['num_fotos']
+                        'num_fotos'=>$row['num_fotos'],
+                        'url'=>$row['url']
                     ];
                         array_push($data, $temp);
                 }     

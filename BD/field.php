@@ -86,7 +86,7 @@
         }
 
         public function find_field_data($id)
-        {
+        {            
             $data = array();            
             $query = "SELECT f1.url as url, count(f.id_campo) as num_fotos, c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo 
             FROM fotos f, fotos f1, campos c , municipios m, provincias p 
@@ -97,6 +97,7 @@
             and f.isProfile=false
             and f1.id_campo=$id
             and f1.isProfile=true
+            and f1.nombre_hoyo is null
                  Limit 1";
 
            if($stmt = mysqli_query($this->db->getDb(), $query))

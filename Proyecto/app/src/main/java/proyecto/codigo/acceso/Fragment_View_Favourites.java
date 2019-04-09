@@ -65,13 +65,6 @@ public class Fragment_View_Favourites extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-
-
-                Toast.makeText(getActivity().getApplicationContext(), nombre_creador[position], Toast.LENGTH_LONG).show();
-
-
-
                 FragmentManager fm=getActivity().getSupportFragmentManager();
                 Fragment_View_Hole fvh=new Fragment_View_Hole();
                 final Bundle bundle = new Bundle();
