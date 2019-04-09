@@ -21,6 +21,6 @@
     if(!empty($id_campo) && !empty($nombre))
     {  
         $json_registration = $holeObject->checkHoleExists($id_campo, $nombre);
-        echo json_encode($json_registration);        
+        echo json_encode($json_registration);  
     }
 ?>

@@ -41,6 +41,14 @@
             {
                 $json['success'] = 1;
                 $json['message'] = "EZIN DA SORTU";
+      
+                $query = "select creador from ".$this->db_table." where nombre = '$nombre' AND id_campo = $id_campo Limit 1";
+                $creador = mysqli_query($this->db->getDb(), $query);
+                while($row = mysqli_fetch_assoc($creador))
+                {
+                    $json['creador'] = $row['creador'];
+                }
+                mysqli_close($this->db->getDb());                
             }
             else
             {
@@ -56,7 +64,7 @@
             $result = mysqli_query($this->db->getDb(), $query);            
             if(mysqli_num_rows($result) > 0)
             {                
-                mysqli_close($this->db->getDb());
+                
                 return true;
             }            
             mysqli_close($this->db->getDb());
@@ -69,14 +77,32 @@
             
             $data = array();
 
-            $query = "SELECT f.url as url, (SELECT count(f.id_campo) as num_fotos FROM fotos f WHERE f.id_campo=$id_campo and f.nombre_hoyo='$nombre' and f.isProfile=false Limit 1) as num_fotos, h.nombre as nombre_hoyo, h.id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo 
+            
+            
+            $query = "SELECT f1.url as url FROM fotos f1 WHERE f1.id_campo=$id_campo and f1.nombre_hoyo='$nombre' and f1.isProfile=true Limit 1";
+            $result = mysqli_query($this->db->getDb(), $query);  
+            if(mysqli_num_rows($result) > 0)
+            {                
 
-            FROM fotos f, hoyos h, campos c
-            
-            WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id 
-            and url= (SELECT f1.url as url FROM fotos f1 WHERE f1.id_campo=$id_campo and f1.nombre_hoyo='$nombre' and f1.isProfile=true Limit 1)
-            
-            Limit 1";
+                $query = "SELECT f.url as url, (SELECT count(f.id_campo) as num_fotos FROM fotos f WHERE f.id_campo=$id_campo and f.nombre_hoyo='$nombre' and f.isProfile=false Limit 1) as num_fotos, h.nombre as nombre_hoyo, h.id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo 
+
+                FROM fotos f, hoyos h, campos c
+                
+                WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id 
+                and url= (SELECT f1.url as url FROM fotos f1 WHERE f1.id_campo=$id_campo and f1.nombre_hoyo='$nombre' and f1.isProfile=true Limit 1)
+                
+                Limit 1";
+            }
+            else
+            {
+                $query = "SELECT null as url, (SELECT count(f.id_campo) as num_fotos FROM fotos f WHERE f.id_campo=$id_campo and f.nombre_hoyo='$nombre' and f.isProfile=false Limit 1) as num_fotos, h.nombre as nombre_hoyo, h.id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, c.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo 
+
+                FROM fotos f, hoyos h, campos c
+                
+                WHERE h.id_campo=$id_campo and h.nombre='$nombre' and h.id_campo = c.id 
+                
+                Limit 1";
+            }
                         
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {
@@ -205,7 +231,6 @@
         {
             
             $data = array();
-            //$query = "SELECT f.nombre_hoyo, f.id_campo, c.nombre as nombre_campo, f.username FROM favoritos f, campos c WHERE f.username='$username' and f.id_campo=c.id";
             $query = "SELECT f.nombre_hoyo, f.id_campo, c.nombre as nombre_campo, f.username, h.creador
 
             FROM favoritos f, campos c, hoyos h

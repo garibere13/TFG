@@ -30,6 +30,7 @@ public class Fragment_View_Field_Holes extends Fragment {
 
     String db_nombre;
     String db_id_campo;
+    String db_creador;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -102,6 +103,7 @@ public class Fragment_View_Field_Holes extends Fragment {
             {
                 if(result != null)
                 {
+
                     if(result.getString("success")=="0")
                     {
                         FragmentManager fm=getActivity().getSupportFragmentManager();
@@ -114,11 +116,14 @@ public class Fragment_View_Field_Holes extends Fragment {
                     }
                     else
                     {
+                        db_creador=result.getString("creador");
+
                         FragmentManager fm=getActivity().getSupportFragmentManager();
                         Fragment_View_Hole fvh=new Fragment_View_Hole();
                         final Bundle bundle = new Bundle();
                         bundle.putString("id_campo", db_id_campo);
                         bundle.putString("nombre", db_nombre);
+                        bundle.putString("creador", db_creador);
                         fvh.setArguments(bundle);
                         fm.beginTransaction().replace(R.id.contenedor, fvh).commit();
                     }

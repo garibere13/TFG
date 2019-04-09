@@ -11,6 +11,7 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,6 +99,9 @@ public class Fragment_View_Hole extends Fragment {
             id_campo=bundle.getString("id_campo");
             nombre_hoyo=bundle.getString("nombre");
             creador=bundle.getString("creador");
+
+            Log.d("$$$$$$$$$$$$", id_campo+"  "+nombre_hoyo+"  "+creador);
+
             username=((MainActivity)getActivity()).username;
 
             if(creador.equals(username))
@@ -337,6 +341,11 @@ public class Fragment_View_Hole extends Fragment {
                     tv_creator.append(ss_creador);
                     tv_creator.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_creator.setHighlightColor(Color.TRANSPARENT);
+
+
+                Log.d("$$$$$$$$$$$$", db_nombre_campo);
+
+
 
                     ss_campo = new SpannableString(db_nombre_campo);
                     ss_campo.setSpan(clickableSpan_campo, 0, ss_campo.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

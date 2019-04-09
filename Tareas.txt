@@ -7,11 +7,10 @@ descripción de un campo/hoyo?¿? --> qué hacer?
 
 
 
-
-
-de la lista de hoyos (no de la lista de favoritos) que vaya al perfil del hoyo ya existente
-
 al crear un hoyo nuevo, una vez creado que vaya al perfil
+
+probar que si no hay fotos de usuario o campo en la bbdd que no pete al leer de bbdd los datos referentes
+
 
 
 
