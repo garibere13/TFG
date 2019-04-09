@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -154,9 +155,14 @@ public class Fragment_Create_Hole extends Fragment {
         {
             Toast.makeText(getActivity().getApplicationContext(),"Hoyo registrado correctamente",Toast.LENGTH_LONG).show();
 
-            Intent ma = new Intent(getActivity(), MainActivity.class);
-            ma.putExtra("username", username);
-            startActivity(ma);
+            FragmentManager fm=getActivity().getSupportFragmentManager();
+            Fragment_View_Hole fvh=new Fragment_View_Hole();
+            final Bundle bundle = new Bundle();
+            bundle.putString("id_campo", Integer.toString(id_campo));
+            bundle.putString("nombre", nombre);
+            bundle.putString("creador", username);
+            fvh.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor, fvh).commit();
         }
     }
 

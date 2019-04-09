@@ -51,8 +51,8 @@
       <file leaf-file-name="Fragment_View_Hole.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Hole.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="367" column="59" lean-forward="true" selection-start-line="367" selection-start-column="59" selection-end-line="367" selection-end-column="59" />
+            <state relative-caret-position="200">
+              <caret line="301" column="57" lean-forward="true" selection-start-line="301" selection-start-column="57" selection-end-line="301" selection-end-column="57" />
               <folding>
                 <element signature="e#2469#2513#0" expanded="true" />
                 <element signature="e#3913#4841#0" expanded="true" />
@@ -61,18 +61,11 @@
                 <element signature="e#8924#8925#0" expanded="true" />
                 <element signature="e#9388#9403#0" expanded="true" />
                 <element signature="e#10823#10838#0" expanded="true" />
+                <element signature="e#13857#14980#0" />
                 <element signature="e#14376#14391#0" expanded="true" />
+                <element signature="e#15075#16198#0" />
                 <element signature="e#15594#15609#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Fragment_View_Field_Holes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field_Holes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="119" selection-start-line="119" selection-end-line="119" />
             </state>
           </provider>
         </entry>
@@ -3321,6 +3314,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_Edit_Hole.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field_Holes.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Hole.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_Create_Hole.java" />
       </list>
     </option>
   </component>
@@ -3507,7 +3501,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" />
@@ -3520,11 +3514,11 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="7" visible="true" weight="0.4659864" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="7" visible="true" weight="0.25340137" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980484" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24980484" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.19217686" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -3585,7 +3579,9 @@
             <element signature="e#8924#8925#0" expanded="true" />
             <element signature="e#9388#9403#0" expanded="true" />
             <element signature="e#10823#10838#0" expanded="true" />
+            <element signature="e#13857#14980#0" />
             <element signature="e#14376#14391#0" expanded="true" />
+            <element signature="e#15075#16198#0" />
             <element signature="e#15594#15609#0" expanded="true" />
           </folding>
         </state>
@@ -3610,7 +3606,9 @@
             <element signature="e#8924#8925#0" expanded="true" />
             <element signature="e#9388#9403#0" expanded="true" />
             <element signature="e#10823#10838#0" expanded="true" />
+            <element signature="e#13857#14980#0" />
             <element signature="e#14376#14391#0" expanded="true" />
+            <element signature="e#15075#16198#0" />
             <element signature="e#15594#15609#0" expanded="true" />
           </folding>
         </state>
@@ -3894,13 +3892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_Create_Hole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="106" column="17" lean-forward="true" selection-start-line="106" selection-start-column="17" selection-end-line="106" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Profile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="519">
@@ -3997,13 +3988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Favourites.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="68" column="61" selection-start-line="68" selection-start-column="43" selection-end-line="68" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/text/SpannableString.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -4025,10 +4009,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Favourites.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-227">
+          <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_Create_Hole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="165" column="9" lean-forward="true" selection-start-line="165" selection-start-column="9" selection-end-line="165" selection-end-column="9" />
+          <folding>
+            <element signature="e#1442#1486#0" expanded="true" />
+            <element signature="e#1902#2157#0" expanded="true" />
+            <element signature="e#2156#2157#0" expanded="true" />
+            <element signature="e#2204#3922#0" expanded="true" />
+            <element signature="e#2543#2566#0" expanded="true" />
+            <element signature="e#3921#3922#0" expanded="true" />
+            <element signature="e#4493#4508#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Hole.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="367" column="59" lean-forward="true" selection-start-line="367" selection-start-column="59" selection-end-line="367" selection-end-column="59" />
+        <state relative-caret-position="200">
+          <caret line="301" column="57" lean-forward="true" selection-start-line="301" selection-start-column="57" selection-end-line="301" selection-end-column="57" />
           <folding>
             <element signature="e#2469#2513#0" expanded="true" />
             <element signature="e#3913#4841#0" expanded="true" />
@@ -4037,7 +4044,9 @@
             <element signature="e#8924#8925#0" expanded="true" />
             <element signature="e#9388#9403#0" expanded="true" />
             <element signature="e#10823#10838#0" expanded="true" />
+            <element signature="e#13857#14980#0" />
             <element signature="e#14376#14391#0" expanded="true" />
+            <element signature="e#15075#16198#0" />
             <element signature="e#15594#15609#0" expanded="true" />
           </folding>
         </state>
