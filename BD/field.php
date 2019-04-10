@@ -88,17 +88,31 @@
         public function find_field_data($id)
         {            
             $data = array();            
-            $query = "SELECT f1.url as url, count(f.id_campo) as num_fotos, c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo 
-            FROM fotos f, fotos f1, campos c , municipios m, provincias p 
-            WHERE c.id=$id
-            and c.cod_pueblo = m.id_municipio 
-            and m.id_provincia=p.id_provincia 
-            and f.id_campo=$id
-            and f.isProfile=false
-            and f1.id_campo=$id
-            and f1.isProfile=true
-            and f1.nombre_hoyo is null
-                 Limit 1";
+           
+
+                 $query = "SELECT f1.url as url FROM fotos f1 WHERE f1.id_campo=$id and f1.isProfile=true Limit 1";
+                 $result = mysqli_query($this->db->getDb(), $query);  
+                 if(mysqli_num_rows($result) > 0)
+                 {                
+                     $query = "SELECT f.url as url, (SELECT count(f.id_campo) as num_fotos FROM fotos f WHERE f.id_campo=$id and f.isProfile=false Limit 1) as num_fotos, c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo 
+                     FROM fotos f, campos c , municipios m, provincias p 
+                     WHERE c.id=$id
+                     and c.cod_pueblo = m.id_municipio 
+                     and m.id_provincia=p.id_provincia 
+                     and url=(SELECT f1.url as url FROM fotos f1 WHERE f1.id_campo=$id and f1.isProfile=true Limit 1)
+                          Limit 1";
+                 }
+                 else
+                 {
+                    $query = "SELECT null as url, (SELECT count(f.id_campo) as num_fotos FROM fotos f WHERE f.id_campo=$id and f.isProfile=false Limit 1) as num_fotos, c.valoracion, descripcion, c.id as id_campo ,c.nombre as nombre_campo, provincia, m.nombre as pueblo, num_hoyos, latitud, longitud, creador, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo 
+                    FROM fotos f, campos c , municipios m, provincias p 
+                    WHERE c.id=$id
+                    and c.cod_pueblo = m.id_municipio 
+                    and m.id_provincia=p.id_provincia 
+                         Limit 1";
+                 }
+
+
 
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {        
@@ -128,6 +142,31 @@
             }
             mysqli_close($this->db->getDb());           
         }
+
+
+        public function open_field($username, $latitud, $longitud)
+        {            
+            $data = array();            
+           
+
+            $query = "SELECT id from campos where creador='$username' and latitud=$latitud and longitud=$longitud";
+                 
+
+           if($stmt = mysqli_query($this->db->getDb(), $query))
+            {        
+                while($row = mysqli_fetch_assoc($stmt))
+                {  
+                    $temp = 
+                    [
+                        'id'=>$row['id']
+                    ];
+                        array_push($data, $temp);
+                }     
+                echo json_encode($data);   
+            }
+            mysqli_close($this->db->getDb());           
+        }
+
 
 
         public function editField($id, $nombre, $descripcion, $num_hoyos)

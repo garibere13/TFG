@@ -1,10 +1,15 @@
 package proyecto.codigo.acceso;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.content.Intent;
+
+import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.NameValuePair;
@@ -56,6 +63,7 @@ public class Fragment_Create_Field extends Fragment {
     String ip_config;
     String URL;
     String URL1;
+    String URL2;
 
     String[] towns_id;
     String[] towns_name;
@@ -63,6 +71,9 @@ public class Fragment_Create_Field extends Fragment {
     JSONParser jsonParser=new JSONParser();
 
     public boolean is_pueblo_selected=false;
+
+
+    public String db_id_campo;
 
 
     @Override
@@ -77,6 +88,7 @@ public class Fragment_Create_Field extends Fragment {
 
         URL="http://"+ip_config+"/TFG/BD/find-towns.php";
         URL1="http://"+ip_config+"/TFG/BD/create-field.php";
+        URL2="http://"+ip_config+"/TFG/BD/open-field.php";
 
         nombre=v.findViewById(R.id.signup_field_name_text);
         descripcion=v.findViewById(R.id.signup_field_des_text);
@@ -162,7 +174,7 @@ public class Fragment_Create_Field extends Fragment {
                 {
                     Toast.makeText(getActivity().getApplicationContext(), "La descripción debe tener entre 2 y 250 caracteres", Toast.LENGTH_LONG).show();
                 }
-                else if(latitud==0.0 || longitud==0.0)
+                else if(latitud==null || longitud==null || latitud==0.0 || longitud==0.0)
                 {
                     Toast.makeText(getActivity().getApplicationContext(), "Seleccione una ubicación en el mapa", Toast.LENGTH_LONG).show();
                 }
@@ -223,9 +235,70 @@ public class Fragment_Create_Field extends Fragment {
         {
             Toast.makeText(getActivity().getApplicationContext(),"Campo registrado correctamente",Toast.LENGTH_LONG).show();
 
-            Intent ma = new Intent(getActivity(), MainActivity.class);
+            /*Intent ma = new Intent(getActivity(), MainActivity.class);
             ma.putExtra("username", username);
             startActivity(ma);
+
+            FragmentManager fm=getActivity().getSupportFragmentManager();
+            Fragment_View_Field fvf=new Fragment_View_Field();
+            final Bundle bundle = new Bundle();
+            bundle.putString("id", db_id_campo);
+            bundle.putString("creador", username);
+            fvf.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor, fvf).commit();*/
+
+            AttemptOpenField attemptOpenField = new AttemptOpenField();
+            attemptOpenField.execute();
+        }
+    }
+
+
+    private class AttemptOpenField extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        //@Override
+        protected String doInBackground(String... args) {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("username", username));
+            params.add(new BasicNameValuePair("latitud", Double.toString(latitud)));
+            params.add(new BasicNameValuePair("longitud", Double.toString(longitud)));
+            String json = jsonParser.makeHttpRequestString(URL2, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            try
+            {
+                JSONArray jsonArray = new JSONArray(result);
+
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    db_id_campo = obj.getString("id");
+                }
+
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+            FragmentManager fm=getActivity().getSupportFragmentManager();
+            Fragment_View_Field fvf=new Fragment_View_Field();
+            final Bundle bundle = new Bundle();
+            bundle.putString("id", db_id_campo);
+            bundle.putString("creador", username);
+            fvf.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
+
         }
     }
 

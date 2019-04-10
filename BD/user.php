@@ -103,21 +103,7 @@
         public function find_username_data($username)
         {
             $data = array();
-           /* $query = "SELECT f1.url as url, count(f.url)as num_fotos, nombre, apellido1, apellido2, u.username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap from usuarios u, fotos f, fotos f1 where 
-            u.username='$username' 
-            and f.username='$username' 
-            and f.id_campo is null 
-            and f.nombre_hoyo is null 
-            and f.isProfile=false
-            and f1.username='$username'
-            and f1.isProfile=true
-            Limit 1";*/
-
-
-
-
-
-
+       
             $query = "SELECT f1.url as url FROM fotos f1 WHERE f1.username='$username' and f1.isProfile=true Limit 1";
             $result = mysqli_query($this->db->getDb(), $query);  
             if(mysqli_num_rows($result) > 0)

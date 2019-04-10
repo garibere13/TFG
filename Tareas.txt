@@ -6,11 +6,6 @@ descripción de un campo/hoyo?¿? --> qué hacer?
 
 
 
-probar que si no hay fotos de usuario o campo en la bbdd que no pete al leer de bbdd los datos referentes --> usar estructura de hoyo
-
-
-
-
 notificaciones
 
 hacer amigos
