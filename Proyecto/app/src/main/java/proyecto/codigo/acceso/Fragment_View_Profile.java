@@ -238,9 +238,9 @@ public class Fragment_View_Profile extends Fragment {
                     tv_fotos.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_fotos.setHighlightColor(Color.TRANSPARENT);
 
-
                 if(db_url!="null")
                 {
+                    db_url="http://"+ip_config+db_url;
                     Picasso.get().load(db_url).into(image);
                 }
 

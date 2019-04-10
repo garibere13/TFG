@@ -77,8 +77,6 @@
             
             $data = array();
 
-            
-            
             $query = "SELECT f1.url as url FROM fotos f1 WHERE f1.id_campo=$id_campo and f1.nombre_hoyo='$nombre' and f1.isProfile=true Limit 1";
             $result = mysqli_query($this->db->getDb(), $query);  
             if(mysqli_num_rows($result) > 0)

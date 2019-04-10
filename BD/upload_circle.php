@@ -10,8 +10,17 @@
          $server_ip = gethostbyname(gethostname());
          
          //creating the upload url 
-         $upload_url = 'http://'.$server_ip.'/TFG/BD/'.$upload_path; 
+         //$upload_url = 'http://'.$server_ip.'/TFG/BD/'.$upload_path; 
          
+        
+         $upload_url = '/TFG/BD/'.$upload_path; 
+
+
+         //echo $upload_url;
+
+
+        
+
          //response array 
          $response = array(); 
   

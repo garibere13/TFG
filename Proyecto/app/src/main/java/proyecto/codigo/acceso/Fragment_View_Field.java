@@ -341,6 +341,7 @@ public class Fragment_View_Field extends Fragment {
 
                 if(db_url!="null")
                 {
+                    db_url="http://"+ip_config+db_url;
                     Picasso.get().load(db_url).into(image);
                 }
             }

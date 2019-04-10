@@ -3,6 +3,7 @@ package proyecto.codigo.acceso;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.GridView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.ProgressDialog;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,7 +61,6 @@ public class Fragment_View_Images extends Fragment {
         URL="http://"+ip_config+"/TFG/BD/getImages.php";
 
         tipo=bundle.getString("tipo");
-
 
 
 
@@ -259,11 +261,15 @@ public class Fragment_View_Images extends Fragment {
 
 
     private void showGrid(JSONArray jsonArray){
+
+        String aux;
+
         for(int i = 0; i<jsonArray.length(); i++){
             JSONObject obj = null;
             try {
                 obj = jsonArray.getJSONObject(i);
-                images.add(obj.getString(TAG_IMAGE_URL));
+                aux="http://"+ip_config+obj.getString(TAG_IMAGE_URL);
+                images.add(aux);
                 comentarios.add(obj.getString(TAG_COMENTARIO));
             } catch (JSONException e) {
                 e.printStackTrace();
