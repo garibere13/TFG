@@ -16,19 +16,19 @@ public final class R {
         public static final int btn_crop_pressed = 0x7f08005e;
         public static final int camera_crop_height = 0x7f080060;
         public static final int camera_crop_width = 0x7f080061;
-        public static final int ic_rotate_left = 0x7f08008f;
-        public static final int ic_rotate_right = 0x7f080090;
-        public static final int indicator_autocrop = 0x7f080091;
-        public static final int selector_crop_button = 0x7f0800ab;
+        public static final int ic_rotate_left = 0x7f080090;
+        public static final int ic_rotate_right = 0x7f080091;
+        public static final int indicator_autocrop = 0x7f080092;
+        public static final int selector_crop_button = 0x7f0800ac;
     }
     public static final class id {
         private id() {}
 
         public static final int discard = 0x7f090062;
         public static final int image = 0x7f09009f;
-        public static final int rotateLeft = 0x7f090103;
-        public static final int rotateRight = 0x7f090104;
-        public static final int save = 0x7f090106;
+        public static final int rotateLeft = 0x7f090104;
+        public static final int rotateRight = 0x7f090105;
+        public static final int save = 0x7f090107;
     }
     public static final class layout {
         private layout() {}

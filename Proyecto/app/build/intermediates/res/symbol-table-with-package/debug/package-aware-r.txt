@@ -1218,6 +1218,7 @@ drawable googleg_standard_color_18
 drawable gradientbackground_field
 drawable gradientbackground_hole
 drawable gradientbackground_profile
+drawable home
 drawable ic_launcher
 drawable ic_menu_camera
 drawable ic_menu_gallery
@@ -1482,6 +1483,7 @@ id my_togglebutton_hole_favourite
 id my_view_hole_date
 id nav_create_field
 id nav_find_friend
+id nav_home
 id nav_logout
 id nav_ver_mapa
 id nav_view

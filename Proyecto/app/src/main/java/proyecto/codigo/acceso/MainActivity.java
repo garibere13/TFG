@@ -1,5 +1,6 @@
 package proyecto.codigo.acceso;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -52,17 +53,23 @@ public class MainActivity extends AppCompatActivity
     TextView user;
     CircleImageView image;
 
+    String home_user;
+
 
     JSONParser jsonParser=new JSONParser();
     String URL;
+    String URL1;
     String ip_config;
     public String db_url;
+    public String db_nuevos_seguidores;
 
     protected void onCreate(Bundle savedInstanceState) {
 
         username=getIntent().getExtras().getString("username");
+        home_user=username;
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/find-username-data.php";
+        URL1="http://"+ip_config+"/TFG/BD/find-friendship-request.php";
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -72,6 +79,9 @@ public class MainActivity extends AppCompatActivity
 
         AttemptFindUsernameData attemptFindData=new AttemptFindUsernameData();
         attemptFindData.execute(username);
+
+        AttemptFindFriendshipRequest attemptFindFriendshipRequest=new AttemptFindFriendshipRequest();
+        attemptFindFriendshipRequest.execute(username);
 
         FloatingActionButton fab=findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +157,13 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fm=getSupportFragmentManager();
 
+        if (id == R.id.nav_home)
+        {
+            Intent ma = new Intent(this, MainActivity.class);
+            ma.putExtra("username", home_user);
+            startActivity(ma);
+            finish();
+        }
         if (id == R.id.nav_ver_mapa)
         {
             fm.beginTransaction().replace(R.id.contenedor, new Fragment_View_Map()).commit();
@@ -321,6 +338,55 @@ public class MainActivity extends AppCompatActivity
             return dialog;
         }
     }
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    private class AttemptFindFriendshipRequest extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        //@Override
+        protected String doInBackground(String... args) {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("username", username));
+            String json = jsonParser.makeHttpRequestString(URL1, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            try
+            {
+                JSONArray jsonArray = new JSONArray(result);
+                db_nuevos_seguidores="";
+                String aux;
+
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    aux = obj.getString("origen");
+                    db_nuevos_seguidores=db_nuevos_seguidores+" // "+aux;
+                }
+
+                Toast.makeText(getApplicationContext(),db_nuevos_seguidores,Toast.LENGTH_LONG).show();
+
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
 
 
     /////////////////////////////////////////////////////////////////////////////////////////

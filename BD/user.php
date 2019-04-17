@@ -195,5 +195,31 @@
             }
             mysqli_close($this->db->getDb());           
         }
+
+
+
+
+        public function find_friendship_request($username)
+        {
+            $data = array();
+
+            $query = "SELECT origen FROM amistades WHERE destino='$username' and aceptado=false";
+            
+            if($stmt = mysqli_query($this->db->getDb(), $query))
+            {        
+                while($row = mysqli_fetch_assoc($stmt))
+                {  
+                    $temp = 
+                    [
+                        'origen'=>$row['origen']
+                    ];
+                        array_push($data, $temp);
+                }     
+                echo json_encode($data);   
+            }
+            mysqli_close($this->db->getDb());           
+        }
+
+
     }
 ?>
