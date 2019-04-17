@@ -26,9 +26,9 @@ public final class R {
 
         public static final int discard = 0x7f090061;
         public static final int image = 0x7f09009e;
-        public static final int rotateLeft = 0x7f090100;
-        public static final int rotateRight = 0x7f090101;
-        public static final int save = 0x7f090103;
+        public static final int rotateLeft = 0x7f090102;
+        public static final int rotateRight = 0x7f090103;
+        public static final int save = 0x7f090105;
     }
     public static final class layout {
         private layout() {}

@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Apr 09 22:43:35 CEST 2019
+#Wed Apr 17 14:28:04 CEST 2019
 1.base=C\:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 2.path=classes.dex
 0.baseType=DIRECTORY

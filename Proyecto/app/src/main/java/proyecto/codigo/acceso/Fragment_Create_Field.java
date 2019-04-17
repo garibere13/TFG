@@ -235,18 +235,6 @@ public class Fragment_Create_Field extends Fragment {
         {
             Toast.makeText(getActivity().getApplicationContext(),"Campo registrado correctamente",Toast.LENGTH_LONG).show();
 
-            /*Intent ma = new Intent(getActivity(), MainActivity.class);
-            ma.putExtra("username", username);
-            startActivity(ma);
-
-            FragmentManager fm=getActivity().getSupportFragmentManager();
-            Fragment_View_Field fvf=new Fragment_View_Field();
-            final Bundle bundle = new Bundle();
-            bundle.putString("id", db_id_campo);
-            bundle.putString("creador", username);
-            fvf.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.contenedor, fvf).commit();*/
-
             AttemptOpenField attemptOpenField = new AttemptOpenField();
             attemptOpenField.execute();
         }

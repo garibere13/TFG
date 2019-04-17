@@ -8,7 +8,7 @@ descripción de un campo/hoyo?¿? --> qué hacer?
 
 notificaciones
 
-hacer amigos
+hacer amigos --> al pulsar en seguidores o seguidos, listar esos usuarios
 
 hacer retos
 

@@ -74,3 +74,14 @@ derecha INT,
 abajo INT,
 FOREIGN KEY(username) REFERENCES usuarios(username)
 );
+
+
+
+CREATE TABLE amistades(
+   origen varchar(50),
+   destino varchar(50),
+   aceptado BIT,  
+   FOREIGN KEY (origen) REFERENCES usuarios(username),
+   FOREIGN KEY (destino) REFERENCES usuarios(username),
+   PRIMARY KEY (origen, destino)
+);

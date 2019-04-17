@@ -13,6 +13,7 @@ import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,9 @@ public class Fragment_View_Profile extends Fragment {
     TextView tv_fecha;
     ImageButton ib_edit;
     TextView tv_fotos;
+    TextView tv_seguidores;
+    TextView tv_siguiendo;
+    Button amistad;
 
     public String db_nombre;
     public String db_apellido1;
@@ -56,6 +60,8 @@ public class Fragment_View_Profile extends Fragment {
     public String db_handicap;
     public String db_num_fotos;
     public String db_url;
+    public String db_seguidores;
+    public String db_siguiendo;
 
     public  SpannableString ss_num_fotos;
     public ClickableSpan clickableSpan_num_fotos;
@@ -84,6 +90,8 @@ public class Fragment_View_Profile extends Fragment {
                 tv_puntuacion=v.findViewById(R.id.view_my_puntuacion);
                 tv_fecha=v.findViewById(R.id.view_my_date);
                 tv_fotos=v.findViewById(R.id.my_profile_fotos);
+                tv_seguidores=v.findViewById(R.id.my_profile_seguidores);
+                tv_siguiendo=v.findViewById(R.id.my_profile_siguiendo);
                 image=v.findViewById(R.id.my_profile_image);
 
                 ib_edit.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +122,10 @@ public class Fragment_View_Profile extends Fragment {
                 tv_puntuacion=v.findViewById(R.id.view_user_puntuacion);
                 tv_fecha=v.findViewById(R.id.view_user_date);
                 tv_fotos=v.findViewById(R.id.user_profile_fotos);
+                tv_seguidores=v.findViewById(R.id.user_profile_seguidores);
+                tv_siguiendo=v.findViewById(R.id.user_profile_siguiendo);
                 image=v.findViewById(R.id.user_profile_image);
+                amistad=v.findViewById(R.id.boton_amistad);
             }
         }
         else
@@ -127,6 +138,8 @@ public class Fragment_View_Profile extends Fragment {
             tv_puntuacion=v.findViewById(R.id.view_my_puntuacion);
             tv_fecha=v.findViewById(R.id.view_my_date);
             tv_fotos=v.findViewById(R.id.my_profile_fotos);
+            tv_seguidores=v.findViewById(R.id.my_profile_seguidores);
+            tv_siguiendo=v.findViewById(R.id.my_profile_siguiendo);
             image=v.findViewById(R.id.my_profile_image);
 
             ib_edit.setOnClickListener(new View.OnClickListener() {
@@ -224,6 +237,8 @@ public class Fragment_View_Profile extends Fragment {
                     db_handicap = obj.getString("handicap");
                     db_num_fotos = obj.getString("num_fotos");
                     db_url = obj.getString("url");
+                    db_seguidores = obj.getString("seguidores");
+                    db_siguiendo = obj.getString("siguiendo");
                 }
                     float f=Float.parseFloat(db_handicap);
                     String h=String.format(String.format("%.1f", f));
@@ -237,6 +252,9 @@ public class Fragment_View_Profile extends Fragment {
                     tv_fotos.setText(ss_num_fotos);
                     tv_fotos.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_fotos.setHighlightColor(Color.TRANSPARENT);
+
+                    tv_seguidores.setText(db_seguidores);
+                    tv_siguiendo.setText(db_siguiendo);
 
                 if(db_url!="null")
                 {

@@ -100,17 +100,17 @@ public final class R {
         public static final int line1 = 0x7f0900af;
         public static final int line3 = 0x7f0900b0;
         public static final int media_actions = 0x7f0900bd;
-        public static final int normal = 0x7f0900e2;
-        public static final int notification_background = 0x7f0900e3;
-        public static final int notification_main_column = 0x7f0900e4;
-        public static final int notification_main_column_container = 0x7f0900e5;
-        public static final int right_icon = 0x7f0900fe;
-        public static final int right_side = 0x7f0900ff;
-        public static final int status_bar_latest_event_content = 0x7f090158;
-        public static final int text = 0x7f090161;
-        public static final int text2 = 0x7f090162;
-        public static final int time = 0x7f09016b;
-        public static final int title = 0x7f09016c;
+        public static final int normal = 0x7f0900e4;
+        public static final int notification_background = 0x7f0900e5;
+        public static final int notification_main_column = 0x7f0900e6;
+        public static final int notification_main_column_container = 0x7f0900e7;
+        public static final int right_icon = 0x7f090100;
+        public static final int right_side = 0x7f090101;
+        public static final int status_bar_latest_event_content = 0x7f09015a;
+        public static final int text = 0x7f090163;
+        public static final int text2 = 0x7f090164;
+        public static final int time = 0x7f09016d;
+        public static final int title = 0x7f09016e;
     }
     public static final class integer {
         private integer() {}

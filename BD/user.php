@@ -109,7 +109,7 @@
             if(mysqli_num_rows($result) > 0)
             {                
 
-                $query = "SELECT f.url as url, (SELECT count(f.url) as num_fotos FROM fotos f WHERE f.username='$username' and f.id_campo is null and f.nombre_hoyo is null and f.isProfile=false Limit 1) as num_fotos, nombre, apellido1, apellido2, u.username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap 
+                $query = "SELECT (SELECT count(a.origen) as siguiendo FROM amistades a WHERE a.origen='$username' and a.aceptado=true) as siguiendo, (SELECT count(a.destino) as seguidores FROM amistades a WHERE a.destino='$username' and a.aceptado=true) as seguidores, f.url as url, (SELECT count(f.url) as num_fotos FROM fotos f WHERE f.username='$username' and f.id_campo is null and f.nombre_hoyo is null and f.isProfile=false Limit 1) as num_fotos, nombre, apellido1, apellido2, u.username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap 
 
                 from usuarios u, fotos f
                             
@@ -120,7 +120,7 @@
             }
             else
             {
-                $query = "SELECT null as url, (SELECT count(f.url) as num_fotos FROM fotos f WHERE f.username='$username' and f.id_campo is null and f.nombre_hoyo is null and f.isProfile=false Limit 1) as num_fotos, nombre, apellido1, apellido2, u.username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap 
+                $query = "SELECT (SELECT count(a.origen) as siguiendo FROM amistades a WHERE a.origen='$username' and a.aceptado=true) as siguiendo, (SELECT count(a.destino) as seguidores FROM amistades a WHERE a.destino='$username' and a.aceptado=true) as seguidores, null as url, (SELECT count(f.url) as num_fotos FROM fotos f WHERE f.username='$username' and f.id_campo is null and f.nombre_hoyo is null and f.isProfile=false Limit 1) as num_fotos, nombre, apellido1, apellido2, u.username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap 
 
                 from usuarios u, fotos f
                 
@@ -146,7 +146,9 @@
                         'puntuacion'=>$row['puntuacion'],
                         'handicap'=>$row['handicap'],
                         'num_fotos'=>$row['num_fotos'],
-                        'url'=>$row['url']
+                        'url'=>$row['url'],
+                        'seguidores'=>$row['seguidores'],
+                        'siguiendo'=>$row['siguiendo']
                     ];
                         array_push($data, $temp);
                 }     

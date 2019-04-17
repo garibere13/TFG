@@ -1474,6 +1474,8 @@ id my_hole_par
 id my_hole_profile_image
 id my_profile_fotos
 id my_profile_image
+id my_profile_seguidores
+id my_profile_siguiendo
 id my_ratingbar
 id my_togglebutton_hole_favourite
 id my_view_hole_date
@@ -1652,6 +1654,8 @@ id useLogo
 id user_profile_fotos
 id user_profile_image
 id user_profile_image_edit
+id user_profile_seguidores
+id user_profile_siguiendo
 id view_hole_date
 id view_map_fragment
 id view_my_date

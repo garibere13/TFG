@@ -103,14 +103,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jarraitzaileak"
+                        android:text="Seguidores"
                         android:textSize="18sp">
                     </TextView>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="234"
+                        android:text=""
+                        android:id="@+id/my_profile_seguidores"
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:paddingTop="10dp"
@@ -129,14 +130,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jarraitzen"
+                        android:text="Siguiendo"
                         android:textSize="18sp">
                     </TextView>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="445"
+                        android:text=""
+                        android:id="@+id/my_profile_siguiendo"
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:paddingTop="10dp"
@@ -236,17 +238,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
-    <Button
-        android:textColor="#ffffff"
-        android:background="@drawable/buttonstyle"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Botoi bat">
-    </Button>
-
 
 </LinearLayout>
