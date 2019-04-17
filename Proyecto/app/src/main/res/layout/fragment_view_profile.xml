@@ -232,7 +232,7 @@
     </LinearLayout>
 
 
-    <Button
+    <ToggleButton
         android:textColor="#ffffff"
         android:background="@drawable/buttonstyle"
         android:layout_marginTop="30dp"
@@ -240,8 +240,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/boton_amistad"
-        android:text="Solicitar amistad">
-    </Button>
+        android:textOn="Dejar de seguir"
+        android:textOff="Seguir">
+    </ToggleButton>
+
 
 
 </LinearLayout>

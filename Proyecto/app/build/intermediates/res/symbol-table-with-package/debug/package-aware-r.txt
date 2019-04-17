@@ -1309,6 +1309,7 @@ id autocomplete_username
 id barrier
 id beginning
 id blocking
+id boton_amistad
 id bottom
 id bounce
 id btn_login

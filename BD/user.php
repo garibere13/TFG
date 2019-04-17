@@ -45,6 +45,45 @@
         }
 
 
+        public function createFriendship($tu, $username)
+        {               
+            $query = "insert into amistades (origen, destino, aceptado) values ('$tu', '$username', false)";
+            $inserted = mysqli_query($this->db->getDb(), $query);
+                
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['message'] = "¡Petición solicitada!";                    
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['message'] = "Petición en curso";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
+
+        public function deleteFriendship($tu, $username)
+        {               
+            $query = "delete from amistades where origen='$tu' and destino='$username'";
+            $inserted = mysqli_query($this->db->getDb(), $query);
+                
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['message'] = "¡Amistad eliminada!";                    
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['message'] = "Error";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
+
+
         public function editUser($nombre, $apellido1, $apellido2, $username, $password, $handicap)
         {                
             $query = "UPDATE ".$this->db_table." SET nombre='$nombre', apellido1='$apellido1', apellido2='$apellido2', password='$password', handicap=$handicap WHERE username='$username'";
