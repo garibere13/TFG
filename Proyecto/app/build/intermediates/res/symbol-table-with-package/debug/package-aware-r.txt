@@ -1727,6 +1727,7 @@ layout content_main
 layout crop_selector
 layout cropimage
 layout custom_info_window
+layout custom_notification
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar

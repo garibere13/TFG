@@ -1,15 +1,18 @@
 package proyecto.codigo.acceso;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,19 +27,15 @@ import android.app.Dialog;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.app.ProgressDialog;
+import android.widget.RemoteViews;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -62,6 +61,50 @@ public class MainActivity extends AppCompatActivity
     String ip_config;
     public String db_url;
     public String db_nuevos_seguidores;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    // Notification ID to allow for future updates
+    private static final int MY_NOTIFICATION_ID = 1;
+
+    // Notification Count
+    private int mNotificationCount;
+
+    // Notification Text Elements
+    private final CharSequence tickerText = "This is a Really, Really, Super Long Notification Message!";
+    private final CharSequence contentText = "You've Been Notified!";
+
+    // Notification Action Elements
+    private Intent mNotificationIntent;
+    private PendingIntent mContentIntent;
+
+    // Notification Sound and Vibration on Arrival
+    private Uri soundURI = Uri
+            .parse("android.resource://proyecto.codigo.acceso/"
+                    + R.raw.alarm_rooster);
+    private long[] mVibratePattern = { 0, 200, 200, 300 };
+
+    RemoteViews mContentView = new RemoteViews(
+            "proyecto.codigo.acceso",
+            R.layout.custom_notification);
+
+*/
+
+
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -104,6 +147,47 @@ public class MainActivity extends AppCompatActivity
         image=headerView.findViewById(R.id.home_user_profile_image);
         user=headerView.findViewById(R.id.nombre_usuario_home);
         user.setText("¡Bienvenido @"+username+"!");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+        mNotificationIntent = new Intent(this, ZZ.class);
+        mContentIntent = PendingIntent.getActivity(getApplicationContext(), 0,
+                mNotificationIntent, Intent.FLAG_ACTIVITY_NEW_TASK);
+        */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         image.setOnClickListener(new View.OnClickListener() {
 
@@ -372,11 +456,31 @@ public class MainActivity extends AppCompatActivity
                 {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     aux = obj.getString("origen");
-                    db_nuevos_seguidores=db_nuevos_seguidores+" // "+aux;
+                    //db_nuevos_seguidores=db_nuevos_seguidores+" // "+aux;
+
+
+
+                    /*mContentView.setTextViewText(R.id.text, contentText + " ("
+                            + ++mNotificationCount + ")");
+
+                    // Build the Notification
+
+                    Notification.Builder notificationBuilder = new Notification.Builder(
+                            getApplicationContext())
+                            .setTicker(tickerText)
+                            .setSmallIcon(android.R.drawable.stat_sys_warning)
+                            .setAutoCancel(true)
+                            .setContentIntent(mContentIntent)
+                            .setSound(soundURI)
+                            .setVibrate(mVibratePattern)
+                            .setContent(mContentView);
+
+                    // Pass the Notification to the NotificationManager:
+                    NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    mNotificationManager.notify(MY_NOTIFICATION_ID,
+                            notificationBuilder.build());*/
+
                 }
-
-                Toast.makeText(getApplicationContext(),db_nuevos_seguidores,Toast.LENGTH_LONG).show();
-
             }
             catch (JSONException e)
             {
