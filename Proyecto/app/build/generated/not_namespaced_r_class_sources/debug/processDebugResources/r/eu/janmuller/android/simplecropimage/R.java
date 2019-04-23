@@ -26,15 +26,15 @@ public final class R {
 
         public static final int discard = 0x7f090062;
         public static final int image = 0x7f09009f;
-        public static final int rotateLeft = 0x7f090104;
-        public static final int rotateRight = 0x7f090105;
-        public static final int save = 0x7f090107;
+        public static final int rotateLeft = 0x7f090105;
+        public static final int rotateRight = 0x7f090106;
+        public static final int save = 0x7f090108;
     }
     public static final class layout {
         private layout() {}
 
         public static final int cropimage = 0x7f0c0022;
-        public static final int main = 0x7f0c0041;
+        public static final int main = 0x7f0c0042;
     }
     public static final class string {
         private string() {}

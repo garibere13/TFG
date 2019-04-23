@@ -139,6 +139,48 @@
             mysqli_close($this->db->getDb());
         }
 
+        public function find_following_followers($username, $following_followers)
+        {
+            $usernames = array();
+            if($following_followers=='origen')
+            {
+                $query = "SELECT origen FROM amistades where destino='$username'";
+                if($stmt = mysqli_query($this->db->getDb(), $query))
+            {        
+                while($row = mysqli_fetch_assoc($stmt))
+                {  
+                    $temp = 
+                    [
+                        'username'=>$row['origen']
+                    ];
+                        array_push($usernames, $temp);
+                }
+                echo json_encode($usernames); 
+            }
+            }
+            else
+            {
+                $query = "SELECT destino FROM amistades where origen='$username'";
+                if($stmt = mysqli_query($this->db->getDb(), $query))
+            {        
+                while($row = mysqli_fetch_assoc($stmt))
+                {  
+                    $temp = 
+                    [
+                        'username'=>$row['destino']
+                    ];
+                        array_push($usernames, $temp);
+                }
+                echo json_encode($usernames); 
+            }
+            }
+                   
+            mysqli_close($this->db->getDb());
+        }
+
+
+
+
         public function find_username_data($username)
         {
             $data = array();
@@ -148,7 +190,7 @@
             if(mysqli_num_rows($result) > 0)
             {                
 
-                $query = "SELECT (SELECT count(a.origen) as siguiendo FROM amistades a WHERE a.origen='$username' and a.aceptado=true) as siguiendo, (SELECT count(a.destino) as seguidores FROM amistades a WHERE a.destino='$username' and a.aceptado=true) as seguidores, f.url as url, (SELECT count(f.url) as num_fotos FROM fotos f WHERE f.username='$username' and f.id_campo is null and f.nombre_hoyo is null and f.isProfile=false Limit 1) as num_fotos, nombre, apellido1, apellido2, u.username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap 
+                $query = "SELECT (SELECT count(a.origen) as siguiendo FROM amistades a WHERE a.origen='$username') as siguiendo, (SELECT count(a.destino) as seguidores FROM amistades a WHERE a.destino='$username') as seguidores, f.url as url, (SELECT count(f.url) as num_fotos FROM fotos f WHERE f.username='$username' and f.id_campo is null and f.nombre_hoyo is null and f.isProfile=false Limit 1) as num_fotos, nombre, apellido1, apellido2, u.username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap 
 
                 from usuarios u, fotos f
                             
@@ -159,7 +201,7 @@
             }
             else
             {
-                $query = "SELECT (SELECT count(a.origen) as siguiendo FROM amistades a WHERE a.origen='$username' and a.aceptado=true) as siguiendo, (SELECT count(a.destino) as seguidores FROM amistades a WHERE a.destino='$username' and a.aceptado=true) as seguidores, null as url, (SELECT count(f.url) as num_fotos FROM fotos f WHERE f.username='$username' and f.id_campo is null and f.nombre_hoyo is null and f.isProfile=false Limit 1) as num_fotos, nombre, apellido1, apellido2, u.username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap 
+                $query = "SELECT (SELECT count(a.origen) as siguiendo FROM amistades a WHERE a.origen='$username') as siguiendo, (SELECT count(a.destino) as seguidores FROM amistades a WHERE a.destino='$username') as seguidores, null as url, (SELECT count(f.url) as num_fotos FROM fotos f WHERE f.username='$username' and f.id_campo is null and f.nombre_hoyo is null and f.isProfile=false Limit 1) as num_fotos, nombre, apellido1, apellido2, u.username, password, dayofmonth(fecha) as dia, month(fecha) as mes, year(fecha) as anyo, puntuacion, handicap 
 
                 from usuarios u, fotos f
                 

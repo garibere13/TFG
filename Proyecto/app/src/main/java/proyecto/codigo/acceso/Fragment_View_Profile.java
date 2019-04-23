@@ -43,6 +43,7 @@ public class Fragment_View_Profile extends Fragment {
     //String URL2;
     String URL3;
     String URL4;
+    String URL5;
     JSONParser jsonParser=new JSONParser();
     TextView tv_name;
     TextView tv_username;
@@ -71,9 +72,16 @@ public class Fragment_View_Profile extends Fragment {
 
     public  SpannableString ss_num_fotos;
     public ClickableSpan clickableSpan_num_fotos;
+    public  SpannableString ss_num_seguidores;
+    public ClickableSpan clickableSpan_num_seguidores;
+    public  SpannableString ss_num_siguiendo;
+    public ClickableSpan clickableSpan_num_siguiendo;
 
 
     CircleImageView image;
+
+    String[] following;
+    String[] followers;
 
 
     @Override
@@ -87,6 +95,7 @@ public class Fragment_View_Profile extends Fragment {
         //URL2="http://"+ip_config+"/TFG/BD/doesFriendshipExist.php";
         URL3="http://"+ip_config+"/TFG/BD/createFriendship.php";
         URL4="http://"+ip_config+"/TFG/BD/deleteFriendship.php";
+        URL5="http://"+ip_config+"/TFG/BD/find-following-followers.php";
 
         if (bundle!=null)
         {
@@ -200,6 +209,13 @@ public class Fragment_View_Profile extends Fragment {
         AttemptFindUsernameData attemptFindData=new AttemptFindUsernameData();
         attemptFindData.execute(username);
 
+        AttemptFindFollowers attemptFindFollowers=new AttemptFindFollowers();
+        attemptFindFollowers.execute(username);
+
+        AttemptFindFollowing attemptFindFollowing=new AttemptFindFollowing();
+        attemptFindFollowing.execute(username);
+
+
 
 
         clickableSpan_num_fotos = new ClickableSpan() {
@@ -221,9 +237,135 @@ public class Fragment_View_Profile extends Fragment {
             }
         };
 
+        clickableSpan_num_seguidores = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+
+                if(followers.length>0)
+                {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    Fragment_View_Following_Followers fvp = new Fragment_View_Following_Followers();
+                    final Bundle bundle = new Bundle();
+                    bundle.putStringArray("data", followers);
+                    fvp.setArguments(bundle);
+                    fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
+                }
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+
+        clickableSpan_num_siguiendo = new ClickableSpan() {
+            @Override
+            public void onClick(View textView) {
+
+                if(following.length>0)
+                {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    Fragment_View_Following_Followers fvp = new Fragment_View_Following_Followers();
+                    final Bundle bundle = new Bundle();
+                    bundle.putStringArray("data", following);
+                    fvp.setArguments(bundle);
+                    fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
+                }
+            }
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+            }
+        };
+
 
 
         return v;
+    }
+
+
+    //////////////////////////////////////////////////////////////////////7/////////
+
+    private class AttemptFindFollowers extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        //@Override
+        protected String doInBackground(String... args) {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("username", username));
+            params.add(new BasicNameValuePair("following_followers", "origen"));
+            String json = jsonParser.makeHttpRequestString(URL5, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            try
+            {
+                JSONArray jsonArray = new JSONArray(result);
+                followers=new String[jsonArray.length()];
+
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    followers[i] = obj.getString("username");
+                }
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+    private class AttemptFindFollowing extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        //@Override
+        protected String doInBackground(String... args) {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("username", username));
+            params.add(new BasicNameValuePair("following_followers", "destino"));
+            String json = jsonParser.makeHttpRequestString(URL5, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            try
+            {
+                JSONArray jsonArray = new JSONArray(result);
+                following=new String[jsonArray.length()];
+
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    following[i] = obj.getString("username");
+                }
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+
+        }
     }
 
 
@@ -449,8 +591,17 @@ public class Fragment_View_Profile extends Fragment {
                     tv_fotos.setMovementMethod(LinkMovementMethod.getInstance());
                     tv_fotos.setHighlightColor(Color.TRANSPARENT);
 
-                    tv_seguidores.setText(db_seguidores);
-                    tv_siguiendo.setText(db_siguiendo);
+                    ss_num_seguidores = new SpannableString(db_seguidores);
+                    ss_num_seguidores.setSpan(clickableSpan_num_seguidores, 0, db_seguidores.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    tv_seguidores.setText(ss_num_seguidores);
+                    tv_seguidores.setMovementMethod(LinkMovementMethod.getInstance());
+                    tv_seguidores.setHighlightColor(Color.TRANSPARENT);
+
+                    ss_num_siguiendo = new SpannableString(db_siguiendo);
+                    ss_num_siguiendo.setSpan(clickableSpan_num_siguiendo, 0, db_siguiendo.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    tv_siguiendo.setText(ss_num_siguiendo);
+                    tv_siguiendo.setMovementMethod(LinkMovementMethod.getInstance());
+                    tv_siguiendo.setHighlightColor(Color.TRANSPARENT);
 
                 if(db_url!="null")
                 {

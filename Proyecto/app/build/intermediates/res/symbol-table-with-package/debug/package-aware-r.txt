@@ -1446,6 +1446,7 @@ id link_login
 id list
 id listMode
 id list_favourites
+id list_following_followers
 id list_item
 id login_link_signup
 id login_text
@@ -1747,6 +1748,7 @@ layout fragment_find
 layout fragment_upload_image
 layout fragment_view_field
 layout fragment_view_field_holes
+layout fragment_view_following_followers
 layout fragment_view_grid_images
 layout fragment_view_hole
 layout fragment_view_map
