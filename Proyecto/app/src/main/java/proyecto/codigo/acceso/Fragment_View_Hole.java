@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import org.apache.http.NameValuePair;
@@ -79,6 +80,7 @@ public class Fragment_View_Hole extends Fragment {
 
     ImageButton ib_edit;
     CircleImageView image;
+    Button btn_comentarios;
 
 
 
@@ -100,8 +102,6 @@ public class Fragment_View_Hole extends Fragment {
             nombre_hoyo=bundle.getString("nombre");
             creador=bundle.getString("creador");
 
-            Log.d("$$$$$$$$$$$$", id_campo+"  "+nombre_hoyo+"  "+creador);
-
             username=((MainActivity)getActivity()).username;
 
             if(creador.equals(username))
@@ -116,6 +116,7 @@ public class Fragment_View_Hole extends Fragment {
                 tv_fotos=v.findViewById(R.id.my_hole_number_fotos);
                 button_favourite=v.findViewById(R.id.my_togglebutton_hole_favourite);
                 image=v.findViewById(R.id.my_hole_profile_image);
+                btn_comentarios=v.findViewById(R.id.my_boton_comentarios);
 
                 ib_edit.setOnClickListener(new View.OnClickListener() {
 
@@ -148,9 +149,8 @@ public class Fragment_View_Hole extends Fragment {
                 tv_fotos=v.findViewById(R.id.hole_number_fotos);
                 button_favourite=v.findViewById(R.id.togglebutton_hole_favourite);
                 image=v.findViewById(R.id.hole_profile_image);
+                btn_comentarios=v.findViewById(R.id.boton_comentarios);
             }
-
-
             AttemptFindHoleData attemptFindHoleData=new AttemptFindHoleData();
             attemptFindHoleData.execute();
         }
@@ -233,6 +233,21 @@ public class Fragment_View_Hole extends Fragment {
                     AttemptDeleteFavourite attemptDeleteFavourite=new AttemptDeleteFavourite();
                     attemptDeleteFavourite.execute();
                 }
+            }
+        });
+
+        btn_comentarios.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Comments fvc=new Fragment_View_Comments();
+                /*final Bundle bundle = new Bundle();
+                bundle.putString("tipo", "hoyo");
+                bundle.putString("id_campo", db_id_campo);
+                bundle.putString("nombre_hoyo", db_nombre_hoyo);
+                fvc.setArguments(bundle);*/
+                fm.beginTransaction().replace(R.id.contenedor, fvc).commit();
             }
         });
 

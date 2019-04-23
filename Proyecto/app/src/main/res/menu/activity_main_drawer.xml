@@ -25,23 +25,19 @@
             android:id="@+id/nav_find_friend"
             android:icon="@drawable/search"
             android:title="Buscar" />
-        <item
-            android:id="@+id/nav_view_profile"
-            android:icon="@drawable/person"
-            android:title="Mi Perfil" />
 
-        <item
+       <!-- <item
             android:id="@+id/prueba_notificacion"
             android:icon="@drawable/person"
-            android:title="Prueba Notificación" />
+            android:title="Prueba Notificación" /> -->
     </group>
 
     <item android:title="">
         <menu>
             <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/log_out"
-                android:title="Salir" />
+                android:id="@+id/nav_view_profile"
+                android:icon="@drawable/person"
+                android:title="Mi Perfil" />
         </menu>
     </item>
 

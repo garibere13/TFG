@@ -126,13 +126,13 @@ public class MainActivity extends AppCompatActivity
         AttemptFindFriendshipRequest attemptFindFriendshipRequest=new AttemptFindFriendshipRequest();
         attemptFindFriendshipRequest.execute(username);
 
-        FloatingActionButton fab=findViewById(R.id.fab);
+       /* FloatingActionButton fab=findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer=findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {  //ESTO ES LO DE SETTINGS QUE APARECE EN TODOS ARRIBA A LA DERECHA
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            showDialogFragment(LOGOUT_TAG);
         }
 
         return super.onOptionsItemSelected(item);
@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity
         {
             fm.beginTransaction().replace(R.id.contenedor, new Fragment_View_Profile()).commit();
         }
-        else if (id == R.id.nav_logout)
+     /*   else if (id == R.id.nav_logout)
         {
             showDialogFragment(LOGOUT_TAG);
         }
@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.prueba_notificacion)
         {
             fm.beginTransaction().replace(R.id.contenedor, new Z_Prueba_Notificacion()).commit();
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

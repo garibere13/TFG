@@ -1258,6 +1258,7 @@ drawable pre_like
 drawable puntuacion
 drawable search
 drawable selector_crop_button
+drawable send
 drawable side_nav_bar
 drawable toggle_selector
 drawable tooltip_frame_dark
@@ -1311,6 +1312,7 @@ id barrier
 id beginning
 id blocking
 id boton_amistad
+id boton_comentarios
 id bottom
 id bounce
 id btn_login
@@ -1336,6 +1338,8 @@ id chronometer
 id clip_horizontal
 id clip_vertical
 id collapseActionView
+id comentariosss
+id commenttext
 id container
 id contenedor
 id content
@@ -1379,7 +1383,6 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
-id fab
 id field_creator
 id field_edit_button
 id field_fecha
@@ -1437,6 +1440,7 @@ id jumpToEnd
 id jumpToStart
 id labeled
 id largeLabel
+id layout
 id left
 id light
 id line1
@@ -1445,6 +1449,7 @@ id linear
 id link_login
 id list
 id listMode
+id list_comments
 id list_favourites
 id list_following_followers
 id list_item
@@ -1461,6 +1466,7 @@ id mini
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
+id my_boton_comentarios
 id my_field_creator
 id my_field_fecha
 id my_field_n_hoyos
@@ -1480,12 +1486,12 @@ id my_profile_image
 id my_profile_seguidores
 id my_profile_siguiendo
 id my_ratingbar
+id my_recycler_view
 id my_togglebutton_hole_favourite
 id my_view_hole_date
 id nav_create_field
 id nav_find_friend
 id nav_home
-id nav_logout
 id nav_ver_mapa
 id nav_view
 id nav_view_favourites
@@ -1515,7 +1521,6 @@ id profile_name
 id profile_username
 id progress_circular
 id progress_horizontal
-id prueba_notificacion
 id radio
 id ratingbar
 id ratio
@@ -1551,6 +1556,7 @@ id search_voice_btn
 id select_dialog_listview
 id select_location_button
 id selected
+id send
 id shortcut
 id showCustom
 id showHome
@@ -1641,6 +1647,8 @@ id togglebutton_hole_favourite
 id toolbar
 id top
 id topPanel
+id topedittext_layout
+id tos_text_layout
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -1724,6 +1732,9 @@ layout activity_main
 layout activity_maps
 layout activity_show_maps
 layout app_bar_main
+layout comentarios
+layout comentarioss
+layout comentariosssssssssss
 layout content_main
 layout crop_selector
 layout cropimage
