@@ -8,8 +8,6 @@ descripción de un campo/hoyo?¿? --> qué hacer?
 
 notificaciones
 
-corregir lo de seguir / seguido --> quitar de la tabla amistades la columna de aceptado
-
 comentarios de hoyos
 
 hacer retos

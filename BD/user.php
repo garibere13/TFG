@@ -47,18 +47,18 @@
 
         public function createFriendship($tu, $username)
         {               
-            $query = "insert into amistades (origen, destino, aceptado) values ('$tu', '$username', false)";
+            $query = "insert into amistades (origen, destino) values ('$tu', '$username')";
             $inserted = mysqli_query($this->db->getDb(), $query);
                 
                 if($inserted == 1)
                 {
                     $json['success'] = 1;
-                    $json['message'] = "¡Petición solicitada!";                    
+                    //$json['message'] = "¡Petición solicitada!";                    
                 }
                 else
                 {                    
                     $json['success'] = 0;
-                    $json['message'] = "Petición en curso";
+                    //$json['message'] = "Petición en curso";
                 }                
                 mysqli_close($this->db->getDb());            
             return $json;
@@ -72,12 +72,12 @@
                 if($inserted == 1)
                 {
                     $json['success'] = 1;
-                    $json['message'] = "¡Amistad eliminada!";                    
+                    //$json['message'] = "¡Amistad eliminada!";                    
                 }
                 else
                 {                    
                     $json['success'] = 0;
-                    $json['message'] = "Error";
+                    //$json['message'] = "Error";
                 }                
                 mysqli_close($this->db->getDb());            
             return $json;
@@ -181,6 +181,53 @@
 
 
 
+
+
+        public function find_is_my_friend($tu, $username)
+        {
+                   
+            $exists = $this->isMyFriend($tu, $username);            
+            if($exists)
+            {
+                $data = array();
+                $query = "SELECT * FROM amistades WHERE origen='$tu' and destino='$username' Limit 1";
+
+                if($stmt = mysqli_query($this->db->getDb(), $query))
+                {        
+                    while($row = mysqli_fetch_assoc($stmt))
+                    {  
+                        $temp = 
+                        [
+                            'existe'=>true
+                        ];
+                            array_push($data, $temp);
+                    }     
+                    echo json_encode($data);   
+                }
+                mysqli_close($this->db->getDb());  
+            }        
+        }
+
+        public function isMyFriend($tu, $username)
+        {
+           $query = "SELECT * FROM amistades WHERE origen='$tu' and destino='$username' Limit 1";
+           $result = mysqli_query($this->db->getDb(), $query);            
+            if(mysqli_num_rows($result) > 0)
+            {                
+                return true;
+            }            
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+
         public function find_username_data($username)
         {
             $data = array();
@@ -245,7 +292,7 @@
         {
             $data = array();
 
-            $query = "SELECT origen FROM amistades WHERE destino='$username' and aceptado=false";
+            $query = "SELECT origen FROM amistades WHERE destino='$username'";
             
             if($stmt = mysqli_query($this->db->getDb(), $query))
             {        

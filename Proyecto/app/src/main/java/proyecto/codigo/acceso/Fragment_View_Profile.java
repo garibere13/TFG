@@ -40,7 +40,7 @@ public class Fragment_View_Profile extends Fragment {
     String ip_config;
     String URL;
     String URL1;
-    //String URL2;
+    String URL2;
     String URL3;
     String URL4;
     String URL5;
@@ -82,6 +82,7 @@ public class Fragment_View_Profile extends Fragment {
 
     String[] following;
     String[] followers;
+    public String isMyFriend;
 
 
     @Override
@@ -92,10 +93,10 @@ public class Fragment_View_Profile extends Fragment {
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/find-username-data.php";
         URL1="http://"+ip_config+"/TFG/BD/getImagesCircle.php";
-        //URL2="http://"+ip_config+"/TFG/BD/doesFriendshipExist.php";
-        URL3="http://"+ip_config+"/TFG/BD/createFriendship.php";
-        URL4="http://"+ip_config+"/TFG/BD/deleteFriendship.php";
-        URL5="http://"+ip_config+"/TFG/BD/find-following-followers.php";
+        URL2="http://"+ip_config+"/TFG/BD/createFriendship.php";
+        URL3="http://"+ip_config+"/TFG/BD/deleteFriendship.php";
+        URL4="http://"+ip_config+"/TFG/BD/find-following-followers.php";
+        URL5="http://"+ip_config+"/TFG/BD/find-is-my-friend.php";
 
         if (bundle!=null)
         {
@@ -144,9 +145,6 @@ public class Fragment_View_Profile extends Fragment {
                 tv_siguiendo=v.findViewById(R.id.user_profile_siguiendo);
                 image=v.findViewById(R.id.user_profile_image);
                 amistad=v.findViewById(R.id.boton_amistad);
-
-                //AttemptDoesFriendshipExist attemptDoesFriendshipExist=new AttemptDoesFriendshipExist();
-                //attemptDoesFriendshipExist.execute(username);
 
                 amistad.setOnClickListener(new View.OnClickListener() {
 
@@ -214,6 +212,9 @@ public class Fragment_View_Profile extends Fragment {
 
         AttemptFindFollowing attemptFindFollowing=new AttemptFindFollowing();
         attemptFindFollowing.execute(username);
+
+        AttemptFindIsMyFriend attemptFindIsMyFriend=new AttemptFindIsMyFriend();
+        attemptFindIsMyFriend.execute();
 
 
 
@@ -285,7 +286,54 @@ public class Fragment_View_Profile extends Fragment {
     }
 
 
-    //////////////////////////////////////////////////////////////////////7/////////
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    private class AttemptFindIsMyFriend extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... args)
+        {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("tu", ((MainActivity)getActivity()).username));
+            params.add(new BasicNameValuePair("username", username));
+            String json = jsonParser.makeHttpRequestString(URL5, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(String result)
+        {
+            super.onPostExecute(result);
+            try
+            {
+                JSONArray jsonArray = new JSONArray(result);
+
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    isMyFriend = obj.getString("existe");
+                }
+                amistad.setChecked(Boolean.parseBoolean(isMyFriend));
+
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////
 
     private class AttemptFindFollowers extends AsyncTask<String, String, String> {
 
@@ -301,7 +349,7 @@ public class Fragment_View_Profile extends Fragment {
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("username", username));
             params.add(new BasicNameValuePair("following_followers", "origen"));
-            String json = jsonParser.makeHttpRequestString(URL5, "POST", params);
+            String json = jsonParser.makeHttpRequestString(URL4, "POST", params);
 
             return json;
         }
@@ -342,7 +390,7 @@ public class Fragment_View_Profile extends Fragment {
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("username", username));
             params.add(new BasicNameValuePair("following_followers", "destino"));
-            String json = jsonParser.makeHttpRequestString(URL5, "POST", params);
+            String json = jsonParser.makeHttpRequestString(URL4, "POST", params);
 
             return json;
         }
@@ -358,6 +406,17 @@ public class Fragment_View_Profile extends Fragment {
                 {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     following[i] = obj.getString("username");
+                    /*if(!(username.equals(((MainActivity)getActivity()).username)))
+                    {
+                        //Toast.makeText(getActivity().getApplicationContext(),following[i]+" // "+username,Toast.LENGTH_LONG).show();
+
+                        if(following[i].equals(username))
+                        {
+                            Toast.makeText(getActivity().getApplicationContext(),"lllllllllllllllll",Toast.LENGTH_LONG).show();
+                            //amistad.setChecked(false);
+                        }
+                        amistad.setChecked(true);
+                    }*/
                 }
             }
             catch (JSONException e)
@@ -367,7 +426,6 @@ public class Fragment_View_Profile extends Fragment {
 
         }
     }
-
 
 
     //////////////////////////////////////////////////////////////////////////////////
@@ -389,7 +447,7 @@ public class Fragment_View_Profile extends Fragment {
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("tu", tu));
             params.add(new BasicNameValuePair("username", username));
-            JSONObject json = jsonParser.makeHttpRequest(URL4, "POST", params);
+            JSONObject json = jsonParser.makeHttpRequest(URL3, "POST", params);
 
             return json;
         }
@@ -400,7 +458,7 @@ public class Fragment_View_Profile extends Fragment {
             {
                 if(result != null)
                 {
-                    Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                    result.getString("seccess");
                 }
             }
             catch (JSONException e)
@@ -430,7 +488,7 @@ public class Fragment_View_Profile extends Fragment {
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("tu", tu));
             params.add(new BasicNameValuePair("username", username));
-            JSONObject json = jsonParser.makeHttpRequest(URL3, "POST", params);
+            JSONObject json = jsonParser.makeHttpRequest(URL2, "POST", params);
 
             return json;
         }
@@ -441,8 +499,7 @@ public class Fragment_View_Profile extends Fragment {
             {
                 if(result != null)
                 {
-                    Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-
+                    result.getString("seccess");
                 }
             }
             catch (JSONException e)
@@ -451,87 +508,6 @@ public class Fragment_View_Profile extends Fragment {
             }
         }
     }
-
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-   /* private class AttemptDoesFriendshipExist extends AsyncTask<String, String, String> {
-
-        @Override
-        protected void onPreExecute()
-        {
-            super.onPreExecute();
-        }
-
-        //@Override
-        protected String doInBackground(String... args) {
-
-            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("tu", ((MainActivity)getActivity()).username));
-            params.add(new BasicNameValuePair("username", username));
-            String json = jsonParser.makeHttpRequestString(URL2, "POST", params);
-
-            return json;
-        }
-
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            try
-            {
-                JSONArray jsonArray = new JSONArray(result);
-
-                for (int i = 0; i < jsonArray.length(); i++)
-                {
-                    JSONObject obj = jsonArray.getJSONObject(i);
-                    db_nombre = obj.getString("nombre");
-                    db_apellido1 = obj.getString("apellido1");
-                    db_apellido2 = obj.getString("apellido2");
-                    db_username = obj.getString("username");
-                    db_password = obj.getString("password");
-                    db_date_año = obj.getString("anyo");
-                    db_date_mes = obj.getString("mes");
-                    db_date_dia = obj.getString("dia");
-                    db_puntuacion = obj.getString("puntuacion");
-                    db_handicap = obj.getString("handicap");
-                    db_num_fotos = obj.getString("num_fotos");
-                    db_url = obj.getString("url");
-                    db_seguidores = obj.getString("seguidores");
-                    db_siguiendo = obj.getString("siguiendo");
-                }
-                float f=Float.parseFloat(db_handicap);
-                String h=String.format(String.format("%.1f", f));
-                tv_name.setText(db_nombre+" "+db_apellido1+" "+db_apellido2+" ("+h+")");
-                tv_username.setText("@"+db_username);
-                tv_fecha.append(db_date_dia+"/"+db_date_mes+"/"+db_date_año);
-                tv_puntuacion.append(db_puntuacion);
-
-                ss_num_fotos = new SpannableString(db_num_fotos);
-                ss_num_fotos.setSpan(clickableSpan_num_fotos, 0, db_num_fotos.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                tv_fotos.setText(ss_num_fotos);
-                tv_fotos.setMovementMethod(LinkMovementMethod.getInstance());
-                tv_fotos.setHighlightColor(Color.TRANSPARENT);
-
-                tv_seguidores.setText(db_seguidores);
-                tv_siguiendo.setText(db_siguiendo);
-
-                if(db_url!="null")
-                {
-                    db_url="http://"+ip_config+db_url;
-                    Picasso.get().load(db_url).into(image);
-                }
-
-
-            }
-            catch (JSONException e)
-            {
-                e.printStackTrace();
-            }
-
-        }
-    }
-    */
-
 
 
     /////////////////////////////////////////////////////////////////////////////////////////

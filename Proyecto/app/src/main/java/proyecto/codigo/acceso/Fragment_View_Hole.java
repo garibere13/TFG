@@ -343,10 +343,6 @@ public class Fragment_View_Hole extends Fragment {
                     tv_creator.setHighlightColor(Color.TRANSPARENT);
 
 
-                Log.d("$$$$$$$$$$$$", db_nombre_campo);
-
-
-
                     ss_campo = new SpannableString(db_nombre_campo);
                     ss_campo.setSpan(clickableSpan_campo, 0, ss_campo.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     tv_nombre.setText(db_nombre_hoyo+" (");
