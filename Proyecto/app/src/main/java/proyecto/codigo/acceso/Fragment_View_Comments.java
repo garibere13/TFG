@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView;
 import org.apache.http.NameValuePair;
@@ -19,6 +20,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Fragment_View_Comments extends Fragment {
 
@@ -35,6 +38,27 @@ public class Fragment_View_Comments extends Fragment {
     ListView lv;
     ArrayAdapter<String> adapter;
     String[] comentarios;
+
+    String[] listviewTitle = new String[]{
+            "ListView Title 1", "ListView Title 2", "ListView Title 3", "ListView Title 4",
+            "ListView Title 5", "ListView Title 6", "ListView Title 7", "ListView Title 8",
+    };
+
+
+    int[] listviewImage = new int[]{
+            R.drawable.app_icon, R.drawable.el_tapon, R.drawable.favourite, R.drawable.golf_campo,
+            R.drawable.home, R.drawable.log_out, R.drawable.nobody, R.drawable.pelota_golf,
+    };
+
+    int[] listviewLike = new int[]{
+            R.drawable.like, R.drawable.like, R.drawable.like, R.drawable.like,
+            R.drawable.like, R.drawable.like, R.drawable.like, R.drawable.like,
+    };
+
+    String[] listviewShortDescription = new String[]{
+            "Android ListView Short Description brgfe gtbfe tec tge tgec tgecd ytge tgd gtfre", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
+            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
+    };
 
 
     @Override
@@ -72,7 +96,6 @@ public class Fragment_View_Comments extends Fragment {
                     AttemptCreateComment attemptCreateComment = new AttemptCreateComment();
                     attemptCreateComment.execute(comentario.getText().toString().trim(), id_campo, nombre_hoyo);
                 }
-
             }
         });
 
@@ -86,23 +109,32 @@ public class Fragment_View_Comments extends Fragment {
         AttemptFindHoleComments attemptFindHoleComments= new AttemptFindHoleComments();
         attemptFindHoleComments.execute();
 
+        List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
-        lv = (ListView)getView().findViewById(R.id.list_comments);
+        for (int i = 0; i < 8; i++) {
+            HashMap<String, String> hm = new HashMap<String, String>();
+            hm.put("listview_title", listviewTitle[i]);
+            hm.put("listview_discription", listviewShortDescription[i]);
+            hm.put("listview_image", Integer.toString(listviewImage[i]));
+            hm.put("listview_like", Integer.toString(listviewLike[i]));
+            aList.add(hm);
+        }
+
+        /*lv = (ListView)getView().findViewById(R.id.list_comments);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                /*FragmentManager fm=getActivity().getSupportFragmentManager();
-                Fragment_View_Hole fvh=new Fragment_View_Hole();
-                final Bundle bundle = new Bundle();
-                bundle.putString("id_campo", id_campo[position]);
-                bundle.putString("nombre", nombre_hoyo[position]);
-                bundle.putString("creador", nombre_creador[position]);
-                fvh.setArguments(bundle);
-                fm.beginTransaction().replace(R.id.contenedor, fvh).commit();*/
+
             }
-        });
+        });*/
+        String[] from = {"listview_image", "listview_title", "listview_discription", "listview_like"};
+        int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description, R.id.listview_imageeeeee};
+
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
+        ListView androidListView = v.findViewById(R.id.list_comments);
+        androidListView.setAdapter(simpleAdapter);
     }
 
 
@@ -133,25 +165,16 @@ public class Fragment_View_Comments extends Fragment {
             try
             {
                 JSONArray jsonArray = new JSONArray(result);
-
-                //nombre_hoyo=new String[jsonArray.length()];
-                //id_campo=new String[jsonArray.length()];
                 comentarios=new String[jsonArray.length()];
-                //nombre_completo=new String[jsonArray.length()];
-                //nombre_creador=new String[jsonArray.length()];
 
                 for (int i = 0; i < jsonArray.length(); i++)
                 {
                     JSONObject obj = jsonArray.getJSONObject(i);
-                    //nombre_hoyo[i]=obj.getString("nombre_hoyo");
                     comentarios[i]=obj.getString("comentario");
-                    /*nombre_campo[i]=obj.getString("nombre_campo");
-                    nombre_completo[i]=nombre_campo[i]+" ("+nombre_hoyo[i]+")";
-                    nombre_creador[i]=obj.getString("creador");*/
                 }
                 //adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.simple_expandable_list_item_1, comentarios);
-                adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_comments, comentarios);
-                lv.setAdapter(adapter);
+                //adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_comments, comentarios);
+                //lv.setAdapter(adapter);
             }
             catch (JSONException e)
             {

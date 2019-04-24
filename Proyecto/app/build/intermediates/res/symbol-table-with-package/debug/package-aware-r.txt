@@ -1232,6 +1232,7 @@ drawable ic_mtrl_chip_close_circle
 drawable ic_rotate_left
 drawable ic_rotate_right
 drawable indicator_autocrop
+drawable like
 drawable likestyle
 drawable log_out
 drawable mapa
@@ -1453,6 +1454,7 @@ id list_favourites
 id list_following_followers
 id list_item
 id listview_image
+id listview_imageeeeee
 id listview_item_short_description
 id listview_item_title
 id login_link_signup
@@ -1766,6 +1768,7 @@ layout fragment_view_my_profile
 layout fragment_view_profile
 layout fragment_view_user_favourites
 layout list_comments
+layout listview_activity
 layout loginscreen_user
 layout main
 layout mtrl_layout_snackbar
