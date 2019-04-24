@@ -73,7 +73,6 @@ public class Fragment_View_Favourites extends Fragment {
                 bundle.putString("creador", nombre_creador[position]);
                 fvh.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvh).commit();
-
             }
         });
     }

@@ -278,5 +278,28 @@
             }
             mysqli_close($this->db->getDb());         
         }
+
+
+
+        public function find_hole_comments($id_campo, $nombre_hoyo)
+        {            
+            $data = array();
+            $query = "SELECT comentario FROM comentarios WHERE id_campo=$id_campo and nombre_hoyo='$nombre_hoyo'";
+
+           if($stmt = mysqli_query($this->db->getDb(), $query))
+            {
+                while($row = mysqli_fetch_assoc($stmt))
+                {  
+                    $temp = 
+                    [
+                        'comentario'=>$row['comentario']
+                    ];
+                        array_push($data, $temp);
+                }     
+                echo json_encode($data);   
+            }
+            mysqli_close($this->db->getDb());         
+        }
+
     }
 ?>

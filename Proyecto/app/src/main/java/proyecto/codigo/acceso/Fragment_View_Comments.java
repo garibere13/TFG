@@ -1,6 +1,5 @@
 package proyecto.codigo.acceso;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,14 +7,17 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.Toast;
-
-import org.apache.commons.lang3.StringUtils;
+import android.widget.AdapterView;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class Fragment_View_Comments extends Fragment {
 
     String ip_config;
     String URL;
+    String URL1;
     String id_campo;
     String nombre_hoyo;
     String creador;
@@ -32,6 +35,9 @@ public class Fragment_View_Comments extends Fragment {
     ImageButton btn_enviar;
     EditText comentario;
     JSONParser jsonParser=new JSONParser();
+    ListView lv;
+    ArrayAdapter<String> adapter;
+    String[] comentarios;
 
 
     @Override
@@ -53,6 +59,7 @@ public class Fragment_View_Comments extends Fragment {
 
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/create-comment.php";
+        URL1="http://"+ip_config+"/TFG/BD/find-hole-comments.php";
 
 
         btn_enviar.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +82,85 @@ public class Fragment_View_Comments extends Fragment {
         return v;
     }
 
+    @Override
+    public void onActivityCreated(Bundle state) {
+        super.onActivityCreated(state);
+
+        AttemptFindHoleComments attemptFindHoleComments= new AttemptFindHoleComments();
+        attemptFindHoleComments.execute();
+
+
+        lv = (ListView)getView().findViewById(R.id.list_comments);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                /*FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Hole fvh=new Fragment_View_Hole();
+                final Bundle bundle = new Bundle();
+                bundle.putString("id_campo", id_campo[position]);
+                bundle.putString("nombre", nombre_hoyo[position]);
+                bundle.putString("creador", nombre_creador[position]);
+                fvh.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvh).commit();*/
+            }
+        });
+    }
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    private class AttemptFindHoleComments extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        //@Override
+        protected String doInBackground(String... args) {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("id_campo", id_campo));
+            params.add(new BasicNameValuePair("nombre_hoyo", nombre_hoyo));
+            String json = jsonParser.makeHttpRequestString(URL1, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            try
+            {
+                JSONArray jsonArray = new JSONArray(result);
+
+                //nombre_hoyo=new String[jsonArray.length()];
+                //id_campo=new String[jsonArray.length()];
+                comentarios=new String[jsonArray.length()];
+                //nombre_completo=new String[jsonArray.length()];
+                //nombre_creador=new String[jsonArray.length()];
+
+                for (int i = 0; i < jsonArray.length(); i++)
+                {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    //nombre_hoyo[i]=obj.getString("nombre_hoyo");
+                    comentarios[i]=obj.getString("comentario");
+                    /*nombre_campo[i]=obj.getString("nombre_campo");
+                    nombre_completo[i]=nombre_campo[i]+" ("+nombre_hoyo[i]+")";
+                    nombre_creador[i]=obj.getString("creador");*/
+                }
+                adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1, comentarios);
+                lv.setAdapter(adapter);
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
     //////////////////////////////////////////////////////////////////////////////
@@ -109,6 +195,14 @@ public class Fragment_View_Comments extends Fragment {
         {
             comentario.setText("");
             Toast.makeText(getActivity().getApplicationContext(),"Comentario registrado correctamente",Toast.LENGTH_LONG).show();
+
+            FragmentManager fm=getActivity().getSupportFragmentManager();
+            Fragment_View_Comments fvc=new Fragment_View_Comments();
+            final Bundle bundle = new Bundle();
+            bundle.putString("id_campo", id_campo);
+            bundle.putString("nombre_hoyo", nombre_hoyo);
+            fvc.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor, fvc).commit();
         }
     }
 
