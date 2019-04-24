@@ -242,11 +242,10 @@ public class Fragment_View_Hole extends Fragment {
 
                 FragmentManager fm=getActivity().getSupportFragmentManager();
                 Fragment_View_Comments fvc=new Fragment_View_Comments();
-                /*final Bundle bundle = new Bundle();
-                bundle.putString("tipo", "hoyo");
+                final Bundle bundle = new Bundle();
                 bundle.putString("id_campo", db_id_campo);
                 bundle.putString("nombre_hoyo", db_nombre_hoyo);
-                fvc.setArguments(bundle);*/
+                fvc.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvc).commit();
             }
         });

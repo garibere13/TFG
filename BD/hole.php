@@ -33,6 +33,28 @@
             return $json;
         }
 
+
+        public function createNewComment($comentario, $id_campo, $nombre_hoyo, $username)
+        {                
+            
+            $query = "insert into comentarios (comentario, id_campo, nombre_hoyo, username, fecha) values ('$comentario', $id_campo, '$nombre_hoyo', '$username', NOW())";
+           
+            $inserted = mysqli_query($this->db->getDb(), $query);
+
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['mensaje'] = "Comentario registrado!";                    
+                }
+                else
+                {  
+                    $json['success'] = 0;
+                    $json['mensaje'] = "No se ha podido registrar el comentario";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
+
         public function checkHoleExists($id_campo, $nombre)
         {            
             $json = array();            

@@ -85,3 +85,16 @@ CREATE TABLE amistades(
    FOREIGN KEY (destino) REFERENCES usuarios(username),
    PRIMARY KEY (origen, destino)
 );
+
+
+CREATE TABLE comentarios(
+   id int(11) primary key AUTO_INCREMENT,
+   comentario VARCHAR(250),
+   id_campo INT,  
+   nombre_hoyo VARCHAR(10), 
+   username varchar(50),
+   fecha DATETIME,
+   FOREIGN KEY (username) REFERENCES usuarios(username),
+   FOREIGN KEY(id_campo) REFERENCES campos(id),
+   FOREIGN KEY(nombre_hoyo) REFERENCES hoyos(nombre)
+);

@@ -208,10 +208,10 @@
     <ToggleButton
         android:id="@+id/togglebutton_hole_favourite"
         android:background="@drawable/toggle_selector"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:textOff=""
         android:textOn="">
     </ToggleButton>
@@ -220,7 +220,7 @@
     <Button
         android:textColor="#ffffff"
         android:background="@drawable/buttonstyle"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
