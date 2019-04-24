@@ -1302,6 +1302,7 @@ id adjust_width
 id alertTitle
 id all
 id always
+id android_list_view_tutorial_with_example
 id anticipate
 id asConfigured
 id async
@@ -1451,6 +1452,9 @@ id list_comments
 id list_favourites
 id list_following_followers
 id list_item
+id listview_image
+id listview_item_short_description
+id listview_item_title
 id login_link_signup
 id login_text
 id map
@@ -1761,6 +1765,7 @@ layout fragment_view_my_hole
 layout fragment_view_my_profile
 layout fragment_view_profile
 layout fragment_view_user_favourites
+layout list_comments
 layout loginscreen_user
 layout main
 layout mtrl_layout_snackbar
@@ -1790,6 +1795,7 @@ layout signupscreen_hole
 layout signupscreen_hole_edit
 layout signupscreen_user
 layout signupscreen_user_edit
+layout simple_expandable_list_item_1
 layout support_simple_spinner_dropdown_item
 layout z_custom_notification
 layout z_main

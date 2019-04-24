@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -19,9 +18,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 
 public class Fragment_View_Comments extends Fragment {
 
@@ -152,7 +149,8 @@ public class Fragment_View_Comments extends Fragment {
                     nombre_completo[i]=nombre_campo[i]+" ("+nombre_hoyo[i]+")";
                     nombre_creador[i]=obj.getString("creador");*/
                 }
-                adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1, comentarios);
+                //adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.simple_expandable_list_item_1, comentarios);
+                adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_comments, comentarios);
                 lv.setAdapter(adapter);
             }
             catch (JSONException e)
