@@ -284,7 +284,7 @@
         public function find_hole_comments($id_campo, $nombre_hoyo)
         {            
             $data = array();
-            $query = "SELECT comentario FROM comentarios WHERE id_campo=$id_campo and nombre_hoyo='$nombre_hoyo'";
+            $query = "SELECT comentario, username, fecha FROM comentarios WHERE id_campo=$id_campo and nombre_hoyo='$nombre_hoyo'";
 
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {
@@ -292,7 +292,9 @@
                 {  
                     $temp = 
                     [
-                        'comentario'=>$row['comentario']
+                        'comentario'=>$row['comentario'],
+                        'username'=>$row['username'],
+                        'fecha'=>$row['fecha']
                     ];
                         array_push($data, $temp);
                 }     

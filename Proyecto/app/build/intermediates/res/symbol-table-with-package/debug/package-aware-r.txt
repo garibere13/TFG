@@ -1767,7 +1767,6 @@ layout fragment_view_my_hole
 layout fragment_view_my_profile
 layout fragment_view_profile
 layout fragment_view_user_favourites
-layout list_comments
 layout listview_activity
 layout loginscreen_user
 layout main

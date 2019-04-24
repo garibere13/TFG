@@ -1300,10 +1300,6 @@
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\f361d8c387f8970f67cf57c58b05f5b4\\res\\color\\mtrl_tabs_icon_color_selector_colored.xml"
     },
     {
-        "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_comments.xml.flat",
-        "source": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\src\\main\\res\\layout\\list_comments.xml"
-    },
-    {
         "merged": "C:\\xampp\\htdocs\\TFG\\Proyecto\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_text_cursor_material.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\f9898b5c7e1343bbc6bc9ac8eb301dcb\\res\\drawable\\abc_text_cursor_material.xml"
     },

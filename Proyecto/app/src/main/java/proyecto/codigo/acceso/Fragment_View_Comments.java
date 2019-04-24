@@ -35,9 +35,11 @@ public class Fragment_View_Comments extends Fragment {
     ImageButton btn_enviar;
     EditText comentario;
     JSONParser jsonParser=new JSONParser();
-    ListView lv;
+    //ListView lv;
     ArrayAdapter<String> adapter;
     String[] comentarios;
+    String[] usernames;
+    String[] fechas;
 
     String[] listviewTitle = new String[]{
             "ListView Title 1", "ListView Title 2", "ListView Title 3", "ListView Title 4",
@@ -59,6 +61,10 @@ public class Fragment_View_Comments extends Fragment {
             "Android ListView Short Description brgfe gtbfe tec tge tgec tgecd ytge tgd gtfre", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
     };
+
+    List<HashMap<String, String>> aList;
+    SimpleAdapter simpleAdapter;
+    ListView lv;
 
 
     @Override
@@ -109,16 +115,24 @@ public class Fragment_View_Comments extends Fragment {
         AttemptFindHoleComments attemptFindHoleComments= new AttemptFindHoleComments();
         attemptFindHoleComments.execute();
 
-        List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
+        /*List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < comentarios.length; i++) {
             HashMap<String, String> hm = new HashMap<String, String>();
             hm.put("listview_title", listviewTitle[i]);
             hm.put("listview_discription", listviewShortDescription[i]);
             hm.put("listview_image", Integer.toString(listviewImage[i]));
             hm.put("listview_like", Integer.toString(listviewLike[i]));
             aList.add(hm);
-        }
+
+
+            HashMap<String, String> hm = new HashMap<String, String>();
+            hm.put("listview_title", listviewTitle[i]);
+            hm.put("comentario", comentarios[i]);
+            hm.put("username_fecha", usernames[i]+" - "+fechas[i]);
+            hm.put("listview_like", Integer.toString(listviewLike[i]));
+            aList.add(hm);
+        }*/
 
         /*lv = (ListView)getView().findViewById(R.id.list_comments);
 
@@ -129,12 +143,17 @@ public class Fragment_View_Comments extends Fragment {
 
             }
         });*/
-        String[] from = {"listview_image", "listview_title", "listview_discription", "listview_like"};
-        int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description, R.id.listview_imageeeeee};
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
-        ListView androidListView = v.findViewById(R.id.list_comments);
-        androidListView.setAdapter(simpleAdapter);
+        lv = v.findViewById(R.id.list_comments);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+            }
+        });
+
     }
 
 
@@ -166,12 +185,33 @@ public class Fragment_View_Comments extends Fragment {
             {
                 JSONArray jsonArray = new JSONArray(result);
                 comentarios=new String[jsonArray.length()];
+                usernames=new String[jsonArray.length()];
+                fechas=new String[jsonArray.length()];
+
+                aList = new ArrayList<HashMap<String, String>>();
 
                 for (int i = 0; i < jsonArray.length(); i++)
                 {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     comentarios[i]=obj.getString("comentario");
+                    fechas[i]=obj.getString("fecha");
+                    usernames[i]=obj.getString("username");
+
+                    HashMap<String, String> hm = new HashMap<String, String>();
+                    hm.put("listview_image", Integer.toString(listviewImage[i]));
+                    hm.put("comentario", comentarios[i]);
+                    hm.put("username_fecha", usernames[i]+" - "+fechas[i]);
+                    hm.put("listview_like", Integer.toString(listviewLike[i]));
+                    aList.add(hm);
                 }
+
+                String[] from = {"listview_image", "username_fecha", "comentario", "listview_like"};
+                int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description, R.id.listview_imageeeeee};
+
+                simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
+                lv.setAdapter(simpleAdapter);
+
+
                 //adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.simple_expandable_list_item_1, comentarios);
                 //adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_comments, comentarios);
                 //lv.setAdapter(adapter);

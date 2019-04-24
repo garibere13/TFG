@@ -34,7 +34,7 @@ public final class R {
         private layout() {}
 
         public static final int cropimage = 0x7f0c0023;
-        public static final int main = 0x7f0c0045;
+        public static final int main = 0x7f0c0044;
     }
     public static final class string {
         private string() {}
