@@ -123,8 +123,8 @@ public class MainActivity extends AppCompatActivity
         AttemptFindUsernameData attemptFindData=new AttemptFindUsernameData();
         attemptFindData.execute(username);
 
-        AttemptFindFriendshipRequest attemptFindFriendshipRequest=new AttemptFindFriendshipRequest();
-        attemptFindFriendshipRequest.execute(username);
+        //AttemptFindFriendshipRequest attemptFindFriendshipRequest=new AttemptFindFriendshipRequest();
+        //attemptFindFriendshipRequest.execute(username);
 
        /* FloatingActionButton fab=findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

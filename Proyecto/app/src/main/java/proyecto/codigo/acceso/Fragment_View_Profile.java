@@ -582,6 +582,10 @@ public class Fragment_View_Profile extends Fragment {
                 if(db_url!="null")
                 {
                     db_url="http://"+ip_config+db_url;
+
+                    //Toast.makeText(getActivity().getApplicationContext(),db_url,Toast.LENGTH_LONG).show();
+                    //image.setBorderColor(Color.parseColor("#bdbdbd"));
+
                     Picasso.get().load(db_url).into(image);
                 }
 

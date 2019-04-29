@@ -1,7 +1,9 @@
 package proyecto.codigo.acceso;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -14,6 +16,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView;
+
+import com.squareup.picasso.Picasso;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -23,6 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Fragment_View_Comments extends Fragment {
 
     String ip_config;
@@ -31,7 +38,9 @@ public class Fragment_View_Comments extends Fragment {
     String id_campo;
     String nombre_hoyo;
     String creador;
+    View root;
     View v;
+    View v1;
     ImageButton btn_enviar;
     EditText comentario;
     JSONParser jsonParser=new JSONParser();
@@ -40,11 +49,9 @@ public class Fragment_View_Comments extends Fragment {
     String[] comentarios;
     String[] usernames;
     String[] fechas;
+    String[] urls;
 
-    String[] listviewTitle = new String[]{
-            "ListView Title 1", "ListView Title 2", "ListView Title 3", "ListView Title 4",
-            "ListView Title 5", "ListView Title 6", "ListView Title 7", "ListView Title 8",
-    };
+
 
 
     int[] listviewImage = new int[]{
@@ -57,14 +64,19 @@ public class Fragment_View_Comments extends Fragment {
             R.drawable.like, R.drawable.like, R.drawable.like, R.drawable.like,
     };
 
-    String[] listviewShortDescription = new String[]{
-            "Android ListView Short Description brgfe gtbfe tec tge tgec tgecd ytge tgd gtfre", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
-            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
-    };
+
 
     List<HashMap<String, String>> aList;
     SimpleAdapter simpleAdapter;
     ListView lv;
+    CircleImageView image;
+
+    /*NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                navigationView.setNavigationItemSelectedListener(this);
+                View headerView = navigationView.getHeaderView(0);
+                image=headerView.findViewById(R.id.home_user_profile_image);
+                user=headerView.findViewById(R.id.nombre_usuario_home);
+                user.setText("¡Bienvenido @"+username+"!");*/
 
 
     @Override
@@ -73,16 +85,35 @@ public class Fragment_View_Comments extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         Bundle bundle = getArguments();
+        ip_config=getResources().getString(R.string.ip_config);
         if(bundle!=null)
         {
             id_campo=bundle.getString("id_campo");
             nombre_hoyo=bundle.getString("nombre_hoyo");
         }
 
-        v=inflater.inflate(R.layout.comentarios, container, false);
+        //v=inflater.inflate(R.layout.comentarios, container, false);
+        root=inflater.inflate(R.layout.comentarios_hoyos_principal, container, false);
+
+        v = root.findViewById(R.id.comentarios_principal);
+        v1 = root.findViewById(R.id.android_list_view_tutorial_with_example);
+
+
+
+        //v1=inflater.inflate(R.layout.listview_activity, container, false);
+
+
+
+
+
+
+
+
+
 
         btn_enviar=v.findViewById(R.id.send);
         comentario=v.findViewById(R.id.commenttext);
+        image=v1.findViewById(R.id.listview_image);
 
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/create-comment.php";
@@ -105,7 +136,7 @@ public class Fragment_View_Comments extends Fragment {
             }
         });
 
-        return v;
+        return root;
     }
 
     @Override
@@ -187,6 +218,7 @@ public class Fragment_View_Comments extends Fragment {
                 comentarios=new String[jsonArray.length()];
                 usernames=new String[jsonArray.length()];
                 fechas=new String[jsonArray.length()];
+                urls=new String[jsonArray.length()];
 
                 aList = new ArrayList<HashMap<String, String>>();
 
@@ -196,17 +228,31 @@ public class Fragment_View_Comments extends Fragment {
                     comentarios[i]=obj.getString("comentario");
                     fechas[i]=obj.getString("fecha");
                     usernames[i]=obj.getString("username");
+                    urls[i]=obj.getString("url");
 
                     HashMap<String, String> hm = new HashMap<String, String>();
-                    hm.put("listview_image", Integer.toString(listviewImage[i]));
+
+                    if(urls[i]!="null")
+                    {
+                        urls[i]="http://"+ip_config+urls[i];
+                        //Picasso.get().load(urls[i]).into(image);
+                    }
+                    hm.put("fotos", urls[i]);
                     hm.put("comentario", comentarios[i]);
                     hm.put("username_fecha", usernames[i]+" - "+fechas[i]);
                     hm.put("listview_like", Integer.toString(listviewLike[i]));
                     aList.add(hm);
                 }
 
-                String[] from = {"listview_image", "username_fecha", "comentario", "listview_like"};
-                int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description, R.id.listview_imageeeeee};
+                Picasso.get().load(urls[0]).into(image);
+
+                //String[] from = {"fotos", "comentario", "username_fecha", "listview_like"};
+                //int[] to = {R.id.listview_image, R.id.listview_item_comentario, R.id.listview_item_short_description, R.id.listview_imageeeeee};
+
+
+                String[] from = {"comentario", "username_fecha", "listview_like"};
+                int[] to = {R.id.listview_item_comentario, R.id.listview_item_short_description, R.id.listview_imageeeeee};
+
 
                 simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
                 lv.setAdapter(simpleAdapter);
