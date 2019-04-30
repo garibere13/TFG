@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:textColor="@color/colorPrimaryDark"
+                android:text="autor y fecha"
                 android:textSize="12sp"
                 android:textStyle="bold"/>
 
@@ -52,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
+                android:text="el comentario"
                 android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
 

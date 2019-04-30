@@ -38,9 +38,9 @@ public class Fragment_View_Comments extends Fragment {
     String id_campo;
     String nombre_hoyo;
     String creador;
-    View root;
+    //View root;
     View v;
-    View v1;
+    //View v1;
     ImageButton btn_enviar;
     EditText comentario;
     JSONParser jsonParser=new JSONParser();
@@ -67,16 +67,10 @@ public class Fragment_View_Comments extends Fragment {
 
 
     List<HashMap<String, String>> aList;
-    SimpleAdapter simpleAdapter;
+    ListAdapter simpleAdapter;
     ListView lv;
     CircleImageView image;
 
-    /*NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                navigationView.setNavigationItemSelectedListener(this);
-                View headerView = navigationView.getHeaderView(0);
-                image=headerView.findViewById(R.id.home_user_profile_image);
-                user=headerView.findViewById(R.id.nombre_usuario_home);
-                user.setText("¡Bienvenido @"+username+"!");*/
 
 
     @Override
@@ -92,11 +86,11 @@ public class Fragment_View_Comments extends Fragment {
             nombre_hoyo=bundle.getString("nombre_hoyo");
         }
 
-        //v=inflater.inflate(R.layout.comentarios, container, false);
-        root=inflater.inflate(R.layout.comentarios_hoyos_principal, container, false);
+        v=inflater.inflate(R.layout.comentarios, container, false);
+        //root=inflater.inflate(R.layout.comentarios_hoyos_principal, container, false);
 
-        v = root.findViewById(R.id.comentarios_principal);
-        v1 = root.findViewById(R.id.android_list_view_tutorial_with_example);
+        //v = root.findViewById(R.id.comentarios_principal);
+        //v1 = root.findViewById(R.id.android_list_view_tutorial_with_example);
 
 
 
@@ -113,7 +107,7 @@ public class Fragment_View_Comments extends Fragment {
 
         btn_enviar=v.findViewById(R.id.send);
         comentario=v.findViewById(R.id.commenttext);
-        image=v1.findViewById(R.id.listview_image);
+        //image=v1.findViewById(R.id.listview_image);
 
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/create-comment.php";
@@ -136,7 +130,7 @@ public class Fragment_View_Comments extends Fragment {
             }
         });
 
-        return root;
+        return v;
     }
 
     @Override
@@ -244,19 +238,22 @@ public class Fragment_View_Comments extends Fragment {
                     aList.add(hm);
                 }
 
-                Picasso.get().load(urls[0]).into(image);
 
-                //String[] from = {"fotos", "comentario", "username_fecha", "listview_like"};
-                //int[] to = {R.id.listview_image, R.id.listview_item_comentario, R.id.listview_item_short_description, R.id.listview_imageeeeee};
+                //Toast.makeText(getApplicationContext(), R.string.con_tam, Toast.LENGTH_LONG).show();
 
 
-                String[] from = {"comentario", "username_fecha", "listview_like"};
-                int[] to = {R.id.listview_item_comentario, R.id.listview_item_short_description, R.id.listview_imageeeeee};
+                String[] from = {"fotos", "comentario", "username_fecha", "listview_like"};
+                int[] to = {R.id.listview_image, R.id.listview_item_comentario, R.id.listview_item_short_description, R.id.listview_imageeeeee};
+
+                String c;
+                c=urls[0];
 
 
-                simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
+                //String[] from = {"comentario", "username_fecha", "listview_like"};
+                //int[] to = {R.id.listview_item_comentario, R.id.listview_item_short_description, R.id.listview_imageeeeee};
+
+                simpleAdapter = new ListAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to, c, R.id.listview_image);
                 lv.setAdapter(simpleAdapter);
-
 
                 //adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.simple_expandable_list_item_1, comentarios);
                 //adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_comments, comentarios);
@@ -312,5 +309,9 @@ public class Fragment_View_Comments extends Fragment {
             fm.beginTransaction().replace(R.id.contenedor, fvc).commit();
         }
     }
+
+
+
+
 
 }
