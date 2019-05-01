@@ -51,8 +51,12 @@ public class Fragment_View_Comments extends Fragment {
 
 
     List<HashMap<String, String>> aList;
-    ListAdapter simpleAdapter;
-    ListView lv;
+    ListAdapter simpleAdapter_foto;
+    ListAdapter simpleAdapter_comentario;
+    ListAdapter simpleAdapter_like;
+    ListView lv_foto;
+    ListView lv_comentario;
+    ListView lv_like;
     CircleImageView image;
 
     boolean doubleClick = false;
@@ -112,31 +116,13 @@ public class Fragment_View_Comments extends Fragment {
 
 
 
-        lv = v.findViewById(R.id.list_comments);
+        lv_foto = v.findViewById(R.id.list_comments_photo);
+        lv_comentario = v.findViewById(R.id.list_comments_comment);
+        lv_like = v.findViewById(R.id.list_comments_like);
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv_comentario.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                /*Runnable r = new Runnable() {
-                    @Override
-                    public void run() {
-
-                        doubleClick = false;
-                    }
-                };
-
-                if(doubleClick)
-                {
-                    doubleClick = false;
-                    Toast.makeText(getActivity().getApplicationContext(),"dobliaaa", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    doubleClick=true;
-                    Toast.makeText(getActivity().getApplicationContext(),"bakarra", Toast.LENGTH_LONG).show();
-                    doubleHandler.postDelayed(r, 500);
-                }*/
 
                 //Toast.makeText(getActivity().getApplicationContext(),"url: "+urls[position], Toast.LENGTH_LONG).show();
             }
@@ -198,11 +184,28 @@ public class Fragment_View_Comments extends Fragment {
                     aList.add(hm);
                 }
 
-                String[] from = {"fotos", "comentario", "username_fecha", "listview_like"};
-                int[] to = {R.id.listview_image, R.id.listview_item_comentario, R.id.listview_item_short_description, R.id.listview_imageeeeee};
+                String[] from = {"fotos"};
+                int[] to = {R.id.listview_image};
 
-                simpleAdapter = new ListAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
-                lv.setAdapter(simpleAdapter);
+                simpleAdapter_foto = new ListAdapter(getActivity().getBaseContext(), aList, R.layout.listview_comments_photo, from, to);
+                lv_foto.setAdapter(simpleAdapter_foto);
+
+                ///////////////////////////////
+
+                String[] from1 = {"comentario", "username_fecha"};
+                int[] to1 = {R.id.listview_item_comentario, R.id.listview_item_short_description};
+
+                simpleAdapter_comentario = new ListAdapter(getActivity().getBaseContext(), aList, R.layout.listview_comments_comment, from1, to1);
+                lv_comentario.setAdapter(simpleAdapter_comentario);
+
+                ///////////////////////////////
+
+
+                String[] from2 = {"listview_like"};
+                int[] to2 = {R.id.listview_like_image};
+
+                simpleAdapter_like = new ListAdapter(getActivity().getBaseContext(), aList, R.layout.listview_comments_like, from2, to2);
+                lv_like.setAdapter(simpleAdapter_like);
             }
             catch (JSONException e)
             {
