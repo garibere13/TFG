@@ -283,31 +283,63 @@
 
         public function find_hole_comments($id_campo, $nombre_hoyo)
         {            
-            $data = array();
-            $query = "SELECT c.comentario, c.username, c.fecha, f.url 
-            FROM comentarios c, fotos f 
+            $query1 = "SELECT c.username, c.fecha, c.comentario
+            FROM comentarios c
             WHERE c.id_campo=$id_campo
-            and c.nombre_hoyo='$nombre_hoyo'
-            and c.username=f.username
-            and f.isProfile=true";
+            and c.nombre_hoyo='$nombre_hoyo'";
+            $result1 = mysqli_query($this->db->getDb(), $query1);           
 
-           if($stmt = mysqli_query($this->db->getDb(), $query))
+            //me recorro todos los usuarios que han comentado
+            $resultado_final=array();
+           if($stmt1 = mysqli_query($this->db->getDb(), $query1))
             {
-                while($row = mysqli_fetch_assoc($stmt))
+                //$i=0;
+                while($row = mysqli_fetch_assoc($stmt1))
                 {  
-                    $temp = 
-                    [
-                        'comentario'=>$row['comentario'],
-                        'username'=>$row['username'],
-                        'fecha'=>$row['fecha'],
-                        'url'=>$row['url']
-                    ];
-                        array_push($data, $temp);
-                }     
-                echo json_encode($data);   
+                   //hacer busqueda para saber si tiene foto de perfil, si no, le poenmos null
+
+                   $aux=$row['username'];
+                   $query3 = "SELECT url from fotos where username='$aux' and isProfile=true limit 1";
+                   $result3 = mysqli_query($this->db->getDb(), $query3);  
+
+
+                   if(mysqli_num_rows($result3) > 0)
+                   {
+                            if($stmt3 = mysqli_query($this->db->getDb(), $query3))
+                            {
+
+                                while($row3 = mysqli_fetch_assoc($stmt3))
+                                { 
+
+                                    $temp = 
+                                    [
+                                        'username'=>$row['username'],
+                                        'comentario'=>$row['comentario'],
+                                        'fecha'=>$row['fecha'],
+                                        'url'=>$row3['url']
+                                    ];
+                                    array_push($resultado_final, $temp);                      
+                                    
+                                }
+
+                            }
+                    }
+                    else
+                    {
+                        $temp = 
+                        [
+                            'username'=>$row['username'],
+                            'comentario'=>$row['comentario'],
+                            'fecha'=>$row['fecha'],
+                            'url'=>null
+                        ];
+                        array_push($resultado_final, $temp);                  
+                    }
+
+                } 
+                echo json_encode($resultado_final);   
             }
             mysqli_close($this->db->getDb());         
         }
-
     }
 ?>

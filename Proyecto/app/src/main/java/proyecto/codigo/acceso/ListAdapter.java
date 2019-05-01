@@ -67,7 +67,7 @@ public class ListAdapter extends BaseAdapter implements ThemedSpinnerAdapter {
      *        in the from parameter.
      */
     public ListAdapter(Context context, List<? extends Map<String, ?>> data,
-                          int resource, String[] from,  int[] to, String url, int imagen) {
+                          int resource, String[] from,  int[] to) {
         mData = data;
         mResource = mDropDownResource = resource;
         mFrom = from;
@@ -222,23 +222,14 @@ public class ListAdapter extends BaseAdapter implements ThemedSpinnerAdapter {
                     } else if (v instanceof TextView) {
                         // Note: keep the instanceof TextView check at the bottom of these
                         // ifs since a lot of views are TextViews (e.g. CheckBoxes).
-                        //Log.e("btrfe", "textview");
                         setViewText((TextView) v, text);
                     } else if (v instanceof ImageView) {
                         if (data instanceof Integer) {
-                            //Log.e("btrfe", "imegeview1");
-
                             setViewImage((ImageView) v, (Integer) data);
                         } else {
-
-                            //Log.e("btrfe", "imegeview2  "+data.getClass());
                             setViewImage((ImageView) v, text);
                         }
                     }
-                    /*else// if (v instanceof de.hdodenhof.circleimageview.CircleImageView)
-                    {
-                        Log.e("btrfe", "CircleImageViewwwww   "+data.getClass()+"   "+v.getClass());
-                    }*/
                     else {
                         throw new IllegalStateException(v.getClass().getName() + " is not a " +
                                 " view that can be bounds by this SimpleAdapter");
@@ -247,17 +238,9 @@ public class ListAdapter extends BaseAdapter implements ThemedSpinnerAdapter {
 
                 if(v instanceof de.hdodenhof.circleimageview.CircleImageView)
                 {
-                    //Log.e("btrfe", "aberrr");
                     setViewCircularImage((de.hdodenhof.circleimageview.CircleImageView)v, text);
                 }
-                //Log.e("btrfe", "aaaaaaaa  "+data.getClass()+"   "+v.getClass());
-
-
-
             }
-
-            //Log.e("btrfe", "pppppppppppppp     "+v.getClass());
-
         }
     }
 
@@ -319,7 +302,6 @@ public class ListAdapter extends BaseAdapter implements ThemedSpinnerAdapter {
      */
     public void setViewImage(ImageView v, String value) {
         try {
-            //Log.e("btrfe", "ssssssssssssssss "+value);
             v.setImageResource(Integer.parseInt(value));
         } catch (NumberFormatException nfe) {
             v.setImageURI(Uri.parse(value));
@@ -327,8 +309,15 @@ public class ListAdapter extends BaseAdapter implements ThemedSpinnerAdapter {
     }
 
     public void setViewCircularImage(de.hdodenhof.circleimageview.CircleImageView v, String value) {
-        //Log.e("btrfe", "xxxxxxxxxxx  "+value);
-        Picasso.get().load(value).into(v);
+
+        if(value!="null")
+        {
+            Picasso.get().load(value).into(v);
+        }
+        else
+        {
+            v.setImageResource(R.drawable.nobody);
+        }
     }
 
     /**

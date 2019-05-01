@@ -3,6 +3,7 @@ package proyecto.codigo.acceso;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,14 +39,10 @@ public class Fragment_View_Comments extends Fragment {
     String id_campo;
     String nombre_hoyo;
     String creador;
-    //View root;
     View v;
-    //View v1;
     ImageButton btn_enviar;
     EditText comentario;
     JSONParser jsonParser=new JSONParser();
-    //ListView lv;
-    ArrayAdapter<String> adapter;
     String[] comentarios;
     String[] usernames;
     String[] fechas;
@@ -53,23 +50,13 @@ public class Fragment_View_Comments extends Fragment {
 
 
 
-
-    int[] listviewImage = new int[]{
-            R.drawable.app_icon, R.drawable.el_tapon, R.drawable.favourite, R.drawable.golf_campo,
-            R.drawable.home, R.drawable.log_out, R.drawable.nobody, R.drawable.pelota_golf,
-    };
-
-    int[] listviewLike = new int[]{
-            R.drawable.like, R.drawable.like, R.drawable.like, R.drawable.like,
-            R.drawable.like, R.drawable.like, R.drawable.like, R.drawable.like,
-    };
-
-
-
     List<HashMap<String, String>> aList;
     ListAdapter simpleAdapter;
     ListView lv;
     CircleImageView image;
+
+    boolean doubleClick = false;
+    Handler doubleHandler;
 
 
 
@@ -87,27 +74,9 @@ public class Fragment_View_Comments extends Fragment {
         }
 
         v=inflater.inflate(R.layout.comentarios, container, false);
-        //root=inflater.inflate(R.layout.comentarios_hoyos_principal, container, false);
-
-        //v = root.findViewById(R.id.comentarios_principal);
-        //v1 = root.findViewById(R.id.android_list_view_tutorial_with_example);
-
-
-
-        //v1=inflater.inflate(R.layout.listview_activity, container, false);
-
-
-
-
-
-
-
-
-
 
         btn_enviar=v.findViewById(R.id.send);
         comentario=v.findViewById(R.id.commenttext);
-        //image=v1.findViewById(R.id.listview_image);
 
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/create-comment.php";
@@ -140,34 +109,8 @@ public class Fragment_View_Comments extends Fragment {
         AttemptFindHoleComments attemptFindHoleComments= new AttemptFindHoleComments();
         attemptFindHoleComments.execute();
 
-        /*List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
-
-        for (int i = 0; i < comentarios.length; i++) {
-            HashMap<String, String> hm = new HashMap<String, String>();
-            hm.put("listview_title", listviewTitle[i]);
-            hm.put("listview_discription", listviewShortDescription[i]);
-            hm.put("listview_image", Integer.toString(listviewImage[i]));
-            hm.put("listview_like", Integer.toString(listviewLike[i]));
-            aList.add(hm);
 
 
-            HashMap<String, String> hm = new HashMap<String, String>();
-            hm.put("listview_title", listviewTitle[i]);
-            hm.put("comentario", comentarios[i]);
-            hm.put("username_fecha", usernames[i]+" - "+fechas[i]);
-            hm.put("listview_like", Integer.toString(listviewLike[i]));
-            aList.add(hm);
-        }*/
-
-        /*lv = (ListView)getView().findViewById(R.id.list_comments);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-            }
-        });*/
 
         lv = v.findViewById(R.id.list_comments);
 
@@ -175,12 +118,30 @@ public class Fragment_View_Comments extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                /*Runnable r = new Runnable() {
+                    @Override
+                    public void run() {
 
+                        doubleClick = false;
+                    }
+                };
+
+                if(doubleClick)
+                {
+                    doubleClick = false;
+                    Toast.makeText(getActivity().getApplicationContext(),"dobliaaa", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    doubleClick=true;
+                    Toast.makeText(getActivity().getApplicationContext(),"bakarra", Toast.LENGTH_LONG).show();
+                    doubleHandler.postDelayed(r, 500);
+                }*/
+
+                //Toast.makeText(getActivity().getApplicationContext(),"url: "+urls[position], Toast.LENGTH_LONG).show();
             }
         });
-
     }
-
 
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -229,35 +190,19 @@ public class Fragment_View_Comments extends Fragment {
                     if(urls[i]!="null")
                     {
                         urls[i]="http://"+ip_config+urls[i];
-                        //Picasso.get().load(urls[i]).into(image);
                     }
                     hm.put("fotos", urls[i]);
                     hm.put("comentario", comentarios[i]);
                     hm.put("username_fecha", usernames[i]+" - "+fechas[i]);
-                    hm.put("listview_like", Integer.toString(listviewLike[i]));
+                    hm.put("listview_like", Integer.toString(R.drawable.like));
                     aList.add(hm);
                 }
-
-
-                //Toast.makeText(getApplicationContext(), R.string.con_tam, Toast.LENGTH_LONG).show();
-
 
                 String[] from = {"fotos", "comentario", "username_fecha", "listview_like"};
                 int[] to = {R.id.listview_image, R.id.listview_item_comentario, R.id.listview_item_short_description, R.id.listview_imageeeeee};
 
-                String c;
-                c=urls[0];
-
-
-                //String[] from = {"comentario", "username_fecha", "listview_like"};
-                //int[] to = {R.id.listview_item_comentario, R.id.listview_item_short_description, R.id.listview_imageeeeee};
-
-                simpleAdapter = new ListAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to, c, R.id.listview_image);
+                simpleAdapter = new ListAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
                 lv.setAdapter(simpleAdapter);
-
-                //adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.simple_expandable_list_item_1, comentarios);
-                //adapter=new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_comments, comentarios);
-                //lv.setAdapter(adapter);
             }
             catch (JSONException e)
             {
