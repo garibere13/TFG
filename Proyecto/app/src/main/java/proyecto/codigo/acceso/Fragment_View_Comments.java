@@ -7,9 +7,13 @@ import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -58,6 +62,9 @@ public class Fragment_View_Comments extends Fragment {
     ListView lv_comentario;
     ListView lv_like;
     CircleImageView image;
+    View clickSource;
+    View touchSource;
+    int offset = 0;
 
     boolean doubleClick = false;
     Handler doubleHandler;
@@ -120,12 +127,145 @@ public class Fragment_View_Comments extends Fragment {
         lv_comentario = v.findViewById(R.id.list_comments_comment);
         lv_like = v.findViewById(R.id.list_comments_like);
 
-        lv_comentario.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+        lv_foto.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if(touchSource == null)
+                    touchSource = v;
+
+                if(v == touchSource) {
+                    lv_comentario.dispatchTouchEvent(event);
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        clickSource = v;
+                        touchSource = null;
+                    }
+                    /*lv_like.dispatchTouchEvent(event);
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        clickSource = v;
+                        touchSource = null;
+                    }*/
+                }
+
+                return false;
+            }
+        });
+        lv_comentario.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if(touchSource == null)
+                    touchSource = v;
+
+                if(v == touchSource) {
+                    lv_like.dispatchTouchEvent(event);
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        clickSource = v;
+                        touchSource = null;
+                    }
+                   /* lv_like.dispatchTouchEvent(event);
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        clickSource = v;
+                        touchSource = null;
+                    }*/
+                }
+
+                return false;
+            }
+        });
+        lv_like.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                if(touchSource == null)
+                    touchSource = v;
+
+                if(v == touchSource) {
+                    lv_foto.dispatchTouchEvent(event);
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        clickSource = v;
+                        touchSource = null;
+                    }
+                    /*lv_comentario.dispatchTouchEvent(event);
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        clickSource = v;
+                        touchSource = null;
+                    }*/
+                }
+
+                return false;
+            }
+        });
+
+
+        ///////////////////////////////////////////7
+
+
+
+        lv_foto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //Toast.makeText(getActivity().getApplicationContext(),"url: "+urls[position], Toast.LENGTH_LONG).show();
+                if(parent == clickSource) {
+                    // Do something with the ListView was clicked
+                    //Log.e("eec", "Argazkia");
+                    FragmentManager fm=getActivity().getSupportFragmentManager();
+                    Fragment_View_Profile fvp=new Fragment_View_Profile();
+                    final Bundle bundle = new Bundle();
+                    bundle.putString("username", usernames[position]);
+                    fvp.setArguments(bundle);
+                    fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
+                }
             }
+        });
+        lv_like.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(parent == clickSource) {
+                    // Do something with the ListView was clicked
+                    Toast.makeText(getActivity().getApplicationContext(),usernames[position]+"-ren gustokoa",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+
+
+        /////////////////////////////////////////
+
+        lv_foto.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(view == clickSource)
+                {
+                    lv_comentario.setSelectionFromTop(firstVisibleItem, view.getChildAt(0).getTop() + offset);
+                    lv_like.setSelectionFromTop(firstVisibleItem, view.getChildAt(0).getTop() + offset);
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {}
+        });
+        lv_comentario.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(view == clickSource)
+                {
+                    lv_foto.setSelectionFromTop(firstVisibleItem, view.getChildAt(0).getTop() + offset);
+                    lv_like.setSelectionFromTop(firstVisibleItem, view.getChildAt(0).getTop() + offset);
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {}
+        });
+        lv_like.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if(view == clickSource)
+                {
+                    lv_foto.setSelectionFromTop(firstVisibleItem, view.getChildAt(0).getTop() + offset);
+                    lv_comentario.setSelectionFromTop(firstVisibleItem, view.getChildAt(0).getTop() + offset);
+                }
+            }
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {}
         });
     }
 
@@ -180,7 +320,8 @@ public class Fragment_View_Comments extends Fragment {
                     hm.put("fotos", urls[i]);
                     hm.put("comentario", comentarios[i]);
                     hm.put("username_fecha", usernames[i]+" - "+fechas[i]);
-                    hm.put("listview_like", Integer.toString(R.drawable.like));
+                    //hm.put("listview_like", Integer.toString(R.drawable.like));
+                    hm.put("listview_like", "null-1");
                     aList.add(hm);
                 }
 

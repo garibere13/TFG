@@ -185,16 +185,6 @@ public class ListAdapter extends BaseAdapter implements ThemedSpinnerAdapter {
             final View v = view.findViewById(to[i]);
             if (v != null) {
 
-
-
-
-               /* if(dataSet.get(from[i])=="comentario")
-                {
-
-                }*/
-
-
-
                 final Object data = dataSet.get(from[i]);
                 String text = data == null ? "" : data.toString();
                 if (text == null) {
@@ -310,13 +300,20 @@ public class ListAdapter extends BaseAdapter implements ThemedSpinnerAdapter {
 
     public void setViewCircularImage(de.hdodenhof.circleimageview.CircleImageView v, String value) {
 
-        if(value!="null")
+        if(!(value.equals("null"))&&!(value.equals("null-1")))
         {
             Picasso.get().load(value).into(v);
         }
         else
         {
-            v.setImageResource(R.drawable.nobody);
+            if(value.equals("null-1"))
+            {
+                v.setImageResource(R.drawable.like);
+            }
+            else
+            {
+                v.setImageResource(R.drawable.nobody);
+            }
         }
     }
 
