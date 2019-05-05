@@ -98,3 +98,12 @@ CREATE TABLE comentarios(
    FOREIGN KEY(id_campo) REFERENCES campos(id),
    FOREIGN KEY(nombre_hoyo) REFERENCES hoyos(nombre)
 );
+
+
+CREATE TABLE votaciones(
+   id_comentario int(11), 
+   username varchar(50),
+   FOREIGN KEY(id_comentario) REFERENCES comentarios(id),
+   FOREIGN KEY(username) REFERENCES usuarios(username),
+   PRIMARY KEY (id_comentario, username)
+);

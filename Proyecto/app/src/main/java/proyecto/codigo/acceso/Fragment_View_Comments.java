@@ -22,7 +22,6 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView;
 
-import com.squareup.picasso.Picasso;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -40,6 +39,7 @@ public class Fragment_View_Comments extends Fragment {
     String ip_config;
     String URL;
     String URL1;
+    String URL2;
     String id_campo;
     String nombre_hoyo;
     String creador;
@@ -47,10 +47,12 @@ public class Fragment_View_Comments extends Fragment {
     ImageButton btn_enviar;
     EditText comentario;
     JSONParser jsonParser=new JSONParser();
+    String[] ids;
     String[] comentarios;
     String[] usernames;
     String[] fechas;
     String[] urls;
+    String[] votos;
 
 
 
@@ -68,6 +70,10 @@ public class Fragment_View_Comments extends Fragment {
 
     boolean doubleClick = false;
     Handler doubleHandler;
+
+    public String id_comentario_voto;
+    public String username_voto;
+
 
 
 
@@ -92,6 +98,7 @@ public class Fragment_View_Comments extends Fragment {
         ip_config=getResources().getString(R.string.ip_config);
         URL="http://"+ip_config+"/TFG/BD/create-comment.php";
         URL1="http://"+ip_config+"/TFG/BD/find-hole-comments.php";
+        URL2="http://"+ip_config+"/TFG/BD/create-vote.php";
 
 
         btn_enviar.setOnClickListener(new View.OnClickListener() {
@@ -218,7 +225,9 @@ public class Fragment_View_Comments extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(parent == clickSource) {
                     // Do something with the ListView was clicked
-                    Toast.makeText(getActivity().getApplicationContext(),usernames[position]+"-ren gustokoa",Toast.LENGTH_LONG).show();
+                    id_comentario_voto=ids[position];
+                    AttemptCreateVote attemptCreateVote=new AttemptCreateVote();
+                    attemptCreateVote.execute();
                 }
             }
         });
@@ -270,6 +279,56 @@ public class Fragment_View_Comments extends Fragment {
     }
 
 
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////7
+
+    private class AttemptCreateVote extends AsyncTask<String, String, JSONObject> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args)
+        {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("id_comentario", id_comentario_voto));
+            params.add(new BasicNameValuePair("username", ((MainActivity)getActivity()).username));
+            JSONObject json = jsonParser.makeHttpRequest(URL2, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(JSONObject result)
+        {
+            try
+            {
+                if(result != null)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(),result.getString("mensaje"),Toast.LENGTH_LONG).show();
+                }
+                FragmentManager fm=getActivity().getSupportFragmentManager();
+                Fragment_View_Comments fvc=new Fragment_View_Comments();
+                final Bundle bundle = new Bundle();
+                bundle.putString("id_campo", id_campo);
+                bundle.putString("nombre_hoyo", nombre_hoyo);
+                fvc.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.contenedor, fvc).commit();
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
     /////////////////////////////////////////////////////////////////////////////////////////
 
     private class AttemptFindHoleComments extends AsyncTask<String, String, String> {
@@ -296,20 +355,24 @@ public class Fragment_View_Comments extends Fragment {
             try
             {
                 JSONArray jsonArray = new JSONArray(result);
+                ids=new String[jsonArray.length()];
                 comentarios=new String[jsonArray.length()];
                 usernames=new String[jsonArray.length()];
                 fechas=new String[jsonArray.length()];
                 urls=new String[jsonArray.length()];
+                votos=new String[jsonArray.length()];
 
                 aList = new ArrayList<HashMap<String, String>>();
 
                 for (int i = 0; i < jsonArray.length(); i++)
                 {
                     JSONObject obj = jsonArray.getJSONObject(i);
+                    ids[i]=obj.getString("id");
                     comentarios[i]=obj.getString("comentario");
                     fechas[i]=obj.getString("fecha");
                     usernames[i]=obj.getString("username");
                     urls[i]=obj.getString("url");
+                    votos[i]=obj.getString("votos");
 
                     HashMap<String, String> hm = new HashMap<String, String>();
 
@@ -319,7 +382,7 @@ public class Fragment_View_Comments extends Fragment {
                     }
                     hm.put("fotos", urls[i]);
                     hm.put("comentario", comentarios[i]);
-                    hm.put("username_fecha", usernames[i]+" - "+fechas[i]);
+                    hm.put("username_fecha", usernames[i]+" - "+votos[i]+" votos"+"    "+fechas[i]);
                     //hm.put("listview_like", Integer.toString(R.drawable.like));
                     hm.put("listview_like", "null-1");
                     aList.add(hm);

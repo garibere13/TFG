@@ -170,6 +170,31 @@
             return $json;
         }
 
+        public function createVote($id_comentario, $username)
+        {                
+            $query = "insert into votaciones (id_comentario, username) values ($id_comentario, '$username')";
+           
+            $inserted = mysqli_query($this->db->getDb(), $query);
+                
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['mensaje'] = "Votación realizada"; 
+                    
+                    $query1 = "update comentarios set votos=votos+1 where id=$id_comentario";
+                    $result1 = mysqli_query($this->db->getDb(), $query1);                 
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['mensaje'] = "No se ha podido realizar la votación";
+                }
+
+                                 
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
+
         public function deleteFavouriteHole($nombre_hoyo, $id_campo, $username)
         {                
             $query = "delete from favoritos where nombre_hoyo='$nombre_hoyo' and id_campo=$id_campo and username='$username'";
@@ -282,11 +307,13 @@
 
 
         public function find_hole_comments($id_campo, $nombre_hoyo)
-        {            
-            $query1 = "SELECT c.username, c.fecha, c.comentario
-            FROM comentarios c
-            WHERE c.id_campo=$id_campo
-            and c.nombre_hoyo='$nombre_hoyo'";
+        {          
+            
+            $query1 = "SELECT id, username, fecha, comentario, votos 
+            FROM comentarios
+            WHERE id_campo=$id_campo
+            and nombre_hoyo='$nombre_hoyo'
+            order by votos desc";
             $result1 = mysqli_query($this->db->getDb(), $query1);           
 
             //me recorro todos los usuarios que han comentado
@@ -313,9 +340,11 @@
 
                                     $temp = 
                                     [
+                                        'id'=>$row['id'],
                                         'username'=>$row['username'],
                                         'comentario'=>$row['comentario'],
                                         'fecha'=>$row['fecha'],
+                                        'votos'=>$row['votos'],
                                         'url'=>$row3['url']
                                     ];
                                     array_push($resultado_final, $temp);                      
@@ -328,9 +357,11 @@
                     {
                         $temp = 
                         [
+                            'id'=>$row['id'],
                             'username'=>$row['username'],
                             'comentario'=>$row['comentario'],
                             'fecha'=>$row['fecha'],
+                            'votos'=>$row['votos'],
                             'url'=>null
                         ];
                         array_push($resultado_final, $temp);                  

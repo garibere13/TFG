@@ -3,6 +3,7 @@
     
     $id_campo=""; 
     $nombre_hoyo="";
+    
 
     if(isset($_POST['id_campo']))
     {
