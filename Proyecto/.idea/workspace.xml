@@ -36,44 +36,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Fragment_View_Comments.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Fragment_View_Comments.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Comments.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="458" column="40" selection-start-line="458" selection-start-column="40" selection-end-line="458" selection-end-column="40" />
+            <state relative-caret-position="385">
+              <caret line="242" column="21" selection-start-line="242" selection-start-column="21" selection-end-line="242" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2226#2270#0" expanded="true" />
-                <element signature="e#2613#2657#0" expanded="true" />
-                <element signature="e#2948#3642#0" expanded="true" />
-                <element signature="e#3641#3642#0" expanded="true" />
-                <element signature="e#4136#4890#0" expanded="true" />
-                <element signature="e#4889#4890#0" expanded="true" />
-                <element signature="e#4934#5682#0" expanded="true" />
-                <element signature="e#5681#5682#0" expanded="true" />
-                <element signature="e#5720#6474#0" expanded="true" />
-                <element signature="e#6473#6474#0" expanded="true" />
-                <element signature="e#6574#7342#0" expanded="true" />
-                <element signature="e#7341#7342#0" expanded="true" />
-                <element signature="e#7384#7993#0" expanded="true" />
-                <element signature="e#7992#7993#0" expanded="true" />
-                <element signature="e#10402#10417#0" expanded="true" />
-                <element signature="e#11586#11601#0" expanded="true" />
-                <element signature="e#13208#13223#0" expanded="true" />
-                <element signature="e#14818#14834#0" expanded="true" />
-                <element signature="e#17140#17155#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ListAdapter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/ListAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="303" column="29" selection-start-line="303" selection-start-column="29" selection-end-line="303" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#onPostExecute#0;class#AttemptFindHoleComments#0;class#Fragment_View_Comments#0" />
               </folding>
             </state>
           </provider>
@@ -109,8 +79,8 @@
       <find>url2</find>
       <find>AttemptCreateFavourite</find>
       <find>AttemptFindIsHoleUserFavourite</find>
-      <find>null-1</find>
       <find>url1</find>
+      <find>null-1</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -3465,8 +3435,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/listview_comments_photo.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/listview_comments_comment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/listview_comments_like.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Comments.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/ListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Comments.java" />
       </list>
     </option>
   </component>
@@ -3673,7 +3643,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="10" visible="true" weight="0.47108844" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="10" visible="true" weight="0.26530612" />
       <window_info id="Captures" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="2" />
@@ -3717,25 +3687,7 @@
           <caret line="81" column="53" lean-forward="true" selection-start-line="81" selection-start-column="53" selection-end-line="81" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2226#2270#0" expanded="true" />
-            <element signature="e#2613#2657#0" expanded="true" />
-            <element signature="e#2948#3642#0" expanded="true" />
-            <element signature="e#3641#3642#0" expanded="true" />
-            <element signature="e#4136#4890#0" expanded="true" />
-            <element signature="e#4889#4890#0" expanded="true" />
-            <element signature="e#4934#5682#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5720#6474#0" expanded="true" />
-            <element signature="e#6473#6474#0" expanded="true" />
-            <element signature="e#6574#7342#0" expanded="true" />
-            <element signature="e#7341#7342#0" expanded="true" />
-            <element signature="e#7384#7993#0" expanded="true" />
-            <element signature="e#7992#7993#0" expanded="true" />
-            <element signature="e#10402#10417#0" expanded="true" />
-            <element signature="e#11586#11601#0" expanded="true" />
-            <element signature="e#13208#13223#0" expanded="true" />
-            <element signature="e#14818#14834#0" expanded="true" />
-            <element signature="e#17140#17155#0" expanded="true" />
+            <element signature="method#onPostExecute#0;class#AttemptFindHoleComments#0;class#Fragment_View_Comments#0" />
           </folding>
         </state>
       </provider>
@@ -3758,25 +3710,7 @@
           <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2226#2270#0" expanded="true" />
-            <element signature="e#2613#2657#0" expanded="true" />
-            <element signature="e#2948#3642#0" expanded="true" />
-            <element signature="e#3641#3642#0" expanded="true" />
-            <element signature="e#4136#4890#0" expanded="true" />
-            <element signature="e#4889#4890#0" expanded="true" />
-            <element signature="e#4934#5682#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5720#6474#0" expanded="true" />
-            <element signature="e#6473#6474#0" expanded="true" />
-            <element signature="e#6574#7342#0" expanded="true" />
-            <element signature="e#7341#7342#0" expanded="true" />
-            <element signature="e#7384#7993#0" expanded="true" />
-            <element signature="e#7992#7993#0" expanded="true" />
-            <element signature="e#10402#10417#0" expanded="true" />
-            <element signature="e#11586#11601#0" expanded="true" />
-            <element signature="e#13208#13223#0" expanded="true" />
-            <element signature="e#14818#14834#0" expanded="true" />
-            <element signature="e#17140#17155#0" expanded="true" />
+            <element signature="method#onPostExecute#0;class#AttemptFindHoleComments#0;class#Fragment_View_Comments#0" />
           </folding>
         </state>
       </provider>
@@ -3799,25 +3733,7 @@
           <caret line="232" selection-start-line="232" selection-end-line="232" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2226#2270#0" expanded="true" />
-            <element signature="e#2613#2657#0" expanded="true" />
-            <element signature="e#2948#3642#0" expanded="true" />
-            <element signature="e#3641#3642#0" expanded="true" />
-            <element signature="e#4136#4890#0" expanded="true" />
-            <element signature="e#4889#4890#0" expanded="true" />
-            <element signature="e#4934#5682#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5720#6474#0" expanded="true" />
-            <element signature="e#6473#6474#0" expanded="true" />
-            <element signature="e#6574#7342#0" expanded="true" />
-            <element signature="e#7341#7342#0" expanded="true" />
-            <element signature="e#7384#7993#0" expanded="true" />
-            <element signature="e#7992#7993#0" expanded="true" />
-            <element signature="e#10402#10417#0" expanded="true" />
-            <element signature="e#11586#11601#0" expanded="true" />
-            <element signature="e#13208#13223#0" expanded="true" />
-            <element signature="e#14818#14834#0" expanded="true" />
-            <element signature="e#17140#17155#0" expanded="true" />
+            <element signature="method#onPostExecute#0;class#AttemptFindHoleComments#0;class#Fragment_View_Comments#0" />
           </folding>
         </state>
       </provider>
@@ -3840,25 +3756,7 @@
           <caret line="245" selection-start-line="245" selection-end-line="245" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2226#2270#0" expanded="true" />
-            <element signature="e#2613#2657#0" expanded="true" />
-            <element signature="e#2948#3642#0" expanded="true" />
-            <element signature="e#3641#3642#0" expanded="true" />
-            <element signature="e#4136#4890#0" expanded="true" />
-            <element signature="e#4889#4890#0" expanded="true" />
-            <element signature="e#4934#5682#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5720#6474#0" expanded="true" />
-            <element signature="e#6473#6474#0" expanded="true" />
-            <element signature="e#6574#7342#0" expanded="true" />
-            <element signature="e#7341#7342#0" expanded="true" />
-            <element signature="e#7384#7993#0" expanded="true" />
-            <element signature="e#7992#7993#0" expanded="true" />
-            <element signature="e#10402#10417#0" expanded="true" />
-            <element signature="e#11586#11601#0" expanded="true" />
-            <element signature="e#13208#13223#0" expanded="true" />
-            <element signature="e#14818#14834#0" expanded="true" />
-            <element signature="e#17140#17155#0" expanded="true" />
+            <element signature="method#onPostExecute#0;class#AttemptFindHoleComments#0;class#Fragment_View_Comments#0" />
           </folding>
         </state>
       </provider>
@@ -3869,25 +3767,7 @@
           <caret line="220" column="23" selection-start-line="220" selection-end-line="221" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2226#2270#0" expanded="true" />
-            <element signature="e#2613#2657#0" expanded="true" />
-            <element signature="e#2948#3642#0" expanded="true" />
-            <element signature="e#3641#3642#0" expanded="true" />
-            <element signature="e#4136#4890#0" expanded="true" />
-            <element signature="e#4889#4890#0" expanded="true" />
-            <element signature="e#4934#5682#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5720#6474#0" expanded="true" />
-            <element signature="e#6473#6474#0" expanded="true" />
-            <element signature="e#6574#7342#0" expanded="true" />
-            <element signature="e#7341#7342#0" expanded="true" />
-            <element signature="e#7384#7993#0" expanded="true" />
-            <element signature="e#7992#7993#0" expanded="true" />
-            <element signature="e#10402#10417#0" expanded="true" />
-            <element signature="e#11586#11601#0" expanded="true" />
-            <element signature="e#13208#13223#0" expanded="true" />
-            <element signature="e#14818#14834#0" expanded="true" />
-            <element signature="e#17140#17155#0" expanded="true" />
+            <element signature="method#onPostExecute#0;class#AttemptFindHoleComments#0;class#Fragment_View_Comments#0" />
           </folding>
         </state>
       </provider>
@@ -3905,25 +3785,7 @@
           <caret line="225" column="41" lean-forward="true" selection-start-line="225" selection-start-column="41" selection-end-line="225" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2226#2270#0" expanded="true" />
-            <element signature="e#2613#2657#0" expanded="true" />
-            <element signature="e#2948#3642#0" expanded="true" />
-            <element signature="e#3641#3642#0" expanded="true" />
-            <element signature="e#4136#4890#0" expanded="true" />
-            <element signature="e#4889#4890#0" expanded="true" />
-            <element signature="e#4934#5682#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5720#6474#0" expanded="true" />
-            <element signature="e#6473#6474#0" expanded="true" />
-            <element signature="e#6574#7342#0" expanded="true" />
-            <element signature="e#7341#7342#0" expanded="true" />
-            <element signature="e#7384#7993#0" expanded="true" />
-            <element signature="e#7992#7993#0" expanded="true" />
-            <element signature="e#10402#10417#0" expanded="true" />
-            <element signature="e#11586#11601#0" expanded="true" />
-            <element signature="e#13208#13223#0" expanded="true" />
-            <element signature="e#14818#14834#0" expanded="true" />
-            <element signature="e#17140#17155#0" expanded="true" />
+            <element signature="method#onPostExecute#0;class#AttemptFindHoleComments#0;class#Fragment_View_Comments#0" />
           </folding>
         </state>
       </provider>
@@ -3935,25 +3797,7 @@
           <caret line="175" column="18" selection-start-line="175" selection-start-column="18" selection-end-line="175" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2226#2270#0" expanded="true" />
-            <element signature="e#2613#2657#0" expanded="true" />
-            <element signature="e#2948#3642#0" expanded="true" />
-            <element signature="e#3641#3642#0" expanded="true" />
-            <element signature="e#4136#4890#0" expanded="true" />
-            <element signature="e#4889#4890#0" expanded="true" />
-            <element signature="e#4934#5682#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5720#6474#0" expanded="true" />
-            <element signature="e#6473#6474#0" expanded="true" />
-            <element signature="e#6574#7342#0" expanded="true" />
-            <element signature="e#7341#7342#0" expanded="true" />
-            <element signature="e#7384#7993#0" expanded="true" />
-            <element signature="e#7992#7993#0" expanded="true" />
-            <element signature="e#10402#10417#0" expanded="true" />
-            <element signature="e#11586#11601#0" expanded="true" />
-            <element signature="e#13208#13223#0" expanded="true" />
-            <element signature="e#14818#14834#0" expanded="true" />
-            <element signature="e#17140#17155#0" expanded="true" />
+            <element signature="method#onPostExecute#0;class#AttemptFindHoleComments#0;class#Fragment_View_Comments#0" />
           </folding>
         </state>
       </provider>
@@ -4226,41 +4070,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Comments.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/ListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="458" column="40" selection-start-line="458" selection-start-column="40" selection-end-line="458" selection-end-column="40" />
+        <state relative-caret-position="-580">
+          <caret line="310" column="49" selection-start-line="310" selection-start-column="49" selection-end-line="310" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2226#2270#0" expanded="true" />
-            <element signature="e#2613#2657#0" expanded="true" />
-            <element signature="e#2948#3642#0" expanded="true" />
-            <element signature="e#3641#3642#0" expanded="true" />
-            <element signature="e#4136#4890#0" expanded="true" />
-            <element signature="e#4889#4890#0" expanded="true" />
-            <element signature="e#4934#5682#0" expanded="true" />
-            <element signature="e#5681#5682#0" expanded="true" />
-            <element signature="e#5720#6474#0" expanded="true" />
-            <element signature="e#6473#6474#0" expanded="true" />
-            <element signature="e#6574#7342#0" expanded="true" />
-            <element signature="e#7341#7342#0" expanded="true" />
-            <element signature="e#7384#7993#0" expanded="true" />
-            <element signature="e#7992#7993#0" expanded="true" />
-            <element signature="e#10402#10417#0" expanded="true" />
-            <element signature="e#11586#11601#0" expanded="true" />
-            <element signature="e#13208#13223#0" expanded="true" />
-            <element signature="e#14818#14834#0" expanded="true" />
-            <element signature="e#17140#17155#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/ListAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Comments.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="303" column="29" selection-start-line="303" selection-start-column="29" selection-end-line="303" selection-end-column="29" />
+        <state relative-caret-position="385">
+          <caret line="242" column="21" selection-start-line="242" selection-start-column="21" selection-end-line="242" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#onPostExecute#0;class#AttemptFindHoleComments#0;class#Fragment_View_Comments#0" />
           </folding>
         </state>
       </provider>

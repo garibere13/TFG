@@ -228,11 +228,19 @@ public class Fragment_View_Comments extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(parent == clickSource) {
                     // Do something with the ListView was clicked
-                    Toast.makeText(getActivity().getApplicationContext(),likes[position],Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity().getApplicationContext(),likes[position],Toast.LENGTH_LONG).show();
 
                     id_comentario_voto=ids[position];
-                    AttemptCreateVote attemptCreateVote=new AttemptCreateVote();
-                    attemptCreateVote.execute();
+                    if(likes[position].equals("bai"))
+                    {
+                        AttemptDeleteVote attemptDeleteVote=new AttemptDeleteVote();
+                        attemptDeleteVote.execute();
+                    }
+                    else
+                    {
+                        AttemptCreateVote attemptCreateVote=new AttemptCreateVote();
+                        attemptCreateVote.execute();
+                    }
                 }
             }
         });
@@ -310,6 +318,15 @@ public class Fragment_View_Comments extends Fragment {
 
         protected void onPostExecute(JSONObject result)
         {
+
+            FragmentManager fm=getActivity().getSupportFragmentManager();
+            Fragment_View_Comments fvc=new Fragment_View_Comments();
+            final Bundle bundle = new Bundle();
+            bundle.putString("id_campo", id_campo);
+            bundle.putString("nombre_hoyo", nombre_hoyo);
+            fvc.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor, fvc).commit();
+
             try
             {
                 if(result != null)
@@ -351,19 +368,22 @@ public class Fragment_View_Comments extends Fragment {
 
         protected void onPostExecute(JSONObject result)
         {
+
+            FragmentManager fm=getActivity().getSupportFragmentManager();
+            Fragment_View_Comments fvc=new Fragment_View_Comments();
+            final Bundle bundle = new Bundle();
+            bundle.putString("id_campo", id_campo);
+            bundle.putString("nombre_hoyo", nombre_hoyo);
+            fvc.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.contenedor, fvc).commit();
+
             try
             {
                 if(result != null)
                 {
                     Toast.makeText(getActivity().getApplicationContext(),result.getString("mensaje"),Toast.LENGTH_LONG).show();
                 }
-                FragmentManager fm=getActivity().getSupportFragmentManager();
-                Fragment_View_Comments fvc=new Fragment_View_Comments();
-                final Bundle bundle = new Bundle();
-                bundle.putString("id_campo", id_campo);
-                bundle.putString("nombre_hoyo", nombre_hoyo);
-                fvc.setArguments(bundle);
-                fm.beginTransaction().replace(R.id.contenedor, fvc).commit();
+
             }
             catch (JSONException e)
             {
