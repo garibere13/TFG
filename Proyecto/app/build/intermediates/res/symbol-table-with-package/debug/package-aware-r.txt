@@ -1264,6 +1264,7 @@ drawable ic_rotate_left
 drawable ic_rotate_right
 drawable indicator_autocrop
 drawable like
+drawable like_blue
 drawable likestyle
 drawable log_out
 drawable mapa

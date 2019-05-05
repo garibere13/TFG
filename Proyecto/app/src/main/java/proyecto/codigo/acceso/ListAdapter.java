@@ -300,19 +300,26 @@ public class ListAdapter extends BaseAdapter implements ThemedSpinnerAdapter {
 
     public void setViewCircularImage(de.hdodenhof.circleimageview.CircleImageView v, String value) {
 
-        if(!(value.equals("null"))&&!(value.equals("null-1")))
+        if(!(value.equals("null")) && !(value.equals("bai")) && !(value.equals("ez")))
         {
             Picasso.get().load(value).into(v);
         }
         else
         {
-            if(value.equals("null-1"))
+            if(value.equals("bai"))
             {
-                v.setImageResource(R.drawable.like);
+                v.setImageResource(R.drawable.like_blue);
             }
             else
             {
-                v.setImageResource(R.drawable.nobody);
+                if(value.equals("ez"))
+                {
+                    v.setImageResource(R.drawable.like);
+                }
+                else
+                {
+                    v.setImageResource(R.drawable.nobody);
+                }
             }
         }
     }

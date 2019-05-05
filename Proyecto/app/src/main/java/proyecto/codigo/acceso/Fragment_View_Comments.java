@@ -54,6 +54,7 @@ public class Fragment_View_Comments extends Fragment {
     String[] fechas;
     String[] urls;
     String[] votos;
+    String[] likes;
 
 
 
@@ -227,6 +228,8 @@ public class Fragment_View_Comments extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(parent == clickSource) {
                     // Do something with the ListView was clicked
+                    Toast.makeText(getActivity().getApplicationContext(),likes[position],Toast.LENGTH_LONG).show();
+
                     id_comentario_voto=ids[position];
                     AttemptCreateVote attemptCreateVote=new AttemptCreateVote();
                     attemptCreateVote.execute();
@@ -387,6 +390,7 @@ public class Fragment_View_Comments extends Fragment {
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id_campo", id_campo));
             params.add(new BasicNameValuePair("nombre_hoyo", nombre_hoyo));
+            params.add(new BasicNameValuePair("username", ((MainActivity)getActivity()).username));
             String json = jsonParser.makeHttpRequestString(URL1, "POST", params);
 
             return json;
@@ -403,6 +407,7 @@ public class Fragment_View_Comments extends Fragment {
                 fechas=new String[jsonArray.length()];
                 urls=new String[jsonArray.length()];
                 votos=new String[jsonArray.length()];
+                likes=new String[jsonArray.length()];
 
                 aList = new ArrayList<HashMap<String, String>>();
 
@@ -415,6 +420,7 @@ public class Fragment_View_Comments extends Fragment {
                     usernames[i]=obj.getString("username");
                     urls[i]=obj.getString("url");
                     votos[i]=obj.getString("votos");
+                    likes[i]=obj.getString("like");
 
                     HashMap<String, String> hm = new HashMap<String, String>();
 
@@ -426,7 +432,9 @@ public class Fragment_View_Comments extends Fragment {
                     hm.put("comentario", comentarios[i]);
                     hm.put("username_fecha", usernames[i]+" - "+votos[i]+" votos"+"    "+fechas[i]);
                     //hm.put("listview_like", Integer.toString(R.drawable.like));
-                    hm.put("listview_like", "null-1");
+
+                    //hm.put("listview_like", "null-1");
+                    hm.put("listview_like", likes[i]);
                     aList.add(hm);
                 }
 

@@ -3,6 +3,7 @@
     
     $id_campo=""; 
     $nombre_hoyo="";
+    $username="";
     
 
     if(isset($_POST['id_campo']))
@@ -13,10 +14,14 @@
     {
         $nombre_hoyo = $_POST['nombre_hoyo'];
     }
+    if(isset($_POST['username']))
+    {
+        $username = $_POST['username'];
+    }
     $holeObject = new Hole();
 
-    if(!empty($id_campo) && !empty($nombre_hoyo))
+    if(!empty($id_campo) && !empty($nombre_hoyo) && !empty($username))
     {  
-        $json_array=$holeObject->find_hole_comments($id_campo, $nombre_hoyo);
+        $json_array=$holeObject->find_hole_comments($id_campo, $nombre_hoyo, $username);
     }
 ?>

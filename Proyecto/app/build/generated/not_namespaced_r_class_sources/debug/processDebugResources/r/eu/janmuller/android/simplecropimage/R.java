@@ -19,7 +19,7 @@ public final class R {
         public static final int ic_rotate_left = 0x7f080090;
         public static final int ic_rotate_right = 0x7f080091;
         public static final int indicator_autocrop = 0x7f080092;
-        public static final int selector_crop_button = 0x7f0800ad;
+        public static final int selector_crop_button = 0x7f0800ae;
     }
     public static final class id {
         private id() {}

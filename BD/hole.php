@@ -331,7 +331,7 @@
 
 
 
-        public function find_hole_comments($id_campo, $nombre_hoyo)
+        public function find_hole_comments($id_campo, $nombre_hoyo, $username)
         {          
             
             $query1 = "SELECT id, username, fecha, comentario, votos 
@@ -362,16 +362,37 @@
 
                                 while($row3 = mysqli_fetch_assoc($stmt3))
                                 { 
-
-                                    $temp = 
-                                    [
-                                        'id'=>$row['id'],
-                                        'username'=>$row['username'],
-                                        'comentario'=>$row['comentario'],
-                                        'fecha'=>$row['fecha'],
-                                        'votos'=>$row['votos'],
-                                        'url'=>$row3['url']
-                                    ];
+                                    $aux1=$row['id'];
+                                    $query = "SELECT id_comentario, username FROM votaciones WHERE username='$username' and id_comentario=$aux1 Limit 1";
+                                    $result = mysqli_query($this->db->getDb(), $query);            
+                                        if(mysqli_num_rows($result) > 0)
+                                        { 
+                                            $temp = 
+                                            [
+                                                               
+                                                        'id'=>$row['id'],
+                                                        'username'=>$row['username'],
+                                                        'comentario'=>$row['comentario'],
+                                                        'fecha'=>$row['fecha'],
+                                                        'votos'=>$row['votos'],
+                                                        'url'=>$row3['url'],
+                                                        'like'=>'bai'
+                                            ];
+                                        }
+                                        else
+                                        {
+                                            $temp = 
+                                            [
+                                                               
+                                                        'id'=>$row['id'],
+                                                        'username'=>$row['username'],
+                                                        'comentario'=>$row['comentario'],
+                                                        'fecha'=>$row['fecha'],
+                                                        'votos'=>$row['votos'],
+                                                        'url'=>$row3['url'],
+                                                        'like'=>'ez'
+                                            ];
+                                        }
                                     array_push($resultado_final, $temp);                      
                                     
                                 }
@@ -380,15 +401,38 @@
                     }
                     else
                     {
-                        $temp = 
-                        [
-                            'id'=>$row['id'],
-                            'username'=>$row['username'],
-                            'comentario'=>$row['comentario'],
-                            'fecha'=>$row['fecha'],
-                            'votos'=>$row['votos'],
-                            'url'=>null
-                        ];
+
+                        $aux1=$row['id'];
+                        $query = "SELECT id_comentario, username FROM votaciones WHERE username='$username' and id_comentario=$aux1 Limit 1";
+                        $result = mysqli_query($this->db->getDb(), $query);
+
+                        if(mysqli_num_rows($result) > 0)
+                        {
+                             $temp = 
+                            [
+                                'id'=>$row['id'],
+                                'username'=>$row['username'],
+                                'comentario'=>$row['comentario'],
+                                'fecha'=>$row['fecha'],
+                                'votos'=>$row['votos'],
+                                'url'=>null,
+                                'like'=>'bai'
+                            ];
+                        }
+                        else
+                        {
+                            $temp = 
+                            [
+                                'id'=>$row['id'],
+                                'username'=>$row['username'],
+                                'comentario'=>$row['comentario'],
+                                'fecha'=>$row['fecha'],
+                                'votos'=>$row['votos'],
+                                'url'=>null,
+                                'like'=>'ez'
+                            ];
+                        }
+                       
                         array_push($resultado_final, $temp);                  
                     }
 

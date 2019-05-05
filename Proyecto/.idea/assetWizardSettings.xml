@@ -28,7 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="like" />
+                            <entry key="color" value="025ced" />
+                            <entry key="outputName" value="like_blue" />
                             <entry key="sourceFile" value="C:\Users\PC" />
                           </map>
                         </option>
