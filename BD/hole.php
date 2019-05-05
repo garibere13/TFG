@@ -216,6 +216,31 @@
         }
 
 
+        public function deleteVote($id_comentario, $username)
+        {                
+            $query = "delete from votaciones where id_comentario=$id_comentario and username='$username'";
+           
+            $inserted = mysqli_query($this->db->getDb(), $query);
+                
+                if($inserted == 1)
+                {
+                    $json['success'] = 1;
+                    $json['mensaje'] = "Voto eliminado";     
+                    
+                    $query1 = "update comentarios set votos=votos-1 where id=$id_comentario";
+                    $result1 = mysqli_query($this->db->getDb(), $query1); 
+                }
+                else
+                {                    
+                    $json['success'] = 0;
+                    $json['mensaje'] = "No se ha podido eliminar el voto";
+                }                
+                mysqli_close($this->db->getDb());            
+            return $json;
+        }
+
+
+
         public function find_is_hole_user_favourite($nombre_hoyo, $id_campo, $username)
         {
                    

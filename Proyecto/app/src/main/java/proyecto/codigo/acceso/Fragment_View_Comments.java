@@ -40,6 +40,7 @@ public class Fragment_View_Comments extends Fragment {
     String URL;
     String URL1;
     String URL2;
+    String URL3;
     String id_campo;
     String nombre_hoyo;
     String creador;
@@ -99,6 +100,7 @@ public class Fragment_View_Comments extends Fragment {
         URL="http://"+ip_config+"/TFG/BD/create-comment.php";
         URL1="http://"+ip_config+"/TFG/BD/find-hole-comments.php";
         URL2="http://"+ip_config+"/TFG/BD/create-vote.php";
+        URL3="http://"+ip_config+"/TFG/BD/delete-vote.php";
 
 
         btn_enviar.setOnClickListener(new View.OnClickListener() {
@@ -279,6 +281,46 @@ public class Fragment_View_Comments extends Fragment {
     }
 
 
+
+
+    //////////////////////////////////////////////////////////////////////////////////7
+
+    private class AttemptDeleteVote extends AsyncTask<String, String, JSONObject> {
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected JSONObject doInBackground(String... args)
+        {
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("id_comentario", id_comentario_voto));
+            params.add(new BasicNameValuePair("username", ((MainActivity)getActivity()).username));
+            JSONObject json = jsonParser.makeHttpRequest(URL3, "POST", params);
+
+            return json;
+        }
+
+        protected void onPostExecute(JSONObject result)
+        {
+            try
+            {
+                if(result != null)
+                {
+                    Toast.makeText(getActivity().getApplicationContext(),result.getString("mensaje"),Toast.LENGTH_LONG).show();
+
+                }
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 
