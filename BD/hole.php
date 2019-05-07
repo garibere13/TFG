@@ -310,20 +310,54 @@
             and h.nombre=f.nombre_hoyo
             and h.id_campo=f.id_campo";
 
+           //$resultado_final=array();
+
             
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {
                 while($row = mysqli_fetch_assoc($stmt))
-                {  
-                    $temp = 
-                    [
-                        'nombre_hoyo'=>$row['nombre_hoyo'],
-                        'id_campo'=>$row['id_campo'],
-                        'nombre_campo'=>$row['nombre_campo'],
-                        'creador'=>$row['creador']
-                    ];
-                        array_push($data, $temp);
-                }     
+                {
+                
+                    $aux_id_campo=$row['id_campo'];
+                    $aux_nombre_hoyo=$row['nombre_hoyo'];
+                    $aux_nombre_campo=$row['nombre_campo'];
+                    $query3 = "SELECT url from fotos where id_campo=$aux_id_campo and nombre_hoyo='$aux_nombre_hoyo' and isProfile=true limit 1";
+                    $result3 = mysqli_query($this->db->getDb(), $query3);  
+                
+                
+                            if(mysqli_num_rows($result3) > 0)
+                            {
+                                if($stmt3 = mysqli_query($this->db->getDb(), $query3))
+                                {
+    
+                                    while($row3 = mysqli_fetch_assoc($stmt3))
+                                    { 
+                                        $url=$row3['url'];
+                                        $temp = 
+                                        [
+                                            'nombre_hoyo'=>$row['nombre_hoyo'],
+                                            'id_campo'=>$row['id_campo'],
+                                            'nombre_campo'=>$row['nombre_campo'],
+                                            'creador'=>$row['creador'], 
+                                            'url'=>$url
+                                        ];
+                                            array_push($data, $temp);
+                                    }  
+                                }
+                            }
+                            else
+                            {
+                                $temp = 
+                                        [
+                                            'nombre_hoyo'=>$row['nombre_hoyo'],
+                                            'id_campo'=>$row['id_campo'],
+                                            'nombre_campo'=>$row['nombre_campo'],
+                                            'creador'=>$row['creador'], 
+                                            'url'=>null
+                                        ];
+                                        array_push($data, $temp);
+                            }                                
+                }   
                 echo json_encode($data);   
             }
             mysqli_close($this->db->getDb());         

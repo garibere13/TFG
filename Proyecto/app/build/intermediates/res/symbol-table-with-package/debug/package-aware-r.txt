@@ -1490,9 +1490,12 @@ id listMode
 id list_comments_comment
 id list_comments_like
 id list_comments_photo
+id list_favorites_name
+id list_favorites_photo
 id list_favourites
 id list_following_followers
 id list_item
+id listview_favorites_name
 id listview_image
 id listview_item_comentario
 id listview_item_short_description
@@ -1797,6 +1800,7 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout favoritos
 layout find_item
 layout fragment_find
 layout fragment_upload_image
@@ -1813,6 +1817,7 @@ layout fragment_view_profile
 layout fragment_view_user_favourites
 layout listview_comments_comment
 layout listview_comments_like
+layout listview_comments_name
 layout listview_comments_photo
 layout loginscreen_user
 layout main
