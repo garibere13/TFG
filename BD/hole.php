@@ -94,6 +94,69 @@
         }
 
 
+        public function check_hole_information($id_campo, $num_hoyos)
+        {
+            
+            $data = array();
+            $contador;
+
+            for($i=0;$i<$num_hoyos;$i++)
+            {
+                $contador=$i+1;
+                $nombre_hoyo='Hoyo '.$contador;
+
+                $query = "SELECT * from hoyos where id_campo=$id_campo and nombre='$nombre_hoyo'";
+                $result = mysqli_query($this->db->getDb(), $query);  
+                if(mysqli_num_rows($result) > 0)
+                {
+                    if($stmt = mysqli_query($this->db->getDb(), $query))
+                    {
+                        while($row = mysqli_fetch_assoc($stmt))
+                        {
+                            $query = "SELECT url from fotos where id_campo=$id_campo and nombre_hoyo='$nombre_hoyo' and isProfile=true limit 1";
+                            $result = mysqli_query($this->db->getDb(), $query);
+                            if(mysqli_num_rows($result) > 0)
+                            {
+                                if($stmt = mysqli_query($this->db->getDb(), $query))
+                                {
+                                    while($row = mysqli_fetch_assoc($stmt))
+                                    {
+                                        $temp = 
+                                        [
+                                            'nombre_hoyo'=>'Hoyo '.$contador,
+                                            'url'=>$row['url'],
+                                        ];
+                                        array_push($data, $temp);
+                                    }
+                                }
+                            } 
+                            else
+                            {
+                                $temp = 
+                                [
+                                    'nombre_hoyo'=>'Hoyo '.$contador,
+                                    'url'=>null,
+                                ];
+                                array_push($data, $temp);
+                            }                           
+                        }
+                    }
+                }
+                else
+                {
+                    $temp = 
+                    [
+                        'nombre_hoyo'=>'Hoyo '.$contador,
+                        'url'=>null,
+                    ];
+                    array_push($data, $temp);
+                }               
+            }
+            echo json_encode($data);
+            mysqli_close($this->db->getDb());         
+        }
+
+
         public function find_hole_data($id_campo, $nombre)
         {
             

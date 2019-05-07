@@ -30,7 +30,6 @@ public class Fragment_View_Following_Followers extends Fragment {
     View v;
     ListView lv_foto;
     ListView lv_name;
-    //String[] usernames;
     String[] followers_usernames_aux;
     String[] following_usernames_aux;
     String[] url;
