@@ -309,9 +309,6 @@
             and f.id_campo=c.id
             and h.nombre=f.nombre_hoyo
             and h.id_campo=f.id_campo";
-
-           //$resultado_final=array();
-
             
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {
@@ -322,8 +319,7 @@
                     $aux_nombre_hoyo=$row['nombre_hoyo'];
                     $aux_nombre_campo=$row['nombre_campo'];
                     $query3 = "SELECT url from fotos where id_campo=$aux_id_campo and nombre_hoyo='$aux_nombre_hoyo' and isProfile=true limit 1";
-                    $result3 = mysqli_query($this->db->getDb(), $query3);  
-                
+                    $result3 = mysqli_query($this->db->getDb(), $query3);                 
                 
                             if(mysqli_num_rows($result3) > 0)
                             {

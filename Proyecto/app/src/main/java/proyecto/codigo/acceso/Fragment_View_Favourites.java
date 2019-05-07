@@ -41,7 +41,6 @@ public class Fragment_View_Favourites extends Fragment {
     ListAdapter simpleAdapter_foto;
     ListAdapter simpleAdapter_nombre;
 
-    ArrayAdapter<String> adapter;
 
     JSONParser jsonParser=new JSONParser();
     String URL;

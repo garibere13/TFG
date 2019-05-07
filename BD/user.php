@@ -141,39 +141,112 @@
 
         public function find_following_followers($username, $following_followers)
         {
-            $usernames = array();
+            $data = array();
             if($following_followers=='origen')
             {
-                $query = "SELECT origen FROM amistades where destino='$username'";
-                if($stmt = mysqli_query($this->db->getDb(), $query))
-            {        
-                while($row = mysqli_fetch_assoc($stmt))
-                {  
-                    $temp = 
-                    [
-                        'username'=>$row['origen']
-                    ];
-                        array_push($usernames, $temp);
-                }
-                echo json_encode($usernames); 
-            }
+                    $query = "SELECT a.origen as username, u.nombre, u.apellido1, u.apellido2
+                    FROM amistades a, usuarios u
+                    where a.destino='$username'
+                    and a.origen=u.username";
+                    if($stmt = mysqli_query($this->db->getDb(), $query))
+                    {        
+                        while($row = mysqli_fetch_assoc($stmt))
+                        {  
+
+
+                            $aux_username=$row['username'];
+
+                            $query3 = "SELECT url from fotos where username='$aux_username' and isProfile=true limit 1";
+                            $result3 = mysqli_query($this->db->getDb(), $query3);   
+
+                            if(mysqli_num_rows($result3) > 0)
+                            {
+                                if($stmt3 = mysqli_query($this->db->getDb(), $query3))
+                                {
+    
+                                    while($row3 = mysqli_fetch_assoc($stmt3))
+                                    { 
+                                        $url=$row3['url'];
+                                        $temp = 
+                                        [
+                                            'username'=>$row['username'],
+                                            'nombre'=>$row['nombre'],
+                                            'apellido1'=>$row['apellido1'],
+                                            'apellido2'=>$row['apellido2'], 
+                                            'url'=>$url
+                                        ];
+                                            array_push($data, $temp);
+                                    }  
+                                }
+                            }
+                            else
+                            {
+                                $temp = 
+                                        [
+                                            'username'=>$row['username'],
+                                            'nombre'=>$row['nombre'],
+                                            'apellido1'=>$row['apellido1'],
+                                            'apellido2'=>$row['apellido2'], 
+                                            'url'=>null
+                                        ];
+                                        array_push($data, $temp);
+                            } 
+                        }
+                    }
             }
             else
             {
-                $query = "SELECT destino FROM amistades where origen='$username'";
-                if($stmt = mysqli_query($this->db->getDb(), $query))
-            {        
-                while($row = mysqli_fetch_assoc($stmt))
-                {  
-                    $temp = 
-                    [
-                        'username'=>$row['destino']
-                    ];
-                        array_push($usernames, $temp);
-                }
-                echo json_encode($usernames); 
+
+                $query = "SELECT a.destino as username, u.nombre, u.apellido1, u.apellido2
+                FROM amistades a, usuarios u
+                where a.origen='$username'
+                and a.destino=u.username";
+                    if($stmt = mysqli_query($this->db->getDb(), $query))
+                    {        
+                        while($row = mysqli_fetch_assoc($stmt))
+                        {  
+
+                            $aux_username=$row['username'];
+
+                            $query3 = "SELECT url from fotos where username='$aux_username' and isProfile=true limit 1";
+                            $result3 = mysqli_query($this->db->getDb(), $query3);   
+
+                            if(mysqli_num_rows($result3) > 0)
+                            {
+                                if($stmt3 = mysqli_query($this->db->getDb(), $query3))
+                                {
+    
+                                    while($row3 = mysqli_fetch_assoc($stmt3))
+                                    { 
+                                        $url=$row3['url'];
+                                        $temp = 
+                                        [
+                                            'username'=>$row['username'],
+                                            'nombre'=>$row['nombre'],
+                                            'apellido1'=>$row['apellido1'],
+                                            'apellido2'=>$row['apellido2'], 
+                                            'url'=>$url
+                                        ];
+                                            array_push($data, $temp);
+                                    }  
+                                }
+                            }
+                            else
+                            {
+                                $temp = 
+                                        [
+                                            'username'=>$row['username'],
+                                            'nombre'=>$row['nombre'],
+                                            'apellido1'=>$row['apellido1'],
+                                            'apellido2'=>$row['apellido2'], 
+                                            'url'=>null
+                                        ];
+                                        array_push($data, $temp);
+                            } 
+                        }
+                    }
             }
-            }
+            echo json_encode($data); 
                    
             mysqli_close($this->db->getDb());
         }

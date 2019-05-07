@@ -80,9 +80,10 @@ public class Fragment_View_Profile extends Fragment {
 
     CircleImageView image;
 
+
+    public String isMyFriend;
     String[] following;
     String[] followers;
-    public String isMyFriend;
 
 
     @Override
@@ -207,12 +208,6 @@ public class Fragment_View_Profile extends Fragment {
         AttemptFindUsernameData attemptFindData=new AttemptFindUsernameData();
         attemptFindData.execute(username);
 
-        AttemptFindFollowers attemptFindFollowers=new AttemptFindFollowers();
-        attemptFindFollowers.execute(username);
-
-        AttemptFindFollowing attemptFindFollowing=new AttemptFindFollowing();
-        attemptFindFollowing.execute(username);
-
         AttemptFindIsMyFriend attemptFindIsMyFriend=new AttemptFindIsMyFriend();
         attemptFindIsMyFriend.execute();
 
@@ -242,12 +237,13 @@ public class Fragment_View_Profile extends Fragment {
             @Override
             public void onClick(View textView) {
 
-                if(followers.length>0)
+                if(Integer.parseInt(db_seguidores)>0)
                 {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     Fragment_View_Following_Followers fvp = new Fragment_View_Following_Followers();
                     final Bundle bundle = new Bundle();
-                    bundle.putStringArray("data", followers);
+                    bundle.putString("username", username);
+                    bundle.putString("quien", "destino");
                     fvp.setArguments(bundle);
                     fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
                 }
@@ -263,12 +259,13 @@ public class Fragment_View_Profile extends Fragment {
             @Override
             public void onClick(View textView) {
 
-                if(following.length>0)
+                if(Integer.parseInt(db_siguiendo)>0)
                 {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     Fragment_View_Following_Followers fvp = new Fragment_View_Following_Followers();
                     final Bundle bundle = new Bundle();
-                    bundle.putStringArray("data", following);
+                    bundle.putString("username", username);
+                    bundle.putString("quien", "origen");
                     fvp.setArguments(bundle);
                     fm.beginTransaction().replace(R.id.contenedor, fvp).commit();
                 }
@@ -333,99 +330,6 @@ public class Fragment_View_Profile extends Fragment {
 
 
 
-    ////////////////////////////////////////////////////////////////////////////////
-
-    private class AttemptFindFollowers extends AsyncTask<String, String, String> {
-
-        @Override
-        protected void onPreExecute()
-        {
-            super.onPreExecute();
-        }
-
-        //@Override
-        protected String doInBackground(String... args) {
-
-            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("username", username));
-            params.add(new BasicNameValuePair("following_followers", "origen"));
-            String json = jsonParser.makeHttpRequestString(URL4, "POST", params);
-
-            return json;
-        }
-
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            try
-            {
-                JSONArray jsonArray = new JSONArray(result);
-                followers=new String[jsonArray.length()];
-
-                for (int i = 0; i < jsonArray.length(); i++)
-                {
-                    JSONObject obj = jsonArray.getJSONObject(i);
-                    followers[i] = obj.getString("username");
-                }
-            }
-            catch (JSONException e)
-            {
-                e.printStackTrace();
-            }
-
-        }
-    }
-
-
-    private class AttemptFindFollowing extends AsyncTask<String, String, String> {
-
-        @Override
-        protected void onPreExecute()
-        {
-            super.onPreExecute();
-        }
-
-        //@Override
-        protected String doInBackground(String... args) {
-
-            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("username", username));
-            params.add(new BasicNameValuePair("following_followers", "destino"));
-            String json = jsonParser.makeHttpRequestString(URL4, "POST", params);
-
-            return json;
-        }
-
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            try
-            {
-                JSONArray jsonArray = new JSONArray(result);
-                following=new String[jsonArray.length()];
-
-                for (int i = 0; i < jsonArray.length(); i++)
-                {
-                    JSONObject obj = jsonArray.getJSONObject(i);
-                    following[i] = obj.getString("username");
-                    /*if(!(username.equals(((MainActivity)getActivity()).username)))
-                    {
-                        //Toast.makeText(getActivity().getApplicationContext(),following[i]+" // "+username,Toast.LENGTH_LONG).show();
-
-                        if(following[i].equals(username))
-                        {
-                            Toast.makeText(getActivity().getApplicationContext(),"lllllllllllllllll",Toast.LENGTH_LONG).show();
-                            //amistad.setChecked(false);
-                        }
-                        amistad.setChecked(true);
-                    }*/
-                }
-            }
-            catch (JSONException e)
-            {
-                e.printStackTrace();
-            }
-
-        }
-    }
 
 
     //////////////////////////////////////////////////////////////////////////////////

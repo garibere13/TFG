@@ -36,13 +36,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Fragment_View_Favourites.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Favourites.java">
+      <file leaf-file-name="Fragment_View_Following_Followers.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Following_Followers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+            <state relative-caret-position="46">
+              <caret line="172" column="5" selection-start-line="172" selection-start-column="5" selection-end-line="172" selection-end-column="5" />
               <folding>
-                <element signature="e#1565#1609#0" expanded="true" />
+                <element signature="e#1774#1818#0" expanded="true" />
+                <element signature="e#4634#5147#0" expanded="true" />
+                <element signature="e#5146#5147#0" expanded="true" />
+                <element signature="e#5185#5697#0" expanded="true" />
+                <element signature="e#5696#5697#0" expanded="true" />
+                <element signature="e#5741#6451#0" expanded="true" />
+                <element signature="e#6450#6451#0" expanded="true" />
+                <element signature="e#6959#6960#0" expanded="true" />
+                <element signature="e#7003#7004#0" expanded="true" />
+                <element signature="e#7937#7952#0" expanded="true" />
+                <element signature="e#9487#9503#0" expanded="true" />
+                <element signature="e#11173#11188#0" expanded="true" />
+                <element signature="e#12723#12739#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,10 +64,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>image</find>
-      <find>v</find>
-      <find>mData</find>
-      <find>themed</find>
       <find>Nullable</find>
       <find>listview_image</find>
       <find>listas</find>
@@ -82,6 +90,10 @@
       <find>comentarios</find>
       <find>list_comments_commen</find>
       <find>list_comments_comment</find>
+      <find>url4</find>
+      <find>following_followers</find>
+      <find>usernames[i]</find>
+      <find>following_ape2</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -3425,7 +3437,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_comments.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Profile.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/comentarios_hoyos_principal.xml" />
         <option value="$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/widget/SimpleAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/ThemedSpinnerAdapter.java" />
@@ -3438,13 +3449,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/ListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Comments.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/favoritos.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Favourites.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/listview_comments_name.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Favourites.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Profile.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Following_Followers.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="1032" />
@@ -3455,9 +3468,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -3480,6 +3490,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3623,7 +3636,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="12" />
@@ -3636,7 +3649,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Logcat" order="10" visible="true" weight="0.29761904" />
+      <window_info anchor="bottom" id="Logcat" order="10" visible="true" weight="0.31462586" />
       <window_info id="Captures" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="2" />
@@ -3670,22 +3683,10 @@
           <properties />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Comments.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3944">
-          <caret line="232" selection-start-line="232" selection-end-line="232" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10377#11879#0" />
-            <element signature="e#17437#19019#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/ListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4165">
@@ -3915,13 +3916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field_Holes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-578">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/nobody.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -3944,13 +3938,6 @@
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Profile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="100" column="25" lean-forward="true" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/LogIn.java">
@@ -4007,26 +3994,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/favoritos.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview_comments_comment.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview_comments_photo.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -4035,18 +4002,6 @@
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Comments.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="268" column="10" selection-start-line="268" selection-start-column="10" selection-end-line="268" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10377#11879#0" />
-            <element signature="e#17437#19019#0" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview_comments_name.xml">
@@ -4066,12 +4021,87 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/favoritos.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Comments.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="442" column="51" lean-forward="true" selection-start-line="442" selection-start-column="51" selection-end-line="442" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10377#11879#0" />
+            <element signature="e#17437#19019#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview_comments_comment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Field_Holes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="58" column="35" lean-forward="true" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="245" column="54" selection-start-line="245" selection-start-column="54" selection-end-line="245" selection-end-column="54" />
+          <folding>
+            <element signature="e#12497#12498#0" expanded="true" />
+            <element signature="e#12541#12542#0" expanded="true" />
+            <element signature="e#17460#17461#0" expanded="true" />
+            <element signature="e#17504#17505#0" expanded="true" />
+            <element signature="e#18579#18580#0" expanded="true" />
+            <element signature="e#18623#18624#0" expanded="true" />
+            <element signature="e#19701#19702#0" expanded="true" />
+            <element signature="e#19745#19746#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Favourites.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+        <state relative-caret-position="2006">
+          <caret line="190" column="17" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/proyecto/codigo/acceso/Fragment_View_Following_Followers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="172" column="5" selection-start-line="172" selection-start-column="5" selection-end-line="172" selection-end-column="5" />
           <folding>
-            <element signature="e#1565#1609#0" expanded="true" />
+            <element signature="e#1774#1818#0" expanded="true" />
+            <element signature="e#4634#5147#0" expanded="true" />
+            <element signature="e#5146#5147#0" expanded="true" />
+            <element signature="e#5185#5697#0" expanded="true" />
+            <element signature="e#5696#5697#0" expanded="true" />
+            <element signature="e#5741#6451#0" expanded="true" />
+            <element signature="e#6450#6451#0" expanded="true" />
+            <element signature="e#6959#6960#0" expanded="true" />
+            <element signature="e#7003#7004#0" expanded="true" />
+            <element signature="e#7937#7952#0" expanded="true" />
+            <element signature="e#9487#9503#0" expanded="true" />
+            <element signature="e#11173#11188#0" expanded="true" />
+            <element signature="e#12723#12739#0" expanded="true" />
           </folding>
         </state>
       </provider>
