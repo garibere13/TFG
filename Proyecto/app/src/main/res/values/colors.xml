@@ -6,12 +6,13 @@
     <color name="startblue">#09c6df</color>
     <color name="endblue">#0bcce6</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorGold">#FFD700</color>
 
-    <color name="hole_gradiente_start_color">#8080ff</color>
-    <color name="hole_gradiente_end_color">#ff4d4d</color>
+    <color name="field_gradiente_start_color">#8080ff</color>
+    <color name="field_gradiente_end_color">#ff4d4d</color>
 
-    <color name="field_gradiente_start_color">#00b3b3</color>
-    <color name="field_gradiente_end_color">#00b300</color>
+    <color name="hole_gradiente_start_color">#00b3b3</color>
+    <color name="hole_gradiente_end_color">#00b300</color>
 
     <color name="profile_gradiente_start_color">#2b6dd8</color>
     <color name="profile_gradiente_end_color">#95979b</color>

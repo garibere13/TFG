@@ -181,6 +181,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:textStyle="bold"
+                android:textSize="20dp"
                 android:text="Creador: ">
             </TextView>
 
@@ -206,6 +207,7 @@
                 android:id="@+id/my_view_hole_date"
                 android:paddingLeft="20dp"
                 android:textStyle="bold"
+                android:textSize="20dp"
                 android:text="Creación del hoyo: ">
             </TextView>
 

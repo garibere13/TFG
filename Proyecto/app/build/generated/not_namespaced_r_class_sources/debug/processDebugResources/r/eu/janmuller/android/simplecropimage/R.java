@@ -24,11 +24,11 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int discard = 0x7f09006b;
-        public static final int image = 0x7f0900a7;
-        public static final int rotateLeft = 0x7f090118;
-        public static final int rotateRight = 0x7f090119;
-        public static final int save = 0x7f09011b;
+        public static final int discard = 0x7f09006f;
+        public static final int image = 0x7f0900ab;
+        public static final int rotateLeft = 0x7f09011b;
+        public static final int rotateRight = 0x7f09011c;
+        public static final int save = 0x7f09011e;
     }
     public static final class layout {
         private layout() {}

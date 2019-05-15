@@ -1,18 +1,6 @@
-IPv4 de forma automática
-
 arreglar lo de que pulsas la tecla atrás
 
 descripción de un campo/hoyo?¿? --> qué hacer?
-
-
-
-notificaciones
-
-lista de hoyos de un campo --> crear método que le pasa el id del campo y el nº de hoyos,
-en un for mira si ese numero de hoyo existe en la base de datos de los hoyos y 
-si existe miramos la imagen, si no, se inventan los valores o algo así
-
-hacer retos
 
 
 

@@ -167,7 +167,7 @@
             if(mysqli_num_rows($result) > 0)
             {                
 
-                $query = "SELECT f.url as url, (SELECT count(f.id_campo) as num_fotos FROM fotos f WHERE f.id_campo=$id_campo and f.nombre_hoyo='$nombre' and f.isProfile=false Limit 1) as num_fotos, h.nombre as nombre_hoyo, h.id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, h.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo 
+                $query = "SELECT f.url as url, (SELECT count(f.id_campo) as num_fotos FROM fotos f WHERE f.id_campo=$id_campo and f.nombre_hoyo='$nombre' and f.isProfile=false Limit 1) as num_fotos, h.nombre as nombre_hoyo, h.id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, h.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo, (select creador from campos where id=$id_campo) as creador_campo 
 
                 FROM fotos f, hoyos h, campos c
                 
@@ -178,7 +178,7 @@
             }
             else
             {
-                $query = "SELECT null as url, (SELECT count(f.id_campo) as num_fotos FROM fotos f WHERE f.id_campo=$id_campo and f.nombre_hoyo='$nombre' and f.isProfile=false Limit 1) as num_fotos, h.nombre as nombre_hoyo, h.id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, h.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo 
+                $query = "SELECT null as url, (SELECT count(f.id_campo) as num_fotos FROM fotos f WHERE f.id_campo=$id_campo and f.nombre_hoyo='$nombre' and f.isProfile=false Limit 1) as num_fotos, h.nombre as nombre_hoyo, h.id_campo, c.nombre as nombre_campo, h.descripcion, metros, par, h.creador, dayofmonth(h.fecha) as dia, month(h.fecha) as mes, year(h.fecha) as anyo, (select creador from campos where id=$id_campo) as creador_campo 
 
                 FROM fotos f, hoyos h, campos c
                 
@@ -204,6 +204,7 @@
                         'mes'=>$row['mes'],
                         'dia'=>$row['dia'],
                         'num_fotos'=>$row['num_fotos'],
+                        'creador_campo'=>$row['creador_campo'],
                         'url'=>$row['url']
                     ];
                         array_push($data, $temp);

@@ -200,6 +200,9 @@ public class MainActivity extends AppCompatActivity
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
+
+        FragmentManager fm=getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.contenedor, new Fragment_View_Profile()).commit();
     }
 
     @Override

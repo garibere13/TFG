@@ -178,6 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
+                android:textSize="20dp"
                 android:text="Creador: "
                 android:textStyle="bold"></TextView>
 
@@ -201,6 +202,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
+                android:textSize="20dp"
                 android:text="Ubicación: "
                 android:textStyle="bold"></TextView>
 
@@ -225,6 +227,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
+                android:textSize="20dp"
                 android:text="Fecha de creación del campo: "
                 android:textStyle="bold"></TextView>
         </LinearLayout>
@@ -243,7 +246,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:numStars="5"
-                android:stepSize="1.0"></RatingBar>
+                android:stepSize="1.0"
+                android:theme="@style/RatingBar">
+            </RatingBar>
 
         </LinearLayout>
 

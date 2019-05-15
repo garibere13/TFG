@@ -63,6 +63,7 @@ public class Fragment_View_Hole extends Fragment {
     public String db_par;
     public String db_url;
     public String db_creador;
+    public String db_creador_campo;
     public String  db_num_fotos;
     public String db_id_campo;
     public String db_date_dia;
@@ -186,7 +187,7 @@ public class Fragment_View_Hole extends Fragment {
                 Fragment_View_Field fvf=new Fragment_View_Field();
                 final Bundle bundle = new Bundle();
                 bundle.putString("id", db_id_campo);
-                bundle.putString("creador", db_creador);
+                bundle.putString("creador", db_creador_campo);
                 fvf.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.contenedor, fvf).commit();
             }
@@ -342,6 +343,7 @@ public class Fragment_View_Hole extends Fragment {
                     db_date_mes = obj.getString("mes");
                     db_date_dia = obj.getString("dia");
                     db_creador = obj.getString("creador");
+                    db_creador_campo = obj.getString("creador_campo");
                     db_num_fotos = obj.getString("num_fotos");
                     db_url = obj.getString("url");
                 }

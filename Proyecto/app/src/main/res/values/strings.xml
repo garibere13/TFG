@@ -37,7 +37,7 @@
     <string name="user_tam">El username debe tener entre 2 y 25 caracteres</string>
 
 
-    <string name="title_activity_main">Home</string>
+    <string name="title_activity_main">Golfer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">¡Bienvenido!</string>
