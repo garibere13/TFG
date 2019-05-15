@@ -6,29 +6,31 @@
     android:padding="5dp" >
 
         <LinearLayout
-            android:paddingLeft="25dp"
-            android:orientation="horizontal"
+            android:paddingTop="50dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_marginBottom="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="Username: "
-                android:textSize="24sp" />
+                android:textSize="40dp" />
 
             <AutoCompleteTextView
                 android:id="@+id/autocomplete_username"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:textSize="24sp"/>
+                android:textSize="40dp"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:paddingLeft="25dp"
-            android:orientation="horizontal"
+            android:paddingTop="100dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -36,15 +38,16 @@
             <TextView
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
+             android:layout_gravity="center_horizontal"
              android:text="Campo: "
-             android:textSize="24sp" />
+             android:textSize="40dp" />
 
             <AutoCompleteTextView
               android:id="@+id/autocomplete_field_name"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:layout_marginLeft="5dp"
-              android:textSize="24sp"/>
+              android:textSize="40dp"/>
 
         </LinearLayout>
 
