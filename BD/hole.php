@@ -372,7 +372,8 @@
             WHERE f.username='$username' 
             and f.id_campo=c.id
             and h.nombre=f.nombre_hoyo
-            and h.id_campo=f.id_campo";
+            and h.id_campo=f.id_campo
+            order by nombre_campo, f.nombre_hoyo";
             
            if($stmt = mysqli_query($this->db->getDb(), $query))
             {

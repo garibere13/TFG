@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -437,7 +438,14 @@ public class Fragment_View_Field extends Fragment {
                 {
                     if(result.getString("success")=="1")
                     {
-                        Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                        /*FragmentManager fm=getActivity().getSupportFragmentManager();
+                        Fragment_View_Field fvf=new Fragment_View_Field();
+                        final Bundle bundle = new Bundle();
+                        bundle.putString("id", id_field);
+                        bundle.putString("creador", creador);
+                        fvf.setArguments(bundle);
+                        fm.beginTransaction().replace(R.id.contenedor, fvf).commit();*/
                     }
                     else
                     {
@@ -483,8 +491,16 @@ public class Fragment_View_Field extends Fragment {
             {
                 if(result != null)
                 {
-                    Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getActivity().getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                    Log.e("trfe", result.getString("message"));
                     //refresh();
+                    /*FragmentManager fm=getActivity().getSupportFragmentManager();
+                    Fragment_View_Field fvf=new Fragment_View_Field();
+                    final Bundle bundle = new Bundle();
+                    bundle.putString("id", id_field);
+                    bundle.putString("creador", creador);
+                    fvf.setArguments(bundle);
+                    fm.beginTransaction().replace(R.id.contenedor, fvf).commit();*/
                 }
             }
             catch (JSONException e)

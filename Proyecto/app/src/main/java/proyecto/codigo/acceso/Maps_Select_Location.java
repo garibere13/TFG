@@ -91,7 +91,7 @@ public class Maps_Select_Location extends FragmentActivity implements OnMapReady
 
 
         //azken parametrua zooma da --> zenbaki haundigua, geo ta zoom gehio
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(43.1423435, -2.3184953), 9));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(43.1423435, -2.3184953), 11));
 
 
 

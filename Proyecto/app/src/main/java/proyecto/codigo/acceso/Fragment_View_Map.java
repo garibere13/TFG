@@ -191,7 +191,7 @@ public class Fragment_View_Map extends Fragment implements OnMapReadyCallback {
 
         //azken parametrua zooma da --> zenbaki haundigua, geo ta zoom gehio
 
-        CameraPosition cp = CameraPosition.builder().target(new LatLng(latitud, longitud)).zoom(9).build();
+        CameraPosition cp = CameraPosition.builder().target(new LatLng(latitud, longitud)).zoom(11).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
 
 
